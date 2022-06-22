@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 2086 920" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" xmlnsSerif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,36.3391,-50.485)">
+        <g>
+            <path d="M553.021,207.016C553.021,207.016 529.028,183.023 515.139,169.134C512.582,166.577 509.114,165.141 505.499,165.141C501.883,165.141 498.415,166.577 495.859,169.134C445.639,219.354 214.367,450.625 164.147,500.845C158.823,506.169 158.823,514.801 164.147,520.125C214.367,570.345 445.638,801.616 495.858,851.836C498.415,854.393 501.883,855.829 505.498,855.829C509.114,855.829 512.582,854.393 515.138,851.836C565.358,801.616 796.63,570.345 846.85,520.125C852.174,514.801 852.174,506.169 846.85,500.845C803.585,457.58 629.44,283.435 629.44,283.435" style="fill:rgb(0,112,181);fill-opacity:0;stroke:rgb(0,112,181);stroke-width:23.05px;"/>
+            <ellipse cx="411.389" cy="389.926" rx="54.873" ry="52.851" style="fill:rgb(0,112,181);stroke:rgb(0,112,181);stroke-width:8.46px;"/>
+            <ellipse cx="599.608" cy="389.926" rx="54.873" ry="52.851" style="fill:rgb(5,175,176);stroke:rgb(5,175,176);stroke-width:8.46px;"/>
+            <ellipse cx="411.389" cy="631.044" rx="54.873" ry="52.851" style="fill:rgb(5,175,176);stroke:rgb(5,175,176);stroke-width:8.46px;"/>
+            <ellipse cx="599.608" cy="631.044" rx="54.873" ry="52.851" style="fill:rgb(0,112,181);stroke:rgb(0,112,181);stroke-width:8.46px;"/>
+            <path d="M654.48,510.485C654.48,500.346 650.298,490.622 642.855,483.452C635.41,476.282 625.314,472.254 614.787,472.254L396.209,472.254C385.682,472.254 375.586,476.282 368.142,483.452C360.697,490.622 356.515,500.346 356.515,510.485L356.515,510.486C356.515,520.625 360.697,530.349 368.142,537.519C375.586,544.689 385.682,548.716 396.209,548.716L614.787,548.716C625.314,548.716 635.41,544.689 642.855,537.519C650.298,530.349 654.48,520.625 654.48,510.486L654.48,510.485Z" style="fill:rgb(5,175,176);stroke:rgb(5,175,176);stroke-width:8.36px;"/>
+            <g transform="matrix(0.324455,0,0,0.354555,884.715,383.823)">
+                <text x="0px" y="0px" style="font-family:'Courier-Bold', 'Courier';font-size:500px;fill:rgb(0,112,181);">Integrated</text>
+            </g>
+            <g transform="matrix(0.324455,0,0,0.354555,884.715,578.828)">
+                <text x="0px" y="0px" style="font-family:'Courier-Bold', 'Courier';font-size:500px;fill:rgb(5,175,176);">Health</text>
+            </g>
+            <g transform="matrix(0.324455,0,0,0.354555,884.715,773.833)">
+                <text x="0px" y="0px" style="font-family:'Courier-Bold', 'Courier';font-size:500px;fill:rgb(0,112,181);">Services</text>
+            </g>
+        </g>
+    </g>
+</svg>
