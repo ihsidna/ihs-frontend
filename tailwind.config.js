@@ -24,6 +24,7 @@ module.exports = {
      colors:{
        'ihs-green': "#05afb0",
        'ihs-green-shade': {
+          50: "#e6f7f7",
           100: "#cdefef",
           200: "#b4e7e7",
           300: "#9bdfdf",
@@ -34,6 +35,17 @@ module.exports = {
           800: "#1eb7b8",
        },
        'ihs-blue': "#0070b5",
+       'ihs-blue-shade': {
+         50: "#e6f1f8",
+         100: "#cce2f0",
+         200: "#b3d4e9",
+         300: "#99c6e1",
+         400: "#80b8da",
+         500: "#66a9d3",
+         600: "#4d9bcb",
+         700: "#338dc4",
+         800: "#1a7ebc",
+       },
      }
     },
   },
