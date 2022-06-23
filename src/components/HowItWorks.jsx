@@ -2,7 +2,7 @@ import React from 'react';
 
 const HowItWorks = () => {
 	return (
-		<div className="bg-gray-50 w-full md:py-32 py-20 md:px-20 px-10 bg-ihs-blue-shade-100">
+		<div className="bg-gray-50 w-full md:py-32 py-20 md:px-20 px-10">
 			<div className="max-w-[1240] mx-auto">
 				<div className="flex justify-center items-center">
 					<h2 className="md:text-6xl text-4xl font-bold pb-10 text-gray-800 underline underline-offset-2 decoration-wavy decoration-ihs-green decoration-2 ">
