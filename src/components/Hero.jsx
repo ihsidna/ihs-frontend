@@ -4,7 +4,7 @@ import HeroImage from './../assets/images/hero-image.png';
 
 const Hero = () => {
 	return (
-		<div className="w-full h-screen bg-white flex flex-col justify-between sm:pt-32 pt-32 md:px-10">
+		<div className="w-full bg-white flex flex-col justify-between sm:pt-32 pt-32 md:pb-20 pb-20 md:px-10">
 			<div className="grid md:grid-cols-2 max-w-[1240] mx-auto">
 				<div className="flex flex-col justify-center md:items-start items-center w-full px-8 py-5">
 					<h1 className="lg:text-6xl md:text-4xl text-4xl md:py-2 sm:py-2 py-1 font-bold">Home health care</h1>
