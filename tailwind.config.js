@@ -23,6 +23,16 @@ module.exports = {
     extend: {
      colors:{
        'ihs-green': "#05afb0",
+       'ihs-green-shade': {
+          100: "#cdefef",
+          200: "#b4e7e7",
+          300: "#9bdfdf",
+          400: "#82d7d8",
+          500: "#69cfd0",
+          600: "#50c7c8",
+          700: "#37bfc0",
+          800: "#1eb7b8",
+       },
        'ihs-blue': "#0070b5",
      }
     },
