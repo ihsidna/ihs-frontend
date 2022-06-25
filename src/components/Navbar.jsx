@@ -11,7 +11,7 @@ const Navbar = () => {
 		<div className="w-screen h-[80px] bg-white z-10 fixed drop-shadow-lg">
 			<div className=" px-2 flex justify-between items-center w-full h-full">
 				<div className="flex items-center">
-					<img src={Logo} alt="ihs-logo" className="ml-0 w-1/2 sm:w-3/5 md:w-2/3"/>
+					<img src={Logo} alt="ihs-logo" className="ml-0 w-1/2 sm:w-3/5 md:w-[50%]"/>
 
 				</div>
 				<div className="font-bold hidden md:flex pr-4">
