@@ -3,7 +3,7 @@ import WhyUsImage from "../assets/images/whyus.png";
 
 const WhyUs = () => {
 	return (
-		<div className="w-full lg:mt-20 lg:pt-20 pt-32">
+		<div className="w-full lg:mt-20 lg:pt-20 py-32">
 
 				<div className="grid md:grid-cols-2 content-evenly md:mx-20">
 
