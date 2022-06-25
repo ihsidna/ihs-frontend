@@ -12,7 +12,7 @@ const Footer = () => {
 					</div>
 					<div className="px-8 mt-4">
 						<ul className="flex flex-col items-start">
-							<li className="lg:text-4xl md:text-2xl text-4xl font-bold text-gray-800 underline underline-offset-4 decoration-wavy decoration-ihs-green decoration-1">Next Steps</li>
+							<li className="lg:text-3xl md:text-2xl text-2xl font-bold text-gray-800 underline underline-offset-4 decoration-wavy decoration-ihs-green decoration-1">Next Steps</li>
 							<li>
 								<button className="lg:text-2xl md:text-xl py-2 px-6 md:w-[150px] w-[200px] text-xl shadow-2xl">Get Started</button>
 							</li>
@@ -23,18 +23,18 @@ const Footer = () => {
 					</div>
 					<div className="px-8 mt-4">
 						<ul className="flex flex-col items-start">
-							<li className="lg:text-4xl md:text-2xl text-4xl font-bold text-gray-800 underline underline-offset-4 decoration-wavy decoration-ihs-green decoration-1">Help & Support</li>
-							<li className="md:text-2xl text-2xl py-1 text-slate-800">Contact Us</li>
-							<li className="md:text-2xl text-2xl py-1 text-slate-800">FAQs</li>
-							<li className="md:text-2xl text-2xl py-1 text-slate-800">(+1) 98098765</li>
-							<li className="md:text-2xl text-2xl py-1 text-slate-800">contact@ihs.com</li>
+							<li className="lg:text-3xl md:text-2xl text-2xl font-bold text-gray-800 underline underline-offset-4 decoration-wavy decoration-ihs-green decoration-1">Help & Support</li>
+							<li className="md:text-2xl text-xl py-1 text-slate-800">Contact Us</li>
+							<li className="md:text-2xl text-xl py-1 text-slate-800">FAQs</li>
+							<li className="md:text-2xl text-xl py-1 text-slate-800">(+1) 98098765</li>
+							<li className="md:text-2xl text-xl py-1 text-slate-800">contact@ihs.com</li>
 						</ul>
 					</div>
 					<div className="px-8 mt-4">
 						<ul className="flex flex-col items-start">
-							<li className="lg:text-4xl md:text-2xl text-4xl font-bold text-gray-800 underline underline-offset-4 decoration-wavy decoration-ihs-green decoration-1">Legal</li>
-							<li className="md:text-2xl text-2xl py-1 text-slate-800">Terms & Conditions</li>
-							<li className="md:text-2xl text-2xl py-1 text-slate-800">Privacy & Policy</li>
+							<li className="lg:text-3xl md:text-2xl text-2xl font-bold text-gray-800 underline underline-offset-4 decoration-wavy decoration-ihs-green decoration-1">Legal</li>
+							<li className="md:text-2xl text-xl py-1 text-slate-800">Terms & Conditions</li>
+							<li className="md:text-2xl text-xl py-1 text-slate-800">Privacy & Policy</li>
 						</ul>
 					</div>
 				</div>
