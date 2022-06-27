@@ -46,11 +46,10 @@ const Navbar = () => {
 			</div>
 
 			<ul className={!nav ? "hidden" : "absolute bg-white w-full px-8 font-bold text-gray-800"}>
-				<li className="border-b-2 border-zinc-200 w-full">Home</li>
-				<li className="border-b-2 border-zinc-200 w-full">About</li>
-				<li className="border-b-2 border-zinc-200 w-full">Services</li>
-				<li className="border-b-2 border-zinc-200 w-full">Contact</li>
-				<li className="border-b-2 border-zinc-200 w-full">Sign In</li>
+				<li className="border-b-2 border-zinc-200 w-full"><Link to="/">Home</Link></li>
+				<li className="border-b-2 border-zinc-200 w-full"><Link to="/about">About</Link></li>
+				<li className="border-b-2 border-zinc-200 w-full"><Link to="/services">Services</Link></li>
+				<li className="border-b-2 border-zinc-200 w-full"><Link to="/contact">Contact</Link></li>
 				<div className="flex flex-col my-4">
 					<button className="bg-transparent text-ihs-green px-8 py-3 mb-4" onClick={() => {
 						navigate('/signin')
