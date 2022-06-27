@@ -1,4 +1,5 @@
-/** @type {import('tailwindcss').Config} */
+/** @type {autoprefixer | ((options?: autoprefixer.Options) => (Plugin & autoprefixer.ExportedAPI)) | ((browsers: string[], options?: autoprefixer.Options) => (Plugin & autoprefixer.ExportedAPI)) | (<T extends string[]>(...args: [...T, autoprefixer.Options]) => (Plugin & autoprefixer.ExportedAPI))} */
+const autoprefixer = require("autoprefixer");
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
@@ -49,5 +50,8 @@ module.exports = {
      }
     },
   },
-  plugins: [],
+  plugins: [
+    require("tailwindcss"),
+    require("autoprefixer")
+  ],
 }
