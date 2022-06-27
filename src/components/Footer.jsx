@@ -6,8 +6,8 @@ const Footer = () => {
 	return (
 		<div className="w-full">
 			<div className="bg-gray-100 lg:px-32 md:px-8 lg:py-8 md:py-8 py-16">
-				<div className="grid md:grid-cols-4 md:py-10 ">
-					<div className="md:py-28">
+				<div className="grid md:grid-cols-4 md:py-1">
+					<div className="lg:py-0 md:py-28">
 						<img src={Logo} alt="ihs logo" className="sm:w-2/3 lg:w-full"/>
 					</div>
 					<div className="px-8 mt-4">
@@ -17,7 +17,7 @@ const Footer = () => {
 								<button className="lg:text-2xl md:text-xl py-2 px-6 w-full text-xl shadow-2xl">Get Started</button>
 							</li>
 							<li>
-								<button className="bg-ihs-blue lg:text-2xl md:text-xl py-2 px-6 w-full text-xl shadow-2xl">Login</button>
+								<button className="bg-ihs-blue lg:text-2xl md:text-xl py-2 px-6 w-full text-xl shadow-2xl hover:text-ihs-blue hover:border-ihs-blue">Login</button>
 							</li>
 						</ul>
 					</div>
