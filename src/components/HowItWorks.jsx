@@ -1,6 +1,9 @@
 import React from 'react';
+import {useNavigate} from "react-router-dom";
 
 const HowItWorks = () => {
+	const navigate = useNavigate();
+
 	return (
 		<div className="bg-gray-50 w-full md:py-32 py-20 md:px-20 px-10">
 			<div className="max-w-[1240] mx-auto">
@@ -31,7 +34,9 @@ const HowItWorks = () => {
 			</div>
 
 			<div className="flex justify-center md:py-10 py-6">
-				<button className="bg-ihs-blue md:py-6 py-4  md:px-6 px-4 md:text-2xl text-xl md:hover:bg-transparent md:hover:text-ihs-blue md:hover:border-ihs-blue md:hover:font-bold hover:bg-transparent hover:text-ihs-blue hover:border-ihs-blue hover:font-bold shadow-2xl">Create an account</button>
+				<button className="bg-ihs-blue md:py-6 py-4  md:px-6 px-4 md:text-2xl text-xl md:hover:bg-transparent md:hover:text-ihs-blue md:hover:border-ihs-blue md:hover:font-bold hover:bg-transparent hover:text-ihs-blue hover:border-ihs-blue hover:font-bold shadow-2xl" onClick={() => {
+					navigate('/signup')
+				}}>Create an account</button>
 			</div>
 		</div>
 	);

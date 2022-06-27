@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
+import {Link, useNavigate} from "react-router-dom";
 
 import {MenuIcon, XIcon} from "@heroicons/react/outline";
 import Logo from "./../assets/images/logo.svg";
 
 const Navbar = () => {
+	const navigate = useNavigate();
 	const [nav, setNav] = useState(false);
 	const handleNav = () => setNav(!nav) ;
 
@@ -16,15 +18,27 @@ const Navbar = () => {
 				</div>
 				<div className="font-bold hidden md:flex pr-4">
 					<ul className="hidden font-bold text-gray-800 md:flex ">
-						<li>Home</li>
-						<li>About</li>
-						<li>Services</li>
-						<li>Contact</li>
+						<li>
+							<Link to="/" className="text-gray-800 hover:text-gray-900">Home</Link>
+						</li>
+						<li>
+							<Link to="/about" className="text-gray-800 hover:text-gray-900">About</Link>
+						</li>
+						<li>
+							<Link to="/services" className="text-gray-800 hover:text-gray-900">Services</Link>
+						</li>
+						<li>
+							<Link to="/contact" className="text-gray-800 hover:text-gray-900">Contact</Link>
+						</li>
 					</ul>
 				</div>
 				<div className="font-bold hidden md:flex pr-4">
-					<button className="bg-transparent border-0 text-gray-800 md:px-7 md:py-3">Sign In</button>
-					<button className="px-8 py-3">Sign Up</button>
+					<button className="bg-transparent border-0 text-gray-800 md:px-7 md:py-3" onClick={() => {
+						navigate('/signin')
+					}}>Sign In</button>
+					<button className="px-8 py-3" onClick={() => {
+						navigate('/signup')
+					}}>Sign Up</button>
 				</div>
 				<div className="md:hidden" onClick={handleNav}>
 					{ !nav ? <MenuIcon className="h-6 w-6 mr-4"/> : <XIcon className="h-6 w-6 mr-4"/> }
@@ -36,9 +50,14 @@ const Navbar = () => {
 				<li className="border-b-2 border-zinc-200 w-full">About</li>
 				<li className="border-b-2 border-zinc-200 w-full">Services</li>
 				<li className="border-b-2 border-zinc-200 w-full">Contact</li>
+				<li className="border-b-2 border-zinc-200 w-full">Sign In</li>
 				<div className="flex flex-col my-4">
-					<button className="bg-transparent text-ihs-green px-8 py-3 mb-4">Sign In</button>
-					<button className="px-8 py-3">Sign Up</button>
+					<button className="bg-transparent text-ihs-green px-8 py-3 mb-4" onClick={() => {
+						navigate('/signin')
+					}}>Sign In</button>
+					<button className="px-8 py-3" onClick={() => {
+						navigate('/signup')
+					}}>Sign Up</button>
 				</div>
 			</ul>
 		</div>

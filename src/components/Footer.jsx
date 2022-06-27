@@ -1,8 +1,11 @@
 import React from 'react';
 
 import Logo from "../assets/images/logo.svg";
+import {useNavigate} from "react-router-dom";
 
 const Footer = () => {
+	const navigate = useNavigate();
+
 	return (
 		<div className="w-full">
 			<div className="bg-gray-100 lg:px-32 md:px-8 lg:py-8 md:py-8 py-16">
@@ -14,10 +17,12 @@ const Footer = () => {
 						<ul className="flex flex-col items-start">
 							<li className="lg:text-3xl md:text-2xl text-2xl font-bold text-gray-800 underline underline-offset-4 decoration-wavy decoration-ihs-green decoration-1">Next Steps</li>
 							<li>
-								<button className="lg:text-2xl md:text-xl py-2 px-6 w-full text-xl shadow-2xl">Get Started</button>
+								<button className="lg:text-2xl md:text-xl py-2 px-6 w-full text-xl shadow-2xl" onClick={() =>{
+									navigate("/signup")
+								}}>Get Started</button>
 							</li>
 							<li>
-								<button className="bg-ihs-blue lg:text-2xl md:text-xl py-2 px-6 w-full text-xl shadow-2xl hover:text-ihs-blue hover:border-ihs-blue">Login</button>
+								<button className="bg-ihs-blue lg:text-2xl md:text-xl py-2 px-6 w-full text-xl shadow-2xl hover:text-ihs-blue hover:border-ihs-blue" onClick={() =>{navigate("/signin")}}>Sign In</button>
 							</li>
 						</ul>
 					</div>

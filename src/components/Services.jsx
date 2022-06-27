@@ -1,8 +1,12 @@
 import React from 'react';
+import {useNavigate} from 'react-router-dom';
+
 import {HeartIcon, ShieldExclamationIcon, ArrowRightIcon, CheckIcon} from "@heroicons/react/outline";
 
 import ServiceImage from './../assets/images/services.png';
 const Services = () => {
+	const navigate = useNavigate();
+
 	return (
 		<div className="w-full">
 			<div className="w-full h-[700px] bg-gray-900/80 absolute">
@@ -42,7 +46,7 @@ const Services = () => {
 							</ul>
 						</div>
 
-						<div className="bg-slate-100 pl-8 py-4 md:absolute md:inset-x-0 md:bottom-0">
+						<div className="bg-slate-100 pl-8 py-4 md:absolute md:inset-x-0 md:bottom-0 cursor-pointer" onClick={() => { navigate("services")}}>
 							<p className="flex items-center md:text-xl text-ihs-green-shade-600">Learn More <ArrowRightIcon className='w-5 ml-2'/></p>
 						</div>
 
@@ -76,7 +80,9 @@ const Services = () => {
 								</li>
 							</ul>
 						</div>
-						<div className="bg-slate-100 pl-8 py-4 mt-5 lg:absolute lg:inset-x-0 lg:bottom-0">
+						<div className="bg-slate-100 pl-8 py-4 mt-5 lg:absolute lg:inset-x-0 lg:bottom-0 cursor-pointer" onClick={() => {
+							navigate("/services")
+						}}>
 							<p className="flex items-center md:text-xl text-ihs-green-shade-600">Learn More <ArrowRightIcon className='w-5 ml-2'/></p>
 						</div>
 					</div>
