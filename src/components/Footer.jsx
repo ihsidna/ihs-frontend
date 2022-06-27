@@ -11,7 +11,7 @@ const Footer = () => {
 			<div className="bg-gray-100 lg:px-32 md:px-8 lg:py-8 md:py-8 py-16">
 				<div className="grid md:grid-cols-4 md:py-1">
 					<div className="lg:py-0 md:py-28">
-						<img src={Logo} alt="ihs logo" className="sm:w-2/3 lg:w-full"/>
+						<img src={Logo} alt="ihs logo" className="w-[70%] sm:w-2/3 lg:w-full"/>
 					</div>
 					<div className="px-8 mt-4">
 						<ul className="flex flex-col items-start">
