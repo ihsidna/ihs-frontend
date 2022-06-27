@@ -9,7 +9,7 @@ const SignUp = () => {
 				<p className="text-sm py-2">Already have an account? <span className="text-ihs-blue hover:underline"><Link to="/signin">Sign In</Link></span></p>
 			</div>
 			<div className="flex justify-around">
-				<div className="bg-white lg:w-1/2 md:w-2/3 w-full md:px-16 md:py-8 px-8 md:rounded-3xl md:shadow-lg">
+				<div className="bg-white lg:w-1/2 md:w-2/3 w-full md:px-16 md:py-8 px-10 md:rounded-3xl md:shadow-lg">
 					<form className="mb-0 space-y-0" action="#" method="POST">
 						<div>
 							<label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First Name <span
@@ -55,7 +55,7 @@ const SignUp = () => {
 						</div>
 
 						<div>
-							<button type="submit" className="px-4 py-2 w-full mt-5 bg-ihs-green hover:font-bold focus: outline-none focus:ring-2 focus:ring-ihs-green-shade-500">
+							<button type="submit" className="px-4 py-2 w-full mt-8 bg-ihs-green hover:font-bold focus: outline-none focus:ring-2 focus:ring-ihs-green-shade-500">
 								Sign Up
 							</button>
 						</div>
