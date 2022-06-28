@@ -17,7 +17,7 @@ const WhyUs = () => {
 
 						<p className="md:text-2xl text-lg py-4 text-slate-800">Our expert health care team has accumulated decades of experience, giving us the capacity to support the most vulnerable and offer regular help for elderly living at home. We will identify the most appropriate worker to supply live in home care that meets with your specific needs alone. They will share your interests and match your personality.</p>
 
-						<div className="grid md:grid-cols-2 my-8 lg:w-full md:w-full">
+						<div className="grid md:grid-cols-2 my-8 lg:w-full md:w-full w-full">
 							<button className="bg-ihs-green md:py-4 py-4 my-4 md:px-4 px-4 md:mr-4 md:text-xl text-xl md:hover:bg-transparent md:hover:text-ihs-green md:hover:border-ihs-green md:hover:font-bold hover:bg-transparent hover:text-ihs-green hover:border-ihs-green hover:font-bold shadow-md" onClick={() => {
 								navigate('/signup')
 							}}>Create an account</button>
