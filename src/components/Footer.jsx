@@ -15,31 +15,31 @@ const Footer = () => {
 					</div>
 					<div className="px-8 mt-4">
 						<ul className="flex flex-col items-start">
-							<li className="lg:text-3xl md:text-2xl text-2xl font-bold text-gray-800 underline underline-offset-4 decoration-wavy decoration-ihs-green decoration-1">Next Steps</li>
+							<li className="uppercase text-xl font-medium text-neutral-600">Next Steps</li>
 							<li>
-								<button className="lg:text-2xl md:text-xl py-2 px-6 w-full text-xl shadow-2xl" onClick={() =>{
+								<button className="py-2 px-6 w-full text-lg shadow-2xl" onClick={() =>{
 									navigate("/signup")
 								}}>Get Started</button>
 							</li>
 							<li>
-								<button className="bg-ihs-blue lg:text-2xl md:text-xl py-2 px-6 w-full text-xl shadow-2xl hover:text-ihs-blue hover:border-ihs-blue" onClick={() =>{navigate("/signin")}}>Sign In</button>
+								<button className="bg-ihs-blue py-2 px-6 w-full text-lg shadow-2xl hover:text-ihs-blue hover:border-ihs-blue" onClick={() =>{navigate("/signin")}}>Sign In</button>
 							</li>
 						</ul>
 					</div>
 					<div className="px-8 mt-4">
 						<ul className="flex flex-col items-start">
-							<li className="lg:text-3xl md:text-2xl text-2xl font-bold text-gray-800 underline underline-offset-4 decoration-wavy decoration-ihs-green decoration-1">Help & Support</li>
-							<li className="md:text-2xl text-xl py-1 text-slate-800">Contact Us</li>
-							<li className="md:text-2xl text-xl py-1 text-slate-800">FAQs</li>
-							<li className="md:text-2xl text-xl py-1 text-slate-800">(+1) 98098765</li>
-							<li className="md:text-2xl text-xl py-1 text-slate-800">contact@ihs.com</li>
+							<li className="uppercase text-xl font-medium text-neutral-600">Help & Support</li>
+							<li className="text-lg py-1 text-slate-400">Contact Us</li>
+							<li className="text-lg py-1 text-slate-400">FAQs</li>
+							<li className="text-lg py-1 text-slate-400">(+1) 98098765</li>
+							<li className="text-lg py-1 text-slate-400">contact@ihs.com</li>
 						</ul>
 					</div>
 					<div className="px-8 mt-4">
 						<ul className="flex flex-col items-start">
-							<li className="lg:text-3xl md:text-2xl text-2xl font-bold text-gray-800 underline underline-offset-4 decoration-wavy decoration-ihs-green decoration-1">Legal</li>
-							<li className="md:text-2xl text-xl py-1 text-slate-800">Terms & Conditions</li>
-							<li className="md:text-2xl text-xl py-1 text-slate-800">Privacy & Policy</li>
+							<li className="uppercase text-xl font-medium text-neutral-600">Legal</li>
+							<li className="text-lg py-1 text-slate-400">Terms & Conditions</li>
+							<li className="text-lg py-1 text-slate-400">Privacy & Policy</li>
 						</ul>
 					</div>
 				</div>
