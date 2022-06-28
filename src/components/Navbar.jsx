@@ -22,7 +22,7 @@ const Navbar = () => {
 							<Link to="/" className="text-gray-800 hover:text-gray-900">Home</Link>
 						</li>
 						<li>
-							<Link to="/about" className="text-gray-800 hover:text-gray-900">About</Link>
+							<Link to="/about" className="text-gray-800 hover:text-gray-900">About Us</Link>
 						</li>
 						<li>
 							<Link to="/services" className="text-gray-800 hover:text-gray-900">Services</Link>
@@ -47,7 +47,7 @@ const Navbar = () => {
 
 			<ul className={!nav ? "hidden" : "absolute bg-white w-full px-8 font-bold text-gray-800"}>
 				<li className="border-b-2 border-zinc-200 w-full"><Link to="/">Home</Link></li>
-				<li className="border-b-2 border-zinc-200 w-full"><Link to="/about">About</Link></li>
+				<li className="border-b-2 border-zinc-200 w-full"><Link to="/about">About Us</Link></li>
 				<li className="border-b-2 border-zinc-200 w-full"><Link to="/services">Services</Link></li>
 				<li className="border-b-2 border-zinc-200 w-full"><Link to="/contact">Contact</Link></li>
 				<div className="flex flex-col my-4">
