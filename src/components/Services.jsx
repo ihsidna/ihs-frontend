@@ -16,7 +16,7 @@ const Services = () => {
 			<div className="relative text-white max-w-[1240px] mx-auto">
 				<div className="px-4 py-12">
 					<h2 className="md:text-3xl text-2xl pt-8 text-slate-300 uppercase text-center">Services</h2>
-					<h3 className="md:text-6xl text-4xl font-bold py-6 text-center">Finding the right team</h3>
+					<h3 className="md:text-6xl text-4xl font-semibold py-6 text-center">Finding the right team</h3>
 					<p className="flex justify-center md:text-3xl text-2xl py-3 lg:px-32 md:px-16 text-slate-300">We offer adults of all ages the expert care and support they need to live independently at home.</p>
 				</div>
 
@@ -24,7 +24,7 @@ const Services = () => {
 					<div className="bg-white rounded-xl shadow-2xl lg:h-[500px] md:relative md:mx-16 md:mx-0 lg:mx-4">
 						<div className="p-8">
 							<HeartIcon className="w-16 p-4 bg-ihs-green text-white rounded-lg mt-[-4rem]"/>
-							<h3 className="font-bold text-2xl md:text-4xl my-6">Primary Care</h3>
+							<h3 className="font-semibold text-2xl md:text-4xl my-6">Primary Care</h3>
 							<p className='text-xl md:text-2xl text-gray-700'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 							<ul className="text-gray-600 text-xl md:text-2xl md:py-4 py-4">
 								<li className="flex items-center">
@@ -55,7 +55,7 @@ const Services = () => {
 					<div className="bg-white rounded-xl shadow-2xl lg:h-[500px] lg:relative md:mx-16 md:mx-0 lg:mx-4">
 						<div className="p-8">
 							<ShieldExclamationIcon className="w-16 p-4 bg-ihs-green text-white rounded-lg mt-[-4rem]"/>
-							<h3 className="font-bold text-2xl md:text-4xl my-6">Secondary Care</h3>
+							<h3 className="font-semibold text-2xl md:text-4xl my-6">Secondary Care</h3>
 							<p className="text-xl md:text-2xl text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 							<ul className="text-gray-600 text-xl md:text-2xl md:py-4 py-4">
 								<li className="flex items-center">

@@ -16,8 +16,8 @@ const Navbar = () => {
 					<img src={Logo} alt="ihs-logo" className="ml-0 w-1/2 sm:w-3/5 md:w-[50%]"/>
 
 				</div>
-				<div className="font-bold hidden md:flex pr-4">
-					<ul className="hidden font-bold text-gray-800 md:flex ">
+				<div className="font-semibold hidden md:flex pr-4">
+					<ul className="hidden font-semibold text-gray-800 md:flex ">
 						<li>
 							<Link to="/" className="text-gray-800 hover:text-gray-900">Home</Link>
 						</li>
@@ -32,7 +32,7 @@ const Navbar = () => {
 						</li>
 					</ul>
 				</div>
-				<div className="font-bold hidden md:flex pr-4">
+				<div className="font-semibold hidden md:flex pr-4">
 					<button className="bg-transparent border-0 text-gray-800 md:px-7 md:py-3" onClick={() => {
 						navigate('/signin')
 					}}>Sign In</button>
@@ -45,7 +45,7 @@ const Navbar = () => {
 				</div>
 			</div>
 
-			<ul className={!nav ? "hidden" : "absolute bg-white w-full px-8 font-bold text-gray-800"}>
+			<ul className={!nav ? "hidden" : "absolute bg-white w-full px-8 font-semibold text-gray-800"}>
 				<li className="border-b-2 border-zinc-200 w-full"><Link to="/">Home</Link></li>
 				<li className="border-b-2 border-zinc-200 w-full"><Link to="/about">About Us</Link></li>
 				<li className="border-b-2 border-zinc-200 w-full"><Link to="/services">Services</Link></li>

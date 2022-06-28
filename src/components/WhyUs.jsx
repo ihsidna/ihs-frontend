@@ -11,7 +11,7 @@ const WhyUs = () => {
 				<div className="grid md:grid-cols-2 content-evenly md:mx-20">
 
 					<div className="flex flex-col justify-center lg:px-10 md:px-10 px-8">
-						<h2 className="md:text-6xl text-4xl font-bold pb-10 text-gray-800 underline underline-offset-4 decoration-wavy decoration-ihs-green decoration-2 ">Why IHS?</h2>
+						<h2 className="md:text-6xl text-4xl font-semibold pb-10 text-gray-800 underline underline-offset-4 decoration-wavy decoration-ihs-green decoration-2 ">Why IHS?</h2>
 						<p className="md:text-2xl text-2xl py-4 text-slate-800">
 							Choosing a health care worker for yourself or your family members can be daunting, which is why we offer advice, specialist supportive living and friendly companionship to everyone.</p>
 
