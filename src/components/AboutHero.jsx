@@ -3,7 +3,7 @@ import AboutHeroImage from "../assets/images/about.png";
 
 const AboutHero = () => {
 	return (
-		<div className="w-full pt-28">
+		<div className="w-full pt-24">
 			<div className="w-full md:h-[400px] h-[300px] bg-neutral-900/50 absolute">
 				<img src={AboutHeroImage} alt="" className="w-full h-full object-cover mix-blend-overlay"/>
 			</div>
