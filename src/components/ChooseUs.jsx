@@ -14,7 +14,7 @@ const ChooseUs = () => {
 					<div className="lg:px-80 md:px-40 px-10">
 						<p className="md:text-2xl text-lg py-4 text-slate-800">
 							Choosing a care provider is a big decision. We’ve made it simple for you to find the right one.
-							To help you with this we’ve outlined some of the reasons we think MiHomecare is great choice.
+							To help you with this we’ve outlined some of the reasons we think IHS is great choice.
 						</p>
 						<ul className="text-gray-600 text-lg md:text-2xl md:py-4 py-4 lg:px-20 md:px-10">
 							<li className="flex items-center">
