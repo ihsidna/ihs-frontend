@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Logo from "../assets/images/logo.svg";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 const Footer = () => {
 	const navigate = useNavigate();
@@ -29,8 +29,12 @@ const Footer = () => {
 					<div className="px-8 mt-4">
 						<ul className="flex flex-col items-start">
 							<li className="uppercase text-xl font-medium text-neutral-600">Help & Support</li>
-							<li className="text-lg py-1 text-slate-400">Contact Us</li>
-							<li className="text-lg py-1 text-slate-400">FAQs</li>
+							<li className="text-lg py-1">
+								<Link to="/contact" className="text-slate-400">Contact Us</Link>
+							</li>
+							<li className="text-lg py-1">
+								<Link to="/faqs" className="text-slate-400">FAQs</Link>
+							</li>
 							<li className="text-lg py-1 text-slate-400">(+1) 98098765</li>
 							<li className="text-lg py-1 text-slate-400">contact@ihs.com</li>
 						</ul>
@@ -38,8 +42,12 @@ const Footer = () => {
 					<div className="px-8 mt-4">
 						<ul className="flex flex-col items-start">
 							<li className="uppercase text-xl font-medium text-neutral-600">Legal</li>
-							<li className="text-lg py-1 text-slate-400">Terms & Conditions</li>
-							<li className="text-lg py-1 text-slate-400">Privacy & Policy</li>
+							<li className="text-lg py-1">
+								<Link to="/terms-conditions" className="text-slate-400">Terms & Conditions</Link>
+							</li>
+							<li className="text-lg py-1">
+								<Link to="/privacy-policy" className="text-slate-400">Privacy Policy</Link>
+							</li>
 						</ul>
 					</div>
 				</div>
