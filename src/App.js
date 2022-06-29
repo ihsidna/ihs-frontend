@@ -17,7 +17,7 @@ import ScrollToTop from "./components/ScrollToTop";
 function App() {
   return (
     <Router>
-      <ScrollToTop>
+      {/*<ScrollToTop>*/}
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -32,7 +32,7 @@ function App() {
           <Route path="*" element={<ErrorPage />} />
         </Routes>
         <Footer />
-      </ScrollToTop>
+      {/*</ScrollToTop>*/}
     </Router>
   );
 }
