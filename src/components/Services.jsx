@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom';
 
 import {HeartIcon, ShieldExclamationIcon, ArrowRightIcon, CheckIcon} from "@heroicons/react/outline";
 
-import ServiceImage from './../assets/images/services.png';
+import ServiceImage from './../assets/images/services.jpg';
 const Services = () => {
 	const navigate = useNavigate();
 
