@@ -8,7 +8,7 @@ const Navbar = () => {
 	const navigate = useNavigate();
 	const [nav, setNav] = useState(false);
 	const handleNav = () => setNav(!nav) ;
-
+	const scrollToTop = window.scrollTo({top: 0, left: 0, behavior: 'auto'});
 	return (
 		<div className="w-screen h-[80px] bg-white z-10 fixed drop-shadow-lg">
 			<div className=" px-2 flex justify-between items-center w-full h-full">
@@ -19,16 +19,17 @@ const Navbar = () => {
 				<div className="font-semibold hidden md:flex pr-4">
 					<ul className="hidden font-semibold text-gray-800 md:flex ">
 						<li>
-							<Link to="/" className="text-gray-800 hover:text-gray-900">Home</Link>
+							{/* eslint-disable-next-line no-unused-expressions */}
+							<Link to="/" className="text-gray-800 hover:text-gray-900" onClick={() => {return scrollToTop}}>Home</Link>
 						</li>
 						<li>
-							<Link to="/about" className="text-gray-800 hover:text-gray-900">About Us</Link>
+							<Link to="/about" className="text-gray-800 hover:text-gray-900" onClick={() => {return scrollToTop}}>About Us</Link>
 						</li>
 						<li>
-							<Link to="/services" className="text-gray-800 hover:text-gray-900">Services</Link>
+							<Link to="/services" className="text-gray-800 hover:text-gray-900" onClick={() => {return scrollToTop}}>Services</Link>
 						</li>
 						<li>
-							<Link to="/contact" className="text-gray-800 hover:text-gray-900">Contact</Link>
+							<Link to="/contact" className="text-gray-800 hover:text-gray-900" onClick={() => {return scrollToTop}}>Contact</Link>
 						</li>
 					</ul>
 				</div>
@@ -48,17 +49,17 @@ const Navbar = () => {
 			<ul className={!nav ? "hidden" : "absolute bg-white w-full px-8 font-semibold text-gray-800"}>
 				<li className="border-b-2 border-zinc-200 w-full" onClick={handleNav}>
 					<Link to="/">
-						<div>Home</div>
+						<div onClick={() => {return scrollToTop}}>Home</div>
 					</Link>
 				</li>
 				<li className="border-b-2 border-zinc-200 w-full" onClick={handleNav}>
 					<Link to="/about">
-						<div>About Us</div>
+						<div onClick={() => {return scrollToTop}}>About Us</div>
 					</Link>
 				</li>
 				<li className="border-b-2 border-zinc-200 w-full" onClick={handleNav}>
 					<Link to="/services">
-						<div>Services</div>
+						<div onClick={() => {return scrollToTop}}>Services</div>
 					</Link>
 				</li>
 				<li className="border-b-2 border-zinc-200 w-full" onClick={handleNav}>
@@ -68,11 +69,15 @@ const Navbar = () => {
 				</li>
 				<div className="flex flex-col my-4">
 					<button className="bg-transparent text-ihs-green px-8 py-3 mb-4" onClick={() => {
-						navigate('/signin')
-					}}>Sign In</button>
+						navigate('/signin'); handleNav(); return scrollToTop
+					}}>
+						Sign In
+					</button>
 					<button className="px-8 py-3" onClick={() => {
-						navigate('/signup')
-					}}>Sign Up</button>
+						navigate('/signup'); handleNav(); return scrollToTop
+					}}>
+						Sign Up
+					</button>
 				</div>
 			</ul>
 		</div>
