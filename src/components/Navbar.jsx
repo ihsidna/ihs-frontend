@@ -13,7 +13,7 @@ const Navbar = () => {
 		<div className="w-screen h-[80px] bg-white z-10 fixed drop-shadow-lg">
 			<div className=" px-2 flex justify-between items-center w-full h-full">
 				<div className="flex items-center">
-					<Link to="/" className="text-gray-800 hover:text-gray-900" onClick={() => {return scrollToTop}}>
+					<Link to="/" onClick={() => {return scrollToTop}}>
 						<img src={Logo} alt="ihs-logo" className="ml-0 w-1/2 sm:w-3/5 md:w-[50%]"/>
 					</Link>
 
