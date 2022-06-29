@@ -12,24 +12,27 @@ import Footer from "./components/Footer";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TermsConditions from "./pages/Terms&Conditions";
 import FAQs from "./pages/FAQs";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path={"/signup"} element={<SignUp />} />
-        <Route path={"/signin"} element={<SignIn />} />
-        <Route path={"/terms-conditions"} element={<TermsConditions />} />
-        <Route path={"/faqs"} element={<FAQs />} />
-        <Route path={"/privacy-policy"} element={<FAQs />} />
-        <Route path="*" element={<ErrorPage />} />
-      </Routes>
-      <Footer />
+      <ScrollToTop>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path={"/signup"} element={<SignUp />} />
+          <Route path={"/signin"} element={<SignIn />} />
+          <Route path={"/terms-conditions"} element={<TermsConditions />} />
+          <Route path={"/faqs"} element={<FAQs />} />
+          <Route path={"/privacy-policy"} element={<FAQs />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+        <Footer />
+      </ScrollToTop>
     </Router>
   );
 }
