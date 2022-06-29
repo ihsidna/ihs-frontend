@@ -12,12 +12,10 @@ import Footer from "./components/Footer";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TermsConditions from "./pages/Terms&Conditions";
 import FAQs from "./pages/FAQs";
-import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <Router>
-      {/*<ScrollToTop>*/}
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -32,7 +30,6 @@ function App() {
           <Route path="*" element={<ErrorPage />} />
         </Routes>
         <Footer />
-      {/*</ScrollToTop>*/}
     </Router>
   );
 }
