@@ -10,7 +10,7 @@ const Faq = () => {
 							About IHS
 						</h2>
 					</div>
-					<div className="lg:px-80 md:px-40 px-10 ">
+					<div className="lg:px-80 md:px-40 px-5 ">
 						<details className="bg-white border rounded-md open:bg-gray-100 duration-300 my-2">
 							<summary className="bg-inherit px-5 py-3 md:text-2xl text-xl cursor-pointer">The first requently asked question</summary>
 							<div className="bg-white px-5 py-3 border border-gray-300 md:text-xl text-lg ">
