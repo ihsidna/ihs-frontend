@@ -23,7 +23,7 @@ const Services = () => {
 				<div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 relative md:gap-x-8 gap-y-16 px-4 pt-12 sm:pt-20 text-gray-800 md:mx-10 lg:mx-12">
 					<div className="bg-white rounded-xl shadow-md lg:h-[500px] md:relative md:mx-16 md:mx-0 lg:mx-4">
 						<div className="p-8">
-							<HeartIcon className="w-16 p-4 bg-ihs-green text-white rounded-lg mt-[-4rem]"/>
+							<HeartIcon className="md:w-16 w-12 md:p-4 p-2.5 bg-ihs-green text-white rounded-lg mt-[-4rem]"/>
 							<h3 className="font-semibold text-2xl md:text-4xl my-6">Primary Care</h3>
 							<p className='text-xl md:text-2xl text-gray-700'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 							<ul className="text-gray-600 text-xl md:text-2xl md:py-4 py-4">
@@ -54,7 +54,7 @@ const Services = () => {
 
 					<div className="bg-white rounded-xl shadow-md lg:h-[500px] lg:relative md:mx-16 md:mx-0 lg:mx-4">
 						<div className="p-8">
-							<ShieldExclamationIcon className="w-16 p-4 bg-ihs-green text-white rounded-lg mt-[-4rem]"/>
+							<ShieldExclamationIcon className="md:w-16 w-12 md:p-4 p-2.5 bg-ihs-green text-white rounded-lg mt-[-4rem]"/>
 							<h3 className="font-semibold text-2xl md:text-4xl my-6">Secondary Care</h3>
 							<p className="text-xl md:text-2xl text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 							<ul className="text-gray-600 text-xl md:text-2xl md:py-4 py-4">

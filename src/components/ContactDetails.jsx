@@ -13,14 +13,14 @@ const ContactDetails = () => {
 				<div className="md:mx-52 my-10">
 					<div className="grid md:grid-cols-2">
 						<div className="border px-6 py-12 mx-4 my-6 rounded-xl shadow-md bg-white">
-							<PhoneIcon className="w-16 p-4 bg-ihs-green text-white rounded-lg mt-[-4rem]"/>
+							<PhoneIcon className="md:w-16 w-12 md:p-4 p-2.5 bg-ihs-green text-white rounded-lg mt-[-4rem]"/>
 							<h3 className="font-semibold text-2xl md:text-3xl my-4">Phone Number(s)</h3>
 							<p className="text-xl py-4">
 								+1 (844) 567-8989
 							</p>
 						</div>
 						<div className="border px-6 py-12 mx-4 my-6 rounded-xl shadow-md bg-white">
-							<MailIcon className="w-16 p-4 bg-ihs-green text-white rounded-lg mt-[-4rem]"/>
+							<MailIcon className="md:w-16 w-12 md:p-4 p-2.5 bg-ihs-green text-white rounded-lg mt-[-4rem]"/>
 							<h3 className="font-semibold text-2xl md:text-3xl my-4">Email Us</h3>
 							<p className="text-xl py-4">
 								<a href="mailto:support@ihs.com">support@ihs.com</a>
