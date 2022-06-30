@@ -3,7 +3,7 @@ import React from 'react';
 const Terms = () => {
 	return (
 		<div className="md:py-40 pb-20 pt-8">
-			<div className="mx-52 text-gray-600 text-2xl leading-relaxed">
+			<div className="md:mx-52 mx-8 text-gray-600 md:text-2xl text-lg leading-relaxed">
 				<p className="my-5">TERMS OF USE</p>
 
 				<p className="my-5 uppercase">1. Introduction</p>
