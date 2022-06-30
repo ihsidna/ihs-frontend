@@ -12,28 +12,28 @@ const Faq = () => {
 					</div>
 					<div className="lg:px-80 md:px-40 px-10 ">
 						<details className="bg-white border rounded-md open:bg-gray-100 duration-300 my-2">
-							<summary className="bg-inherit px-5 py-3 md:text-2xl text-xl font-semibold cursor-pointer">The first requently asked question</summary>
+							<summary className="bg-inherit px-5 py-3 md:text-2xl text-xl cursor-pointer">The first requently asked question</summary>
 							<div className="bg-white px-5 py-3 border border-gray-300 md:text-xl text-lg ">
 								<p>Praesent posuere nisi vel diam congue varius. Praesent lacus nulla, congue nec rhoncus nec,
 									suscipit et enim. Donec ultrices nec arcu et pharetra.</p>
 							</div>
 						</details>
 						<details className="bg-white border rounded-md open:bg-gray-100 duration-300 my-2">
-							<summary className="bg-inherit px-5 py-3 md:text-2xl text-xl font-semibold cursor-pointer">The first requently asked question</summary>
+							<summary className="bg-inherit px-5 py-3 md:text-2xl text-xl cursor-pointer">The second requently asked question</summary>
 							<div className="bg-white px-5 py-3 border border-gray-300 md:text-xl text-lg ">
 								<p>Praesent posuere nisi vel diam congue varius. Praesent lacus nulla, congue nec rhoncus nec,
 									suscipit et enim. Donec ultrices nec arcu et pharetra.</p>
 							</div>
 						</details>
 						<details className="bg-white border rounded-md open:bg-gray-100 duration-300 my-2">
-							<summary className="bg-inherit px-5 py-3 md:text-2xl text-xl font-semibold cursor-pointer">The first requently asked question</summary>
+							<summary className="bg-inherit px-5 py-3 md:text-2xl text-xl cursor-pointer">The third requently asked question</summary>
 							<div className="bg-white px-5 py-3 border border-gray-300 md:text-xl text-lg ">
 								<p>Praesent posuere nisi vel diam congue varius. Praesent lacus nulla, congue nec rhoncus nec,
 									suscipit et enim. Donec ultrices nec arcu et pharetra.</p>
 							</div>
 						</details>
 						<details className="bg-white border rounded-md open:bg-gray-100 duration-300 my-2">
-							<summary className="bg-inherit px-5 py-3 md:text-2xl text-xl font-semibold cursor-pointer">The first requently asked question</summary>
+							<summary className="bg-inherit px-5 py-3 md:text-2xl text-xl cursor-pointer">The fourth requently asked question</summary>
 							<div className="bg-white px-5 py-3 border border-gray-300 md:text-xl text-lg ">
 								<p>Praesent posuere nisi vel diam congue varius. Praesent lacus nulla, congue nec rhoncus nec,
 									suscipit et enim. Donec ultrices nec arcu et pharetra.</p>
@@ -48,28 +48,28 @@ const Faq = () => {
 					</div>
 					<div className="lg:px-80 md:px-40 px-10 ">
 						<details className="bg-white border rounded-md open:bg-gray-100 duration-300 my-2">
-							<summary className="bg-inherit px-5 py-3 md:text-2xl text-xl font-semibold cursor-pointer">The first requently asked question</summary>
+							<summary className="bg-inherit px-5 py-3 md:text-2xl text-xl cursor-pointer">The first requently asked question</summary>
 							<div className="bg-white px-5 py-3 border border-gray-300 md:text-xl text-lg ">
 								<p>Praesent posuere nisi vel diam congue varius. Praesent lacus nulla, congue nec rhoncus nec,
 									suscipit et enim. Donec ultrices nec arcu et pharetra.</p>
 							</div>
 						</details>
 						<details className="bg-white border rounded-md open:bg-gray-100 duration-300 my-2">
-							<summary className="bg-inherit px-5 py-3 md:text-2xl text-xl font-semibold cursor-pointer">The first requently asked question</summary>
+							<summary className="bg-inherit px-5 py-3 md:text-2xl text-xl cursor-pointer">The second requently asked question</summary>
 							<div className="bg-white px-5 py-3 border border-gray-300 md:text-xl text-lg ">
 								<p>Praesent posuere nisi vel diam congue varius. Praesent lacus nulla, congue nec rhoncus nec,
 									suscipit et enim. Donec ultrices nec arcu et pharetra.</p>
 							</div>
 						</details>
 						<details className="bg-white border rounded-md open:bg-gray-100 duration-300 my-2">
-							<summary className="bg-inherit px-5 py-3 md:text-2xl text-xl font-semibold cursor-pointer">The first requently asked question</summary>
+							<summary className="bg-inherit px-5 py-3 md:text-2xl text-xl cursor-pointer">The third requently asked question</summary>
 							<div className="bg-white px-5 py-3 border border-gray-300 md:text-xl text-lg ">
 								<p>Praesent posuere nisi vel diam congue varius. Praesent lacus nulla, congue nec rhoncus nec,
 									suscipit et enim. Donec ultrices nec arcu et pharetra.</p>
 							</div>
 						</details>
 						<details className="bg-white border rounded-md open:bg-gray-100 duration-300 my-2">
-							<summary className="bg-inherit px-5 py-3 md:text-2xl text-xl font-semibold cursor-pointer">The first requently asked question</summary>
+							<summary className="bg-inherit px-5 py-3 md:text-2xl text-xl cursor-pointer">The fourth requently asked question</summary>
 							<div className="bg-white px-5 py-3 border border-gray-300 md:text-xl text-lg ">
 								<p>Praesent posuere nisi vel diam congue varius. Praesent lacus nulla, congue nec rhoncus nec,
 									suscipit et enim. Donec ultrices nec arcu et pharetra.</p>
@@ -84,28 +84,28 @@ const Faq = () => {
 					</div>
 					<div className="lg:px-80 md:px-40 px-10 ">
 						<details className="bg-white border rounded-md open:bg-gray-100 duration-300 my-2">
-							<summary className="bg-inherit px-5 py-3 md:text-2xl text-xl font-semibold cursor-pointer">The first requently asked question</summary>
+							<summary className="bg-inherit px-5 py-3 md:text-2xl text-xl cursor-pointer">The first requently asked question</summary>
 							<div className="bg-white px-5 py-3 border border-gray-300 md:text-xl text-lg ">
 								<p>Praesent posuere nisi vel diam congue varius. Praesent lacus nulla, congue nec rhoncus nec,
 									suscipit et enim. Donec ultrices nec arcu et pharetra.</p>
 							</div>
 						</details>
 						<details className="bg-white border rounded-md open:bg-gray-100 duration-300 my-2">
-							<summary className="bg-inherit px-5 py-3 md:text-2xl text-xl font-semibold cursor-pointer">The first requently asked question</summary>
+							<summary className="bg-inherit px-5 py-3 md:text-2xl text-xl cursor-pointer">The second requently asked question</summary>
 							<div className="bg-white px-5 py-3 border border-gray-300 md:text-xl text-lg ">
 								<p>Praesent posuere nisi vel diam congue varius. Praesent lacus nulla, congue nec rhoncus nec,
 									suscipit et enim. Donec ultrices nec arcu et pharetra.</p>
 							</div>
 						</details>
 						<details className="bg-white border rounded-md open:bg-gray-100 duration-300 my-2">
-							<summary className="bg-inherit px-5 py-3 md:text-2xl text-xl font-semibold cursor-pointer">The first requently asked question</summary>
+							<summary className="bg-inherit px-5 py-3 md:text-2xl text-xl cursor-pointer">The third requently asked question</summary>
 							<div className="bg-white px-5 py-3 border border-gray-300 md:text-xl text-lg ">
 								<p>Praesent posuere nisi vel diam congue varius. Praesent lacus nulla, congue nec rhoncus nec,
 									suscipit et enim. Donec ultrices nec arcu et pharetra.</p>
 							</div>
 						</details>
 						<details className="bg-white border rounded-md open:bg-gray-100 duration-300 my-2">
-							<summary className="bg-inherit px-5 py-3 md:text-2xl text-xl font-semibold cursor-pointer">The first requently asked question</summary>
+							<summary className="bg-inherit px-5 py-3 md:text-2xl text-xl cursor-pointer">The fourth requently asked question</summary>
 							<div className="bg-white px-5 py-3 border border-gray-300 md:text-xl text-lg ">
 								<p>Praesent posuere nisi vel diam congue varius. Praesent lacus nulla, congue nec rhoncus nec,
 									suscipit et enim. Donec ultrices nec arcu et pharetra.</p>
