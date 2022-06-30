@@ -15,17 +15,17 @@ const HowItWorks = () => {
 				<div className="grid md:grid-cols-3 md:gap-5 gap-5 px-2 text-center my-10">
 
 					<div className="border md:py-8 py-6 md:px-8 px-4 rounded-xl shadow-md bg-white">
-						<p className="text-4xl text-gray-800 py-4 ">Step 1</p>
+						<p className="md:text-4xl text-3xl text-gray-800 py-4 ">Step 1</p>
 						<p className="text-gray-500 md:text-2xl text-xl py-4">Create an account</p>
 					</div>
 
 					<div className="border md:py-8 py-6 md:px-8 px-4 rounded-xl shadow-md bg-white">
-						<p className="text-4xl text-gray-800 py-4">Step 2</p>
+						<p className="md:text-4xl text-3xl text-gray-800 py-4">Step 2</p>
 						<p className="text-gray-500 md:text-2xl text-xl py-4">Add a your loved one as a beneficiary to your account</p>
 					</div>
 
 					<div className="border md:py-8 py-6 md:px-8 px-4 rounded-xl shadow-md bg-white">
-						<p className="text-4xl text-gray-800 py-4">Step 3</p>
+						<p className="md:text-4xl text-3xl text-gray-800 py-4">Step 3</p>
 						<p className="text-gray-500 md:text-2xl text-xl py-4">Book an appointment for your loved one.</p>
 					</div>
 
