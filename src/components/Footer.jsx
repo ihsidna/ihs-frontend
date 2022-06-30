@@ -7,7 +7,7 @@ const Footer = () => {
 	const navigate = useNavigate();
 
 	return (
-		<div className="w-full">
+		<div className="w-full border-t-2 border-gray-200">
 			<div className="bg-gray-100 lg:px-32 md:px-8 lg:py-8 md:py-8 py-16">
 				<div className="grid md:grid-cols-4 md:py-1">
 					<div className="lg:py-0 md:py-28">
