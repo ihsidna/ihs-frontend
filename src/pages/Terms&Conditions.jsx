@@ -1,6 +1,6 @@
 import React from 'react';
-import TermsHero from "../components/TermsHero";
-import Terms from "../components/Terms";
+import TermsHero from "../components/website/terms/TermsHero";
+import Terms from "../components/website/terms/Terms";
 
 const TermsConditions = () => {
 	return (

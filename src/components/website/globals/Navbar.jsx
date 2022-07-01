@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 
 import {MenuIcon, XIcon} from "@heroicons/react/outline";
-import Logo from "./../assets/images/logo.svg";
+import Logo from "../../../assets/images/logo.svg";
 
 const Navbar = () => {
 	const navigate = useNavigate();

@@ -10,7 +10,7 @@ const SignInForm = () => {
 			</div>
 			<div className="flex justify-around">
 				<div className="bg-white lg:w-1/3 md:w-2/3 w-full md:px-16 md:py-16 px-10 md:rounded-3xl md:shadow-lg">
-					<form className="mb-0 space-y-0" action="#" method="POST">
+					<form className="mb-0 space-y-0" action="src/components/website/globals/SignInForm#" method="POST">
 
 						<div className="">
 							<label htmlFor="email" className="block text-sm font-medium text-gray-700 mt-5">Email Address <span className="text-red-600">*</span></label>

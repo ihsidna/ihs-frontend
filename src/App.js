@@ -6,8 +6,8 @@ import Contact from "./pages/Contact";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import ErrorPage from "./pages/ErrorPage";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import Navbar from "./components/website/globals/Navbar";
+import Footer from "./components/website/globals/Footer";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TermsConditions from "./pages/Terms&Conditions";

@@ -1,6 +1,6 @@
 import React from 'react';
 import{useNavigate} from "react-router-dom";
-import WhyUsImage from "../assets/images/whyus.jpg";
+import WhyUsImage from "../../../assets/images/whyus.jpg";
 
 const WhyUs = () => {
 	const navigate = useNavigate();

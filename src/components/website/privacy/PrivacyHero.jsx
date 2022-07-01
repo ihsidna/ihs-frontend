@@ -1,5 +1,5 @@
 import React from 'react';
-import PrivacyHeroImage from "../assets/images/privacy.jpg";
+import PrivacyHeroImage from "../../../assets/images/privacy.jpg";
 
 const PrivacyHero = () => {
 	return (

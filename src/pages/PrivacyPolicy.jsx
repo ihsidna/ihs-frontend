@@ -1,6 +1,6 @@
 import React from 'react';
-import PrivacyHero from "../components/PrivacyHero";
-import Privacy from "../components/Privacy";
+import PrivacyHero from "../components/website/privacy/PrivacyHero";
+import Privacy from "../components/website/privacy/Privacy";
 
 const PrivacyPolicy = () => {
 	return (

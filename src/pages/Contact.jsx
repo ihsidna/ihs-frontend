@@ -1,7 +1,7 @@
 import React from 'react';
-import ContactHero from "../components/ContactHero";
-import ContactForm from "../components/ContactForm";
-import ContactDetails from "../components/ContactDetails";
+import ContactHero from "../components/website/contact/ContactHero";
+import ContactForm from "../components/website/contact/ContactForm";
+import ContactDetails from "../components/website/contact/ContactDetails";
 
 const Contact = () => {
 	return (

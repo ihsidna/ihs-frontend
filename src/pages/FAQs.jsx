@@ -1,6 +1,6 @@
 import React from 'react';
-import Faq from "../components/Faq";
-import FaqHero from "../components/FaqHero";
+import Faq from "../components/website/faq/Faq";
+import FaqHero from "../components/website/faq/FaqHero";
 
 const FAQs = () => {
 	return (

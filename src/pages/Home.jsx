@@ -1,8 +1,8 @@
 import React from 'react';
-import Hero from "../components/Hero";
-import HowItWorks from "../components/HowItWorks";
-import Services from "../components/Services";
-import WhyUs from "../components/WhyUs";
+import Hero from "../components/website/landing/Hero";
+import HowItWorks from "../components/website/landing/HowItWorks";
+import Services from "../components/website/landing/Services";
+import WhyUs from "../components/website/landing/WhyUs";
 
 const Home = () => {
 	return (

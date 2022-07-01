@@ -1,7 +1,7 @@
 import React from 'react';
-import ServiceHero from "../components/ServiceHero";
-import PrimaryCare from "../components/PrimaryCare";
-import SecondaryCare from "../components/SecondaryCare";
+import ServiceHero from "../components/website/services/ServiceHero";
+import PrimaryCare from "../components/website/services/PrimaryCare";
+import SecondaryCare from "../components/website/services/SecondaryCare";
 
 const Services = () => {
 	return (
