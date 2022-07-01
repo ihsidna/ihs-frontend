@@ -43,7 +43,7 @@ const Footer = () => {
 						<ul className="flex flex-col items-start">
 							<li className="uppercase text-xl font-medium text-neutral-600">Legal</li>
 							<li className="text-lg py-1">
-								<Link to="/terms-conditions" className="text-slate-400">Terms & Conditions</Link>
+								<Link to="/terms" className="text-slate-400">Terms of Use</Link>
 							</li>
 							<li className="text-lg py-1">
 								<Link to="/privacy-policy" className="text-slate-400">Privacy Policy</Link>

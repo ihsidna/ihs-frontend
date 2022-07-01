@@ -25,7 +25,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path={"/signup"} element={<SignUp />} />
           <Route path={"/signin"} element={<SignIn />} />
-          <Route path={"/terms-conditions"} element={<TermsConditions />} />
+          <Route path={"/terms"} element={<TermsConditions />} />
           <Route path={"/faqs"} element={<FAQs />} />
           <Route path={"/privacy-policy"} element={<PrivacyPolicy />} />
           <Route path="*" element={<ErrorPage />} />
