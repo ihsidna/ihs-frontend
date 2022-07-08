@@ -7,7 +7,7 @@ const ContactForm = () => {
 				<div className="max-w-[1240] mx-auto md:pb-20">
 					<div className="flex justify-center items-start">
 						<h2 className="md:text-5xl text-3xl font-semibold pb-2 mb-10 text-gray-800 border-b-2 border-b-ihs-green rounded-lg">
-							How can we help?
+							How Can We Help?
 						</h2>
 					</div>
 

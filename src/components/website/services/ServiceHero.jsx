@@ -10,8 +10,8 @@ const ServiceHero = () => {
 
 			<div className="flex flex-col justify-center items-center relative text-white max-w-[1240px] mx-auto md:py-48 py-20">
 				<div className="px-4">
-					<h2 className="md:text-3xl text-xl text-slate-300 uppercase text-center">Care Services</h2>
-					<h3 className="md:text-5xl text-2xl font-semibold py-6 text-center">Our range of care services
+					<h2 className="md:text-3xl text-xl text-slate-300 uppercase text-center">Services</h2>
+					<h3 className="md:text-5xl text-2xl font-semibold py-6 text-center">Care Services
 					</h3>
 				</div>
 			</div>

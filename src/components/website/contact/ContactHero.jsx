@@ -11,7 +11,7 @@ const ContactHero = () => {
 			<div className="flex flex-col justify-center items-center relative text-white max-w-[1240px] mx-auto md:py-48 py-20">
 				<div className="px-4">
 					<h2 className="md:text-3xl text-xl text-slate-300 uppercase text-center">Contact Us</h2>
-					<h3 className="md:text-5xl text-2xl font-semibold py-6 text-center">Need Care?
+					<h3 className="md:text-5xl text-2xl font-semibold py-6 text-center">Your Care. Our Care.
 					</h3>
 				</div>
 			</div>

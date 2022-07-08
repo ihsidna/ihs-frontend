@@ -1,16 +1,14 @@
 import React from 'react';
 import AboutHero from "../components/website/about/AboutHero";
-import Mission from "../components/website/about/Mission";
+import Objectives from "../components/website/about/Objectives";
 import People from "../components/website/about/People";
-import ChooseUs from "../components/website/about/ChooseUs";
 
 const About = () => {
 	return (
 		<>
 			<AboutHero />
-			<Mission />
+			<Objectives />
 			<People />
-			<ChooseUs />
 		</>
 	);
 };

@@ -10,7 +10,7 @@ const Footer = () => {
 		<div className="w-full border-t-2 border-gray-200">
 			<div className="bg-gray-100 lg:px-32 md:px-8 lg:py-8 md:py-8 py-16">
 				<div className="grid md:grid-cols-4 md:py-1">
-					<div className="lg:py-0 md:py-28">
+					<div className="lg:py-0 md:py-28 px-8">
 						<img src={Logo} alt="ihs logo" className="w-[70%] sm:w-2/3 lg:w-full"/>
 					</div>
 					<div className="px-8 mt-4">
@@ -30,10 +30,10 @@ const Footer = () => {
 						<ul className="flex flex-col items-start">
 							<li className="uppercase text-xl font-medium text-neutral-600">Help & Support</li>
 							<li className="text-lg py-1">
-								<Link to="/contact" className="text-slate-400">Contact Us</Link>
+								<Link to="contact" className="text-slate-400">Contact Us</Link>
 							</li>
 							<li className="text-lg py-1">
-								<Link to="/faqs" className="text-slate-400">FAQs</Link>
+								<Link to="faqs" className="text-slate-400">FAQs</Link>
 							</li>
 							<li className="text-lg py-1 text-slate-400">(+1) 98098765</li>
 							<li className="text-lg py-1 text-slate-400">contact@ihs.com</li>
@@ -43,10 +43,10 @@ const Footer = () => {
 						<ul className="flex flex-col items-start">
 							<li className="uppercase text-xl font-medium text-neutral-600">Legal</li>
 							<li className="text-lg py-1">
-								<Link to="/terms" className="text-slate-400">Terms of Use</Link>
+								<Link to="terms" className="text-slate-400">Terms of Use</Link>
 							</li>
 							<li className="text-lg py-1">
-								<Link to="/privacy-policy" className="text-slate-400">Privacy Policy</Link>
+								<Link to="privacy-policy" className="text-slate-400">Privacy Policy</Link>
 							</li>
 						</ul>
 					</div>

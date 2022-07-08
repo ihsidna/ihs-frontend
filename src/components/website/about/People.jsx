@@ -1,5 +1,13 @@
 import React from 'react';
-import {CheckIcon} from "@heroicons/react/outline";
+import {
+	CheckIcon,
+	FolderOpenIcon,
+	LightningBoltIcon,
+	OfficeBuildingIcon,
+	ScissorsIcon,
+	TruckIcon
+} from "@heroicons/react/outline";
+import AvatarImage from "../../../assets/images/avatar.jpg";
 
 const People = () => {
 	return (
@@ -11,52 +19,115 @@ const People = () => {
 							Our People
 						</h2>
 					</div>
-					<div className="lg:px-80 md:px-40 px-10">
-						<p className="md:text-2xl text-lg py-4 text-slate-800">
-							It's our people that really set IHS apart.
-							We’re committed to developing talented care professionals with a passion for making a difference. Our care workers are exceptional people who will help you get the most from life. Our people are:
-						</p>
-						<ul className="text-gray-600 text-lg md:text-2xl md:py-4 py-4 lg:px-20 md:px-10 ">
-							<li className="flex items-center">
-								<div><CheckIcon className="mr-4 text-ihs-green w-6"/></div>
-								<div>
-									<p className="font-medium py-2">COMPASSIONATE</p>
-									<p>We only select care workers who are warm, kind, patient and will show you the level of care would give their own family.</p>
+					<div className="lg:px-20 md:px-10 px-4">
+						<div className="flex justify-center md:mx-20 mx-5">
+							<div className="grid lg:grid-cols-3 md:grid-cols-2">
+								<div className="shadow-md md:mx-4 my-6">
+									<div>
+										<img src={AvatarImage} alt="Secondary & tertiary Care" className="rounded-t-lg shadow-md" />
+									</div>
+									<div className="bg-white md:py-10 py-8 -mt-1 rounded-b-lg">
+										<div className="flex flex-col mx-4">
+											<p className="font-normal text-3xl md:text-3xl pb-2">Dr. Ola Awe</p>
+											<p className="font-light text-xl md:text-xl"><span className="font-normal">Focus: </span>General Medicine & Health Infrastructure</p>
+											<p className="font-light text-xl md:text-xl"><span className="font-normal">Sector: </span> Healthcare</p>
+											<p className="font-light text-xl md:text-xl"><span className="font-normal">Location: </span> TX, USA</p>
+										</div>
+									</div>
 								</div>
-							</li>
-
-							<li className="flex items-center">
-								<div><CheckIcon className="mr-4 text-ihs-green w-6"/></div>
-								<div>
-									<p className="font-medium py-2">RESPECTFUL</p>
-									<p>Our staff are trained to respect you, your home, lifestyle and choices. You will never feel compromised or judged.</p>
+								<div className="shadow-md md:mx-4 my-6">
+									<div>
+										<img src={AvatarImage} alt="Secondary & tertiary Care" className="rounded-t-lg shadow-md" />
+									</div>
+									<div className="bg-white md:py-10 py-8 -mt-1 rounded-b-lg">
+										<div className="flex flex-col mx-4">
+											<p className="font-normal text-3xl md:text-3xl pb-2">Esther Opaluwa</p>
+											<p className="font-light text-xl md:text-xl"><span className="font-normal">Focus: </span>Healthcare Regulations & Compliance</p>
+											<p className="font-light text-xl md:text-xl"><span className="font-normal">Sector: </span> Pharmaceuticals</p>
+											<p className="font-light text-xl md:text-xl"><span className="font-normal">Location: </span> ON, Canada</p>
+										</div>
+									</div>
 								</div>
-							</li>
-
-							<li className="flex items-center">
-								<div><CheckIcon className="mr-4 text-ihs-green w-6"/></div>
-								<div>
-									<p className="font-medium py-2">DIVERSE</p>
-									<p>Our workforce is as richly diverse as our customer base so we can match you with care workers who instinctively understand your culture and lifestyle.</p>
+								<div className="shadow-md md:mx-4 my-6">
+									<div>
+										<img src={AvatarImage} alt="Secondary & tertiary Care" className="rounded-t-lg shadow-md" />
+									</div>
+									<div className="bg-white md:py-10 py-8 -mt-1 rounded-b-lg">
+										<div className="flex flex-col mx-4">
+											<p className="font-normal text-3xl md:text-3xl pb-2">Adun Awe</p>
+											<p className="font-light text-xl md:text-xl"><span className="font-normal">Focus: </span>Legal & Corporate Compliance</p>
+											<p className="font-light text-xl md:text-xl"><span className="font-normal">Sector: </span> Legal</p>
+											<p className="font-light text-xl md:text-xl"><span className="font-normal">Location: </span> TX, USA</p>
+										</div>
+									</div>
 								</div>
-							</li>
-
-							<li className="flex items-center">
-								<div><CheckIcon className="mr-4 text-ihs-green w-6"/></div>
-								<div>
-									<p className="font-medium py-2">HIGHLY TRAINED</p>
-									<p>Nationally recognised Care Certificate and extensive specialist training means our team are highly skilled to support you with varied health conditions.</p>
+								<div className="shadow-md md:mx-4 my-6">
+									<div>
+										<img src={AvatarImage} alt="Secondary & tertiary Care" className="rounded-t-lg shadow-md" />
+									</div>
+									<div className="bg-white md:py-10 py-8 -mt-1 rounded-b-lg">
+										<div className="flex flex-col mx-4">
+											<p className="font-normal text-3xl md:text-3xl pb-2">Zainab Adewusi</p>
+											<p className="font-light text-xl md:text-xl"><span className="font-normal">Focus: </span>Legal & Corporate Compliance</p>
+											<p className="font-light text-xl md:text-xl"><span className="font-normal">Sector: </span> Legal</p>
+											<p className="font-light text-xl md:text-xl"><span className="font-normal">Location: </span> ON, Canada</p>
+										</div>
+									</div>
 								</div>
-							</li>
-
-							<li className="flex items-center">
-								<div><CheckIcon className="mr-4 text-ihs-green w-6"/></div>
-								<div>
-									<p className="font-medium py-2">THOROUGHLY VETTED</p>
-									<p>Enhanced DBS and full reference checks offer you ensure our staff meet our high standards, protecting you and offering peace of mind.</p>
+								<div className="shadow-md md:mx-4 my-6">
+									<div>
+										<img src={AvatarImage} alt="Secondary & tertiary Care" className="rounded-t-lg shadow-md" />
+									</div>
+									<div className="bg-white md:py-10 py-8 -mt-1 rounded-b-lg">
+										<div className="flex flex-col mx-4">
+											<p className="font-normal text-3xl md:text-3xl pb-2">Dapo Akinyade</p>
+											<p className="font-light text-xl md:text-xl"><span className="font-normal">Focus: </span>IT Infrastructure & Security</p>
+											<p className="font-light text-xl md:text-xl"><span className="font-normal">Sector: </span> Info-Tech</p>
+											<p className="font-light text-xl md:text-xl"><span className="font-normal">Location: </span> TX, USA</p>
+										</div>
+									</div>
 								</div>
-							</li>
-						</ul>
+								<div className="shadow-md md:mx-4 my-6">
+									<div>
+										<img src={AvatarImage} alt="Secondary & tertiary Care" className="rounded-t-lg shadow-md" />
+									</div>
+									<div className="bg-white md:py-10 py-8 -mt-1 rounded-b-lg">
+										<div className="flex flex-col mx-4">
+											<p className="font-normal text-3xl md:text-3xl pb-2">Michael Femi-Tunbi</p>
+											<p className="font-light text-xl md:text-xl"><span className="font-normal">Focus: </span>Project & Commercial Infrastructure</p>
+											<p className="font-light text-xl md:text-xl"><span className="font-normal">Sector: </span> Fin-Tech</p>
+											<p className="font-light text-xl md:text-xl"><span className="font-normal">Location: </span> ON, Canada</p>
+										</div>
+									</div>
+								</div>
+								<div className="shadow-md md:mx-4 my-6">
+									<div>
+										<img src={AvatarImage} alt="Secondary & tertiary Care" className="rounded-t-lg shadow-md" />
+									</div>
+									<div className="bg-white md:py-10 py-8 -mt-1 rounded-b-lg">
+										<div className="flex flex-col mx-4">
+											<p className="font-normal text-3xl md:text-3xl pb-2">Boye Olaoye</p>
+											<p className="font-light text-xl md:text-xl"><span className="font-normal">Focus: </span>Project & Commercial Infrastructure</p>
+											<p className="font-light text-xl md:text-xl"><span className="font-normal">Sector: </span> Energy</p>
+											<p className="font-light text-xl md:text-xl"><span className="font-normal">Location: </span> ON, Canada</p>
+										</div>
+									</div>
+								</div>
+								<div className="shadow-md md:mx-4 my-6">
+									<div>
+										<img src={AvatarImage} alt="Secondary & tertiary Care" className="rounded-t-lg shadow-md" />
+									</div>
+									<div className="bg-white md:py-10 py-8 -mt-1 rounded-b-lg">
+										<div className="flex flex-col mx-4">
+											<p className="font-normal text-3xl md:text-3xl pb-2">Moyo Abiola</p>
+											<p className="font-light text-xl md:text-xl"><span className="font-normal">Focus: </span>Human Capital Infrastructure</p>
+											<p className="font-light text-xl md:text-xl"><span className="font-normal">Sector: </span> Fin-Tech</p>
+											<p className="font-light text-xl md:text-xl"><span className="font-normal">Location: </span> Lagos, NG</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 
 					</div>
 

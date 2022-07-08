@@ -1,7 +1,16 @@
 import React from 'react';
+import {useNavigate} from "react-router-dom";
+
+import ICUImage from "../../../assets/images/icu.jpg";
+import OncologyImage from "../../../assets/images/oncology.jpg";
+import SurgeryImage from "../../../assets/images/surgery.jpg";
+import AmbulanceImage from "../../../assets/images/ambulance.jpg";
+import ConsultationImage from "../../../assets/images/consultation.jpg";
 import {FolderOpenIcon, LightningBoltIcon, OfficeBuildingIcon, ScissorsIcon, TruckIcon} from "@heroicons/react/outline";
 
 const SecondaryCare = () => {
+	const navigate = useNavigate();
+
 	return (
 		<div>
 			<div className="md:py-40 py-20 bg-gray-100">
@@ -13,31 +22,70 @@ const SecondaryCare = () => {
 					</div>
 					<div className="flex justify-center md:mx-20 mx-5">
 						<div className="grid lg:grid-cols-3 md:grid-cols-2">
-							<div className="border px-6 py-12 mx-4 my-6 rounded-xl shadow-md bg-white">
-								<FolderOpenIcon className="md:w-16 w-12 md:p-4 p-2.5 bg-ihs-green text-white rounded-lg mt-[-4rem]"/>
-								<h3 className="font-semibold text-2xl md:text-3xl my-4">Case & Resource Management for A&Es</h3>
-								<p className="text-lg py-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque id efficitur tellus, ut consectetur nibh. Vivamus justo nunc, tempor ac vestibulum sed, efficitur auctor nisl. Vivamus iaculis risus eu nulla euismod, ut ultricies dolor tincidunt. Mauris malesuada dui maximus imperdiet pharetra. Proin lacus urna, posuere ac gravida ac, pretium vitae sapien. Quisque molestie mattis nisl nec maximus. Ut accumsan tortor in elit imperdiet, sit amet lacinia libero fermentum. Nam vitae ornare justo.</p>
+							<div className="shadow-md mx-4 my-6">
+								<div>
+									<img src={AmbulanceImage} alt="Secondary & tertiary Care" className="rounded-t-lg shadow-md" />
+								</div>
+								<div className="bg-white md:py-10 py-8 -mt-1 rounded-b-lg">
+									<div className="flex space-x-4 mx-4">
+										<div>
+											<TruckIcon className="md:w-12 w-12 md:p-2 p-2.5 bg-ihs-green text-white rounded-md"/>
+										</div>
+										<p className="font-normal text-2xl md:text-3xl">Ambulance & Evacuation Services</p>
+									</div>
+								</div>
 							</div>
-							<div className="border px-6 py-12 mx-4 my-6 rounded-xl shadow-md bg-white">
-								<TruckIcon className="md:w-16 w-12 md:p-4 p-2.5 bg-ihs-green text-white rounded-lg mt-[-4rem]"/>
-								<h3 className="font-semibold text-2xl md:text-3xl my-4">Ambulance Services</h3>
-								<p className="text-lg py-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque id efficitur tellus, ut consectetur nibh. Vivamus justo nunc, tempor ac vestibulum sed, efficitur auctor nisl. Vivamus iaculis risus eu nulla euismod, ut ultricies dolor tincidunt. Mauris malesuada dui maximus imperdiet pharetra. Proin lacus urna, posuere ac gravida ac, pretium vitae sapien. Quisque molestie mattis nisl nec maximus. Ut accumsan tortor in elit imperdiet, sit amet lacinia libero fermentum. Nam vitae ornare justo.</p>
+							<div className="shadow-md mx-4 my-6">
+								<div>
+									<img src={ICUImage} alt="Secondary & tertiary Care" className="rounded-t-lg shadow-md" />
+								</div>
+								<div className="bg-white md:py-10 py-8 -mt-1 rounded-b-lg">
+									<div className="flex space-x-4 mx-4">
+										<div>
+											<OfficeBuildingIcon className="md:w-12 w-12 md:p-2 p-2.5 bg-ihs-green text-white rounded-md"/>
+										</div>
+										<p className="font-normal text-2xl md:text-3xl">A&E, Resuscitative Treatments & ICU Access</p>
+									</div>
+								</div>
 							</div>
-							<div className="border px-6 py-12 mx-4 my-6 rounded-xl shadow-md bg-white">
-								<OfficeBuildingIcon className="md:w-16 w-12 md:p-4 p-2.5 bg-ihs-green text-white rounded-lg mt-[-4rem]"/>
-
-								<h3 className="font-semibold text-2xl md:text-3xl my-4">ICU Access</h3>
-								<p className="text-lg py-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque id efficitur tellus, ut consectetur nibh. Vivamus justo nunc, tempor ac vestibulum sed, efficitur auctor nisl. Vivamus iaculis risus eu nulla euismod, ut ultricies dolor tincidunt. Mauris malesuada dui maximus imperdiet pharetra. Proin lacus urna, posuere ac gravida ac, pretium vitae sapien. Quisque molestie mattis nisl nec maximus. Ut accumsan tortor in elit imperdiet, sit amet lacinia libero fermentum. Nam vitae ornare justo.</p>
+							<div className="shadow-md mx-4 my-6">
+								<div>
+									<img src={OncologyImage} alt="Secondary & tertiary Care" className="rounded-t-lg shadow-md" />
+								</div>
+								<div className="bg-white md:py-10 py-8 -mt-1 rounded-b-lg">
+									<div className="flex space-x-4 mx-4">
+										<div>
+											<LightningBoltIcon className="md:w-12 w-12 md:p-2 p-2.5 bg-ihs-green text-white rounded-md"/>
+										</div>
+										<p className="font-normal text-2xl md:text-3xl">Oncology & Dialysis Care</p>
+									</div>
+								</div>
 							</div>
-							<div className="border px-6 py-12 mx-4 my-6 rounded-xl shadow-md bg-white">
-								<LightningBoltIcon className="md:w-16 w-12 md:p-4 p-2.5 bg-ihs-green text-white rounded-lg mt-[-4rem]"/>
-								<h3 className="font-semibold text-2xl md:text-3xl my-4">A&C Investigations</h3>
-								<p className="text-lg py-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque id efficitur tellus, ut consectetur nibh. Vivamus justo nunc, tempor ac vestibulum sed, efficitur auctor nisl. Vivamus iaculis risus eu nulla euismod, ut ultricies dolor tincidunt. Mauris malesuada dui maximus imperdiet pharetra. Proin lacus urna, posuere ac gravida ac, pretium vitae sapien. Quisque molestie mattis nisl nec maximus. Ut accumsan tortor in elit imperdiet, sit amet lacinia libero fermentum. Nam vitae ornare justo.</p>
+							<div className="shadow-md mx-4 my-6">
+								<div>
+									<img src={ConsultationImage} alt="Secondary & tertiary Care" className="rounded-t-lg shadow-md" />
+								</div>
+								<div className="bg-white md:py-10 py-8 -mt-1 rounded-b-lg">
+									<div className="flex space-x-4 mx-4">
+										<div>
+											<FolderOpenIcon className="md:w-12 w-12 md:p-2 p-2.5 bg-ihs-green text-white rounded-md"/>
+										</div>
+										<p className="font-normal text-2xl md:text-3xl">Specialists Consultations</p>
+									</div>
+								</div>
 							</div>
-							<div className="border px-6 py-12 mx-4 my-6 rounded-xl shadow-md bg-white">
-								<ScissorsIcon className="md:w-16 w-12 md:p-4 p-2.5 bg-ihs-green text-white rounded-lg mt-[-4rem]"/>
-								<h3 className="font-semibold text-2xl md:text-3xl my-4">Intermediate & Major Surgeries</h3>
-								<p className="text-lg py-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque id efficitur tellus, ut consectetur nibh. Vivamus justo nunc, tempor ac vestibulum sed, efficitur auctor nisl. Vivamus iaculis risus eu nulla euismod, ut ultricies dolor tincidunt. Mauris malesuada dui maximus imperdiet pharetra. Proin lacus urna, posuere ac gravida ac, pretium vitae sapien. Quisque molestie mattis nisl nec maximus. Ut accumsan tortor in elit imperdiet, sit amet lacinia libero fermentum. Nam vitae ornare justo.</p>
+							<div className="shadow-md mx-4 my-6">
+								<div>
+									<img src={SurgeryImage} alt="Secondary & tertiary Care" className="rounded-t-lg shadow-md" />
+								</div>
+								<div className="bg-white md:py-10 py-8 -mt-1 rounded-b-lg">
+									<div className="flex space-x-4 mx-4">
+										<div>
+											<ScissorsIcon className="md:w-12 w-12 md:p-2 p-2.5 bg-ihs-green text-white rounded-md"/>
+										</div>
+										<p className="font-normal text-2xl md:text-3xl">Intermediate & Major Surgeries</p>
+									</div>
+								</div>
 							</div>
 						</div>
 
@@ -46,7 +94,7 @@ const SecondaryCare = () => {
 
 				</div>
 				<div className="flex justify-center py-5">
-					<button className="px-6 py-4 text-xl hover:font-semibold">Get Started</button>
+					<button className="px-6 py-4 text-xl hover:font-semibold"  onClick={() => { navigate("/signup")}}>Get Started</button>
 				</div>
 			</div>
 		</div>
