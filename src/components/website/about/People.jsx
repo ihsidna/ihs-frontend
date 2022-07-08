@@ -1,12 +1,4 @@
 import React from 'react';
-import {
-	CheckIcon,
-	FolderOpenIcon,
-	LightningBoltIcon,
-	OfficeBuildingIcon,
-	ScissorsIcon,
-	TruckIcon
-} from "@heroicons/react/outline";
 import AvatarImage from "../../../assets/images/avatar.jpg";
 
 const People = () => {
