@@ -9,14 +9,12 @@ import {
 	UsersIcon,
 	XIcon
 } from "@heroicons/react/outline";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 const Avatar  = "https://res.cloudinary.com/ihsidnadev/image/upload/v1654264295/ihs-cdn/images/default_avatar_fvtcew.png"
 
 const Navbar = () => {
 	const [nav, setNav] = useState(false);
 	const handleNav = () => setNav(!nav) ;
-	const scrollToTop = window.scrollTo({top: 0, left: 0, behavior: 'auto'});
-	const navigate = useNavigate();
 
 	return (
 		<div className="border border-0 border-b border-b-slate-200">
