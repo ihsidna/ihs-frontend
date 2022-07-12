@@ -9,7 +9,6 @@ import {
 	UsersIcon,
 	XIcon
 } from "@heroicons/react/outline";
-import {useNavigate} from "react-router-dom";
 const Avatar  = "https://res.cloudinary.com/ihsidnadev/image/upload/v1654264295/ihs-cdn/images/default_avatar_fvtcew.png"
 
 const Navbar = () => {
