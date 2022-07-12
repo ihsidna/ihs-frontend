@@ -46,7 +46,7 @@ const WhyUs = () => {
 						<div className="grid md:grid-cols-2 my-8 lg:w-full md:w-full w-full">
 							<button className="bg-ihs-green md:py-4 py-4 my-4 md:px-4 px-4 md:mr-4 md:text-xl text-xl md:hover:bg-transparent md:hover:text-ihs-green md:hover:border-ihs-green md:hover:font-bold hover:bg-transparent hover:text-ihs-green hover:border-ihs-green hover:font-bold shadow-md" onClick={() => {
 								navigate('/signup')
-							}}>Create an account</button>
+							}}>Create An Account</button>
 
 							<button className="bg-ihs-blue md:py-4 py-4 my-4 md:px-4 px-4 md:mr-4 md:text-xl text-xl md:hover:bg-transparent md:hover:text-ihs-blue md:hover:border-ihs-blue md:hover:font-bold hover:bg-transparent hover:text-ihs-blue hover:border-ihs-blue hover:font-bold shadow-md" onClick={() => {navigate("about")}}>Learn More</button>
 						</div>

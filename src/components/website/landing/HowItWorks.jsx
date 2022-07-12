@@ -9,7 +9,7 @@ const HowItWorks = () => {
 			<div className="max-w-[1240] mx-auto">
 				<div className="flex justify-center items-center">
 					<h2 className="md:text-6xl text-4xl font-semibold pb-2 mb-10 text-gray-800  border-b-2 border-b-ihs-blue rounded-lg">
-						How it works
+						How It Works
 					</h2>
 				</div>
 				<div className="grid md:grid-cols-3 md:gap-5 gap-5 px-2 text-center my-10">
@@ -36,7 +36,7 @@ const HowItWorks = () => {
 			<div className="flex justify-center md:py-10 py-6">
 				<button className="bg-ihs-blue md:py-6 py-4  md:px-6 px-4 md:text-2xl text-xl md:hover:bg-transparent md:hover:text-ihs-blue md:hover:border-ihs-blue md:hover:font-bold hover:bg-transparent hover:text-ihs-blue hover:border-ihs-blue hover:font-bold shadow-md" onClick={() => {
 					navigate('/signup')
-				}}>Create an account</button>
+				}}>Create An Account</button>
 			</div>
 		</div>
 	);
