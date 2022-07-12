@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,5 +12,9 @@
     button {
         @apply text-white border bg-ihs-green border-ihs-green
         hover:bg-transparent hover:text-ihs-green rounded-md
+    }
+
+    html {
+        font-family: 'Be Vietnam Pro', sans-serif;
     }
 }

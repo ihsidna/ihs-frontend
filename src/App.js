@@ -13,6 +13,7 @@ import FAQs from "./pages/FAQs";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Dashboard from "./components/app/Dashboard";
 import Beneficiaries from "./components/app/Beneficiaries";
+import Layout from "./components/app/Layout";
 
 function App() {
   return (
@@ -27,7 +28,8 @@ function App() {
           <Route path="terms" element={<TermsConditions />} />
           <Route path="faqs" element={<FAQs />} />
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="dashboard" element={<Dashboard />}>
+          <Route path="dashboard/overview" element={<Layout />}>
+            <Route path="overview" element={<Dashboard />} />
             <Route path="beneficiaries" element={<Beneficiaries />} />
           </Route>
           <Route path="*" element={<ErrorPage />} />

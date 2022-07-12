@@ -1,12 +1,16 @@
 import React from 'react';
-// import {Outlet} from 'react-router-dom';
+import {Outlet} from "react-router-dom";
+import Sidebar from "./Sidebar";
+import Navbar from "./Navbar";
 
 const Layout = () => {
 	return (
 		<div>
-			<div>Sidebar</div> todo: create this as a component
-			<div>Navbar</div> todo: create this as a component
-			{/*<div><Outlet /></div>*/}
+			<Navbar />
+			<div className="flex">
+				<Sidebar />
+				<Outlet />
+			</div>
 		</div>
 	);
 };

@@ -4,10 +4,11 @@ import Layout from "./Layout";
 
 const Dashboard = () => {
 	return (
-		<div className="pt-52">
-			<Layout />
-			<Outlet/>
-		</div>
+		<>
+			<div>
+				Dashboard
+			</div>
+		</>
 	);
 };
 

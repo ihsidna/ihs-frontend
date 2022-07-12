@@ -9,15 +9,18 @@ const Navbar = () => {
 	const [nav, setNav] = useState(false);
 	const handleNav = () => setNav(!nav) ;
 	const scrollToTop = window.scrollTo({top: 0, left: 0, behavior: 'auto'});
+
 	return (
 		<div className="w-screen h-[80px] bg-white z-10 fixed drop-shadow-lg">
 			<div className=" px-2 flex justify-between items-center w-full h-full">
+
 				<div className="flex items-center">
 					<Link to="/" onClick={() => {return scrollToTop}}>
 						<img src={Logo} alt="ihs-logo" className="ml-0 w-1/2 sm:w-3/5 md:w-[50%]"/>
 					</Link>
-
 				</div>
+
+				{/*Desktop nav links*/}
 				<div className="font-semibold hidden md:flex pr-4">
 					<ul className="hidden font-semibold text-gray-800 md:flex ">
 						<li>
@@ -35,6 +38,8 @@ const Navbar = () => {
 						</li>
 					</ul>
 				</div>
+				{/*End Desktop Nav Links*/}
+
 				<div className="font-semibold hidden md:flex pr-4">
 					<button className="bg-transparent border-0 text-gray-800 md:px-7 md:py-3" onClick={() => {
 						navigate('/signin')

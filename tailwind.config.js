@@ -49,6 +49,9 @@ module.exports = {
        },
      }
     },
+    fontfamily: {
+      'sans': ['Be Vietnam Pro', 'sans-serif'],
+    }
   },
   plugins: [
     require("tailwindcss"),
