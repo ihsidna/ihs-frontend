@@ -28,8 +28,8 @@ function App() {
           <Route path="terms" element={<TermsConditions />} />
           <Route path="faqs" element={<FAQs />} />
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="dashboard/overview" element={<Layout />}>
-            <Route path="overview" element={<Dashboard />} />
+          <Route element={<Layout />}>
+            <Route path="dashboard" element={<Dashboard />} />
             <Route path="beneficiaries" element={<Beneficiaries />} />
           </Route>
           <Route path="*" element={<ErrorPage />} />
