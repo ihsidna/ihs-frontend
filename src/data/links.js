@@ -1,4 +1,4 @@
-import {ClipboardListIcon, TemplateIcon, UsersIcon} from "@heroicons/react/outline";
+import {ClipboardListIcon, CogIcon, LogoutIcon, TemplateIcon, UsersIcon} from "@heroicons/react/outline";
 
 export const links = [
 			{
@@ -16,4 +16,17 @@ export const links = [
 				path: "appointments",
 				icon: <ClipboardListIcon  className="w-6" />,
 			}
+];
+
+export const footerLinks = [
+	{
+		title: "profile",
+		path: "profile",
+		icon: <CogIcon  className="w-6" />,
+	},
+	{
+		title: "logout",
+		path: "logout",
+		icon: <LogoutIcon  className=" w-6" />,
+	},
 ];

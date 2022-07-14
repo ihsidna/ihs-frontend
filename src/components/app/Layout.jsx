@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Link, NavLink, Outlet} from "react-router-dom";
 import Logo from "../../assets/images/logo.svg";
 import {MenuIcon, XIcon} from "@heroicons/react/outline";
-import {links} from "../../data/links";
+import {links, footerLinks} from "../../data/links";
 const Avatar  = "https://res.cloudinary.com/ihsidnadev/image/upload/v1654264295/ihs-cdn/images/default_avatar_fvtcew.png"
 
 const Layout = () => {
@@ -20,9 +20,9 @@ const Layout = () => {
 		}
 	};
 
-	const activeLink = "flex items-center md:gap-5 gap-2 md:text-lg text-sm text-ihs-green bg-ihs-green-shade-200 border border-0 border-r-2 border-r-ihs-green md:pl-7 pl-3 py-2"
-	const normalLink = "flex items-center md:gap-5 gap-2 md:text-lg text-sm hover:bg-ihs-green-shade-100 border border-0 hover:border-r-2 hover:border-r-ihs-green md:pl-7 pl-3 py-2"
-	const sidebarStyle = "drop-shadow-2xl md:w-80 w-40 sticky left-0 top-0 border border-0 border-r border-slate-200 bg-cyan-50 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10 z-10"
+	const activeLink = "flex w-80 items-center md:gap-5 gap-2 md:text-lg text-sm text-ihs-green bg-ihs-green-shade-200 border border-0 border-r-2 border-r-ihs-green md:pl-7 pl-3 py-2"
+	const normalLink = "flex w-80 items-center md:gap-5 gap-2 md:text-lg text-sm hover:bg-ihs-green-shade-100 border border-0 hover:border-r-2 hover:border-r-ihs-green md:pl-7 pl-3 py-2"
+	const sidebarStyle = "drop-shadow-2xl md:w-80 w-40 sticky left-0 top-0 border border-0 border-r border-slate-200 bg-cyan-50 h-screen md:overflow-hidden overflow-auto md:hover:overflow-hidden pb-10 z-10"
 
 	return (
 		<div>
@@ -43,6 +43,16 @@ const Layout = () => {
 									<span className="capitalize">{item.title}</span>
 								</NavLink>
 							))}
+						</div>
+						<div className="border border-0 border-t border-slate-200 fixed bottom-10">
+							{footerLinks.map((item) => (
+								<NavLink to={`/${item.path}`} key={item.path} onClick={() => {}} className={({isActive}) => isActive ? activeLink : normalLink}>
+									{item.icon}
+									<span className="capitalize">{item.title}</span>
+								</NavLink>
+							))}
+
+							<p className="md:pl-7 pl-3 py-2 text-sm">© 2022 Copyright. v1.0.0</p>
 						</div>
 					</div>
 				{/*	End Sidebar*/}
