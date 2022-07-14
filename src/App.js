@@ -15,6 +15,7 @@ import Dashboard from "./components/app/Dashboard";
 import Beneficiaries from "./components/app/Beneficiaries";
 import Appointments from "./components/app/Appointment";
 import Layout from "./components/app/Layout";
+import Profile from "./components/app/Profile";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="beneficiaries" element={<Beneficiaries />} />
           <Route path="appointments" element={<Appointments />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>
