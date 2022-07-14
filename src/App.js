@@ -13,27 +13,29 @@ import FAQs from "./pages/FAQs";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Dashboard from "./components/app/Dashboard";
 import Beneficiaries from "./components/app/Beneficiaries";
+import Appointments from "./components/app/Appointment";
 import Layout from "./components/app/Layout";
 
 function App() {
   return (
     <Router>
-        <Routes>
-          <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="services" element={<Services />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="signup" element={<SignUp />} />
-          <Route path="signin" element={<SignIn />} />
-          <Route path="terms" element={<TermsConditions />} />
-          <Route path="faqs" element={<FAQs />} />
-          <Route path="privacy-policy" element={<PrivacyPolicy />} />
-          <Route element={<Layout />}>
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="beneficiaries" element={<Beneficiaries />} />
-          </Route>
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
+      <Routes>
+        <Route index element={<Home />} />
+        <Route path="about" element={<About />} />
+        <Route path="services" element={<Services />} />
+        <Route path="contact" element={<Contact />} />
+        <Route path="signup" element={<SignUp />} />
+        <Route path="signin" element={<SignIn />} />
+        <Route path="terms" element={<TermsConditions />} />
+        <Route path="faqs" element={<FAQs />} />
+        <Route path="privacy-policy" element={<PrivacyPolicy />} />
+        <Route element={<Layout />}>
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="beneficiaries" element={<Beneficiaries />} />
+          <Route path="appointments" element={<Appointments />} />
+        </Route>
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
     </Router>
   );
 }

@@ -1,13 +1,13 @@
 import React from 'react';
 
-const Dashboard = () => {
+const Appointment = () => {
 	return (
 		<>
 			<div className="">
-				<p>Dashboard</p>
+				<p>Appointment</p>
 			</div>
 		</>
 	);
 };
 
-export default Dashboard;
+export default Appointment;
