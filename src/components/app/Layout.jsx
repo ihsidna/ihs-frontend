@@ -20,9 +20,9 @@ const Layout = () => {
 		}
 	};
 
-	const activeLink = "flex w-80 items-center md:gap-5 gap-2 md:text-lg text-sm text-ihs-green bg-ihs-green-shade-200 border border-0 border-r-2 border-r-ihs-green md:pl-7 pl-3 py-2"
-	const normalLink = "flex w-80 items-center md:gap-5 gap-2 md:text-lg text-sm hover:bg-ihs-green-shade-100 border border-0 hover:border-r-2 hover:border-r-ihs-green md:pl-7 pl-3 py-2"
-	const sidebarStyle = "drop-shadow-2xl md:w-80 w-40 sticky left-0 top-0 border border-0 border-r border-slate-200 bg-cyan-50 h-screen md:overflow-hidden overflow-auto md:hover:overflow-hidden pb-10 z-10"
+	const activeLink = "flex w-80 items-center gap-5 text-lg text-ihs-green bg-ihs-green-shade-200 border border-0 border-r-2 border-r-ihs-green pl-7 py-2"
+	const normalLink = "flex w-80 items-center gap-5 text-lg hover:bg-ihs-green-shade-100 border border-0 hover:border-r-2 hover:border-r-ihs-green pl-7 py-2"
+	const sidebarStyle = "drop-shadow-2xl md:w-80 w-full sticky left-0 top-0 border border-0 border-r border-slate-200 bg-cyan-50 h-screen md:overflow-hidden overflow-auto md:hover:overflow-hidden pb-10 z-10"
 
 	return (
 		<div>
@@ -44,7 +44,7 @@ const Layout = () => {
 								</NavLink>
 							))}
 						</div>
-						<div className="border border-0 border-t border-slate-200 fixed bottom-10">
+						<div className="border border-0 border-t border-slate-200 fixed bottom-2 py-4">
 							{footerLinks.map((item) => (
 								<NavLink to={`/${item.path}`} key={item.path} onClick={() => {}} className={({isActive}) => isActive ? activeLink : normalLink}>
 									{item.icon}
@@ -52,7 +52,7 @@ const Layout = () => {
 								</NavLink>
 							))}
 
-							<p className="md:pl-7 pl-3 py-2 text-sm">© 2022 Copyright. v1.0.0</p>
+							<p className="pl-7 py-4 text-sm">© 2022 Copyright. v1.0.0</p>
 						</div>
 					</div>
 				{/*	End Sidebar*/}
@@ -65,7 +65,7 @@ const Layout = () => {
 						</button>
 
 						<Link to="/dashboard" onClick={() => {
-						}} className="md:hidden items-center my-4 flex">
+						}} className={`"md:hidden" ${sidebar ? "hidden" : "items-center my-4 flex"}`}>
 							<img src={Logo} alt="logo" className="w-40" />
 						</Link>
 
@@ -73,14 +73,17 @@ const Layout = () => {
 							<div className="">
 								<p className="text-xl text-gray-700 hidden md:block">John Doe</p>
 							</div>
-							<div className="px-5">
+							<div className={` ${sidebar ? "hidden md:block px-5" : "px-5"}`}>
 								<img src={Avatar} alt="avatar" className="h-10 w-10 rounded-full" />
 							</div>
 						</div>
 
 					</nav>
 					{/*End Navbar*/}
-					<Outlet />
+					<div className={`"block" ${!mobile ? "block" : sidebar ? "hidden" : "block"}`}>
+						<Outlet />
+					</div>
+
 				</div>
 
 			</div>
