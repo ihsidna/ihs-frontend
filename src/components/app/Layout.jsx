@@ -6,12 +6,19 @@ import {links, footerLinks} from "../../data/links";
 const Avatar  = "https://res.cloudinary.com/ihsidnadev/image/upload/v1654264295/ihs-cdn/images/default_avatar_fvtcew.png"
 
 const Layout = () => {
+	// sidebar is active on init
 	const [sidebar, setSidebar] = useState(true);
 
+	// mobile screen is inactive on init
 	const [mobile, setMobile] = useState(false);
 
 	const toggleSidebar = () => {
 		setSidebar((prevSidebar) => !prevSidebar);
+	}
+	const toggleSidebarOnMobile = () => {
+		if (window.innerWidth < 768){
+			toggleSidebar();
+		}
 	}
 	const handleMobile = () => {
 		if (window.innerWidth < 768){
@@ -29,6 +36,10 @@ const Layout = () => {
 			<div className="flex">
 				<div>
 					{/*Sidebar*/}
+					{/*Show the sidebar by default.*/}
+					{/*If the sidebar value is false, hide the sidebar.*/}
+					{/*If mobile state is true, hide the sidebar using the handleMobile function*/}
+					{/*if it is not a mobile device, show the sidebar.*/}
 					<div className={`${sidebarStyle} ${!sidebar ? "hidden" : !mobile ? handleMobile() : sidebarStyle}` }>
 						<div className="flex justify-center items-center px-4">
 							<Link to="/dashboard" onClick={() => {
@@ -38,7 +49,7 @@ const Layout = () => {
 						</div>
 						<div className="mt-5">
 							{links.map((item) => (
-								<NavLink to={`/${item.path}`} key={item.path} onClick={() => {}} className={({isActive}) => isActive ? activeLink : normalLink}>
+								<NavLink to={`/${item.path}`} key={item.path} onClick={() => toggleSidebarOnMobile()} className={({isActive}) => isActive ? activeLink : normalLink}>
 									{item.icon}
 									<span className="capitalize">{item.title}</span>
 								</NavLink>
@@ -46,7 +57,7 @@ const Layout = () => {
 						</div>
 						<div className="border border-0 border-t border-slate-200 fixed bottom-2 py-4">
 							{footerLinks.map((item) => (
-								<NavLink to={`/${item.path}`} key={item.path} onClick={() => {}} className={({isActive}) => isActive ? activeLink : normalLink}>
+								<NavLink to={`/${item.path}`} key={item.path} onClick={() => toggleSidebarOnMobile()} className={({isActive}) => isActive ? activeLink : normalLink}>
 									{item.icon}
 									<span className="capitalize">{item.title}</span>
 								</NavLink>
@@ -80,6 +91,7 @@ const Layout = () => {
 
 					</nav>
 					{/*End Navbar*/}
+					{/*when sidebar is active, dashboard content is hidden*/}
 					<div className={`"block" ${!mobile ? "block" : sidebar ? "hidden" : "block"}`}>
 						<Outlet />
 					</div>
