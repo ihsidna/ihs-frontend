@@ -3,7 +3,7 @@ import React from 'react';
 const Beneficiaries = () => {
 	return (
 		<div className="">
-			Beneficiaries
+			<p>Beneficiaries</p>
 		</div>
 	);
 };

@@ -68,7 +68,7 @@ const Layout = () => {
 					</div>
 				{/*	End Sidebar*/}
 				</div>
-				<div className="grow">
+				<div className=" overflow-x-hidden grow w-screen">
 					{/*Navbar*/}
 					<nav className="flex justify-between h-20 border border-0 border-b border-slate-200 sticky top-0 bg-white">
 						<button onClick={() => {toggleSidebar()}} className="md:invisible bg-transparent text-slate-500 text-xl border border-slate-300 hover:border-ihs-green-shade-100 m-4 p-2 block">
