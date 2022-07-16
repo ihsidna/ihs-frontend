@@ -3,7 +3,6 @@ import React from 'react';
 
 const Dashboard = () => {
 	return (
-
 		<>
 			<div className="lg:p-20 md:p-10 p-3">
 				<div className="mb-5 mt-2">
@@ -74,7 +73,7 @@ const Dashboard = () => {
 											</div>
 
 											<div className="ml-4">
-												<div className="text-lg font-medium leading-5 text-gray-500">
+												<div className="md:text-lg text-base font-medium leading-5 text-gray-500">
 													John Doe
 												</div>
 											</div>
@@ -82,15 +81,15 @@ const Dashboard = () => {
 									</td>
 
 									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-										<div className="text-lg leading-5 text-gray-500">Surulere, Lagos</div>
+										<div className="md:text-lg text-base leading-5 text-gray-500">Surulere, Lagos</div>
 									</td>
 
 									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-										<p className="text-lg leading-5 text-gray-500">25</p>
+										<p className="md:text-lg text-base leading-5 text-gray-500">25</p>
 									</td>
 
 									<td
-										className="px-6 py-4 text-lg leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
+										className="px-6 py-4 md:text-lg text-base leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
 										View Details
 									</td>
 
@@ -104,7 +103,7 @@ const Dashboard = () => {
 											</div>
 
 											<div className="ml-4">
-												<div className="text-lg font-medium leading-5 text-gray-500">
+												<div className="md:text-lg text-base font-medium leading-5 text-gray-500">
 													John Doe
 												</div>
 											</div>
@@ -112,15 +111,15 @@ const Dashboard = () => {
 									</td>
 
 									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-										<div className="text-lg leading-5 text-gray-500">Surulere, Lagos</div>
+										<div className="md:text-lg text-base leading-5 text-gray-500">Surulere, Lagos</div>
 									</td>
 
 									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-										<p className="text-lg leading-5 text-gray-500">25</p>
+										<p className="md:text-lg text-base leading-5 text-gray-500">25</p>
 									</td>
 
 									<td
-										className="px-6 py-4 text-lg leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
+										className="px-6 py-4 md:text-lg text-base leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
 										View Details
 									</td>
 
@@ -134,7 +133,7 @@ const Dashboard = () => {
 											</div>
 
 											<div className="ml-4">
-												<div className="text-lg font-medium leading-5 text-gray-500">
+												<div className="md:text-lg text-base font-medium leading-5 text-gray-500">
 													John Doe
 												</div>
 											</div>
@@ -142,15 +141,15 @@ const Dashboard = () => {
 									</td>
 
 									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-										<div className="text-lg leading-5 text-gray-500">Surulere, Lagos</div>
+										<div className="md:text-lg text-base leading-5 text-gray-500">Surulere, Lagos</div>
 									</td>
 
 									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-										<p className="text-lg leading-5 text-gray-500">25</p>
+										<p className="md:text-lg text-base leading-5 text-gray-500">25</p>
 									</td>
 
 									<td
-										className="px-6 py-4 text-lg leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
+										className="px-6 py-4 md:text-lg text-base leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
 										View Details
 									</td>
 
@@ -164,7 +163,7 @@ const Dashboard = () => {
 											</div>
 
 											<div className="ml-4">
-												<div className="text-lg font-medium leading-5 text-gray-500">
+												<div className="md:text-lg text-base font-medium leading-5 text-gray-500">
 													John Doe
 												</div>
 											</div>
@@ -172,15 +171,15 @@ const Dashboard = () => {
 									</td>
 
 									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-										<div className="text-lg leading-5 text-gray-500">Surulere, Lagos</div>
+										<div className="md:text-lg text-base leading-5 text-gray-500">Surulere, Lagos</div>
 									</td>
 
 									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-										<p className="text-lg leading-5 text-gray-500">25</p>
+										<p className="md:text-lg text-base leading-5 text-gray-500">25</p>
 									</td>
 
 									<td
-										className="px-6 py-4 text-lg leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
+										className="px-6 py-4 md:text-lg text-base leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
 										View Details
 									</td>
 
@@ -241,7 +240,7 @@ const Dashboard = () => {
 											</div>
 
 											<div className="ml-4">
-												<div className="text-lg font-medium leading-5 text-gray-500">
+												<div className="md:text-lg text-base font-medium leading-5 text-gray-500">
 													John Doe
 												</div>
 											</div>
@@ -249,11 +248,11 @@ const Dashboard = () => {
 									</td>
 
 									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-										<div className="text-lg leading-5 text-gray-500">Medication Administration</div>
+										<div className="md:text-lg text-base leading-5 text-gray-500">Medication Administration</div>
 									</td>
 
 									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-										<p className="text-lg leading-5 text-gray-500">25, July 2022</p>
+										<p className="md:text-lg text-base leading-5 text-gray-500">25, July 2022</p>
 									</td>
 
 									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -262,7 +261,7 @@ const Dashboard = () => {
 									</td>
 
 									<td
-										className="px-6 py-4 text-lg leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
+										className="px-6 py-4 md:text-lg text-base leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
 										View Details
 									</td>
 
@@ -276,7 +275,7 @@ const Dashboard = () => {
 											</div>
 
 											<div className="ml-4">
-												<div className="text-lg font-medium leading-5 text-gray-500">
+												<div className="md:text-lg text-base font-medium leading-5 text-gray-500">
 													John Doe
 												</div>
 											</div>
@@ -284,11 +283,11 @@ const Dashboard = () => {
 									</td>
 
 									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-										<div className="text-lg leading-5 text-gray-500">Medication Administration</div>
+										<div className="md:text-lg text-base leading-5 text-gray-500">Medication Administration</div>
 									</td>
 
 									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-										<p className="text-lg leading-5 text-gray-500">25, July 2022</p>
+										<p className="md:text-lg text-base leading-5 text-gray-500">25, July 2022</p>
 									</td>
 
 									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -297,7 +296,7 @@ const Dashboard = () => {
 									</td>
 
 									<td
-										className="px-6 py-4 text-lg leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
+										className="px-6 py-4 md:text-lg text-base leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
 										View Details
 									</td>
 
@@ -311,7 +310,7 @@ const Dashboard = () => {
 											</div>
 
 											<div className="ml-4">
-												<div className="text-lg font-medium leading-5 text-gray-500">
+												<div className="md:text-lg text-base font-medium leading-5 text-gray-500">
 													John Doe
 												</div>
 											</div>
@@ -319,11 +318,11 @@ const Dashboard = () => {
 									</td>
 
 									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-										<div className="text-lg leading-5 text-gray-500">Medication Administration</div>
+										<div className="md:text-lg text-base leading-5 text-gray-500">Medication Administration</div>
 									</td>
 
 									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-										<p className="text-lg leading-5 text-gray-500">25, July 2022</p>
+										<p className="md:text-lg text-base leading-5 text-gray-500">25, July 2022</p>
 									</td>
 
 									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -332,7 +331,7 @@ const Dashboard = () => {
 									</td>
 
 									<td
-										className="px-6 py-4 text-lg leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
+										className="px-6 py-4 md:text-lg text-base leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
 										View Details
 									</td>
 
@@ -346,7 +345,7 @@ const Dashboard = () => {
 											</div>
 
 											<div className="ml-4">
-												<div className="text-lg font-medium leading-5 text-gray-500">
+												<div className="md:text-lg text-base font-medium leading-5 text-gray-500">
 													John Doe
 												</div>
 											</div>
@@ -354,11 +353,11 @@ const Dashboard = () => {
 									</td>
 
 									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-										<div className="text-lg leading-5 text-gray-500">Medication Administration</div>
+										<div className="md:text-lg text-base leading-5 text-gray-500">Medication Administration</div>
 									</td>
 
 									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-										<p className="text-lg leading-5 text-gray-500">25, July 2022</p>
+										<p className="md:text-lg text-base leading-5 text-gray-500">25, July 2022</p>
 									</td>
 
 									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -367,7 +366,7 @@ const Dashboard = () => {
 									</td>
 
 									<td
-										className="px-6 py-4 text-lg leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
+										className="px-6 py-4 md:text-lg text-base leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
 										View Details
 									</td>
 
