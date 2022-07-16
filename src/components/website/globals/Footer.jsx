@@ -30,10 +30,10 @@ const Footer = () => {
 						<ul className="flex flex-col items-start">
 							<li className="uppercase text-xl font-medium text-neutral-600">Help & Support</li>
 							<li className="text-lg py-1">
-								<Link to="contact" className="text-slate-400">Contact Us</Link>
+								<Link to="/contact" className="text-slate-400">Contact Us</Link>
 							</li>
 							<li className="text-lg py-1">
-								<Link to="faqs" className="text-slate-400">FAQs</Link>
+								<Link to="/faqs" className="text-slate-400">FAQs</Link>
 							</li>
 							<li className="text-lg py-1 text-slate-400">(+1) 98098765</li>
 							<li className="text-lg py-1 text-slate-400">contact@ihs.com</li>
@@ -43,10 +43,10 @@ const Footer = () => {
 						<ul className="flex flex-col items-start">
 							<li className="uppercase text-xl font-medium text-neutral-600">Legal</li>
 							<li className="text-lg py-1">
-								<Link to="terms" className="text-slate-400">Terms of Use</Link>
+								<Link to="/terms" className="text-slate-400">Terms of Use</Link>
 							</li>
 							<li className="text-lg py-1">
-								<Link to="privacy-policy" className="text-slate-400">Privacy Policy</Link>
+								<Link to="/privacy-policy" className="text-slate-400">Privacy Policy</Link>
 							</li>
 						</ul>
 					</div>
