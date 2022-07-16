@@ -1,5 +1,10 @@
 import React from 'react';
 
+import Nodata from '../../assets/images/noData.svg';
+
+const beneficiariesData = true;
+const appointmentsData = true;
+
 
 const Dashboard = () => {
 	return (
@@ -58,7 +63,7 @@ const Dashboard = () => {
 									</th>
 									<th
 										className="px-6 py-3 text-base font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-ihs-green-shade-50">
-										{/*Delete*/}
+										More...
 									</th>
 								</tr>
 								</thead>
@@ -184,9 +189,13 @@ const Dashboard = () => {
 									</td>
 
 								</tr>
-
 								</tbody>
 							</table>
+							<div className={`${beneficiariesData ? "hidden" : "flex flex-col justify-center items-center py-20"}`}>
+								<img src={Nodata} alt="No Data" className="max-w-sm my-10"/>
+								<p className="text-lg md:mx-32 mx-5 text-center">You currently have no beneficiaries. Click on <span className="text-ihs-green text-xl">"Add Beneficiary "</span> button above to add your loved ones</p>
+							</div>
+
 						</div>
 					</div>
 				</div>
@@ -217,15 +226,11 @@ const Dashboard = () => {
 									</th>
 									<th
 										className="px-6 py-3 text-base font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-ihs-green-shade-50">
-										Date
+										Status
 									</th>
 									<th
 										className="px-6 py-3 text-base font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-ihs-green-shade-50">
-										Completed
-									</th>
-									<th
-										className="px-6 py-3 text-base font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-ihs-green-shade-50">
-										{/*Delete*/}
+										More...
 									</th>
 								</tr>
 								</thead>
@@ -252,7 +257,34 @@ const Dashboard = () => {
 									</td>
 
 									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-										<p className="md:text-lg text-base leading-5 text-gray-500">25, July 2022</p>
+										<span
+											className="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">Completed</span>
+									</td>
+
+									<td
+										className="px-6 py-4 md:text-lg text-base leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
+										View Details
+									</td>
+
+								</tr>
+								<tr>
+									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+										<div className="flex items-center">
+											<div className="flex-shrink-0 w-10 h-10">
+												<img className="w-10 h-10 rounded-full" src="https://source.unsplash.com/user/erondu"
+														 alt="admin dashboard ui"/>
+											</div>
+
+											<div className="ml-4">
+												<div className="md:text-lg text-base font-medium leading-5 text-gray-500">
+													John Doe
+												</div>
+											</div>
+										</div>
+									</td>
+
+									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+										<div className="md:text-lg text-base leading-5 text-gray-500">Medication Administration</div>
 									</td>
 
 									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -287,10 +319,6 @@ const Dashboard = () => {
 									</td>
 
 									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-										<p className="md:text-lg text-base leading-5 text-gray-500">25, July 2022</p>
-									</td>
-
-									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
 										<span
 											className="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">Completed</span>
 									</td>
@@ -319,45 +347,6 @@ const Dashboard = () => {
 
 									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
 										<div className="md:text-lg text-base leading-5 text-gray-500">Medication Administration</div>
-									</td>
-
-									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-										<p className="md:text-lg text-base leading-5 text-gray-500">25, July 2022</p>
-									</td>
-
-									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-										<span
-											className="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">Completed</span>
-									</td>
-
-									<td
-										className="px-6 py-4 md:text-lg text-base leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
-										View Details
-									</td>
-
-								</tr>
-								<tr>
-									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-										<div className="flex items-center">
-											<div className="flex-shrink-0 w-10 h-10">
-												<img className="w-10 h-10 rounded-full" src="https://source.unsplash.com/user/erondu"
-														 alt="admin dashboard ui"/>
-											</div>
-
-											<div className="ml-4">
-												<div className="md:text-lg text-base font-medium leading-5 text-gray-500">
-													John Doe
-												</div>
-											</div>
-										</div>
-									</td>
-
-									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-										<div className="md:text-lg text-base leading-5 text-gray-500">Medication Administration</div>
-									</td>
-
-									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-										<p className="md:text-lg text-base leading-5 text-gray-500">25, July 2022</p>
 									</td>
 
 									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -373,6 +362,11 @@ const Dashboard = () => {
 								</tr>
 								</tbody>
 							</table>
+
+							<div className={`${appointmentsData ? "hidden" : "flex flex-col justify-center items-center py-20"}`}>
+								<img src={Nodata} alt="No Data" className="max-w-sm my-10"/>
+								<p className="text-lg md:mx-32 mx-5 text-center">You currently have no appointments. Click on <span className="text-ihs-green text-xl">"Book Appointment "</span> button above to book for your loved ones</p>
+							</div>
 						</div>
 					</div>
 				</div>
