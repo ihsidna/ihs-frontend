@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Link, NavLink, Outlet} from "react-router-dom";
 import Logo from "../../assets/images/logo.svg";
 import {MenuIcon, XIcon} from "@heroicons/react/outline";
-import {links, footerLinks} from "../../data/links";
+import {footerLinks, links} from "../../data/data";
 const Avatar  = "https://res.cloudinary.com/ihsidnadev/image/upload/v1654264295/ihs-cdn/images/default_avatar_fvtcew.png"
 
 const Layout = () => {
