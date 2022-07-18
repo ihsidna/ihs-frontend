@@ -1,6 +1,6 @@
 import {ClipboardListIcon, CogIcon, LogoutIcon, TemplateIcon, UsersIcon} from "@heroicons/react/outline";
 
-export const links = [
+export const data = [
 			{
 				title: "dashboard",
 				path: "dashboard",
