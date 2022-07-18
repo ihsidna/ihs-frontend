@@ -16,7 +16,7 @@ const SignUpForm = () => {
 								className="text-red-600">*</span></label>
 							<div className="mt-1">
 								<input type="text" id="firstName" name="firstName" required autoComplete="current-firstName"
-											 className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600"/>
+											 className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600"/>
 							</div>
 						</div>
 
@@ -25,7 +25,7 @@ const SignUpForm = () => {
 								className="text-red-600">*</span></label>
 							<div className="mt-1">
 								<input type="text" id="lastName" name="lastName" required autoComplete="current-lastName"
-											 className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600" />
+											 className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600" />
 							</div>
 						</div>
 
@@ -34,7 +34,7 @@ const SignUpForm = () => {
 								className="text-red-600">*</span></label>
 							<div className="mt-1">
 								<input type="tel" id="phone" name="phone" required autoComplete="current-phone"
-											 className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600"/>
+											 className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600"/>
 							</div>
 						</div>
 
@@ -42,7 +42,7 @@ const SignUpForm = () => {
 							<label htmlFor="email" className="block text-sm font-medium text-gray-700 mt-5">Email Address <span className="text-red-600">*</span></label>
 							<div className="mt-1">
 								<input type="email" id="email" name="email" autoComplete="email" required
-											 className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600"/>
+											 className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600"/>
 							</div>
 						</div>
 
@@ -50,7 +50,7 @@ const SignUpForm = () => {
 							<label htmlFor="password" className="block text-sm font-medium text-gray-700 mt-5">Password  <span className="text-red-600">*</span></label>
 							<div className="mt-1">
 								<input type="password" id="password" name="password" autoComplete="current-password" required
-											 className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600"/>
+											 className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600"/>
 							</div>
 						</div>
 
@@ -62,8 +62,6 @@ const SignUpForm = () => {
 								Sign Up
 							</button>
 						</div>
-
-
 					</form>
 				</div>
 			</div>
