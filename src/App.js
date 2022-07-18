@@ -12,10 +12,10 @@ import TermsConditions from "./pages/Terms&Conditions";
 import FAQs from "./pages/FAQs";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Dashboard from "./components/app/Dashboard";
-import Beneficiaries from "./components/app/Beneficiaries";
-import Appointments from "./components/app/Appointment";
+import Beneficiaries from "./components/app/beneficiary/Beneficiaries";
+import Appointments from "./components/app/appointment/Appointment";
 import Layout from "./components/app/Layout";
-import Profile from "./components/app/Profile";
+import Profile from "./components/app/profile/Profile";
 
 function App() {
   return (
@@ -32,9 +32,9 @@ function App() {
         <Route path="privacy-policy" element={<PrivacyPolicy />} />
         <Route element={<Layout />}>
           <Route path="dashboard" element={<Dashboard />} />
-          <Route path="beneficiaries" element={<Beneficiaries />} />
-          <Route path="appointments" element={<Appointments />} />
-          <Route path="profile" element={<Profile />} />
+          <Route path="beneficiaries/*" element={<Beneficiaries />} />
+          <Route path="appointments/*" element={<Appointments />} />
+          <Route path="profile/*" element={<Profile />} />
         </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>

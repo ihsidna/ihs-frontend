@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {useNavigate} from "react-router-dom";
 import Nodata from '../../assets/images/noData.svg';
 
 const beneficiariesData = true;
@@ -7,6 +7,8 @@ const appointmentsData = true;
 
 
 const Dashboard = () => {
+	const navigate = useNavigate();
+
 	return (
 		<>
 			<div className="lg:p-20 md:p-10 p-3">
@@ -36,7 +38,7 @@ const Dashboard = () => {
 				{/*Beneficiaries Section*/}
 				<div className="flex justify-between items-center mt-20">
 					<h2 className="md:text-2xl text-xl">Beneficiaries</h2>
-					<button className="py-2 md:px-4 px-2">Add Beneficiary</button>
+					<button className="py-2 md:px-4 px-2" onClick={() => navigate('/beneficiaries/addbeneficiary')}>Add Beneficiary</button>
 				</div>
 
 				<hr className="my-10"/>
@@ -203,7 +205,7 @@ const Dashboard = () => {
 				{/*Appointments Section*/}
 				<div className="flex justify-between items-center mt-20">
 					<h2 className="md:text-2xl text-xl">Appointments</h2>
-					<button className=" py-2 md:px-4 px-2">Book Appointments</button>
+					<button className="py-2 md:px-4 px-2" onClick={() => navigate('/appointments/bookappointment')}>Book Appointments</button>
 				</div>
 
 				<hr className="my-10"/>
