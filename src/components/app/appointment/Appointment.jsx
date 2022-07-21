@@ -1,7 +1,8 @@
 import React from 'react';
 import Nodata from "../../../assets/images/noData.svg";
-import {Route, Routes, useNavigate} from "react-router-dom";
+import {Link, Route, Routes, useNavigate} from "react-router-dom";
 import BookAppointment from "./BookAppointment";
+import ViewAppointment from "./ViewAppointment";
 
 const appointmentsData = true;
 
@@ -10,6 +11,7 @@ const Appointment = () => {
 		<Routes>
 			<Route index element={<ParentContent />} />
 			<Route path="/bookappointment" element={<BookAppointment />} />
+			<Route path="/viewappointment" element={<ViewAppointment />} />
 		</Routes>
 	);
 }
@@ -22,7 +24,7 @@ const ParentContent = () => {
 			<div className="lg:p-20 md:p-10 p-3">
 				<div className="flex justify-between items-center">
 					<h2 className="md:text-2xl text-xl">Appointments</h2>
-					<button className="py-2 md:px-4 px-2" onClick={() => navigate('/appointments/bookappointment')}>Book Appointments</button>
+					<button className="py-3 md:px-4 px-2" onClick={() => navigate('/appointments/bookappointment')}>Book Appointments</button>
 				</div>
 
 				<hr className="my-10"/>
@@ -82,7 +84,9 @@ const ParentContent = () => {
 
 									<td
 										className="px-6 py-4 md:text-lg text-base leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
-										View Details
+										<Link to="/appointments/viewappointment">
+											View Details
+										</Link>
 									</td>
 
 								</tr>
@@ -113,7 +117,9 @@ const ParentContent = () => {
 
 									<td
 										className="px-6 py-4 md:text-lg text-base leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
-										View Details
+										<Link to="/appointments/viewappointment">
+											View Details
+										</Link>
 									</td>
 
 								</tr>
@@ -144,7 +150,9 @@ const ParentContent = () => {
 
 									<td
 										className="px-6 py-4 md:text-lg text-base leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
-										View Details
+										<Link to="/appointments/viewappointment">
+											View Details
+										</Link>
 									</td>
 
 								</tr>
@@ -175,7 +183,9 @@ const ParentContent = () => {
 
 									<td
 										className="px-6 py-4 md:text-lg text-base leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
-										View Details
+										<Link to="/appointments/viewappointment">
+											View Details
+										</Link>
 									</td>
 
 								</tr>
