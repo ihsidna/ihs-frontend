@@ -3,6 +3,7 @@ import {Routes, Route, useNavigate, Link} from "react-router-dom";
 import Nodata from "../../../assets/images/noData.svg";
 import AddBeneficiary from "./AddBeneficiary";
 import ViewBeneficiary from "./ViewBeneficiary";
+import UpdateBeneficiary from "./UpdateBeneficiary";
 
 const beneficiariesData = true;
 
@@ -12,6 +13,7 @@ const Beneficiaries = () => {
 			<Route index element={<ParentContent />} />
 			<Route path="/addbeneficiary" element={<AddBeneficiary />} />
 			<Route path="/viewbeneficiary" element={<ViewBeneficiary />} />
+			<Route path="/updatebeneficiary" element={<UpdateBeneficiary />} />
 		</Routes>
 	);
 }
