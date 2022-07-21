@@ -1,7 +1,8 @@
 import React from 'react';
-import {Routes, Route, useNavigate} from "react-router-dom";
+import {Routes, Route, useNavigate, Link} from "react-router-dom";
 import Nodata from "../../../assets/images/noData.svg";
 import AddBeneficiary from "./AddBeneficiary";
+import ViewBeneficiary from "./ViewBeneficiary";
 
 const beneficiariesData = true;
 
@@ -10,6 +11,7 @@ const Beneficiaries = () => {
 		<Routes>
 			<Route index element={<ParentContent />} />
 			<Route path="/addbeneficiary" element={<AddBeneficiary />} />
+			<Route path="/viewbeneficiary" element={<ViewBeneficiary />} />
 		</Routes>
 	);
 }
@@ -20,9 +22,9 @@ const ParentContent = () => {
 	return (
 		<div className="lg:p-20 md:p-10 p-3">
 			{/*Beneficiaries Section*/}
-			<div className="flex justify-between items-center">
+			<div className="flex justify-between items-center mt-10">
 				<h2 className="md:text-2xl text-xl">Beneficiaries</h2>
-				<button className="py-2 md:px-4 px-2" onClick={() => navigate('/beneficiaries/addbeneficiary')}>Add Beneficiary</button>
+				<button className="py-3 md:px-4 px-2" onClick={() => navigate('/beneficiaries/addbeneficiary')}>Add Beneficiary</button>
 			</div>
 
 			<hr className="my-10"/>
@@ -81,7 +83,9 @@ const ParentContent = () => {
 
 								<td
 									className="px-6 py-4 md:text-lg text-base leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
-									View Details
+									<Link to="/beneficiaries/viewbeneficiary">
+											View Details
+										</Link>
 								</td>
 
 							</tr>
@@ -111,7 +115,9 @@ const ParentContent = () => {
 
 								<td
 									className="px-6 py-4 md:text-lg text-base leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
-									View Details
+									<Link to="/beneficiaries/viewbeneficiary">
+											View Details
+										</Link>
 								</td>
 
 							</tr>
@@ -141,7 +147,9 @@ const ParentContent = () => {
 
 								<td
 									className="px-6 py-4 md:text-lg text-base leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
-									View Details
+									<Link to="/beneficiaries/viewbeneficiary">
+											View Details
+										</Link>
 								</td>
 
 							</tr>
@@ -171,7 +179,9 @@ const ParentContent = () => {
 
 								<td
 									className="px-6 py-4 md:text-lg text-base leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
-									View Details
+									<Link to="/beneficiaries/viewbeneficiary">
+											View Details
+										</Link>
 								</td>
 
 							</tr>
