@@ -1,5 +1,5 @@
 import React from 'react';
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import Nodata from '../../assets/images/noData.svg';
 
 const beneficiariesData = true;
@@ -21,15 +21,15 @@ const Dashboard = () => {
 
 				{/*Cards*/}
 				<div className="grid md:grid-cols-3 grid-cols-2 md:gap-7 gap-3 my-10">
-					<div className="h-40 md:p-5 p-3 rounded-md bg-fuchsia-100 text-lg">
+					<div className="h-40 md:p-5 p-3 rounded-md bg-fuchsia-100 text-lg shadow-md">
 						<p>Beneficiaries</p>
 						<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">0</span>Beneficiaries</p>
 					</div>
-					<div className="h-40 md:p-5 p-3 rounded-md bg-yellow-100 text-lg">
+					<div className="h-40 md:p-5 p-3 rounded-md bg-yellow-100 text-lg shadow-md">
 						<p>Appointments</p>
 						<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">0</span>Appointments</p>
 					</div>
-					<div className="h-40 md:p-5 p-3 rounded-md bg-green-100 text-lg">
+					<div className="h-40 md:p-5 p-3 rounded-md bg-green-100 text-lg shadow-md">
 						<p>Randoms</p>
 						<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">0</span>Randoms</p>
 					</div>
@@ -38,7 +38,7 @@ const Dashboard = () => {
 				{/*Beneficiaries Section*/}
 				<div className="flex justify-between items-center mt-20">
 					<h2 className="md:text-2xl text-xl">Beneficiaries</h2>
-					<button className="py-2 md:px-4 px-2" onClick={() => navigate('/beneficiaries/addbeneficiary')}>Add Beneficiary</button>
+					<button className="py-3 md:px-4 px-2" onClick={() => navigate('/beneficiaries/addbeneficiary')}>Add Beneficiary</button>
 				</div>
 
 				<hr className="my-10"/>
@@ -97,7 +97,11 @@ const Dashboard = () => {
 
 									<td
 										className="px-6 py-4 md:text-lg text-base leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
-										View Details
+										<Link to="/beneficiaries/viewbeneficiary">
+											<Link to="/beneficiaries/viewbeneficiary">
+											View Details
+										</Link>
+										</Link>
 									</td>
 
 								</tr>
@@ -127,7 +131,9 @@ const Dashboard = () => {
 
 									<td
 										className="px-6 py-4 md:text-lg text-base leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
-										View Details
+										<Link to="/beneficiaries/viewbeneficiary">
+											View Details
+										</Link>
 									</td>
 
 								</tr>
@@ -157,7 +163,9 @@ const Dashboard = () => {
 
 									<td
 										className="px-6 py-4 md:text-lg text-base leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
-										View Details
+										<Link to="/beneficiaries/viewbeneficiary">
+											View Details
+										</Link>
 									</td>
 
 								</tr>
@@ -187,7 +195,9 @@ const Dashboard = () => {
 
 									<td
 										className="px-6 py-4 md:text-lg text-base leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
-										View Details
+										<Link to="/beneficiaries/viewbeneficiary">
+											View Details
+										</Link>
 									</td>
 
 								</tr>
@@ -205,7 +215,7 @@ const Dashboard = () => {
 				{/*Appointments Section*/}
 				<div className="flex justify-between items-center mt-20">
 					<h2 className="md:text-2xl text-xl">Appointments</h2>
-					<button className="py-2 md:px-4 px-2" onClick={() => navigate('/appointments/bookappointment')}>Book Appointments</button>
+					<button className="py-3 md:px-4 px-2" onClick={() => navigate('/appointments/bookappointment')}>Book Appointments</button>
 				</div>
 
 				<hr className="my-10"/>
@@ -265,7 +275,9 @@ const Dashboard = () => {
 
 									<td
 										className="px-6 py-4 md:text-lg text-base leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
-										View Details
+										<Link to="/beneficiaries/viewappointment">
+											View Details
+										</Link>
 									</td>
 
 								</tr>
@@ -296,7 +308,9 @@ const Dashboard = () => {
 
 									<td
 										className="px-6 py-4 md:text-lg text-base leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
-										View Details
+										<Link to="/beneficiaries/viewappointment">
+											View Details
+										</Link>
 									</td>
 
 								</tr>
@@ -327,7 +341,9 @@ const Dashboard = () => {
 
 									<td
 										className="px-6 py-4 md:text-lg text-base leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
-										View Details
+										<Link to="/beneficiaries/viewappointment">
+											View Details
+										</Link>
 									</td>
 
 								</tr>
@@ -358,7 +374,9 @@ const Dashboard = () => {
 
 									<td
 										className="px-6 py-4 md:text-lg text-base leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
-										View Details
+										<Link to="/beneficiaries/viewappointment">
+											View Details
+										</Link>
 									</td>
 
 								</tr>
