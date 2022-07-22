@@ -1,5 +1,5 @@
 import React from 'react';
-import {ChevronLeftIcon, ClipboardCopyIcon, UserAddIcon} from "@heroicons/react/outline";
+import {ChevronLeftIcon, ClipboardCopyIcon} from "@heroicons/react/outline";
 import {useNavigate} from "react-router-dom";
 
 const BookAppointment = () => {
