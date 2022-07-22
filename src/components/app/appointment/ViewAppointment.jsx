@@ -7,7 +7,7 @@ const ViewAppointment = () => {
 
 	return (
 		<div className="lg:p-20 md:p-10 p-3">
-			<button className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 mb-10" onClick={() => navigate("/appointments")}>
+			<button className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 md:mb-20 md:mt-0 my-10" onClick={() => navigate("/appointments")}>
 				<ChevronLeftIcon className="w-6" /> <p className="text-lg px-5">Back to Appointments</p>
 			</button>
 			<div className="flex">
@@ -19,20 +19,20 @@ const ViewAppointment = () => {
 
 					<div className="mt-10 text-gray-600 text-xl" >
 						<div className="grid grid-cols-4">
-							<p className="py-5 font-semibold px-10 col-start-1 col-span-1">Beneficiary: </p>
-							<p className="py-5 col-start-2">John Doe </p>
+							<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Beneficiary: </p>
+							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">John Doe </p>
 						</div>
 						<div className="grid grid-cols-4">
-							<p className="py-5 font-semibold px-10 col-start-1 col-span-1">Service: </p>
-							<p className="py-5 col-start-2">Drugs Administration </p>
+							<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Service: </p>
+							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">Drugs Administration </p>
 						</div>
 						<div className="grid grid-cols-4">
-							<p className="py-5 font-semibold px-10 col-start-1 col-span-1">Date: </p>
-							<p className="py-5 col-start-2">22 September, 2022 </p>
+							<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Date: </p>
+							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">22 September, 2022 </p>
 						</div>
 						<div className="grid grid-cols-4">
-							<p className="py-5 font-semibold px-10 col-start-1 col-span-1">Time: </p>
-							<p className="py-5 col-start-2">12:00 PM </p>
+							<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Time: </p>
+							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">12:00 PM </p>
 						</div>
 					</div>
 				</div>
