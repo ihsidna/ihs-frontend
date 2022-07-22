@@ -1,6 +1,6 @@
 import React from 'react';
-import {Link, useNavigate} from "react-router-dom";
-import {ChevronLeftIcon, UserAddIcon, UserCircleIcon} from "@heroicons/react/outline";
+import {useNavigate} from "react-router-dom";
+import {ChevronLeftIcon, UserAddIcon} from "@heroicons/react/outline";
 
 const AddBeneficiary = () => {
 	const navigate = useNavigate();
