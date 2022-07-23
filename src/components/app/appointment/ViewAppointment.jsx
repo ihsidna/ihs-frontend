@@ -1,6 +1,6 @@
 import React from 'react';
 import {ChevronLeftIcon, ClipboardCheckIcon} from "@heroicons/react/outline";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 const ViewAppointment = () => {
 	const navigate = useNavigate();
@@ -12,9 +12,17 @@ const ViewAppointment = () => {
 			</button>
 			<div className="flex">
 				<div className="flex-1">
-					<div className=" flex h-24 bg-ihs-green-shade-50 rounded-md shadow-sm text-gray-600">
-						<ClipboardCheckIcon className="w-14 ml-10" />
-						<h3 className="text-3xl py-8 px-8">Appointments Details</h3>
+
+					<div className="flex justify-between items-center h-24 bg-ihs-green-shade-50 rounded-md shadow-sm text-gray-600">
+						<div className="flex">
+							<ClipboardCheckIcon className="md:w-14 w-8 md:ml-10 ml-3" />
+							<h3 className="md:text-3xl text-2xl py-8 md:px-8 px-2">Appointments Details</h3>
+						</div>
+
+						<Link to="/appointments/review" className="text-gray-600 hover:text-gray-700">
+							<h3 className="text-xl md:px-8 px-3 hover:underline">Review</h3>
+						</Link>
+
 					</div>
 
 					<div className="mt-10 text-gray-600 text-xl" >
