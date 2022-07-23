@@ -16,6 +16,8 @@ import Beneficiaries from "./components/app/beneficiary/Beneficiaries";
 import Appointments from "./components/app/appointment/Appointment";
 import Layout from "./components/app/Layout";
 import Profile from "./components/app/profile/Profile";
+import Users from "./components/app/user/Users";
+import HealthWorkers from "./components/app/healthworkers/HealthWorkers";
 
 function App() {
   return (
@@ -35,6 +37,8 @@ function App() {
           <Route path="beneficiaries/*" element={<Beneficiaries />} />
           <Route path="appointments/*" element={<Appointments />} />
           <Route path="profile/*" element={<Profile />} />
+          <Route path="users/*" element={<Users />} />
+          <Route path="healthworkers/*" element={<HealthWorkers />} />
         </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>
