@@ -20,7 +20,6 @@ const ViewBeneficiary = () => {
 
 						<Link to="/beneficiaries/updatebeneficiary" className="text-gray-600 hover:text-gray-700">
 							<h3 className="text-xl md:px-8 px-3 hover:underline">Update</h3>
-
 						</Link>
 
 					</div>
