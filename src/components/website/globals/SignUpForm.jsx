@@ -38,7 +38,7 @@ const SignUpForm = () => {
 							</div>
 						</div>
 
-						<div className="">
+						<div>
 							<label htmlFor="email" className="block text-sm font-medium text-gray-700 mt-5">Email Address <span className="text-red-600">*</span></label>
 							<div className="mt-1">
 								<input type="email" id="email" name="email" autoComplete="email" placeholder="johndoe@email.com" required
@@ -46,7 +46,7 @@ const SignUpForm = () => {
 							</div>
 						</div>
 
-						<div className="">
+						<div>
 							<label htmlFor="password" className="block text-sm font-medium text-gray-700 mt-5">Password  <span className="text-red-600">*</span></label>
 							<div className="mt-1">
 								<input type="password" id="password" name="password" autoComplete="current-password" required placeholder="Password"
