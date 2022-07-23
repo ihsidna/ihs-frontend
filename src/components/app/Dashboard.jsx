@@ -13,14 +13,14 @@ const Dashboard = () => {
 		<>
 			<div className="lg:p-20 md:p-10 p-3">
 				<div className="mb-5 mt-2">
-					<h2 className="md:text-4xl text-3xl mb-3">Hello Michael 👏🏼</h2>
+					<h2 className="md:text-4xl text-3xl mb-3">Hello John 👏🏼</h2>
 					<p className="text-slate-500 text-xl">Welcome to your dashboard</p>
 				</div>
 
 				<hr className="my-10"/>
 
-				{/*Cards*/}
-				<div className="grid md:grid-cols-3 grid-cols-2 md:gap-7 gap-3 my-10">
+				{/*User Cards*/}
+				<div className="grid md:grid-cols- grid-cols-2 md:gap-7 gap-3 my-10">
 					<div className="h-40 md:p-5 p-3 rounded-md bg-fuchsia-100 text-lg shadow-md">
 						<p>Beneficiaries</p>
 						<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">0</span>Beneficiaries</p>
@@ -29,9 +29,25 @@ const Dashboard = () => {
 						<p>Appointments</p>
 						<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">0</span>Appointments</p>
 					</div>
+					{/*<div className="h-40 md:p-5 p-3 rounded-md bg-green-100 text-lg shadow-md">*/}
+					{/*	<p>Randoms</p>*/}
+					{/*	<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">0</span>Randoms</p>*/}
+					{/*</div>*/}
+				</div>
+
+				{/*Admin Cards*/}
+				<div className="grid md:grid-cols-3 grid-cols-2 md:gap-7 gap-3 my-10">
+					<div className="h-40 md:p-5 p-3 rounded-md bg-fuchsia-100 text-lg shadow-md">
+						<p>Users</p>
+						<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">0</span>Users</p>
+					</div>
+					<div className="h-40 md:p-5 p-3 rounded-md bg-yellow-100 text-lg shadow-md">
+						<p>Appointments</p>
+						<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">0</span>Appointments</p>
+					</div>
 					<div className="h-40 md:p-5 p-3 rounded-md bg-green-100 text-lg shadow-md">
-						<p>Randoms</p>
-						<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">0</span>Randoms</p>
+						<p>Health Workers</p>
+						<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">0</span>Health Workers</p>
 					</div>
 				</div>
 
