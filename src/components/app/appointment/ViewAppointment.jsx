@@ -42,6 +42,19 @@ const ViewAppointment = () => {
 							<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Time: </p>
 							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">12:00 PM </p>
 						</div>
+
+						{/*	Review */}
+						<div>
+							<div className="grid grid-cols-4">
+								<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Review: </p>
+								<p className="py-5 md:ml-5 md:col-start-2 col-span-2">Exceptional service by the health care worker assigned to the home visit appointment. </p>
+							</div>
+							<div className="grid grid-cols-4">
+								<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Rating: </p>
+								<p className="py-5 md:ml-5 md:col-start-2 col-span-2">5 Stars </p>
+							</div>
+						</div>
+
 					</div>
 				</div>
 			</div>

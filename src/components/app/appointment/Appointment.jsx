@@ -3,6 +3,7 @@ import Nodata from "../../../assets/images/noData.svg";
 import {Link, Route, Routes, useNavigate} from "react-router-dom";
 import BookAppointment from "./BookAppointment";
 import ViewAppointment from "./ViewAppointment";
+import ReviewAppointment from "./ReviewAppointment";
 
 const appointmentsData = true;
 
@@ -12,6 +13,7 @@ const Appointment = () => {
 			<Route index element={<ParentContent />} />
 			<Route path="/bookappointment" element={<BookAppointment />} />
 			<Route path="/viewappointment" element={<ViewAppointment />} />
+			<Route path="/review" element={<ReviewAppointment />} />
 		</Routes>
 	);
 }
