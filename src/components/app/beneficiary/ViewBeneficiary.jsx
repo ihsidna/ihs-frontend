@@ -15,11 +15,11 @@ const ViewBeneficiary = () => {
 					<div className="flex justify-between items-center h-24 bg-ihs-green-shade-50 rounded-md shadow-sm text-gray-600">
 						<div className="flex">
 							<UserCircleIcon className="md:w-14 w-8 md:ml-10 ml-3" />
-							<h3 className="md:text-3xl text-2xl py-8 md:px-8 px-2">Beneficiary Details</h3>
+							<h3 className="md:text-3xl sm:text-2xl text-xl py-8 md:px-8 px-2">Beneficiary Details</h3>
 						</div>
 
 						<Link to="/beneficiaries/updatebeneficiary" className="text-gray-600 hover:text-gray-700">
-							<h3 className="text-xl md:px-8 px-3 hover:underline">Update</h3>
+							<h3 className="md:text-xl text-lg md:px-8 px-3 hover:underline">Update</h3>
 						</Link>
 
 					</div>
