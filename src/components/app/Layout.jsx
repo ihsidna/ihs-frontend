@@ -27,6 +27,8 @@ const Layout = () => {
 		}
 	};
 
+	const scrollToTop = window.scrollTo({top: 0, left: 0, behavior: 'auto'});
+
 	const activeLink = "flex w-80 items-center gap-5 text-lg text-ihs-green bg-ihs-green-shade-200 border border-0 border-r-2 border-r-ihs-green pl-7 py-2"
 	const normalLink = "flex w-80 items-center gap-5 text-lg hover:bg-ihs-green-shade-100 border border-0 hover:border-r-2 hover:border-r-ihs-green pl-7 py-2"
 	const sidebarStyle = "drop-shadow-2xl md:w-80 w-full sticky left-0 top-0 border border-0 border-r border-slate-200 bg-cyan-50 h-screen md:overflow-hidden overflow-auto md:hover:overflow-hidden pb-10 z-10"
@@ -49,7 +51,7 @@ const Layout = () => {
 						</div>
 						<div className="mt-5">
 							{links.map((item) => (
-								<NavLink to={`/${item.path}`} key={item.path} onClick={() => toggleSidebarOnMobile()} className={({isActive}) => isActive ? activeLink : normalLink}>
+								<NavLink to={`/${item.path}`} key={item.path} onClick={() => {toggleSidebarOnMobile(); return scrollToTop} } className={({isActive}) => isActive ? activeLink : normalLink}>
 									{item.icon}
 									<span className="capitalize">{item.title}</span>
 								</NavLink>
