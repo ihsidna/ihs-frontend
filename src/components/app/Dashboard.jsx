@@ -13,7 +13,7 @@ const Dashboard = () => {
 		<>
 			<div className="lg:p-20 md:p-10 p-3">
 				<div className="mb-5 mt-2">
-					<h2 className="md:text-4xl text-3xl mb-3">Hello John 👏🏼</h2>
+					<h2 className="md:text-4xl text-3xl mb-3">Hello John</h2>
 					<p className="text-slate-500 text-xl">Welcome to your dashboard</p>
 				</div>
 
@@ -21,11 +21,11 @@ const Dashboard = () => {
 
 				{/*User Cards*/}
 				<div className="grid md:grid-cols- grid-cols-2 md:gap-7 gap-3 my-10">
-					<div className="h-40 md:p-5 p-3 rounded-md bg-fuchsia-100 text-lg shadow-md">
+					<div className="h-40 md:p-5 p-3 rounded-md bg-ihs-blue-shade-50 text-lg shadow-md">
 						<p>Beneficiaries</p>
 						<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">0</span>Beneficiaries</p>
 					</div>
-					<div className="h-40 md:p-5 p-3 rounded-md bg-yellow-100 text-lg shadow-md">
+					<div className="h-40 md:p-5 p-3 rounded-md bg-ihs-green-shade-50 text-lg shadow-md">
 						<p>Appointments</p>
 						<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">0</span>Appointments</p>
 					</div>
@@ -36,20 +36,20 @@ const Dashboard = () => {
 				</div>
 
 				{/*Admin Cards*/}
-				<div className="grid md:grid-cols-3 grid-cols-2 md:gap-7 gap-3 my-10">
-					<div className="h-40 md:p-5 p-3 rounded-md bg-fuchsia-100 text-lg shadow-md">
-						<p>Users</p>
-						<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">0</span>Users</p>
-					</div>
-					<div className="h-40 md:p-5 p-3 rounded-md bg-yellow-100 text-lg shadow-md">
-						<p>Appointments</p>
-						<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">0</span>Appointments</p>
-					</div>
-					<div className="h-40 md:p-5 p-3 rounded-md bg-green-100 text-lg shadow-md">
-						<p>Health Workers</p>
-						<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">0</span>Health Workers</p>
-					</div>
-				</div>
+				{/*<div className="grid md:grid-cols-3 grid-cols-2 md:gap-7 gap-3 my-10">*/}
+				{/*	<div className="h-40 md:p-5 p-3 rounded-md bg-ihs-green-shade-50 text-lg shadow-md">*/}
+				{/*		<p>Users</p>*/}
+				{/*		<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">0</span>Users</p>*/}
+				{/*	</div>*/}
+				{/*	<div className="h-40 md:p-5 p-3 rounded-md bg-ihs-blue-shade-50 text-lg shadow-md">*/}
+				{/*		<p>Appointments</p>*/}
+				{/*		<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">0</span>Appointments</p>*/}
+				{/*	</div>*/}
+				{/*	<div className="h-40 md:p-5 p-3 rounded-md bg-ihs-green-shade-50 text-lg shadow-md">*/}
+				{/*		<p>Health Workers</p>*/}
+				{/*		<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">0</span>Health Workers</p>*/}
+				{/*	</div>*/}
+				{/*</div>*/}
 
 				{/*Beneficiaries Section*/}
 				<div className="flex justify-between items-center mt-20">

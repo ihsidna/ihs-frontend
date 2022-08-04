@@ -34,7 +34,7 @@ const People = () => {
 									<div className="bg-white md:py-10 py-8 -mt-1 rounded-b-lg">
 										<div className="flex flex-col mx-4">
 											<p className="font-normal text-3xl md:text-3xl pb-2">Esther Opaluwa</p>
-											<p className="font-light text-xl md:text-xl"><span className="font-normal">Focus: </span>Healthcare Regulations & Compliance</p>
+											<p className="font-light text-xl md:text-xl"><span className="font-normal">Focus: </span>Healthcare Infrastructure & Regulations</p>
 											<p className="font-light text-xl md:text-xl"><span className="font-normal">Sector: </span> Pharmaceuticals</p>
 											<p className="font-light text-xl md:text-xl"><span className="font-normal">Location: </span> ON, Canada</p>
 										</div>
@@ -46,22 +46,9 @@ const People = () => {
 									</div>
 									<div className="bg-white md:py-10 py-8 -mt-1 rounded-b-lg">
 										<div className="flex flex-col mx-4">
-											<p className="font-normal text-3xl md:text-3xl pb-2">Adun Awe</p>
-											<p className="font-light text-xl md:text-xl"><span className="font-normal">Focus: </span>Legal & Corporate Compliance</p>
-											<p className="font-light text-xl md:text-xl"><span className="font-normal">Sector: </span> Legal</p>
-											<p className="font-light text-xl md:text-xl"><span className="font-normal">Location: </span> TX, USA</p>
-										</div>
-									</div>
-								</div>
-								<div className="shadow-md md:mx-4 my-6">
-									<div>
-										<img src={AvatarImage} alt="Secondary & tertiary Care" className="rounded-t-lg shadow-md" />
-									</div>
-									<div className="bg-white md:py-10 py-8 -mt-1 rounded-b-lg">
-										<div className="flex flex-col mx-4">
-											<p className="font-normal text-3xl md:text-3xl pb-2">Zainab Adewusi</p>
-											<p className="font-light text-xl md:text-xl"><span className="font-normal">Focus: </span>Legal & Corporate Compliance</p>
-											<p className="font-light text-xl md:text-xl"><span className="font-normal">Sector: </span> Legal</p>
+											<p className="font-normal text-3xl md:text-3xl pb-2">Tobi Akintokun</p>
+											<p className="font-light text-xl md:text-xl"><span className="font-normal">Focus: </span>Health Infrastructure & Analytics</p>
+											<p className="font-light text-xl md:text-xl"><span className="font-normal">Sector: </span> Healthcare</p>
 											<p className="font-light text-xl md:text-xl"><span className="font-normal">Location: </span> ON, Canada</p>
 										</div>
 									</div>
@@ -111,18 +98,16 @@ const People = () => {
 									</div>
 									<div className="bg-white md:py-10 py-8 -mt-1 rounded-b-lg">
 										<div className="flex flex-col mx-4">
-											<p className="font-normal text-3xl md:text-3xl pb-2">Moyo Abiola</p>
-											<p className="font-light text-xl md:text-xl"><span className="font-normal">Focus: </span>Human Capital Infrastructure</p>
-											<p className="font-light text-xl md:text-xl"><span className="font-normal">Sector: </span> Fin-Tech</p>
-											<p className="font-light text-xl md:text-xl"><span className="font-normal">Location: </span> Lagos, NG</p>
+											<p className="font-normal text-3xl md:text-3xl pb-2">Zainab Adewusi</p>
+											<p className="font-light text-xl md:text-xl"><span className="font-normal">Focus: </span>Legal & Corporate Compliance</p>
+											<p className="font-light text-xl md:text-xl"><span className="font-normal">Sector: </span> Legal</p>
+											<p className="font-light text-xl md:text-xl"><span className="font-normal">Location: </span> ON, Canada</p>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-
 					</div>
-
 				</div>
 			</div>
 		</div>

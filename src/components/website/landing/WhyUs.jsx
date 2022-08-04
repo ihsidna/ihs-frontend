@@ -17,12 +17,6 @@ const WhyUs = () => {
 						<ul className="text-gray-600 text-lg md:text-2xl md:py-4 py-4">
 							<li className="flex items-center">
 								<div><CheckIcon className="mr-4 text-ihs-green w-6"/></div>
-								<div>
-									Compliance & Regulations
-								</div>
-							</li>
-							<li className="flex items-center">
-								<div><CheckIcon className="mr-4 text-ihs-green w-6"/></div>
 								<div>Commitment To Care</div>
 							</li>
 							<li className="flex items-center">
@@ -35,11 +29,7 @@ const WhyUs = () => {
 							</li>
 							<li className="flex items-center">
 								<div><CheckIcon className="mr-4 text-ihs-green w-6"/></div>
-								<div>Ease & Simplicity</div>
-							</li>
-							<li className="flex items-center">
-								<div><CheckIcon className="mr-4 text-ihs-green w-6"/></div>
-								<div>Transparency</div>
+								<div>Ease & Visibility</div>
 							</li>
 						</ul>
 
