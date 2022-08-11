@@ -23,7 +23,7 @@ const SignUpForm = () => {
 
 	const [errMsg, setErrMsg] = useState('');
 	const [success, setSuccess] = useState(false);
-	const [successMessage, setSuccessMessage] = useState('');
+	// const [successMessage, setSuccessMessage] = useState('');
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
