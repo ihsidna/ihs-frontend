@@ -34,6 +34,15 @@ const SignUpForm = () => {
 		setErrMsg('');
 	}, [firstName, lastName, phone, email, password])
 
+	useEffect(() => {
+		if(loading) {
+			// prevent page from interactive
+			document.body.style.overflow = 'hidden';
+		} else {
+			document.body.style.overflow = 'auto';
+		}
+	}, [loading]);
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setLoading(true);
@@ -45,7 +54,6 @@ const SignUpForm = () => {
 				}
 			);
 			setLoading(false);
-			console.log(response.data);
 
 			setSuccess(true);
 			//clear state and controlled inputs
@@ -56,7 +64,6 @@ const SignUpForm = () => {
 			setPhone('');
 			setEmail('');
 		} catch (err) {
-			console.log(err.response);
 			if (!err.response) {
 				setErrMsg('No Server Response');
 				setLoading(false);
@@ -75,16 +82,14 @@ const SignUpForm = () => {
 		<>
 			{success ? (
 				<section>
-					<h1>Success</h1>
-					<p>
-						<Link to="/login">Login</Link>
-					</p>
+					<h1>You've been Successfully Registered</h1>
+					<p>Please check your email to confirm your email address</p>
 				</section>
 			) : (
 				<section>
 					{loading && <Spinner />}
 					<p ref={errRef} className={errMsg ? "rounded-md p-4 mb-4 bg-ihs-green-shade-200 text-red-500 font-normal text-lg" : "absolute -left-[99999px]"} aria-live="assertive">{errMsg}</p>
-					<form className="mb-0 space-y-0" onSubmit={handleSubmit}>
+					<form className="mb-0 space-y-0 relative" onSubmit={handleSubmit}>
 						<div>
 							<label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
 								First Name <span className="text-red-600">*</span>
