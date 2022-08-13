@@ -18,6 +18,7 @@ import Layout from "./components/app/Layout";
 import Profile from "./components/app/profile/Profile";
 import Users from "./components/app/user/Users";
 import HealthWorkers from "./components/app/healthworkers/HealthWorkers";
+import EmailConfirmation from "./pages/EmailConfirmation";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="terms" element={<TermsConditions />} />
         <Route path="faqs" element={<FAQs />} />
         <Route path="privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="confirm/:confirmationCode" element={<EmailConfirmation />} />
         <Route element={<Layout />}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="beneficiaries/*" element={<Beneficiaries />} />
