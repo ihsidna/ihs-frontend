@@ -8,7 +8,6 @@ const EmailConfirmed = () => {
 
 	const [loading, setLoading] = useState(false);
 	const [success, setSuccess] = useState(false);
-	const [error, setError] = useState(false);
 	const [errMsg, setErrMsg] = useState('');
 	const [successMessage, setSuccessMessage] = useState('');
 
@@ -25,7 +24,6 @@ const EmailConfirmed = () => {
 						setSuccess(true);
 					} else {
 						setErrMsg(data.data);
-						setError(true);
 					}
 				});
 		} catch (e) {

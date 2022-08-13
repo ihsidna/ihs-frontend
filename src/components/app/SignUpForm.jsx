@@ -47,7 +47,7 @@ const SignUpForm = () => {
 		e.preventDefault();
 		setLoading(true);
 		try {
-			const response = await axios.post(REGISTER_URL,
+			await axios.post(REGISTER_URL,
 				JSON.stringify({ firstName, lastName, phone, email, password }),
 				{
 					headers: { 'Content-Type': 'application/json' },
