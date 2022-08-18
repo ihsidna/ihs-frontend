@@ -41,6 +41,7 @@ const Dashboard = () => {
 			isMounted = false;
 			controller.abort();
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
