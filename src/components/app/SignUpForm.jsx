@@ -51,6 +51,7 @@ const SignUpForm = () => {
 				JSON.stringify({ firstName, lastName, phone, email, password }),
 				{
 					headers: { 'Content-Type': 'application/json' },
+					withCredentials: true
 				}
 			);
 			setLoading(false);
