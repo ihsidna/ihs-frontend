@@ -19,6 +19,8 @@ import Profile from "./components/app/profile/Profile";
 import Users from "./components/app/user/Users";
 import HealthWorkers from "./components/app/healthworkers/HealthWorkers";
 import EmailConfirmation from "./pages/EmailConfirmation";
+import RequireAuth from "./components/app/RequireAuth";
+import UnauthorizedPage from "./pages/Unauthorized";
 
 function App() {
   return (
@@ -34,13 +36,19 @@ function App() {
         <Route path="faqs" element={<FAQs />} />
         <Route path="privacy-policy" element={<PrivacyPolicy />} />
         <Route path="confirm/:confirmationCode" element={<EmailConfirmation />} />
+        <Route path="unauthorized" element={<UnauthorizedPage />} />
         <Route element={<Layout />}>
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="beneficiaries/*" element={<Beneficiaries />} />
-          <Route path="appointments/*" element={<Appointments />} />
-          <Route path="profile/*" element={<Profile />} />
-          <Route path="users/*" element={<Users />} />
-          <Route path="healthworkers/*" element={<HealthWorkers />} />
+          <Route element={<RequireAuth allowedUserTypes={["user", "employee", "admin"]}/>} >
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="beneficiaries/*" element={<Beneficiaries />} />
+            <Route path="appointments/*" element={<Appointments />} />
+            <Route path="profile/*" element={<Profile />} />
+          </Route>
+
+          <Route element={<RequireAuth allowedUserTypes={["employee", "admin"]}/>} >
+            <Route path="users/*" element={<Users />} />
+            <Route path="healthworkers/*" element={<HealthWorkers />} />
+          </Route>
         </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>
