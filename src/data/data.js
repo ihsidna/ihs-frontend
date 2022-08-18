@@ -2,7 +2,6 @@ import {
 	ClipboardListIcon,
 	CogIcon,
 	IdentificationIcon,
-	LogoutIcon,
 	TemplateIcon, UserGroupIcon,
 	UsersIcon
 } from "@heroicons/react/outline";
@@ -41,10 +40,5 @@ export const footerLinks = [
 		title: "profile",
 		path: "profile",
 		icon: <CogIcon  className="w-6" />,
-	},
-	{
-		title: "logout",
-		path: "logout",
-		icon: <LogoutIcon  className=" w-6" />,
-	},
+	}
 ];
