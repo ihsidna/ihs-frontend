@@ -21,6 +21,7 @@ import HealthWorkers from "./components/app/healthworkers/HealthWorkers";
 import EmailConfirmation from "./pages/EmailConfirmation";
 import RequireAuth from "./components/app/RequireAuth";
 import UnauthorizedPage from "./pages/Unauthorized";
+import PersistLogin from "./components/app/PersistLogin";
 
 function App() {
   return (
@@ -37,7 +38,8 @@ function App() {
         <Route path="privacy-policy" element={<PrivacyPolicy />} />
         <Route path="confirm/:confirmationCode" element={<EmailConfirmation />} />
         <Route path="unauthorized" element={<UnauthorizedPage />} />
-        <Route element={<Layout />}>
+        <Route element={<PersistLogin />}>
+          <Route element={<Layout />}>
           <Route element={<RequireAuth allowedUserTypes={["user", "employee", "admin"]}/>} >
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="beneficiaries/*" element={<Beneficiaries />} />
@@ -49,6 +51,7 @@ function App() {
             <Route path="users/*" element={<Users />} />
             <Route path="healthworkers/*" element={<HealthWorkers />} />
           </Route>
+        </Route>
         </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>

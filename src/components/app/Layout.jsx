@@ -4,6 +4,7 @@ import Logo from "../../assets/images/logo.svg";
 import {LogoutIcon, MenuIcon, XIcon} from "@heroicons/react/outline";
 import {footerLinks, links} from "../../data/data";
 import useAuth from "../../hooks/useAuth";
+import axios from "../../api/axios";
 const Avatar  = "https://res.cloudinary.com/ihsidnadev/image/upload/v1654264295/ihs-cdn/images/default_avatar_fvtcew.png"
 
 const Layout = () => {
@@ -35,13 +36,15 @@ const Layout = () => {
 	const sidebarStyle = "drop-shadow-2xl md:w-80 w-full sticky left-0 top-0 border border-0 border-r border-slate-200 bg-cyan-50 h-screen md:overflow-hidden overflow-auto md:hover:overflow-hidden pb-10 z-10"
 
 
-	const {setAuth} = useAuth();
 	const navigate = useNavigate();
+	const {setAuth} = useAuth();
 
-	const logout = () => {
-		// if used in more components, this should be in context
-		// axios to /logout endpoint
+	const logout = async () => {
 		setAuth({});
+		await axios('/logout', {
+			withCredentials: true
+		});
+		localStorage.removeItem('userType');
 		navigate('/signin');
 	}
 
@@ -80,6 +83,7 @@ const Layout = () => {
 									<span className="capitalize">{item.title}</span>
 								</NavLink>
 							))}
+
 							<NavLink to=""  onClick={logout} className={({isActive}) => isActive ? activeLink : normalLink}>
 								<LogoutIcon  className=" w-6" />
 								<span className="capitalize">Logout</span>

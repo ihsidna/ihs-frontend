@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import useAuth from "../../hooks/useAuth";
 import axios from "../../api/axios";
 import Spinner from "./Spinner";
@@ -7,7 +7,7 @@ import {useNavigate, useLocation} from "react-router-dom";
 const LOGIN_URL = "/user/login";
 
 const SignInForm = () => {
-	const {setAuth} = useAuth();
+	const {setAuth, persist, setPersist} = useAuth();
 
 	const navigate = useNavigate();
 	const location = useLocation();
@@ -31,6 +31,10 @@ const SignInForm = () => {
 			const accessToken = response?.data?.data?.accessToken
 			const userType = response?.data?.data?.userType
 			setAuth({accessToken, userType});
+
+			// this is used to persist the login
+			// delete on logout
+			localStorage.setItem('userType', userType);
 
 			setLoading(false);
 			setEmail('');
@@ -56,6 +60,14 @@ const SignInForm = () => {
 		}
 
 	}
+
+	const togglePersist = () => {
+		setPersist(prev => !prev)
+	}
+
+	useEffect(() => {
+		localStorage.setItem("persist", persist);
+	}, [persist])
 
 	return (
 		<>
@@ -95,6 +107,17 @@ const SignInForm = () => {
 							placeholder="Password"
 							className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600"/>
 					</div>
+				</div>
+
+				<div className="flex justify-start items-center pt-2">
+					<input
+						className="mr-1"
+						type="checkbox"
+						id="persist"
+						onChange={togglePersist}
+						checked={persist}
+					/>
+					<label className="text-sm font-light text-gray-600" htmlFor="persist">Remember Password?</label>
 				</div>
 
 				<div>

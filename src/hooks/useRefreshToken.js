@@ -12,7 +12,12 @@ const useRefreshToken = () => {
 		setAuth(prev => {
 			console.log(JSON.stringify(prev));
 			console.log(response.data.data);
-			return { ...prev, accessToken: response.data.data };
+
+			return {
+				...prev,
+				userType: localStorage.getItem("userType"),
+				accessToken: response.data.data
+			};
 		});
 
 		// return an object with accessToken and userType
