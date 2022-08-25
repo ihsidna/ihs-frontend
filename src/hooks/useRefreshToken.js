@@ -10,9 +10,6 @@ const useRefreshToken = () => {
 		);
 
 		setAuth(prev => {
-			console.log(JSON.stringify(prev));
-			console.log(response.data.data);
-
 			return {
 				...prev,
 				userType: localStorage.getItem("userType"),
