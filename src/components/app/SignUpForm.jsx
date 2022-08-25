@@ -12,18 +12,12 @@ const SignUpForm = () => {
 	const errRef = useRef();
 
 	const [firstName, setFirstName] = useState('');
-
 	const [lastName, setLastName] = useState('');
-
 	const [password, setPassword] = useState('');
-
 	const [phone, setPhone] = useState('');
-
 	const [email, setEmail] = useState('');
-
 	const [errMsg, setErrMsg] = useState('');
 	const [success, setSuccess] = useState(false);
-	// const [successMessage, setSuccessMessage] = useState('');
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
