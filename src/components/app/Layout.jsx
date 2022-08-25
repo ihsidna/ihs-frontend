@@ -37,7 +37,7 @@ const Layout = () => {
 
 
 	const navigate = useNavigate();
-	const {setAuth} = useAuth();
+	const {setAuth, loggedInUser} = useAuth();
 
 	const logout = async () => {
 		setAuth({});
@@ -108,8 +108,8 @@ const Layout = () => {
 						</Link>
 
 						<div className="flex flex-row items-center">
-							<div className="">
-								<p className="text-xl text-gray-700 hidden md:block">John Doe</p>
+							<div className=" ">
+								<p className="text-xl text-gray-700 hidden md:block">{loggedInUser?.firstName} {loggedInUser?.lastName}</p>
 							</div>
 							<div className={` ${sidebar ? "hidden md:block px-5" : "px-5"}`}>
 								<img src={Avatar} alt="avatar" className="h-10 w-10 rounded-full" />
