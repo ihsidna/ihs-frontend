@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import Nodata from "../../../assets/images/noData.svg";
-import axios from "../../../api/axios";
 import useAuth from "../../../hooks/useAuth"
 import Spinner from "../Spinner";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 
 const BeneficiaryTable = () => {
-	const {auth} = useAuth();
-	const [beneficiaries, setBeneficiaries] = useState();
+	const axiosPrivate = useAxiosPrivate();
+	const {beneficiaries, setBeneficiaries} = useAuth();
 	const [loading, setLoading] = useState(false);
 
 	const calculateAge = (dateString) =>{
@@ -28,16 +28,14 @@ const BeneficiaryTable = () => {
 
 		const getBeneficiaries = async () => {
 			try {
-				const response = await axios.get(
+				const response = await axiosPrivate.get(
 					"/user/beneficiaries",
 					{
-						headers: {
-							'Authorization': `Bearer ${auth?.accessToken}`
-						},
 						signal: controller?.signal
 					});
 
 				isMounted && setBeneficiaries(response.data.data);
+				localStorage.setItem("beneficiaries", JSON.stringify(response.data.data))
 				setLoading(false)
 			} catch (err){
 				console.error(err)
@@ -122,7 +120,7 @@ const BeneficiaryTable = () => {
 							<tr>
 								<td colSpan="4" className="px-6 py-4 text-center">
 									<div className="flex flex-col justify-center items-center py-20">
-										<img src={Nodata} alt="No Data" className="max-w-sm my-10"/>
+										<img src={Nodata} alt="No Data" className="w-40 my-10"/>
 										<p className="text-lg md:mx-32 mx-5 text-center">You have no beneficiaries. Add a Beneficiary to begin</p>
 									</div>
 								</td>
