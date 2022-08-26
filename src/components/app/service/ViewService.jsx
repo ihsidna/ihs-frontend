@@ -1,6 +1,6 @@
 import React from 'react';
 import {ChevronLeftIcon, ClipboardCheckIcon} from "@heroicons/react/outline";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 const ViewService = () => {
 	const navigate = useNavigate();
