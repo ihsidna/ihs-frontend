@@ -1,11 +1,92 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {ChevronLeftIcon, ClipboardCopyIcon} from "@heroicons/react/outline";
 import {useNavigate} from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import Spinner from "../Spinner";
+
+const BOOK_APPOINTMENT = "/appointment/create"
 
 const BookAppointment = () => {
+	const axiosPrivate = useAxiosPrivate();
 	const navigate = useNavigate();
+	const {beneficiaries, services, setServices} = useAuth();
+
+	const [beneficiary, setBeneficiary] = useState('');
+	const [service, setService] = useState('');
+	const [date, setDate] = useState('');
+	const [time, setTime] = useState('');
+	const [loading, setLoading] = useState(false);
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		setLoading(true);
+
+		try {
+			await axiosPrivate.post(BOOK_APPOINTMENT,
+				JSON.stringify({
+					beneficiaryId: beneficiary, serviceId: service, date, time}),
+				{
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					withCredentials: true
+				}
+			)
+
+			setBeneficiary('');
+			setService('');
+			setDate('');
+			setTime('');
+
+			setLoading(false);
+			// setSuccess(true);
+
+			navigate('/appointments')
+
+		} catch (err) {
+			if (!err.response) {
+				console.error('No Server Response')
+				setLoading(false);
+			} else {
+				console.error(err)
+			}
+		}
+	}
+
+	useEffect(() => {
+		setLoading(true)
+		let isMounted = true;
+		const controller = new AbortController();
+
+		const getServices = async () => {
+			try {
+				const response = await axiosPrivate.get(
+					"/admin/service/all",
+					{
+						signal: controller?.signal
+					});
+
+				isMounted && setServices(response.data.data);
+				localStorage.setItem("services", JSON.stringify(response.data.data))
+				setLoading(false)
+			} catch (err){
+				console.error(err)
+			}
+		}
+
+		getServices();
+
+		return () => {
+			isMounted = false;
+			controller.abort();
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
 	return (
 		<div className="lg:p-20 md:p-10 p-3">
+			{loading && <Spinner />}
 			<button className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 md:mb-20 md:mt-0 my-8" onClick={() => navigate("/appointments")}>
 				<ChevronLeftIcon className="w-6" /> <p className="text-lg px-5">Back to Appointments</p>
 			</button>
@@ -19,17 +100,42 @@ const BookAppointment = () => {
 						</div>
 					</div>
 
-					<form className="my-16 space-y-0" action="src/components/website/globals/SignUpForm#" method="POST">
+					<form className="my-16 space-y-0" onSubmit={handleSubmit}>
 
 						{/*Beneficiary*/}
 						<div className="flex md:flex-row flex-col">
 
 							<div>
-								<label htmlFor="beneficiary" className="block text-md font-medium text-gray-500">Beneficiary <span
-									className="text-red-600">*</span></label>
+								<label
+									htmlFor="beneficiary"
+									className="block text-md font-medium text-gray-500"
+								>
+									Beneficiary
+									<span className="text-red-600">*</span>
+								</label>
 								<div className="mt-1">
-									<input type="text" id="beneficiary" name="beneficiary" required placeholder="John Doe" autoComplete="current-beneficiary"
-												 className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 w-96"/>
+									<select
+										id="beneficiary"
+										required
+										aria-required="true"
+										value={beneficiary}
+										onChange={(e) => setBeneficiary(e.target.value)}
+										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 w-96">
+										<option value="">Select Beneficiary</option>
+										{beneficiaries?.length
+											?
+											beneficiaries.map((beneficiary, index) => (
+												<option
+													key={index}
+													value={beneficiary?.id}
+												>
+													{beneficiary?.firstName} {beneficiary?.lastName}
+												</option>
+											))
+											:
+											<option value="">You have no beneficiaries</option>
+										}
+									</select>
 								</div>
 							</div>
 						</div>
@@ -38,14 +144,35 @@ const BookAppointment = () => {
 						<div className="flex md:pt-10 pt-5 md:flex-row flex-col">
 
 							<div>
-								<label htmlFor="service" className="block text-md font-medium text-gray-500">Service <span
-									className="text-red-600">*</span></label>
+								<label
+									htmlFor="service"
+									className="block text-md font-medium text-gray-500"
+								>
+									Service
+									<span className="text-red-600">*</span>
+								</label>
 								<div className="mt-1">
-									<select id="service" name="service" required className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 text-gray-500 w-96">
+									<select
+										id="service"
+										required
+										aria-required="true"
+										value={service}
+										onChange={(e) => setService(e.target.value)}
+										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 text-gray-500 w-96">
 										<option value="">Select a service</option>
-										<option value="1">Service 1</option>
-										<option value="2">Service 2</option>
-										<option value="3">Service 3</option>
+										{services?.length
+											?
+											services.map((service, index) => (
+												<option
+													key={index}
+													value={service?.id}
+												>
+													{service?.name}
+												</option>
+											))
+											:
+											<option value="">No services at this time</option>
+										}
 									</select>
 								</div>
 							</div>
@@ -55,20 +182,44 @@ const BookAppointment = () => {
 						{/*Date and Time*/}
 						<div className="flex md:flex-wrap md:flex-row flex-col md:pt-10 pt-5 ">
 							<div>
-								<label htmlFor="date" className="block text-md font-medium text-gray-500">Date <span
-									className="text-red-600">*</span></label>
+								<label
+									htmlFor="date"
+									className="block text-md font-medium text-gray-500"
+								>
+									Date
+									<span className="text-red-600">*</span>
+								</label>
 								<div className="mt-1">
-									<input type="date" id="date" name="date" required autoComplete="current-date"
-												 className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 lg:w-96 md:w-72"/>
+									<input
+										type="date"
+										id="date"
+										required
+										autoComplete="current-date"
+										aria-required="true"
+										value={date}
+										onChange={(e) => setDate(e.target.value)}
+										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 lg:w-96 md:w-72"/>
 								</div>
 							</div>
 
 							<div className="lg:ml-10 lg:mt-0 md:mt-0 md:ml-10 mt-5">
-								<label htmlFor="time" className="block text-md font-medium text-gray-500">Time<span
-									className="text-red-600">*</span></label>
+								<label
+									htmlFor="time"
+									className="block text-md font-medium text-gray-500"
+								>
+									Time
+									<span className="text-red-600">*</span>
+								</label>
 								<div className="mt-1">
-									<input type="time" id="time" name="time" required placeholder="+234 800 304 0567" autoComplete="current-time"
-												 className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 lg:w-96 md:w-72"/>
+									<input
+										type="time"
+										id="time"
+										required
+										autoComplete="current-time"
+										aria-required="true"
+										value={time}
+										onChange={(e) => setTime(e.target.value)}
+										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 lg:w-96 md:w-72"/>
 								</div>
 							</div>
 
