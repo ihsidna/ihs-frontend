@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {ChevronLeftIcon, ClipboardCopyIcon} from "@heroicons/react/outline";
 import {useNavigate} from "react-router-dom";
-import useAuth from "../../../hooks/useAuth";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import Spinner from "../Spinner";
 
@@ -14,7 +13,6 @@ const AddService = () => {
 	const [name, setName] = useState('');
 	const [category, setCategory] = useState('');
 	const [loading, setLoading] = useState(false);
-	const [errMsg, setErrMsg] = useState('')
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -41,10 +39,9 @@ const AddService = () => {
 
 		} catch (err) {
 			if (!err.response) {
-				setErrMsg('No Server Response');
+				console.error('No Server Response')
 				setLoading(false);
 			} else {
-				setErrMsg(err)
 				console.error(err)
 			}
 		}
