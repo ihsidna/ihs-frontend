@@ -22,6 +22,7 @@ import EmailConfirmation from "./pages/EmailConfirmation";
 import RequireAuth from "./components/app/RequireAuth";
 import UnauthorizedPage from "./pages/Unauthorized";
 import PersistLogin from "./components/app/PersistLogin";
+import Service from "./components/app/service/Service";
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
 
           <Route element={<RequireAuth allowedUserTypes={["employee", "admin"]}/>} >
             <Route path="users/*" element={<Users />} />
+            <Route path="servicess/*" element={<Service />} />
             <Route path="healthworkers/*" element={<HealthWorkers />} />
           </Route>
         </Route>
