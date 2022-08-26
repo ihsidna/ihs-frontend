@@ -44,7 +44,9 @@ const Layout = () => {
 		await axios('/logout', {
 			withCredentials: true
 		});
-		localStorage.removeItem('userType');
+
+		localStorage.clear();
+
 		navigate('/signin');
 	}
 
