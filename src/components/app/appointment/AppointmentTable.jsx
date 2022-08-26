@@ -90,8 +90,10 @@ const AppointmentTable = () => {
 
 									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
 										<span
-											className="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
-											{appointment?.completed.toString()}
+											className={appointment?.completed.toString() === "true"
+												? "inline-flex p-2 py-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-md"
+												: "inline-flex p-2 text-xs font-semibold leading-5 text-green-800 bg-red-100 rounded-md"}>
+											{appointment?.completed.toString() === "true" ? "Completed" : "Incomplete"}
 											</span>
 									</td>
 
