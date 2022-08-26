@@ -7,6 +7,7 @@ import Logo from "../../../assets/images/logo.svg";
 const Navbar = () => {
 	const navigate = useNavigate();
 	const [nav, setNav] = useState(false);
+	const loggedInFlag = JSON.parse(localStorage.getItem("loggedInFlag"));
 	const handleNav = () => setNav(!nav) ;
 	const scrollToTop = window.scrollTo({top: 0, left: 0, behavior: 'auto'});
 
@@ -40,14 +41,28 @@ const Navbar = () => {
 				</div>
 				{/*End Desktop Nav Links*/}
 
-				<div className="font-semibold hidden md:flex pr-4">
-					<button className="bg-transparent border-0 text-gray-800 md:px-7 md:py-3" onClick={() => {
-						navigate('/signin')
-					}}>Sign In</button>
-					<button className="px-8 py-3" onClick={() => {
-						navigate('/signup')
-					}}>Sign Up</button>
-				</div>
+				{!loggedInFlag
+					?
+						(
+							<div className="font-semibold hidden md:flex pr-4">
+								<button className="bg-transparent border-0 text-gray-800 md:px-7 md:py-3" onClick={() => {
+									navigate('/signin')
+								}}>Sign In</button>
+								<button className="px-8 py-3" onClick={() => {
+									navigate('/signup')
+								}}>Sign Up</button>
+							</div>
+						)
+					:
+						(
+							<div className="font-semibold hidden md:flex pr-4">
+								<button className="px-8 py-3" onClick={() => {
+									navigate('/dashboard')
+								}}>Dashboard</button>
+							</div>
+						)
+				}
+
 				<div className="md:hidden" onClick={handleNav}>
 					{ !nav ? <MenuIcon className="h-6 w-6 mr-4"/> : <XIcon className="h-6 w-6 mr-4"/> }
 				</div>
@@ -74,18 +89,33 @@ const Navbar = () => {
 						<div>Contact</div>
 					</Link>
 				</li>
-				<div className="flex flex-col my-4">
-					<button className="bg-transparent text-ihs-green px-8 py-3 mb-4" onClick={() => {
-						navigate('/signin'); handleNav(); return scrollToTop
-					}}>
-						Sign In
-					</button>
-					<button className="px-8 py-3" onClick={() => {
-						navigate('/signup'); handleNav(); return scrollToTop
-					}}>
-						Sign Up
-					</button>
-				</div>
+
+				{!loggedInFlag
+					?
+					(
+						<div className="flex flex-col my-4">
+							<button className="bg-transparent text-ihs-green px-8 py-3 mb-4" onClick={() => {
+								navigate('/signin'); handleNav(); return scrollToTop
+							}}>
+								Sign In
+							</button>
+							<button className="px-8 py-3" onClick={() => {
+								navigate('/signup'); handleNav(); return scrollToTop
+							}}>
+								Sign Up
+							</button>
+						</div>
+					)
+					:
+					<div className="flex flex-col my-4">
+						<button className="px-8 py-3" onClick={() => {
+							navigate('/dashboard'); handleNav(); return scrollToTop
+						}}>
+							Dashboard
+						</button>
+					</div>
+				}
+
 			</ul>
 		</div>
 	);

@@ -35,6 +35,7 @@ const SignInForm = () => {
 			// this is used to persist the login
 			// delete on logout
 			localStorage.setItem('userType', userType);
+			localStorage.setItem('loggedInFlag', JSON.stringify(true));
 
 			setLoading(false);
 			setEmail('');
