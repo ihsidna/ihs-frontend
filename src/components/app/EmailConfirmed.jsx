@@ -29,6 +29,8 @@ const EmailConfirmed = () => {
 		} catch (e) {
 			setLoading(false);
 			setErrMsg(e.message);
+		} finally {
+			setLoading(false);
 		}
 	}, [confirmationCode]);
 
