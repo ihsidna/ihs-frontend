@@ -3,6 +3,7 @@ import {ChevronLeftIcon, UserCircleIcon} from "@heroicons/react/outline";
 import {useNavigate} from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import Spinner from "../Spinner";
 
 const UPDATE_PASSWORD = '/user/updatePassword';
 
@@ -11,7 +12,6 @@ const Profile = () => {
 	const axiosPrivate = useAxiosPrivate();
 	const {loggedInUser, setAuth} = useAuth();
 
-	const [currentPassword, setCurrentPassword] = useState('');
 	const [newPassword, setNewPassword] = useState('');
 	const [loading, setLoading] = useState(false);
 
@@ -19,7 +19,7 @@ const Profile = () => {
 		e.preventDefault();
 		setLoading(true);
 
-		const response = await axiosPrivate.post(UPDATE_PASSWORD,
+		await axiosPrivate.post(UPDATE_PASSWORD,
 			JSON.stringify({ password: newPassword }),
 			{ headers: { 'Content-Type': 'application/json' },
 				withCredentials: true
@@ -28,7 +28,6 @@ const Profile = () => {
 
 		setLoading(false);
 		setNewPassword('');
-		setCurrentPassword('');
 
 		setAuth({});
 		localStorage.clear();
@@ -37,6 +36,7 @@ const Profile = () => {
 
 	return (
 		<>
+			{loading && <Spinner />}
 			<div className="lg:p-20 md:p-10 p-3">
 				<button className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 md:mb-20 md:mt-0 my-10" onClick={() => navigate("/dashboard")}>
 					<ChevronLeftIcon className="w-6" /> <p className="text-lg px-5">Back to Dashboard</p>
