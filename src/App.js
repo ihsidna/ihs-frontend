@@ -41,19 +41,19 @@ function App() {
         <Route path="unauthorized" element={<UnauthorizedPage />} />
         <Route element={<PersistLogin />}>
           <Route element={<Layout />}>
-          <Route element={<RequireAuth allowedUserTypes={["user", "employee", "admin"]}/>} >
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="beneficiaries/*" element={<Beneficiaries />} />
-            <Route path="appointments/*" element={<Appointments />} />
-            <Route path="profile/*" element={<Profile />} />
-          </Route>
+            <Route element={<RequireAuth allowedUserTypes={["user", "employee", "admin"]}/>} >
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="beneficiaries/*" element={<Beneficiaries />} />
+              <Route path="appointments/*" element={<Appointments />} />
+              <Route path="profile/*" element={<Profile />} />
+            </Route>
 
-          <Route element={<RequireAuth allowedUserTypes={["employee", "admin"]}/>} >
-            <Route path="users/*" element={<Users />} />
-            <Route path="servicess/*" element={<Service />} />
-            <Route path="healthworkers/*" element={<HealthWorkers />} />
+            <Route element={<RequireAuth allowedUserTypes={["employee", "admin"]}/>} >
+              <Route path="users/*" element={<Users />} />
+              <Route path="servicess/*" element={<Service />} />
+              <Route path="healthworkers/*" element={<HealthWorkers />} />
+            </Route>
           </Route>
-        </Route>
         </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>

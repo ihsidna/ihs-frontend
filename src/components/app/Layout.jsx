@@ -2,12 +2,15 @@ import React, {useState} from 'react';
 import {Link, NavLink, Outlet, useNavigate} from "react-router-dom";
 import Logo from "../../assets/images/logo.svg";
 import {LogoutIcon, MenuIcon, XIcon} from "@heroicons/react/outline";
-import {footerLinks, links} from "../../data/data";
+import {footerLinks, userLinks, adminLinks} from "../../data/data";
 import useAuth from "../../hooks/useAuth";
 import axios from "../../api/axios";
 const Avatar  = "https://res.cloudinary.com/ihsidnadev/image/upload/v1654264295/ihs-cdn/images/default_avatar_fvtcew.png"
 
 const Layout = () => {
+	const navigate = useNavigate();
+	const {auth, setAuth, loggedInUser} = useAuth();
+
 	// sidebar is active on init
 	const [sidebar, setSidebar] = useState(true);
 
@@ -34,10 +37,6 @@ const Layout = () => {
 	const activeLink = "flex w-80 items-center gap-5 text-lg text-ihs-green bg-ihs-green-shade-200 border border-0 border-r-2 border-r-ihs-green pl-7 py-2"
 	const normalLink = "flex w-80 items-center gap-5 text-lg hover:bg-ihs-green-shade-100 border border-0 hover:border-r-2 hover:border-r-ihs-green pl-7 py-2"
 	const sidebarStyle = "drop-shadow-2xl md:w-80 w-full sticky left-0 top-0 border border-0 border-r border-slate-200 bg-cyan-50 h-screen md:overflow-hidden overflow-auto md:hover:overflow-hidden pb-10 z-10"
-
-
-	const navigate = useNavigate();
-	const {setAuth, loggedInUser} = useAuth();
 
 	const logout = async () => {
 		setAuth({});
@@ -67,12 +66,21 @@ const Layout = () => {
 							</Link>
 						</div>
 						<div className="mt-5">
-							{links.map((item) => (
-								<NavLink to={`/${item.path}`} key={item.path} onClick={() => {toggleSidebarOnMobile(); return scrollToTop} } className={({isActive}) => isActive ? activeLink : normalLink}>
-									{item.icon}
-									<span className="capitalize">{item.title}</span>
-								</NavLink>
-							))}
+							{ auth?.userType === "user"
+								?
+									userLinks.map((item) => (
+										<NavLink to={`/${item.path}`} key={item.path} onClick={() => {toggleSidebarOnMobile(); return scrollToTop} } className={({isActive}) => isActive ? activeLink : normalLink}>
+											{item.icon}
+											<span className="capitalize">{item.title}</span>
+										</NavLink>
+									))
+								:
+									adminLinks.map((item) => (
+										<NavLink to={`/${item.path}`} key={item.path} onClick={() => {toggleSidebarOnMobile(); return scrollToTop} } className={({isActive}) => isActive ? activeLink : normalLink}>
+											{item.icon}
+											<span className="capitalize">{item.title}</span>
+										</NavLink>
+									))}
 						</div>
 						<div className="border border-0 border-t border-slate-200 fixed bottom-2 py-4">
 							{footerLinks.map((item) => (

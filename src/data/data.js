@@ -5,7 +5,7 @@ import {
 	TemplateIcon, UserGroupIcon, UsersIcon,
 } from "@heroicons/react/outline";
 
-export const links = [
+export const adminLinks = [
 			{
 				title: "dashboard",
 				path: "dashboard",
@@ -38,6 +38,25 @@ export const links = [
 			}
 
 ];
+
+export const userLinks = [
+	{
+		title: "dashboard",
+		path: "dashboard",
+		icon: <TemplateIcon  className="w-6" />,
+	},
+	{
+		title: "beneficiaries",
+		path: "beneficiaries",
+		icon: <UsersIcon  className=" w-6" />,
+	},
+	{
+		title: "appointments",
+		path: "appointments",
+		icon: <ClipboardListIcon  className="w-6" />,
+	},
+];
+
 
 export const footerLinks = [
 	{
