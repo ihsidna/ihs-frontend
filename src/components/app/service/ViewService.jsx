@@ -1,9 +1,20 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {ChevronLeftIcon, ClipboardCheckIcon} from "@heroicons/react/outline";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 
 const ViewService = () => {
+	const service = useParams();
 	const navigate = useNavigate();
+	const {services} = useAuth();
+	const [serviceDetails, setServiceDetails] = useState({})
+
+	useEffect(() => {
+		const serviceId = service.serviceId;
+		const filteredService = services.filter(service => service.id === serviceId);
+		filteredService.length === 0 ? navigate(-1) : setServiceDetails(filteredService[0]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<div className="lg:p-20 md:p-10 p-3">
@@ -28,11 +39,11 @@ const ViewService = () => {
 					<div className="mt-10 text-gray-600 md:text-xl" >
 						<div className="grid grid-cols-4">
 							<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Name: </p>
-							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">Service One </p>
+							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{serviceDetails?.name} </p>
 						</div>
 						<div className="grid grid-cols-4">
 							<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Category: </p>
-							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">Primary </p>
+							<p className="py-5 md:ml-5 md:col-start-2 col-span-2 capitalize">{serviceDetails?.category} </p>
 						</div>
 
 					</div>

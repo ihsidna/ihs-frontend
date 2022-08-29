@@ -9,7 +9,7 @@ const Service = () => {
 		<Routes>
 			<Route index element={<ParentContent />} />
 			<Route path="/addservice" element={<AddService />} />
-			<Route path="/viewservice" element={<ViewService />} />
+			<Route path="/viewservice/:serviceId" element={<ViewService />} />
 		</Routes>
 	);
 }
