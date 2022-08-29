@@ -10,7 +10,7 @@ const Dashboard = () => {
 	const navigate = useNavigate();
 	const axiosPrivate = useAxiosPrivate();
 	const location = useLocation();
-	const {loggedInUser, setLoggedInUser} = useAuth();
+	const {loggedInUser, setLoggedInUser, beneficiaries, appointments} = useAuth();
 
 	useEffect( () => {
 		let isMounted = true;
@@ -67,11 +67,11 @@ const Dashboard = () => {
 				<div className="grid md:grid-cols- grid-cols-2 md:gap-7 gap-3 my-10">
 					<div className="h-40 md:p-5 p-3 rounded-md bg-ihs-blue-shade-50 text-lg shadow-md">
 						<p>Beneficiaries</p>
-						<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">0</span>Beneficiaries</p>
+						<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">{beneficiaries?.length}</span>Beneficiaries</p>
 					</div>
 					<div className="h-40 md:p-5 p-3 rounded-md bg-ihs-green-shade-50 text-lg shadow-md">
 						<p>Appointments</p>
-						<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">0</span>Appointments</p>
+						<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">{appointments?.length}</span>Appointments</p>
 					</div>
 					{/*<div className="h-40 md:p-5 p-3 rounded-md bg-green-100 text-lg shadow-md">*/}
 					{/*	<p>Randoms</p>*/}
