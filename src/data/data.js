@@ -2,7 +2,7 @@ import {
 	ClipboardListIcon,
 	CogIcon, GiftIcon,
 	IdentificationIcon,
-	TemplateIcon, UserGroupIcon,
+	TemplateIcon, UserGroupIcon, UsersIcon,
 } from "@heroicons/react/outline";
 
 export const links = [
@@ -14,7 +14,7 @@ export const links = [
 			{
 				title: "beneficiaries",
 				path: "beneficiaries",
-				icon: <GiftIcon  className=" w-6" />,
+				icon: <UsersIcon  className=" w-6" />,
 			},
 			{
 				title: "appointments",
@@ -24,7 +24,7 @@ export const links = [
 			{
 				title: "services",
 				path: "servicess",
-				icon: <UserGroupIcon  className="w-6" />,
+				icon: <GiftIcon  className="w-6" />,
 			},
 			{
 				title: "users",

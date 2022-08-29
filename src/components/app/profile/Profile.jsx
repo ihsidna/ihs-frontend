@@ -1,11 +1,39 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {ChevronLeftIcon, UserCircleIcon} from "@heroicons/react/outline";
 import {useNavigate} from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+
+const UPDATE_PASSWORD = '/user/updatePassword';
 
 const Profile = () => {
 	const navigate = useNavigate();
-	const {loggedInUser} = useAuth();
+	const axiosPrivate = useAxiosPrivate();
+	const {loggedInUser, setAuth} = useAuth();
+
+	const [currentPassword, setCurrentPassword] = useState('');
+	const [newPassword, setNewPassword] = useState('');
+	const [loading, setLoading] = useState(false);
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		setLoading(true);
+
+		const response = await axiosPrivate.post(UPDATE_PASSWORD,
+			JSON.stringify({ password: newPassword }),
+			{ headers: { 'Content-Type': 'application/json' },
+				withCredentials: true
+			}
+		);
+
+		setLoading(false);
+		setNewPassword('');
+		setCurrentPassword('');
+
+		setAuth({});
+		localStorage.clear();
+		navigate('/signin');
+	}
 
 	return (
 		<>
@@ -51,33 +79,55 @@ const Profile = () => {
 
 				<p className="text-xl text-ihs-green my-10 ">Change Password</p>
 
-				<form className="my-5 space-y-0" action="src/components/website/globals/SignUpForm#" method="POST">
+				<form className="my-5 space-y-0" onSubmit={handleSubmit}>
 
 					{/*Password*/}
 					<div className="flex flex-col">
 
-						<div>
-							<label htmlFor="password" className="block text-md font-medium text-gray-500">Current Password <span
-								className="text-red-600">*</span></label>
-							<div className="mt-1">
-								<input type="password" id="password" name="password" required placeholder="Current Password" autoComplete="current-password"
-											 className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 w-96"/>
-							</div>
-						</div>
+						{/*<div>*/}
+						{/*	<label*/}
+						{/*		htmlFor="password"*/}
+						{/*		className="block text-md font-medium text-gray-500"*/}
+						{/*	>*/}
+						{/*		Current Password*/}
+						{/*		<span	className="text-red-600">*</span>*/}
+						{/*	</label>*/}
+						{/*	<div className="mt-1">*/}
+						{/*		<input*/}
+						{/*			type="password"*/}
+						{/*			id="password"*/}
+						{/*			required*/}
+						{/*			placeholder="Current Password"*/}
+						{/*			value={currentPassword}*/}
+						{/*			onChange={(e) => setCurrentPassword(e.target.value)}*/}
+						{/*			className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 w-96"/>*/}
+						{/*	</div>*/}
+						{/*</div>*/}
 
 						<div className="my-5">
-							<label htmlFor="newPassword" className="block text-md font-medium text-gray-500">New Password <span
-								className="text-red-600">*</span></label>
+							<label
+								htmlFor="newPassword"
+								className="block text-md font-medium text-gray-500"
+							>
+								New Password
+								<span className="text-red-600">*</span>
+							</label>
 							<div className="mt-1">
-								<input type="password" id="newPassword" name="newPassword" required placeholder="New Password" autoComplete="current-newPassword"
-											 className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 w-96"/>
+								<input
+									type="password"
+									id="newPassword"
+									required
+									placeholder="New Password"
+									value={newPassword}
+									onChange={(e) => setNewPassword(e.target.value)}
+									className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 w-96"/>
 							</div>
 						</div>
 					</div>
 
 					<div className="flex justify-start">
 						<button type="submit" className="px-4 py-3 mt-5 mb-10 bg-ihs-green hover:font-bold focus: outline-none focus:ring-2 focus:ring-ihs-green-shade-500 w-96 text-lg">
-							Update
+							Update Password
 						</button>
 					</div>
 				</form>
