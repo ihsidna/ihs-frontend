@@ -11,7 +11,7 @@ const Appointment = () => {
 		<Routes>
 			<Route index element={<ParentContent />} />
 			<Route path="/bookappointment" element={<BookAppointment />} />
-			<Route path="/viewappointment" element={<ViewAppointment />} />
+			<Route path="/viewappointment/:appointmentId" element={<ViewAppointment />} />
 			<Route path="/review" element={<ReviewAppointment />} />
 		</Routes>
 	);

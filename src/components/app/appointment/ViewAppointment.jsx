@@ -1,9 +1,45 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {ChevronLeftIcon, ClipboardCheckIcon} from "@heroicons/react/outline";
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
+
+const months = [
+	'January',
+	'February',
+	'March',
+	'April',
+	'May',
+	'June',
+	'July',
+	'August',
+	'September',
+	'October',
+	'November',
+	'December'
+]
 
 const ViewAppointment = () => {
+	const appointment = useParams();
 	const navigate = useNavigate();
+	const {appointments} = useAuth();
+	const [appointmentDetails, setAppointmentDetails] = useState({})
+
+	const getDate = (dateString) =>{
+		const date = new Date(dateString)
+		const year = date.getFullYear()
+		const day = date.getDate()
+		const monthIndex = date.getMonth()
+		const monthName = months[monthIndex]
+		const formattedDate = `${day} ${monthName} ${year}`
+		return formattedDate;
+	}
+
+	useEffect(() => {
+		const appointmentId = appointment.appointmentId;
+		const filteredAppointment = appointments.filter(service => service.id === appointmentId);
+		filteredAppointment.length === 0 ? navigate(-1) : setAppointmentDetails(filteredAppointment[0]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<div className="lg:p-20 md:p-10 p-3">
@@ -28,19 +64,19 @@ const ViewAppointment = () => {
 					<div className="mt-10 text-gray-600 md:text-xl" >
 						<div className="grid grid-cols-4">
 							<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Beneficiary: </p>
-							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">John Doe </p>
+							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{appointmentDetails?.beneficiaryName} </p>
 						</div>
 						<div className="grid grid-cols-4">
 							<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Service: </p>
-							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">Drugs Administration </p>
+							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{appointmentDetails?.serviceName} </p>
 						</div>
 						<div className="grid grid-cols-4">
 							<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Date: </p>
-							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">22 September, 2022 </p>
+							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{getDate(appointmentDetails?.date)} </p>
 						</div>
 						<div className="grid grid-cols-4">
 							<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Time: </p>
-							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">12:00 PM </p>
+							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{appointmentDetails?.time}</p>
 						</div>
 
 						{/*	Review */}
