@@ -28,6 +28,7 @@ const Dashboard = () => {
 					firstName: response.data.data.firstName,
 					lastName: response.data.data.lastName,
 					phone: response.data.data.phone,
+					email: response.data.data.email
 				}
 
 				isMounted && setLoggedInUser(loggedInUserObject);

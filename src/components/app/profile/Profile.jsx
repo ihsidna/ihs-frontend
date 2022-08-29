@@ -1,9 +1,11 @@
 import React from 'react';
 import {ChevronLeftIcon, UserCircleIcon} from "@heroicons/react/outline";
 import {useNavigate} from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 
 const Profile = () => {
 	const navigate = useNavigate();
+	const {loggedInUser} = useAuth();
 
 	return (
 		<>
@@ -28,19 +30,19 @@ const Profile = () => {
 						<div className="my-10 ml-5 text-gray-600 md:text-xl" >
 							<div className="grid grid-cols-4">
 								<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">First Name: </p>
-								<p className="py-5 md:ml-5 md:col-start-2 col-span-2">John </p>
+								<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{loggedInUser ? loggedInUser?.firstName : ""} </p>
 							</div>
 							<div className="grid grid-cols-4">
 								<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Last Name: </p>
-								<p className="py-5 md:ml-5 md:col-start-2 col-span-2">Doe </p>
+								<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{loggedInUser ? loggedInUser?.lastName : ""} </p>
 							</div>
 							<div className="grid grid-cols-4">
 								<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Email: </p>
-								<p className="py-5 md:ml-5 md:col-start-2 col-span-2">johndoe@email.com </p>
+								<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{loggedInUser ? loggedInUser?.email : ""} </p>
 							</div>
 							<div className="grid grid-cols-4">
 								<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Phone Number: </p>
-								<p className="py-5 md:ml-5 md:col-start-2 col-span-2">+234 900 456 4321 </p>
+								<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{loggedInUser ? loggedInUser?.phone : ""} </p>
 							</div>
 						</div>
 
