@@ -20,7 +20,7 @@ const People = () => {
 									</div>
 									<div className="bg-white md:py-10 py-8 -mt-1 rounded-b-lg">
 										<div className="flex flex-col mx-4">
-											<p className="font-normal text-3xl md:text-3xl pb-2">Dr. Ola Awe</p>
+											<p className="font-normal text-3xl md:text-3xl pb-2">Olakanmi Dele-Awe, MD</p>
 											<p className="font-light text-xl md:text-xl"><span className="font-normal">Focus: </span>General Medicine & Health Infrastructure</p>
 											<p className="font-light text-xl md:text-xl"><span className="font-normal">Sector: </span> Healthcare</p>
 											<p className="font-light text-xl md:text-xl"><span className="font-normal">Location: </span> TX, USA</p>
