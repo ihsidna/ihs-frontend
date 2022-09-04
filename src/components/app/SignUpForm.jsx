@@ -77,8 +77,8 @@ const SignUpForm = () => {
 		<>
 			{success ? (
 				<section>
-					<h1>You've been Successfully Registered</h1>
-					<p>Please check your email to confirm your email address</p>
+					<h1>You’ve been successfully registered.</h1>
+					<p>Please check your email inbox (including junk/spam folder) to verify account.</p>
 				</section>
 			) : (
 				<section>
