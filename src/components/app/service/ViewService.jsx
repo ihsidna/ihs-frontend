@@ -2,12 +2,16 @@ import React, {useEffect, useState} from 'react';
 import {ChevronLeftIcon, ClipboardCheckIcon} from "@heroicons/react/outline";
 import {useNavigate, useParams} from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import Spinner from "../Spinner";
 
 const ViewService = () => {
+	const axiosPrivate = useAxiosPrivate();
 	const service = useParams();
 	const navigate = useNavigate();
 	const {services} = useAuth();
 	const [serviceDetails, setServiceDetails] = useState({})
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		const serviceId = service.serviceId;
@@ -16,8 +20,29 @@ const ViewService = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
+	const deleteService = async () => {
+		setLoading(true);
+		const serviceId = service.serviceId;
+		try {
+			await axiosPrivate.delete(
+				`/admin/service/delete/${serviceId}`,
+			);
+
+			const updatedServices = services.filter(service => service.id !== serviceId);
+			localStorage.setItem("services", JSON.stringify(updatedServices));
+			navigate("/servicess");
+
+		} catch (err) {
+			console.log(err);
+		} finally {
+			setLoading(false);
+		}
+
+	}
+
 	return (
 		<div className="lg:p-20 md:p-10 p-3">
+			{loading && <Spinner />}
 			<button className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 md:mb-20 md:mt-0 my-10" onClick={() => navigate("/servicess")}>
 				<ChevronLeftIcon className="w-6" /> <p className="text-lg px-5">Back to Services</p>
 			</button>
@@ -30,9 +55,7 @@ const ViewService = () => {
 							<h3 className="md:text-3xl text-2xl py-8 md:px-8 px-2">Service Details</h3>
 						</div>
 
-						{/*<Link to="/appointments/review" className="text-gray-600 hover:text-gray-700">*/}
-						{/*	<h3 className="text-xl md:px-8 px-3 hover:underline">Delete</h3>*/}
-						{/*</Link>*/}
+						<h3 className="text-red-600 hover:text-red-700 text-xl md:px-8 px-3 hover:underline" onClick={deleteService}>Delete</h3>
 
 					</div>
 
