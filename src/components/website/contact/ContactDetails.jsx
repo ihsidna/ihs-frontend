@@ -23,7 +23,7 @@ const ContactDetails = () => {
 							<MailIcon className="md:w-16 w-12 md:p-4 p-2.5 bg-ihs-green text-white rounded-lg mt-[-4rem]"/>
 							<h3 className="font-semibold text-2xl md:text-3xl my-4">Email Us</h3>
 							<p className="text-xl py-4">
-								<a href="mailto:support@ihs.com">support@ihs.com</a>
+								<a href="mailto:support@ihsmdinc.com">support@ihsmdinc.com</a>
 							</p>
 						</div>
 					</div>
