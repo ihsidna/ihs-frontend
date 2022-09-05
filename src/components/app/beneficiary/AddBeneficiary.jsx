@@ -214,7 +214,7 @@ const AddBeneficiary = () => {
 										type="tel"
 										id="phone"
 										required
-										placeholder="+234 800 304 0567"
+										placeholder="Phone Number"
 										autoComplete="current-phone"
 										value={phone}
 										onChange={(e) => setPhone(e.target.value)}

@@ -78,7 +78,7 @@ const UpdateBeneficiary = () => {
 								<label htmlFor="phone" className="block text-md font-medium text-gray-500">Phone Number<span
 									className="text-red-600">*</span></label>
 								<div className="mt-1">
-									<input type="tel" id="phone" name="phone" required placeholder="+234 800 304 0567" autoComplete="current-phone"
+									<input type="tel" id="phone" name="phone" required placeholder="Phone Number" autoComplete="current-phone"
 												 className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 lg:w-80 md:w-72"/>
 								</div>
 							</div>
