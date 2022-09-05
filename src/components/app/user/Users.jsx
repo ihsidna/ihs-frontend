@@ -9,7 +9,7 @@ const Users = () => {
 	return (
 		<Routes>
 			<Route index element={<ParentContent />} />
-			<Route path="/viewuser" element={<ViewUser />} />
+			<Route path="/viewuser/:userId" element={<ViewUser />} />
 			<Route path="/adduser" element={<AddUser />} />
 		</Routes>
 	);

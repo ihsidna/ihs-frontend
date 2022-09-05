@@ -66,6 +66,10 @@ const UserTable = () => {
 							</th>
 							<th
 								className="px-6 py-3 text-base font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-ihs-green-shade-50">
+								Role
+							</th>
+							<th
+								className="px-6 py-3 text-base font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-ihs-green-shade-50">
 								More...
 							</th>
 						</tr>
@@ -75,7 +79,7 @@ const UserTable = () => {
 						{users?.length
 							?
 							users.map((user, index) => (
-								<tr key={index}>
+							<tr key={index}>
 									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
 										<div className="flex items-center">
 											<div className="flex-shrink-0 w-10 h-10">
@@ -85,23 +89,30 @@ const UserTable = () => {
 
 											<div className="ml-4">
 												<div className="md:text-lg text-base font-medium leading-5 text-gray-500">
-													{user.firstName} {user.lastName}
+													{user?.firstName} {user?.lastName}
 												</div>
 											</div>
 										</div>
 									</td>
 
 									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-										<div className="md:text-lg text-base leading-5 text-gray-500">{user.email}</div>
+										<div className="md:text-lg text-base leading-5 text-gray-500">{user?.email}</div>
 									</td>
 
 									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-										<p className="md:text-lg text-base leading-5 text-gray-500">{user.phone}</p>
+										<p className="md:text-lg text-base leading-5 text-gray-500">{user?.phone}</p>
 									</td>
+
+								<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+										<span
+											className="inline-flex p-2 py-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-md capitalize">
+											{user?.userType}
+											</span>
+								</td>
 
 									<td
 										className="px-6 py-4 md:text-lg text-base leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
-										<Link to="/users/viewuser">
+										<Link to={`viewuser/${user?.id}`}>
 											View Details
 										</Link>
 									</td>
