@@ -6,7 +6,7 @@ import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import Spinner from "../Spinner";
 
 const UserTable = () => {
-	const {users, setUsers} = useAuth();
+	const {users, setUsers, loggedInUser} = useAuth();
 	const axiosPrivate = useAxiosPrivate();
 	const [loading, setLoading] = useState(false);
 
@@ -23,9 +23,12 @@ const UserTable = () => {
 						signal: controller?.signal
 					});
 
-				isMounted && setUsers(response.data.data);
-				localStorage.setItem("users", JSON.stringify(response.data.data))
+				//remove logged in user from userList to be displayed on users screen
+				const userList = response.data.data.filter(user => loggedInUser.id !== user.id)
+				isMounted && setUsers(userList);
+				localStorage.setItem("users", JSON.stringify(userList))
 				setLoading(false)
+
 			} catch (err){
 				console.error(err)
 			}
