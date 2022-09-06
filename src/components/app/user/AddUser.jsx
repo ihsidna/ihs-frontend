@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import Spinner from "../Spinner";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import {useNavigate} from "react-router-dom";
@@ -21,9 +21,6 @@ const AddUser = () => {
 	const [role, setRole] = useState('')
 	const [errMsg, setErrMsg] = useState('');
 	const [loading, setLoading] = useState(false);
-
-	const errRef = useRef();
-
 
 	useEffect(() => {
 		setErrMsg('');
