@@ -11,7 +11,7 @@ const Beneficiaries = () => {
 			<Route index element={<ParentContent />} />
 			<Route path="/addbeneficiary" element={<AddBeneficiary />} />
 			<Route path="/viewbeneficiary/:beneficiaryId" element={<ViewBeneficiary />} />
-			<Route path="/updatebeneficiary" element={<UpdateBeneficiary />} />
+			<Route path="/updatebeneficiary/:beneficiaryId" element={<UpdateBeneficiary />} />
 		</Routes>
 	);
 }
