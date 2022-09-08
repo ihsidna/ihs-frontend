@@ -4,6 +4,8 @@ import Nodata from "../../../assets/images/noData.svg";
 import useAuth from "../../../hooks/useAuth"
 import Spinner from "../Spinner";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import Avatar from "react-avatar";
+import {avatar} from "../../../data/enums";
 
 const BeneficiaryTable = () => {
 	const axiosPrivate = useAxiosPrivate();
@@ -61,7 +63,10 @@ const BeneficiaryTable = () => {
 						<thead>
 						<tr>
 							<th
-								className="px-6 py-5 text-base font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-ihs-green-shade-50">
+								className="py-5 text-base font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-ihs-green-shade-50">
+							</th>
+							<th
+								className="py-5 text-base font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-ihs-green-shade-50">
 								<p>Beneficiary</p>
 							</th>
 							<th
@@ -84,14 +89,16 @@ const BeneficiaryTable = () => {
 							?
 								beneficiaries.map((beneficiary, index) => (
 									<tr key={index}>
-										<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+										<td className=" py-4 whitespace-no-wrap border-b border-gray-200">
 											<div className="flex items-center">
-												<div className="flex-shrink-0 w-10 h-10">
-													<img className="w-10 h-10 rounded-full" src="https://source.unsplash.com/user/erondu"
-															 alt="admin dashboard ui"/>
+												<div className="mx-4">
+													<Avatar name={`${beneficiary?.firstName} ${beneficiary?.lastName}`} color={avatar.BackgroundColor} fgColor={avatar.ForegroundColor}  size={avatar.width} round={true}/>
 												</div>
-
-												<div className="ml-4">
+											</div>
+										</td>
+										<td className="py-4 whitespace-no-wrap border-b border-gray-200">
+											<div className="flex items-center">
+												<div>
 													<div className="md:text-lg text-base font-medium leading-5 text-gray-500">
 														{beneficiary?.firstName} {beneficiary?.lastName}
 													</div>
