@@ -4,6 +4,8 @@ import Nodata from "../../../assets/images/noData.svg";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import Spinner from "../Spinner";
+import Avatar from "react-avatar"
+import {avatar} from "../../../data/enums";
 
 const UserTable = () => {
 	const {users, setUsers, loggedInUser} = useAuth();
@@ -82,12 +84,11 @@ const UserTable = () => {
 							<tr key={index}>
 									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
 										<div className="flex items-center">
-											<div className="flex-shrink-0 w-10 h-10">
-												<img className="w-10 h-10 rounded-full" src="https://source.unsplash.com/user/erondu"
-														 alt="admin dashboard ui"/>
+											<div className="mr-4">
+												<Avatar name={`${user?.firstName} ${user?.lastName}`} color={avatar.BackgroundColor} fgColor={avatar.ForegroundColor}  size={avatar.width} round={true}/>
 											</div>
 
-											<div className="ml-4">
+											<div>
 												<div className="md:text-lg text-base font-medium leading-5 text-gray-500">
 													{user?.firstName} {user?.lastName}
 												</div>

@@ -13,3 +13,9 @@ export const appointmentStatus = {
 	Completed: "Completed",
 	Incomplete: "Incomplete"
 }
+
+export const avatar = {
+	BackgroundColor: "#e6f7f7",
+	ForegroundColor: "#666666",
+	width: "30px",
+}
