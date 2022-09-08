@@ -4,7 +4,8 @@ import Nodata from "../../../assets/images/noData.svg";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import Spinner from "../Spinner";
-import {appointmentStatus, booleanString} from "../../../data/enums";
+import {appointmentStatus, avatar, booleanString} from "../../../data/enums";
+import Avatar from "react-avatar";
 
 const AppointmentTable = () => {
 	const axiosPrivate = useAxiosPrivate();
@@ -52,6 +53,9 @@ const AppointmentTable = () => {
 						<tr>
 							<th
 								className="px-6 py-5 text-base font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-ihs-green-shade-50">
+							</th>
+							<th
+								className=" py-5 text-base font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-ihs-green-shade-50">
 								<p>Beneficiary</p>
 							</th>
 							<th
@@ -74,10 +78,15 @@ const AppointmentTable = () => {
 						?
 							appointments.map((appointment, index) => (
 								<tr key={index}>
-									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+									<td>
+										<div className="mx-4">
+											<Avatar name={`${appointment?.beneficiaryName}`} color={avatar.BackgroundColor} fgColor={avatar.ForegroundColor}  size={avatar.width} round={true}/>
+										</div>
+									</td>
+									<td className="py-4 whitespace-no-wrap border-b border-gray-200">
 										<div className="flex items-center">
 
-											<div className="ml-4">
+											<div>
 												<div className="md:text-lg text-base font-medium leading-5 text-gray-500">
 													{appointment?.beneficiaryName}
 												</div>
