@@ -70,7 +70,7 @@ const ServiceTable = () => {
 						?
 							services.map((service, index) => (
 								<tr key={index}>
-									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+									<td className="py-4 whitespace-no-wrap border-b border-gray-200">
 										<div className="flex items-center">
 											<div className="ml-4">
 												<div className="md:text-lg text-base font-medium leading-5 text-gray-500">
