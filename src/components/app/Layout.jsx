@@ -5,7 +5,8 @@ import {LogoutIcon, MenuIcon, XIcon} from "@heroicons/react/outline";
 import {footerLinks, userLinks, adminLinks} from "../../data/data";
 import useAuth from "../../hooks/useAuth";
 import axios from "../../api/axios";
-const Avatar  = "https://res.cloudinary.com/ihsidnadev/image/upload/v1654264295/ihs-cdn/images/default_avatar_fvtcew.png"
+import {avatar} from "../../data/enums";
+import Avatar from "react-avatar";
 
 const Layout = () => {
 	const navigate = useNavigate();
@@ -122,7 +123,7 @@ const Layout = () => {
 								<p className="text-xl text-gray-700 hidden md:block">{loggedInUser?.firstName} {loggedInUser?.lastName}</p>
 							</div>
 							<div className={` ${sidebar ? "hidden md:block px-5" : "px-5"}`}>
-								<img src={Avatar} alt="avatar" className="h-10 w-10 rounded-full" />
+								<Avatar name={`${loggedInUser?.firstName} ${loggedInUser?.lastName}`} color={avatar.BackgroundColor} fgColor={avatar.ForegroundColor}  size={avatar.width} round={true}/>
 							</div>
 						</div>
 
