@@ -56,6 +56,9 @@ const UserTable = () => {
 						<tr>
 							<th
 								className="px-6 py-5 text-base font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-ihs-green-shade-50">
+							</th>
+							<th
+								className="py-5 text-base font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-ihs-green-shade-50">
 								<p>Name</p>
 							</th>
 							<th
@@ -82,27 +85,28 @@ const UserTable = () => {
 							?
 							users.map((user, index) => (
 							<tr key={index}>
-									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-										<div className="flex items-center">
-											<div className="mr-4">
-												<Avatar name={`${user?.firstName} ${user?.lastName}`} color={avatar.BackgroundColor} fgColor={avatar.ForegroundColor}  size={avatar.width} round={true}/>
-											</div>
-
-											<div>
-												<div className="md:text-lg text-base font-medium leading-5 text-gray-500">
-													{user?.firstName} {user?.lastName}
-												</div>
+								<td className="pl-6 py-4 whitespace-no-wrap border-b border-gray-200">
+									<div className="mr-4">
+										<Avatar name={`${user?.firstName} ${user?.lastName}`} color={avatar.BackgroundColor} fgColor={avatar.ForegroundColor}  size={avatar.width} round={true}/>
+									</div>
+								</td>
+								<td className="py-4 whitespace-no-wrap border-b border-gray-200">
+									<div className="flex items-center">
+										<div>
+											<div className="md:text-lg text-base font-medium leading-5 text-gray-500">
+												{user?.firstName} {user?.lastName}
 											</div>
 										</div>
-									</td>
+									</div>
+								</td>
 
-									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-										<div className="md:text-lg text-base leading-5 text-gray-500">{user?.email}</div>
-									</td>
+								<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+									<div className="md:text-lg text-base leading-5 text-gray-500">{user?.email}</div>
+								</td>
 
-									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-										<p className="md:text-lg text-base leading-5 text-gray-500">{user?.phone}</p>
-									</td>
+								<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+									<p className="md:text-lg text-base leading-5 text-gray-500">{user?.phone}</p>
+								</td>
 
 								<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
 										<span
