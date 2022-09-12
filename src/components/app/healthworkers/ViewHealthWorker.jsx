@@ -1,9 +1,21 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {ChevronLeftIcon, IdentificationIcon} from "@heroicons/react/outline";
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 
 const ViewHealthWorker = () => {
+	const [healthWorkerDetails, setHealthWorkerDetails] = useState({});
+	const healthWorker = useParams();
 	const navigate = useNavigate();
+	const {healthWorkers} = useAuth();
+
+	useEffect(() => {
+		const healthWorkerId = healthWorker.healthWorkerId;
+		const filteredHealthWorker = healthWorkers.filter(healthWorker => healthWorker.id === healthWorkerId);
+		filteredHealthWorker.length === 0 ? navigate(-1) : setHealthWorkerDetails(filteredHealthWorker[0])
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
 	return (
 		<div className="lg:p-20 md:p-10 p-3">
 			<button className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 md:mb-20 md:mt-0 my-10" onClick={() => navigate("/healthworkers")}>
@@ -17,7 +29,7 @@ const ViewHealthWorker = () => {
 							<h3 className="md:text-3xl text-2xl py-8 md:px-8 px-2">Health Worker Details</h3>
 						</div>
 
-						<Link to="/healthworkers/updatehealthworker" className="text-gray-600 hover:text-gray-700">
+						<Link to={`/healthworkers/updatehealthworker/${healthWorkerDetails?.id}`} className="text-gray-600 hover:text-gray-700">
 							<h3 className="text-xl md:px-8 px-3 hover:underline">Update</h3>
 						</Link>
 
@@ -26,19 +38,19 @@ const ViewHealthWorker = () => {
 					<div className="my-10 ml-5 text-gray-600 md:text-xl">
 						<div className="grid grid-cols-4">
 							<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Full Name: </p>
-							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">John Doe </p>
+							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{healthWorkerDetails?.firstName}  {healthWorkerDetails?.lastName} </p>
 						</div>
 						<div className="grid grid-cols-4">
 							<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Email: </p>
-							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">johndoe@email.com </p>
+							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{healthWorkerDetails?.email} </p>
 						</div>
 						<div className="grid grid-cols-4">
 							<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Phone Number: </p>
-							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">+234 900 456 4321 </p>
+							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{healthWorkerDetails?.phone} </p>
 						</div>
 						<div className="grid grid-cols-4">
 							<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Qualification: </p>
-							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">Doctor </p>
+							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{healthWorkerDetails?.qualification} </p>
 						</div>
 
 					</div>
