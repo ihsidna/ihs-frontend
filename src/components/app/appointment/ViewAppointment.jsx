@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {ChevronLeftIcon, ClipboardCheckIcon} from "@heroicons/react/outline";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
+import {userRoles} from "../../../data/enums";
 
 const months = [
 	'January',
@@ -21,8 +22,8 @@ const months = [
 const ViewAppointment = () => {
 	const appointment = useParams();
 	const navigate = useNavigate();
-	const {appointments} = useAuth();
-	const [appointmentDetails, setAppointmentDetails] = useState({})
+	const {loggedInUser, allAppointments, appointments} = useAuth();
+	const [appointmentDetails, setAppointmentDetails] = useState({});
 
 	const getDate = (dateString) =>{
 		const date = new Date(dateString)
@@ -35,15 +36,23 @@ const ViewAppointment = () => {
 	}
 
 	useEffect(() => {
+		let filteredAppointment;
+
 		const appointmentId = appointment.appointmentId;
-		const filteredAppointment = appointments.filter(service => service.id === appointmentId);
+		// eslint-disable-next-line
+		{loggedInUser === userRoles.Admin
+			?
+			filteredAppointment = allAppointments.filter(service => service.id === appointmentId)
+			:
+			filteredAppointment = appointments.filter(service => service.id === appointmentId);
+		}
 		filteredAppointment.length === 0 ? navigate(-1) : setAppointmentDetails(filteredAppointment[0]);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
 		<div className="lg:p-20 md:p-10 p-3">
-			<button className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 md:mb-20 md:mt-0 my-10" onClick={() => navigate("/appointments")}>
+			<button className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 md:mb-20 md:mt-0 my-10" onClick={() => navigate(-1)}>
 				<ChevronLeftIcon className="w-6" /> <p className="text-lg px-5">Back to Appointments</p>
 			</button>
 			<div className="flex">
@@ -55,9 +64,11 @@ const ViewAppointment = () => {
 							<h3 className="md:text-3xl text-2xl py-8 md:px-8 px-2">Appointments Details</h3>
 						</div>
 
-						<Link to="/appointments/review" className="text-gray-600 hover:text-gray-700">
-							<h3 className="text-xl md:px-8 px-3 hover:underline">Review</h3>
-						</Link>
+						{loggedInUser?.id === appointmentDetails?.userId && (
+							<Link to="/appointments/review" className="text-gray-600 hover:text-gray-700">
+								<h3 className="text-xl md:px-8 px-3 hover:underline">Review</h3>
+							</Link>
+						)}
 
 					</div>
 
