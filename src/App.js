@@ -23,6 +23,7 @@ import RequireAuth from "./components/app/RequireAuth";
 import UnauthorizedPage from "./pages/Unauthorized";
 import PersistLogin from "./components/app/PersistLogin";
 import Service from "./components/app/service/Service";
+import AllAppointment from "./components/app/appointment/AllAppointment";
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
               <Route path="users/*" element={<Users />} />
               <Route path="servicess/*" element={<Service />} />
               <Route path="healthworkers/*" element={<HealthWorkers />} />
+              <Route path="allappointments/*" element={<AllAppointment />} />
             </Route>
           </Route>
         </Route>

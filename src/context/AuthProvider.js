@@ -11,6 +11,7 @@ export const AuthProvider = ({children}) => {
 	const [appointments, setAppointments] = useState([]);
 	const [users, setUsers] = useState([]);
 	const [healthWorkers, setHealthWorkers] = useState([]);
+	const [allAppointments, setAllAppointments] = useState([]);
 
 	useEffect(() => {
 		setBeneficiaries(JSON.parse(localStorage.getItem("beneficiaries")));
@@ -36,6 +37,10 @@ export const AuthProvider = ({children}) => {
 		setHealthWorkers(JSON.parse(localStorage.getItem("healthWorkers")));
 	}, []);
 
+	useEffect(() => {
+		setAllAppointments(JSON.parse(localStorage.getItem("allAppointments")));
+	}, []);
+
 	return (
 		<AuthContext.Provider value={{
 			auth, setAuth,
@@ -45,7 +50,8 @@ export const AuthProvider = ({children}) => {
 			services, setServices,
 			appointments, setAppointments,
 			users, setUsers,
-			healthWorkers, setHealthWorkers
+			healthWorkers, setHealthWorkers,
+			allAppointments, setAllAppointments
 		}}>
 			{children}
 		</AuthContext.Provider>
