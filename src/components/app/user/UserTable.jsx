@@ -1,53 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Link} from "react-router-dom";
 import Nodata from "../../../assets/images/noData.svg";
 import useAuth from "../../../hooks/useAuth";
-import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
-import Spinner from "../Spinner";
 import Avatar from "react-avatar"
 import {avatar} from "../../../data/enums";
 
 const UserTable = () => {
-	const {users, setUsers, loggedInUser} = useAuth();
-	const axiosPrivate = useAxiosPrivate();
-	const [loading, setLoading] = useState(false);
-
-	useEffect(() => {
-		setLoading(true)
-		let isMounted = true;
-		const controller = new AbortController();
-
-		const getUsers = async () => {
-			try {
-				const response = await axiosPrivate.get(
-					"/users/all",
-					{
-						signal: controller?.signal
-					});
-
-				//remove logged in user from userList to be displayed on users screen
-				const userList = response.data.data.filter(user => loggedInUser.id !== user.id)
-				isMounted && setUsers(userList);
-				localStorage.setItem("users", JSON.stringify(userList))
-				setLoading(false)
-
-			} catch (err){
-				console.error(err)
-			}
-		}
-
-		getUsers();
-
-		return () => {
-			isMounted = false;
-			controller.abort();
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	const {users} = useAuth();
 
 	return (
 		<div className="flex flex-col mt-8">
-			{loading && <Spinner />}
 			<div className="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
 				<div
 					className="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 rounded-md">

@@ -1,50 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {Link} from "react-router-dom";
 import Nodata from "../../../assets/images/noData.svg";
 import Avatar from "react-avatar";
 import {avatar} from "../../../data/enums";
-import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import useAuth from "../../../hooks/useAuth";
-import Spinner from "../Spinner";
 
 const HealthWorkerTable = () => {
-	const axiosPrivate = useAxiosPrivate();
-	const {healthWorkers, setHealthWorkers} = useAuth();
-	const [loading, setLoading] = useState(false);
-
-	useEffect(() => {
-		setLoading(true)
-		let isMounted = true;
-		const controller = new AbortController();
-
-		const getHealthWorkers = async () => {
-			try {
-				const response = await axiosPrivate.get(
-					"/worker/all",
-					{
-						signal: controller?.signal
-					});
-
-				isMounted && setHealthWorkers(response.data.data);
-				localStorage.setItem("healthWorkers", JSON.stringify(response.data.data))
-				setLoading(false)
-			} catch (err){
-				console.error(err)
-			}
-		}
-
-		getHealthWorkers();
-
-		return () => {
-			isMounted = false;
-			controller.abort();
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	const {healthWorkers} = useAuth();
 
 	return (
 		<div className="flex flex-col mt-8">
-			{loading && <Spinner />}
 			<div className="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
 				<div
 					className="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 rounded-md">

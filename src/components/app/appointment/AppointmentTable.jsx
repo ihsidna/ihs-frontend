@@ -1,50 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Link} from "react-router-dom";
 import Nodata from "../../../assets/images/noData.svg";
 import useAuth from "../../../hooks/useAuth";
-import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
-import Spinner from "../Spinner";
 import {appointmentStatus, avatar, booleanString} from "../../../data/enums";
 import Avatar from "react-avatar";
 
 const AppointmentTable = () => {
-	const axiosPrivate = useAxiosPrivate();
-	const {appointments, setAppointments} = useAuth();
-	const [loading, setLoading] = useState();
-
-	useEffect(() => {
-		setLoading(true)
-		let isMounted = true;
-		const controller = new AbortController();
-
-		const getAppointments = async () => {
-			try {
-				const response = await axiosPrivate.get(
-					"/user/appointments",
-					{
-						signal: controller?.signal
-					});
-
-				isMounted && setAppointments(response.data.data);
-				localStorage.setItem("appointments", JSON.stringify(response.data.data))
-				setLoading(false)
-			} catch (err){
-				console.error(err)
-			}
-		}
-
-		getAppointments();
-
-		return () => {
-			isMounted = false;
-			controller.abort();
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	const {appointments} = useAuth();
 
 	return (
 		<div className="flex flex-col mt-8">
-			{loading && <Spinner />}
 			<div className="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
 				<div
 					className="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 rounded-md">
@@ -86,11 +51,11 @@ const AppointmentTable = () => {
 									<td className="py-4 whitespace-no-wrap border-b border-gray-200">
 										<div className="flex items-center">
 
-											<div>
+
 												<div className="md:text-lg text-base font-medium leading-5 text-gray-500">
 													{appointment?.beneficiaryName}
 												</div>
-											</div>
+
 										</div>
 									</td>
 

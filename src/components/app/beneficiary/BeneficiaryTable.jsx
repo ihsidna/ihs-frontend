@@ -1,16 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Link} from "react-router-dom";
 import Nodata from "../../../assets/images/noData.svg";
 import useAuth from "../../../hooks/useAuth"
-import Spinner from "../Spinner";
-import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import Avatar from "react-avatar";
 import {avatar} from "../../../data/enums";
 
 const BeneficiaryTable = () => {
-	const axiosPrivate = useAxiosPrivate();
-	const {beneficiaries, setBeneficiaries} = useAuth();
-	const [loading, setLoading] = useState(false);
+	const {beneficiaries} = useAuth();
 
 	const calculateAge = (dateString) =>{
 			const today = new Date();
@@ -23,39 +19,8 @@ const BeneficiaryTable = () => {
 			return age;
 	}
 
-	useEffect(() => {
-		setLoading(true)
-		let isMounted = true;
-		const controller = new AbortController();
-
-		const getBeneficiaries = async () => {
-			try {
-				const response = await axiosPrivate.get(
-					"/user/beneficiaries",
-					{
-						signal: controller?.signal
-					});
-
-				isMounted && setBeneficiaries(response.data.data);
-				localStorage.setItem("beneficiaries", JSON.stringify(response.data.data))
-				setLoading(false)
-			} catch (err){
-				console.error(err)
-			}
-		}
-
-		getBeneficiaries();
-
-		return () => {
-			isMounted = false;
-			controller.abort();
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
 	return (
 		<div className="flex flex-col mt-8">
-			{loading && <Spinner />}
 			<div className="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
 				<div
 					className="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 rounded-md">
