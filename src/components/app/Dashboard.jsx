@@ -20,7 +20,6 @@ const Dashboard = () => {
 		const controller = new AbortController();
 
 		const getLoggedInUser = async () => {
-			console.log("loggedin user");
 			try {
 				const response = await axiosPrivate.get(
 					"/user/profile",
