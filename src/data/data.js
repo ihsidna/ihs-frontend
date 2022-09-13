@@ -22,19 +22,24 @@ export const adminLinks = [
 				icon: <ClipboardListIcon  className="w-6" />,
 			},
 			{
-				title: "services",
+				title: "all services",
 				path: "servicess",
 				icon: <GiftIcon  className="w-6" />,
 			},
 			{
-				title: "users",
+				title: "all users",
 				path: "users",
 				icon: <UserGroupIcon  className="w-6" />,
 			},
 			{
-				title: "health workers",
+				title: "all health workers",
 				path: "healthworkers",
 				icon: <IdentificationIcon  className="w-6" />,
+			},
+			{
+				title: "all appointments",
+				path: "allappointments",
+				icon: <ClipboardListIcon  className="w-6" />,
 			}
 
 ];
