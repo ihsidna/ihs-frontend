@@ -1,12 +1,57 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {AnnotationIcon, ChevronLeftIcon, StarIcon,} from "@heroicons/react/outline";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import Spinner from "../Spinner";
 
 const ReviewAppointment = () => {
+	const appointment = useParams();
+	const appointmentId = appointment.appointmentId;
+
+	const axiosPrivate = useAxiosPrivate();
 	const navigate = useNavigate();
+
+	const [review, setReview] = useState('');
+	const [rating, setRating] = useState('');
+	const [loading, setLoading] = useState(false);
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		setLoading(true);
+
+		try {
+			await axiosPrivate.patch(`/admin/appointment/${appointmentId}/review`,
+				JSON.stringify({
+					review: review, rating: parseInt(rating)}),
+				{
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					withCredentials: true
+				}
+			)
+
+			setReview('');
+			setRating('');
+
+			setLoading(false);
+			// setSuccess(true);
+
+			navigate(-1)
+
+		} catch (err) {
+			if (!err.response) {
+				console.error('No Server Response')
+				setLoading(false);
+			} else {
+				console.error(err)
+			}
+		}
+	}
 
 	return (
 		<div className="lg:p-20 md:p-10 p-3">
+			{loading && <Spinner />}
 			<button className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 md:mb-20 md:mt-0 my-8" onClick={() => navigate("/appointments")}>
 				<ChevronLeftIcon className="w-6" /> <p className="text-lg px-5">Back to Appointments</p>
 			</button>
@@ -20,7 +65,7 @@ const ReviewAppointment = () => {
 						</div>
 					</div>
 
-					<form className="my-16 space-y-0" action="src/components/website/globals/SignUpForm#" method="POST">
+					<form className="my-16 space-y-0" onSubmit={handleSubmit}>
 
 						{/*Review*/}
 						<div className="flex md:flex-row flex-col">
@@ -29,8 +74,14 @@ const ReviewAppointment = () => {
 								<label htmlFor="review" className="block text-md font-medium text-gray-500">Review <span
 									className="text-red-600">*</span></label>
 								<div className="mt-1">
-									<textarea id="review" name="review" required placeholder="It was a pleasant experience" autoComplete="current-review"
-												 className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 w-96"/>
+									<textarea
+										id="review"
+										required
+										placeholder="It was a pleasant experience"
+										autoComplete="current-review"
+										value={review}
+										onChange={(e) => setReview(e.target.value)}
+										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 w-96"/>
 								</div>
 							</div>
 						</div>
@@ -42,7 +93,12 @@ const ReviewAppointment = () => {
 								<label htmlFor="rating" className="block text-md font-medium text-gray-500">Service <span
 									className="text-red-600">*</span></label>
 								<div className="mt-1">
-									<select id="rating" name="rating" required className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 text-gray-500 w-96">
+									<select
+										id="rating"
+										required
+										value={rating}
+										onChange={(e) => setRating(e.target.value)}
+										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 text-gray-500 w-96">
 										<option value="">Rate your appointment</option>
 										<option value="1">1 Star<StarIcon/></option>
 										<option value="2">2 Stars</option>

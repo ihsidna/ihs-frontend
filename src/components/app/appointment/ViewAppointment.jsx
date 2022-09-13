@@ -3,6 +3,7 @@ import {ChevronLeftIcon, ClipboardCheckIcon} from "@heroicons/react/outline";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import {userRoles} from "../../../data/enums";
+import { StarRating } from 'react-star-rating-element';
 
 const months = [
 	'January',
@@ -22,7 +23,7 @@ const months = [
 const ViewAppointment = () => {
 	const appointment = useParams();
 	const navigate = useNavigate();
-	const {loggedInUser, allAppointments, appointments} = useAuth();
+	const {loggedInUser, allAppointments, appointments,} = useAuth();
 	const [appointmentDetails, setAppointmentDetails] = useState({});
 
 	const getDate = (dateString) =>{
@@ -65,7 +66,7 @@ const ViewAppointment = () => {
 						</div>
 
 						{loggedInUser?.id === appointmentDetails?.userId && (
-							<Link to="/appointments/review" className="text-gray-600 hover:text-gray-700">
+							<Link to={`/appointments/review/${appointmentDetails?.id}`} className="text-gray-600 hover:text-gray-700">
 								<h3 className="text-xl md:px-8 px-3 hover:underline">Review</h3>
 							</Link>
 						)}
@@ -94,11 +95,18 @@ const ViewAppointment = () => {
 						<div>
 							<div className="grid grid-cols-4">
 								<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Review: </p>
-								<p className="py-5 md:ml-5 md:col-start-2 col-span-2">Exceptional service by the health care worker assigned to the home visit appointment. </p>
+								<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{appointmentDetails?.review} </p>
 							</div>
 							<div className="grid grid-cols-4">
 								<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Rating: </p>
-								<p className="py-5 md:ml-5 md:col-start-2 col-span-2">5 Stars </p>
+
+								<p className="py-5 md:ml-3 md:col-start-2 col-span-2"><StarRating
+									ratingValue={appointmentDetails?.rating}
+									starEmptyColor="#999999"
+									starSpacing={5}
+									starDimension={25}
+									starRatedColor="#1eb7b8"
+								/> </p>
 							</div>
 						</div>
 
