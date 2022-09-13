@@ -16,8 +16,6 @@ const Dashboard = () => {
 	const {loggedInUser, setLoggedInUser, beneficiaries, appointments, auth, allAppointments, setAllAppointments, setBeneficiaries, setAppointments, users, setUsers, healthWorkers, setHealthWorkers} = useAuth();
 
 	useEffect( () => {
-		console.log("fetching logged in user");
-
 		let isMounted = true;
 		const controller = new AbortController();
 
@@ -61,7 +59,6 @@ const Dashboard = () => {
 	}, []);
 
 	useEffect(() => {
-		console.log("fetching all appointments");
 		setLoading(true)
 		let isMounted = true;
 		const controller = new AbortController();
@@ -92,7 +89,6 @@ const Dashboard = () => {
 	}, []);
 
 	useEffect(() => {
-		console.log("fetching beneficiaries");
 		setLoading(true)
 		let isMounted = true;
 		const controller = new AbortController();
@@ -115,7 +111,6 @@ const Dashboard = () => {
 
 		getBeneficiaries();
 
-
 		return () => {
 			isMounted = false;
 			controller.abort();
@@ -124,8 +119,6 @@ const Dashboard = () => {
 	}, []);
 
 	useEffect(() => {
-		console.log("fetching appointments");
-
 		setLoading(true)
 		let isMounted = true;
 		const controller = new AbortController();
@@ -156,8 +149,6 @@ const Dashboard = () => {
 	}, []);
 
 	useEffect(() => {
-		console.log("fetching users");
-
 		setLoading(true)
 		let isMounted = true;
 		const controller = new AbortController();
@@ -192,8 +183,6 @@ const Dashboard = () => {
 	}, []);
 
 	useEffect(() => {
-		console.log("fetching health workers");
-
 		setLoading(true)
 		let isMounted = true;
 		const controller = new AbortController();
