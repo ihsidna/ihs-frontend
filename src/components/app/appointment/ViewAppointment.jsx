@@ -23,7 +23,7 @@ const months = [
 const ViewAppointment = () => {
 	const appointment = useParams();
 	const navigate = useNavigate();
-	const {loggedInUser, allAppointments, appointments,} = useAuth();
+	const {auth, allAppointments, appointments, loggedInUser} = useAuth();
 	const [appointmentDetails, setAppointmentDetails] = useState({});
 
 	const getDate = (dateString) =>{
@@ -41,13 +41,16 @@ const ViewAppointment = () => {
 
 		const appointmentId = appointment.appointmentId;
 		// eslint-disable-next-line
-		{loggedInUser === userRoles.Admin
-			?
-			filteredAppointment = allAppointments.filter(service => service.id === appointmentId)
-			:
-			filteredAppointment = appointments.filter(service => service.id === appointmentId);
+		if (auth?.userType === userRoles.Admin){
+			filteredAppointment = allAppointments.filter(appointment => appointment.id === appointmentId)
 		}
-		filteredAppointment.length === 0 ? navigate(-1) : setAppointmentDetails(filteredAppointment[0]);
+
+
+		if (auth?.userType === userRoles.User){
+			filteredAppointment = appointments.filter(appointment => appointment.id === appointmentId);
+		}
+
+		filteredAppointment?.length === 0 ? navigate(-1) : setAppointmentDetails(filteredAppointment[0]);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
@@ -95,18 +98,21 @@ const ViewAppointment = () => {
 						<div>
 							<div className="grid grid-cols-4">
 								<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Review: </p>
-								<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{appointmentDetails?.review} </p>
+								<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{appointmentDetails?.review ? appointmentDetails?.review : "Unreviewed Appointment"} </p>
 							</div>
 							<div className="grid grid-cols-4">
 								<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Rating: </p>
 
-								<p className="py-5 md:ml-3 md:col-start-2 col-span-2"><StarRating
-									ratingValue={appointmentDetails?.rating}
-									starEmptyColor="#999999"
-									starSpacing={5}
-									starDimension={25}
-									starRatedColor="#1eb7b8"
-								/> </p>
+								<div className="py-5 md:ml-3 md:col-start-2 col-span-2">
+									<StarRating
+										ratingValue={appointmentDetails?.rating}
+										starEmptyColor="#999999"
+										starSpacing={5}
+										starDimension={25}
+										starRatedColor="#1eb7b8"
+									/>
+								</div>
+
 							</div>
 						</div>
 
