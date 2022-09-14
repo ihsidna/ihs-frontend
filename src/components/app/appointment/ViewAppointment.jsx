@@ -40,14 +40,11 @@ const ViewAppointment = () => {
 		let filteredAppointment;
 
 		const appointmentId = appointment.appointmentId;
-		// eslint-disable-next-line
-		if (auth?.userType === userRoles.Admin){
-			filteredAppointment = allAppointments.filter(appointment => appointment.id === appointmentId)
-		}
-
 
 		if (auth?.userType === userRoles.User){
 			filteredAppointment = appointments.filter(appointment => appointment.id === appointmentId);
+		} else{
+			filteredAppointment = allAppointments.filter(appointment => appointment.id === appointmentId)
 		}
 
 		filteredAppointment?.length === 0 ? navigate(-1) : setAppointmentDetails(filteredAppointment[0]);
