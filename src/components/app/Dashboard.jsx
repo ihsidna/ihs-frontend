@@ -228,16 +228,12 @@ const Dashboard = () => {
 				<div className="grid md:grid-cols- grid-cols-2 md:gap-7 gap-3 my-10">
 					<div className="h-40 md:p-5 p-3 rounded-md bg-ihs-blue-shade-50 text-lg shadow-md">
 						<p>Your Beneficiaries</p>
-						<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">{beneficiaries?.length}</span>Beneficiaries</p>
+						<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">{beneficiaries.length ? beneficiaries.length : 0}</span>Beneficiaries</p>
 					</div>
 					<div className="h-40 md:p-5 p-3 rounded-md bg-ihs-green-shade-50 text-lg shadow-md">
 						<p>Your Appointments</p>
-						<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">{appointments?.length}</span>Appointments</p>
+						<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">{appointments.length ? appointments.length : 0}</span>Appointments</p>
 					</div>
-					{/*<div className="h-40 md:p-5 p-3 rounded-md bg-green-100 text-lg shadow-md">*/}
-					{/*	<p>Randoms</p>*/}
-					{/*	<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">0</span>Randoms</p>*/}
-					{/*</div>*/}
 				</div>
 
 				{auth?.userType !== userRoles.User &&
@@ -246,15 +242,15 @@ const Dashboard = () => {
 						<div className="grid md:grid-cols-3 grid-cols-2 md:gap-7 gap-3 my-10">
 							<div className="h-40 md:p-5 p-3 rounded-md bg-ihs-green-shade-50 text-lg shadow-md">
 								<p>Total Users</p>
-								<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">{users?.length}</span>Users</p>
+								<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">{users.length ? users.length : 0}</span>Users</p>
 							</div>
 							<div className="h-40 md:p-5 p-3 rounded-md bg-ihs-blue-shade-50 text-lg shadow-md">
 								<p>Total Appointments</p>
-								<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">{allAppointments?.length}</span>Appointments</p>
+								<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">{allAppointments.length ? allAppointments.length : 0}</span>Appointments</p>
 							</div>
 							<div className="h-40 md:p-5 p-3 rounded-md bg-ihs-green-shade-50 text-lg shadow-md">
 								<p>Total Health Workers</p>
-								<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">{healthWorkers?.length}</span>Health Workers</p>
+								<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">{healthWorkers.length ? healthWorkers.length : 0}</span>Health Workers</p>
 							</div>
 						</div>
 					</>
