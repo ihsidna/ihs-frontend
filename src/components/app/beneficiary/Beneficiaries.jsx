@@ -23,7 +23,7 @@ const ParentContent = () => {
 		<div className="lg:p-20 md:p-10 p-3">
 			{/*Beneficiaries Section*/}
 			<div className="flex justify-between items-center mt-10">
-				<h2 className="md:text-2xl text-xl">Beneficiaries</h2>
+				<h2 className="md:text-2xl text-xl">Your Beneficiaries</h2>
 				<button className="py-3 md:px-4 px-2" onClick={() => navigate('/beneficiaries/addbeneficiary')}>Add Beneficiary</button>
 			</div>
 

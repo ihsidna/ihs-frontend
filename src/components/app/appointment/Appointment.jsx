@@ -24,8 +24,8 @@ const ParentContent = () => {
 		<>
 			<div className="lg:p-20 md:p-10 p-3">
 				<div className="flex justify-between items-center mt-10">
-					<h2 className="md:text-2xl text-xl">Appointments</h2>
-					<button className="py-3 md:px-4 px-2" onClick={() => navigate('/appointments/bookappointment')}>Book Appointments</button>
+					<h2 className="md:text-2xl text-xl">Your Appointments</h2>
+					<button className="py-3 md:px-4 px-2" onClick={() => navigate('/appointments/bookappointment')}>Book Appointment</button>
 				</div>
 
 				<hr className="my-10"/>
