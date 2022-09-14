@@ -87,7 +87,7 @@ const AppointmentTable = ({data, rowsPerPage}) => {
 							:
 
 							<tr>
-								<td colSpan="4" className="px-6 py-4 text-center">
+								<td colSpan="5" className="px-6 py-4 text-center">
 									<div className="flex flex-col justify-center items-center py-20">
 										<img src={Nodata} alt="No Data" className="w-40 my-10"/>
 										<p className="text-lg md:mx-32 mx-5 text-center">You have no appointment. Book an appointment to begin</p>
