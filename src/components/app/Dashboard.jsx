@@ -13,6 +13,7 @@ const Dashboard = () => {
 	const axiosPrivate = useAxiosPrivate();
 	const location = useLocation();
 	const [loading, setLoading] = useState(false)
+	const [hasLoaded, setHasLoaded] = useState(false);
 	const {loggedInUser, setLoggedInUser, beneficiaries, appointments, auth, allAppointments, setAllAppointments, setBeneficiaries, setAppointments, users, setUsers, healthWorkers, setHealthWorkers} = useAuth();
 
 	useEffect( () => {
@@ -58,7 +59,6 @@ const Dashboard = () => {
 	}, []);
 
 	useEffect(() => {
-		setLoading(true)
 		let isMounted = true;
 		const controller = new AbortController();
 
@@ -72,6 +72,7 @@ const Dashboard = () => {
 
 				isMounted && setAllAppointments(response.data.data);
 				localStorage.setItem("allAppointments", JSON.stringify(response.data.data));
+				setHasLoaded(true);
 				setLoading(false);
 			} catch (err){
 				console.error(err)
@@ -296,7 +297,7 @@ const Dashboard = () => {
 
 						{/*Appointments Table*/}
 
-						<AllAppointmentTable data={allAppointments} rowsPerPage={10} />
+						{!hasLoaded ? <Spinner/> : <AllAppointmentTable data={allAppointments.slice(0, 5)} rowsPerPage={5} />}
 						{/*<AppointmentTable />*/}
 					</>
 				}
