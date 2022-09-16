@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {ChevronLeftIcon, UserIcon} from "@heroicons/react/outline";
 import {useNavigate, useParams} from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
+import ViewUserBeneficiaries from "./ViewUserBeneficiaries";
 
 const ViewUser = () => {
 	const user = useParams();
@@ -29,10 +30,6 @@ const ViewUser = () => {
 							<h3 className="md:text-3xl text-2xl py-8 md:px-8 px-2">User Details</h3>
 						</div>
 
-						{/*<Link to="/users/updatebeneficiary" className="text-gray-600 hover:text-gray-700">*/}
-						{/*	<h3 className="text-xl md:px-8 px-3 hover:underline">Update</h3>*/}
-						{/*</Link>*/}
-
 					</div>
 
 					<div className="my-10 ml-5 text-gray-600 text-xl" >
@@ -56,6 +53,12 @@ const ViewUser = () => {
 					</div>
 				</div>
 			</div>
+			<div className="flex justify-between items-center mt-10">
+				<h2 className="md:text-2xl text-xl">Beneficiaries</h2>
+			</div>
+
+			<hr className="my-10"/>
+			<ViewUserBeneficiaries />
 		</div>
 	);
 };

@@ -4,6 +4,7 @@ import UserTable from "./UserTable";
 import AddUser from "./AddUser";
 import {userRoles} from "../../../data/enums";
 import useAuth from "../../../hooks/useAuth";
+import ViewUserBeneficiary from "./ViewUserBeneficiary";
 
 const Users = () => {
 	return (
@@ -11,6 +12,7 @@ const Users = () => {
 			<Route index element={<ParentContent />} />
 			<Route path="/viewuser/:userId" element={<ViewUser />} />
 			<Route path="/adduser" element={<AddUser />} />
+			<Route path="/viewuser/:userId/beneficiary/:beneficiaryId" element={<ViewUserBeneficiary />} />
 		</Routes>
 	);
 };
