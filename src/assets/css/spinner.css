@@ -11,8 +11,8 @@
 }
 .loader {
     position: absolute;
-    top: 50%;
-    left: 45%;
+    top: 50vh;
+    left: 50vw;
     transform: translate(-50%, -50%);
     border: 5px solid #e6e6e6;
     border-radius: 50%;
