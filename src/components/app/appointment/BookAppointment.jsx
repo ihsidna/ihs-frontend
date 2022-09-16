@@ -4,6 +4,7 @@ import {useNavigate} from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import Spinner from "../Spinner";
+import {appointmentStatus} from "../../../data/enums";
 
 const BOOK_APPOINTMENT = "/appointment/create"
 
@@ -25,7 +26,7 @@ const BookAppointment = () => {
 		try {
 			await axiosPrivate.post(BOOK_APPOINTMENT,
 				JSON.stringify({
-					beneficiaryId: beneficiary, serviceId: service, date, time}),
+					beneficiaryId: beneficiary, serviceId: service, date, time, status: appointmentStatus.Booked}),
 				{
 					headers: {
 						'Content-Type': 'application/json',

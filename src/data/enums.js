@@ -10,8 +10,9 @@ export const booleanString = {
 }
 
 export const appointmentStatus = {
-	Completed: "Completed",
-	Incomplete: "Incomplete"
+	Booked: "booked",
+	Confirmed: "confirmed",
+	Completed: "completed"
 }
 
 export const avatar = {

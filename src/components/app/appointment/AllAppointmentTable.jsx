@@ -68,9 +68,11 @@ const AppointmentTable = ({data, rowsPerPage}) => {
 									<td className="py-4 ">
 										<span
 											className={el?.completed.toString() === booleanString.True
-												? "inline-flex p-2 py-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-md"
-												: "inline-flex p-2 text-xs font-semibold leading-5 text-green-800 bg-red-100 rounded-md"}>
-											{el?.completed.toString() === booleanString.True ? appointmentStatus.Completed : appointmentStatus.Incomplete}
+												? "inline-flex p-2 py-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-md capitalize"
+												: el?.status === appointmentStatus.Confirmed
+													? "inline-flex p-2 py-2 text-xs font-semibold leading-5 text-green-800 bg-ihs-blue-shade-200 rounded-md capitalize"
+													:"inline-flex p-2 text-xs font-semibold leading-5 text-green-800 bg-red-100 rounded-md capitalize"}>
+											{el?.completed.toString() === booleanString.True ? appointmentStatus.Completed : el?.status}
 											</span>
 									</td>
 
