@@ -65,11 +65,19 @@ const ViewAppointment = () => {
 							<h3 className="md:text-3xl text-2xl py-8 md:px-8 px-2">Appointments Details</h3>
 						</div>
 
-						{loggedInUser?.id === appointmentDetails?.userId && (
-							<Link to={`/appointments/review/${appointmentDetails?.id}`} className="text-gray-600 hover:text-gray-700">
-								<h3 className="text-xl md:px-8 px-3 hover:underline">Review</h3>
-							</Link>
-						)}
+						<div className="flex items-center">
+							{loggedInUser?.id === appointmentDetails?.userId && (
+								<Link to={`/appointments/review/${appointmentDetails?.id}`} className="text-gray-600 hover:text-gray-700">
+									<h3 className="text-xl md:px-8 px-3 hover:underline">Review</h3>
+								</Link>
+							)}
+							<span>|</span>
+							{auth?.userType === userRoles.Admin && (
+								<Link to={`/allappointments/updateappointment/${appointmentDetails?.id}`} className="text-gray-600 hover:text-gray-700">
+									<h3 className="text-xl md:px-8 px-3 hover:underline">Update</h3>
+								</Link>
+							)}
+						</div>
 
 					</div>
 

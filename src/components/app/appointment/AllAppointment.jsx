@@ -3,6 +3,7 @@ import {Route, Routes} from "react-router-dom";
 import AllAppointmentTable from "./AllAppointmentTable";
 import ViewAppointment from "./ViewAppointment";
 import useAuth from "../../../hooks/useAuth";
+import UpdateAppointment from "./UpdateAppointment";
 
 const Appointment = () => {
 	return (
@@ -10,6 +11,7 @@ const Appointment = () => {
 			<Route index element={<ParentContent />} />
 			<Route path="/viewappointment/:appointmentId" element={<ViewAppointment />} />
 			<Route path="/allappointments" element={<AllAppointmentTable />}/>
+			<Route path="/updateappointment/:appointmentId" element={<UpdateAppointment />}/>
 		</Routes>
 	);
 }
