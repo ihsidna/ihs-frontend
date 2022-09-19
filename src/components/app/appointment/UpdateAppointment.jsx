@@ -97,8 +97,8 @@ const UpdateAppointment = () => {
 		<div>
 			<div className="lg:p-20 md:p-10 p-3">
 				{loading && <Spinner />}
-				<button className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 md:mb-20 md:mt-0 my-8" onClick={() => navigate("/allappointments")}>
-					<ChevronLeftIcon className="w-6" /> <p className="text-lg px-5">Back to All Appointments</p>
+				<button className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 md:mb-20 md:mt-0 my-8" onClick={() => navigate(-1)}>
+					<ChevronLeftIcon className="w-6" /> <p className="text-lg px-5">Back</p>
 				</button>
 				<div className="flex md:justify-start justify-center md:items-start items-center">
 					<div className="md:flex-1">
