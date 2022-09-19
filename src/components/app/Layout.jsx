@@ -7,10 +7,16 @@ import useAuth from "../../hooks/useAuth";
 import axios from "../../api/axios";
 import {avatar} from "../../data/enums";
 import Avatar from "react-avatar";
+import Modal from "./Modal";
 
 const Layout = () => {
 	const navigate = useNavigate();
 	const {auth, setAuth, loggedInUser} = useAuth();
+	const [toggleModal, setToggleModal] = useState(false)
+
+	const clicked = () => {
+		setToggleModal(true)
+	}
 
 	// sidebar is active on init
 	const [sidebar, setSidebar] = useState(true);
@@ -95,11 +101,10 @@ const Layout = () => {
 								</NavLink>
 							))}
 
-							<NavLink to=""  onClick={logout} className={({isActive}) => isActive ? activeLink : normalLink}>
-								<LogoutIcon  className=" w-6" />
+							<div className={`cursor-pointer ${normalLink}`}  onClick={clicked}>
+								<LogoutIcon  className="w-6" />
 								<span className="capitalize">Logout</span>
-							</NavLink>
-
+							</div>
 
 								<p className="pl-7 py-4 text-sm">© 2022 Copyright. v1.0.0</p>
 						</div>
@@ -137,6 +142,7 @@ const Layout = () => {
 				</div>
 
 			</div>
+			{toggleModal && <Modal setToggleModal={setToggleModal} executeFunction={logout} message="Are you sure you want to logout?" /> }
 		</div>
 	);
 };
