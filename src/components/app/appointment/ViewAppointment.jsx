@@ -68,22 +68,18 @@ const ViewAppointment = () => {
 						<div className="flex md:flex-row flex-col items-center md:gap-x-2 pr-2">
 							{loggedInUser?.id === appointmentDetails?.userId && (
 								<Link to={`/appointments/review/${appointmentDetails?.id}`} className="text-gray-600 hover:text-gray-700">
-									<button className="bg-transparent text-ihs-green sm:text-xl text-sm px-3 hover:underline">Review</button>
+									<button className="sm:text-xl text-sm px-3">Review</button>
 								</Link>
 							)}
 
 							{auth?.userType === userRoles.Admin && (
 								<>
-									<div className="flex">
-										<Link to={`/allappointments/assignworker/${appointmentDetails?.id}`} className="text-gray-600 hover:text-gray-700">
-											<button className="bg-transparent text-ihs-green sm:text-xl text-sm px-3 my-2 hover:underline">Assign</button>
-										</Link>
-									</div>
-									<div className="flex">
-										<Link to={`/allappointments/updateappointment/${appointmentDetails?.id}`} className="text-gray-600 hover:text-gray-700">
-											<button className="bg-transparent text-ihs-green sm:text-xl text-sm px-3 hover:underline">Update</button>
-										</Link>
-									</div>
+									<Link to={`/allappointments/assignworker/${appointmentDetails?.id}`} className="text-gray-600 hover:text-gray-700">
+										<button className="sm:text-xl text-sm px-3 my-2">Assign</button>
+									</Link>
+									<Link to={`/allappointments/updateappointment/${appointmentDetails?.id}`} className="text-gray-600 hover:text-gray-700">
+										<button className="sm:text-xl text-sm px-3">Update</button>
+									</Link>
 								</>
 
 							)}
