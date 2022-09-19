@@ -62,50 +62,64 @@ const ViewAppointment = () => {
 					<div className="flex justify-between items-center h-24 bg-ihs-green-shade-50 rounded-md shadow-sm text-gray-600">
 						<div className="flex">
 							<ClipboardCheckIcon className="md:w-14 w-8 md:ml-10 ml-3" />
-							<h3 className="md:text-3xl text-2xl py-8 md:px-8 px-2">Appointments Details</h3>
+							<h3 className="md:text-2xl text-lg py-8 md:px-8 px-2">Appointments Details</h3>
 						</div>
 
-						<div className="flex items-center">
+						<div className="flex md:flex-row flex-col items-center">
 							{loggedInUser?.id === appointmentDetails?.userId && (
 								<Link to={`/appointments/review/${appointmentDetails?.id}`} className="text-gray-600 hover:text-gray-700">
-									<h3 className="text-xl md:px-8 px-3 hover:underline">Review</h3>
+									<button className="bg-transparent text-ihs-green sm:text-xl text-sm px-3 hover:underline">Review</button>
 								</Link>
 							)}
-							<span>|</span>
+
 							{auth?.userType === userRoles.Admin && (
-								<Link to={`/allappointments/updateappointment/${appointmentDetails?.id}`} className="text-gray-600 hover:text-gray-700">
-									<h3 className="text-xl md:px-8 px-3 hover:underline">Update</h3>
-								</Link>
+								<>
+									<div className="flex">
+										<Link to={`/allappointments/assignworker/${appointmentDetails?.id}`} className="text-gray-600 hover:text-gray-700">
+											<button className="bg-transparent text-ihs-green sm:text-xl text-sm px-3 my-2 hover:underline">Assign</button>
+										</Link>
+									</div>
+									<div className="flex">
+										<Link to={`/allappointments/updateappointment/${appointmentDetails?.id}`} className="text-gray-600 hover:text-gray-700">
+											<button className="bg-transparent text-ihs-green sm:text-xl text-sm px-3 hover:underline">Update</button>
+										</Link>
+									</div>
+								</>
+
 							)}
 						</div>
 
 					</div>
 
 					<div className="mt-10 text-gray-600 md:text-xl" >
-						<div className="grid grid-cols-4">
+						<div className="grid grid-cols-4 items-center">
 							<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Beneficiary: </p>
 							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{appointmentDetails?.beneficiaryName} </p>
 						</div>
-						<div className="grid grid-cols-4">
+						<div className="grid grid-cols-4 items-center">
 							<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Service: </p>
 							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{appointmentDetails?.serviceName} </p>
 						</div>
-						<div className="grid grid-cols-4">
+						<div className="grid grid-cols-4 items-center">
+							<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Health Worker: </p>
+							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{appointmentDetails?.healthWorkerName ? appointmentDetails?.healthWorkerName : "Unassigned"} </p>
+						</div>
+						<div className="grid grid-cols-4 items-center">
 							<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Date: </p>
 							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{getDate(appointmentDetails?.date)} </p>
 						</div>
-						<div className="grid grid-cols-4">
+						<div className="grid grid-cols-4 items-center">
 							<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Time: </p>
 							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{appointmentDetails?.time}</p>
 						</div>
 
 						{/*	Review */}
 						<div>
-							<div className="grid grid-cols-4">
+							<div className="grid grid-cols-4 items-center">
 								<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Review: </p>
 								<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{appointmentDetails?.review ? appointmentDetails?.review : "Unreviewed Appointment"} </p>
 							</div>
-							<div className="grid grid-cols-4">
+							<div className="grid grid-cols-4 items-center">
 								<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Rating: </p>
 
 								<div className="py-5 md:ml-3 md:col-start-2 col-span-2">

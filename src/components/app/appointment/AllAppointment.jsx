@@ -4,6 +4,7 @@ import AllAppointmentTable from "./AllAppointmentTable";
 import ViewAppointment from "./ViewAppointment";
 import useAuth from "../../../hooks/useAuth";
 import UpdateAppointment from "./UpdateAppointment";
+import AssignHealthWorker from "./AssignHealthWorker";
 
 const Appointment = () => {
 	return (
@@ -12,6 +13,7 @@ const Appointment = () => {
 			<Route path="/viewappointment/:appointmentId" element={<ViewAppointment />} />
 			<Route path="/allappointments" element={<AllAppointmentTable />}/>
 			<Route path="/updateappointment/:appointmentId" element={<UpdateAppointment />}/>
+			<Route path="/assignworker/:appointmentId" element={<AssignHealthWorker />}/>
 		</Routes>
 	);
 }
