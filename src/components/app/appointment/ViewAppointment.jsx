@@ -65,7 +65,7 @@ const ViewAppointment = () => {
 							<h3 className="md:text-2xl text-lg py-8 md:px-8 px-2">Appointments Details</h3>
 						</div>
 
-						<div className="flex md:flex-row flex-col items-center">
+						<div className="flex md:flex-row flex-col items-center md:gap-x-2 pr-2">
 							{loggedInUser?.id === appointmentDetails?.userId && (
 								<Link to={`/appointments/review/${appointmentDetails?.id}`} className="text-gray-600 hover:text-gray-700">
 									<button className="bg-transparent text-ihs-green sm:text-xl text-sm px-3 hover:underline">Review</button>
