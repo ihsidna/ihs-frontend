@@ -20,7 +20,7 @@ const AppointmentTable = () => {
 								className="px-6 py-5 text-base font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-ihs-green-shade-50">
 							</th>
 							<th
-								className=" py-5 text-base font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-ihs-green-shade-50">
+								className="px-6 py-5 text-base font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-ihs-green-shade-50">
 								<p>Beneficiary</p>
 							</th>
 							<th
@@ -48,7 +48,7 @@ const AppointmentTable = () => {
 											<Avatar name={`${appointment?.beneficiaryName}`} color={avatar.BackgroundColor} fgColor={avatar.ForegroundColor}  size={avatar.width} round={true}/>
 										</div>
 									</td>
-									<td className="py-4 whitespace-no-wrap border-b border-gray-200">
+									<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
 										<div className="flex items-center">
 
 
