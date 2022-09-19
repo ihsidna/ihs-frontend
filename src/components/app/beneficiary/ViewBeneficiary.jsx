@@ -1,7 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, lazy, Suspense} from 'react';
 import {ChevronLeftIcon, UserCircleIcon} from "@heroicons/react/outline";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
+import Spinner from "../Spinner";
+const ViewBeneficiaryAppointments = lazy(() => import('./ViewBeneficiaryAppointments'));
+
 const months = [
 	'January',
 	'February',
@@ -53,8 +56,8 @@ const ViewBeneficiary = () => {
 							<h3 className="md:text-3xl sm:text-2xl text-xl py-8 md:px-8 px-2">Beneficiary Details</h3>
 						</div>
 
-						<Link to={`/beneficiaries/updatebeneficiary/${beneficiaryDetails?.id}`} className="text-gray-600 hover:text-gray-700">
-							<h3 className="md:text-xl text-lg md:px-8 px-3 hover:underline">Update</h3>
+						<Link to={`/beneficiaries/updatebeneficiary/${beneficiaryDetails?.id}`} className="text-gray-600 hover:text-gray-700 pr-2">
+							<button className="sm:text-xl text-sm px-3">Update</button>
 						</Link>
 
 					</div>
@@ -96,6 +99,14 @@ const ViewBeneficiary = () => {
 					</div>
 				</div>
 			</div>
+			<div className="flex justify-between items-center mt-10">
+				<h2 className="md:text-2xl text-xl">Appointments</h2>
+			</div>
+
+			<hr className="my-10"/>
+			<Suspense fallback={<Spinner />}>
+				<ViewBeneficiaryAppointments />
+			</Suspense>
 		</div>
 	);
 };
