@@ -20,7 +20,7 @@ const ReviewAppointment = () => {
 		setLoading(true);
 
 		try {
-			await axiosPrivate.patch(`/admin/appointment/${appointmentId}/review`,
+			await axiosPrivate.patch(`/user/appointment/${appointmentId}/review`,
 				JSON.stringify({
 					review: review, rating: parseInt(rating)}),
 				{
