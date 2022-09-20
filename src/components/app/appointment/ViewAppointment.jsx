@@ -108,6 +108,10 @@ const ViewAppointment = () => {
 							<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Time: </p>
 							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{appointmentDetails?.time}</p>
 						</div>
+						<div className="grid grid-cols-4 items-center">
+							<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Status: </p>
+							<p className="py-5 md:ml-5 md:col-start-2 col-span-2 capitalize">{appointmentDetails?.status}</p>
+						</div>
 
 						{/*	Review */}
 						<div>

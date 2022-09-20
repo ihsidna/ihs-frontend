@@ -4,12 +4,12 @@ import {ChevronLeftIcon, ClipboardCopyIcon} from "@heroicons/react/outline";
 import {useNavigate, useParams} from "react-router-dom";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import useAuth from "../../../hooks/useAuth";
-import {appointmentStatus} from "../../../data/enums";
+import {appointmentStatus, userRoles} from "../../../data/enums";
 
 const UpdateAppointment = () => {
 	const appointment = useParams();
 	const appointmentId = appointment.appointmentId;
-	const {services} = useAuth();
+	const {auth, services} = useAuth();
 	const axiosPrivate = useAxiosPrivate();
 	const navigate = useNavigate();
 	const [beneficiaryName, setBeneficiaryName] = useState('');
@@ -17,6 +17,7 @@ const UpdateAppointment = () => {
 	const [date, setDate] = useState('');
 	const [time, setTime] = useState('');
 	const [loading, setLoading] = useState(false);
+	const [completed, setCompleted] = useState(true);
 
 	useEffect(() => {
 		setLoading(true)
@@ -32,6 +33,7 @@ const UpdateAppointment = () => {
 					});
 
 				isMounted &&
+				setCompleted(response.data.data[0].completed)
 				setBeneficiaryName(response.data.data[0].beneficiaryName);
 				setServiceId(response.data.data[0].serviceId);
 				setDate(response.data.data[0].date);
@@ -93,6 +95,36 @@ const UpdateAppointment = () => {
 		}
 	}
 
+	const handleCompleteAppointment = async (e) => {
+		e.preventDefault();
+		setLoading(true);
+
+		try {
+			await axiosPrivate.patch(`/admin/appointment/${appointmentId}/complete`,
+				JSON.stringify({
+					status: appointmentStatus.Completed}),
+				{
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					withCredentials: true
+				}
+			)
+
+			setLoading(false);
+
+			navigate('/allappointments');
+
+		} catch (err) {
+			if (!err.response) {
+				console.error('No Server Response')
+				setLoading(false);
+			} else {
+				console.error(err)
+			}
+		}
+	}
+
 	return (
 		<div>
 			<div className="lg:p-20 md:p-10 p-3">
@@ -108,6 +140,17 @@ const UpdateAppointment = () => {
 								<ClipboardCopyIcon className="md:w-14 w-8 md:ml-10 ml-3" />
 								<h3 className="md:text-3xl text-2xl py-8 md:px-8 px-2">Update Appointment</h3>
 							</div>
+							{!completed &&
+								<div className="flex md:flex-row flex-col items-center md:gap-x-2 pr-2">
+									{auth?.userType === userRoles.Admin && (
+										<>
+											<button className="sm:text-xl text-sm px-3 my-2" onClick={handleCompleteAppointment}>Mark as Complete</button>
+										</>
+									)}
+								</div>
+							}
+
+
 						</div>
 
 						<form className="my-16 space-y-0" onSubmit={handleUpdate}>
