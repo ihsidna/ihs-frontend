@@ -5,6 +5,7 @@ import AddUser from "./AddUser";
 import {userRoles} from "../../../data/enums";
 import useAuth from "../../../hooks/useAuth";
 import ViewUserBeneficiary from "./ViewUserBeneficiary";
+import {Helmet, HelmetProvider} from "react-helmet-async";
 
 const Users = () => {
 	return (
@@ -22,7 +23,13 @@ const ParentContent = () => {
 	const {auth} = useAuth();
 
 	return (
-		<div className="lg:p-20 md:p-10 p-3">
+		<HelmetProvider>
+			<>
+				<Helmet>
+					<title>Users | IHS Dashboard</title>
+					<link rel="canonical" href="https://www.ihsmdinc.com/" />
+				</Helmet>
+				<div className="lg:p-20 md:p-10 p-3">
 			{/*Users Section*/}
 			<div className="flex justify-between items-center mt-10">
 				<h2 className="md:text-2xl text-xl">All Users</h2>
@@ -36,6 +43,8 @@ const ParentContent = () => {
 			{/*Users Table*/}
 			<UserTable />
 		</div>
+			</>
+		</HelmetProvider>
 	);
 }
 export default Users;

@@ -5,6 +5,7 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import Spinner from "../Spinner";
 import Modal from "../Modal";
+import {Helmet, HelmetProvider} from "react-helmet-async";
 
 const ViewService = () => {
 	const axiosPrivate = useAxiosPrivate();
@@ -47,7 +48,13 @@ const ViewService = () => {
 	}
 
 	return (
-		<div className="lg:p-20 md:p-10 p-3">
+		<HelmetProvider>
+			<>
+				<Helmet>
+					<title>View Service | IHS Dashboard</title>
+					<link rel="canonical" href="https://www.ihsmdinc.com/" />
+				</Helmet>
+				<div className="lg:p-20 md:p-10 p-3">
 			{loading && <Spinner />}
 			<button className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 md:mb-20 md:mt-0 my-10" onClick={() => navigate("/servicess")}>
 				<ChevronLeftIcon className="w-6" /> <p className="text-lg px-5">Back to Services</p>
@@ -81,6 +88,8 @@ const ViewService = () => {
 			</div>
 			{toggleModal && <Modal setToggleModal={setToggleModal} executeFunction={deleteService} message="Are you sure you want to delete this service? This action cannot be undone."/>}
 		</div>
+			</>
+		</HelmetProvider>
 	);
 };
 

@@ -3,6 +3,7 @@ import {ChevronLeftIcon, UserIcon} from "@heroicons/react/outline";
 import {useNavigate, useParams} from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import ViewUserBeneficiaries from "./ViewUserBeneficiaries";
+import {Helmet, HelmetProvider} from "react-helmet-async";
 
 const ViewUser = () => {
 	const user = useParams();
@@ -18,7 +19,13 @@ const ViewUser = () => {
 	}, []);
 
 	return (
-		<div className="lg:p-20 md:p-10 p-3">
+		<HelmetProvider>
+			<>
+				<Helmet>
+					<title>View User | IHS Dashboard</title>
+					<link rel="canonical" href="https://www.ihsmdinc.com/" />
+				</Helmet>
+				<div className="lg:p-20 md:p-10 p-3">
 			<button className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 md:mb-20 md:mt-0 my-10" onClick={() => navigate("/users")}>
 				<ChevronLeftIcon className="w-6" /> <p className="text-lg px-5">Back to Users</p>
 			</button>
@@ -60,6 +67,8 @@ const ViewUser = () => {
 			<hr className="my-10"/>
 			<ViewUserBeneficiaries />
 		</div>
+			</>
+		</HelmetProvider>
 	);
 };
 

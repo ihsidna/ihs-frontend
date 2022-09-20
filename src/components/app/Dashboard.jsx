@@ -7,6 +7,7 @@ import AppointmentTable from "./appointment/AppointmentTable";
 import {userRoles} from "../../data/enums";
 import AllAppointmentTable from "./appointment/AllAppointmentTable";
 import Spinner from "./Spinner";
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 const Dashboard = () => {
 	const navigate = useNavigate();
@@ -214,91 +215,97 @@ const Dashboard = () => {
 	}, []);
 
 	return (
-		<>
-			<div className="lg:p-20 md:p-10 p-3">
-				{loading && <Spinner />}
-				<div className="mb-5 mt-2">
-					<h2 className="md:text-4xl text-3xl mb-3">Hello {loggedInUser?.firstName}</h2>
-					<p className="text-slate-500 text-xl">Welcome to your dashboard</p>
-				</div>
-
-				<hr className="my-10"/>
-
-				{/*User Cards*/}
-				<div className="grid md:grid-cols- grid-cols-2 md:gap-7 gap-3 my-10">
-					<div className="h-40 md:p-5 p-3 rounded-md bg-ihs-blue-shade-50 text-lg shadow-md">
-						<p>Your Beneficiaries</p>
-						<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">{beneficiaries ? beneficiaries?.length : 0}</span>Beneficiaries</p>
+		<HelmetProvider>
+			<>
+				<Helmet>
+					<title>Dashboard | IHS Dashboard</title>
+					<link rel="canonical" href="https://www.ihsmdinc.com/" />
+				</Helmet>
+				<div className="lg:p-20 md:p-10 p-3">
+					{loading && <Spinner />}
+					<div className="mb-5 mt-2">
+						<h2 className="md:text-4xl text-3xl mb-3">Hello {loggedInUser?.firstName}</h2>
+						<p className="text-slate-500 text-xl">Welcome to your dashboard</p>
 					</div>
-					<div className="h-40 md:p-5 p-3 rounded-md bg-ihs-green-shade-50 text-lg shadow-md">
-						<p>Your Appointments</p>
-						<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">{appointments ? appointments?.length : 0}</span>Appointments</p>
+
+					<hr className="my-10"/>
+
+					{/*User Cards*/}
+					<div className="grid md:grid-cols- grid-cols-2 md:gap-7 gap-3 my-10">
+						<div className="h-40 md:p-5 p-3 rounded-md bg-ihs-blue-shade-50 text-lg shadow-md">
+							<p>Your Beneficiaries</p>
+							<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">{beneficiaries ? beneficiaries?.length : 0}</span>Beneficiaries</p>
+						</div>
+						<div className="h-40 md:p-5 p-3 rounded-md bg-ihs-green-shade-50 text-lg shadow-md">
+							<p>Your Appointments</p>
+							<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">{appointments ? appointments?.length : 0}</span>Appointments</p>
+						</div>
 					</div>
+
+					{auth?.userType !== userRoles.User &&
+						<>
+							{/*Admin Cards*/}
+							<div className="grid md:grid-cols-3 grid-cols-2 md:gap-7 gap-3 my-10">
+								<div className="h-40 md:p-5 p-3 rounded-md bg-ihs-green-shade-50 text-lg shadow-md">
+									<p>Total Users</p>
+									<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">{users ? users?.length : 0}</span>Users</p>
+								</div>
+								<div className="h-40 md:p-5 p-3 rounded-md bg-ihs-blue-shade-50 text-lg shadow-md">
+									<p>Total Appointments</p>
+									<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">{allAppointments ? allAppointments?.length : 0}</span>Appointments</p>
+								</div>
+								<div className="h-40 md:p-5 p-3 rounded-md bg-ihs-green-shade-50 text-lg shadow-md">
+									<p>Total Health Workers</p>
+									<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">{healthWorkers ? healthWorkers?.length : 0}</span>Health Workers</p>
+								</div>
+							</div>
+						</>
+					}
+
+					{auth?.userType === userRoles.User &&
+						<>
+							{/*Beneficiaries Section*/}
+							<div className="flex justify-between items-center mt-20">
+								<h2 className="md:text-2xl text-xl">Your Beneficiaries</h2>
+								<button className="py-3 md:px-4 px-2" onClick={() => navigate('/beneficiaries/addbeneficiary')}>Add Beneficiary</button>
+							</div>
+
+							<hr className="my-10"/>
+
+							{/*Beneficiaries Table*/}
+							<BeneficiaryTable />
+
+							{/*Appointments Section*/}
+							<div className="flex justify-between items-center mt-20">
+								<h2 className="md:text-2xl text-xl">Your Appointments</h2>
+								<button className="py-3 md:px-4 px-2" onClick={() => navigate('/appointments/bookappointment')}>Book Appointments</button>
+							</div>
+
+							<hr className="my-10"/>
+
+							{/*Appointments Table*/}
+							<AppointmentTable />
+						</>
+					}
+
+					{auth?.userType !== userRoles.User &&
+						<>
+							{/*Appointments Section*/}
+							<div className="flex justify-between items-center mt-20">
+								<h2 className="md:text-2xl text-xl">All Appointments</h2>
+							</div>
+
+							<hr className="my-10"/>
+
+							{/*Appointments Table*/}
+
+							{!hasLoaded ? <Spinner/> : <AllAppointmentTable data={allAppointments.slice(0, 5)} rowsPerPage={5} />}
+							{/*<AppointmentTable />*/}
+						</>
+					}
 				</div>
-
-				{auth?.userType !== userRoles.User &&
-					<>
-						{/*Admin Cards*/}
-						<div className="grid md:grid-cols-3 grid-cols-2 md:gap-7 gap-3 my-10">
-							<div className="h-40 md:p-5 p-3 rounded-md bg-ihs-green-shade-50 text-lg shadow-md">
-								<p>Total Users</p>
-								<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">{users ? users?.length : 0}</span>Users</p>
-							</div>
-							<div className="h-40 md:p-5 p-3 rounded-md bg-ihs-blue-shade-50 text-lg shadow-md">
-								<p>Total Appointments</p>
-								<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">{allAppointments ? allAppointments?.length : 0}</span>Appointments</p>
-							</div>
-							<div className="h-40 md:p-5 p-3 rounded-md bg-ihs-green-shade-50 text-lg shadow-md">
-								<p>Total Health Workers</p>
-								<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">{healthWorkers ? healthWorkers?.length : 0}</span>Health Workers</p>
-							</div>
-						</div>
-					</>
-				}
-
-				{auth?.userType === userRoles.User &&
-					<>
-						{/*Beneficiaries Section*/}
-						<div className="flex justify-between items-center mt-20">
-							<h2 className="md:text-2xl text-xl">Your Beneficiaries</h2>
-							<button className="py-3 md:px-4 px-2" onClick={() => navigate('/beneficiaries/addbeneficiary')}>Add Beneficiary</button>
-						</div>
-
-						<hr className="my-10"/>
-
-						{/*Beneficiaries Table*/}
-						<BeneficiaryTable />
-
-						{/*Appointments Section*/}
-						<div className="flex justify-between items-center mt-20">
-							<h2 className="md:text-2xl text-xl">Your Appointments</h2>
-							<button className="py-3 md:px-4 px-2" onClick={() => navigate('/appointments/bookappointment')}>Book Appointments</button>
-						</div>
-
-						<hr className="my-10"/>
-
-						{/*Appointments Table*/}
-						<AppointmentTable />
-					</>
-				}
-
-				{auth?.userType !== userRoles.User &&
-					<>
-						{/*Appointments Section*/}
-						<div className="flex justify-between items-center mt-20">
-							<h2 className="md:text-2xl text-xl">All Appointments</h2>
-						</div>
-
-						<hr className="my-10"/>
-
-						{/*Appointments Table*/}
-
-						{!hasLoaded ? <Spinner/> : <AllAppointmentTable data={allAppointments.slice(0, 5)} rowsPerPage={5} />}
-						{/*<AppointmentTable />*/}
-					</>
-				}
-			</div>
-		</>
+			</>
+		</HelmetProvider>
 	);
 };
 

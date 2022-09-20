@@ -3,6 +3,7 @@ import {ChevronLeftIcon, IdentificationIcon} from "@heroicons/react/outline";
 import {useNavigate} from "react-router-dom";
 import Spinner from "../Spinner";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import {Helmet, HelmetProvider} from "react-helmet-async";
 
 const ADD_HEALTH_WORKER = "/worker/create";
 
@@ -57,7 +58,13 @@ const AddHealthWorker = () => {
 	}
 
 	return (
-		<div className="lg:p-20 md:p-10 p-3">
+		<HelmetProvider>
+			<>
+				<Helmet>
+					<title>Add Health Worker | IHS Dashboard</title>
+					<link rel="canonical" href="https://www.ihsmdinc.com/" />
+				</Helmet>
+				<div className="lg:p-20 md:p-10 p-3">
 			{loading && <Spinner />}
 			<button className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 md:mb-20 md:mt-0 my-8" onClick={() => navigate("/healthworkers")}>
 				<ChevronLeftIcon className="w-6" /> <p className="text-lg px-5">Back to Health Workers</p>
@@ -176,6 +183,8 @@ const AddHealthWorker = () => {
 				</div>
 			</div>
 		</div>
+			</>
+		</HelmetProvider>
 	);
 };
 

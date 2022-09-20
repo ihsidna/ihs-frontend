@@ -4,6 +4,7 @@ import ViewHealthWorker from "./ViewHealthWorker";
 import AddHealthWorker from "./AddHealthWorker";
 import UpdateHealthWorker from "./UpdateHealthWorker";
 import HealthWorkerTable from "./HealthWorkerTable";
+import {Helmet, HelmetProvider} from "react-helmet-async";
 
 
 const HealthWorkers = () => {
@@ -20,7 +21,13 @@ const HealthWorkers = () => {
 const ParentContent = () => {
 	const navigate = useNavigate();
 	return (
-		<div className="lg:p-20 md:p-10 p-3">
+		<HelmetProvider>
+			<>
+				<Helmet>
+					<title>View Health Workers | IHS Dashboard</title>
+					<link rel="canonical" href="https://www.ihsmdinc.com/" />
+				</Helmet>
+				<div className="lg:p-20 md:p-10 p-3">
 			{/*Users Section*/}
 			<div className="flex justify-between items-center mt-10">
 				<h2 className="md:text-2xl text-xl">All Health Workers</h2>
@@ -32,6 +39,8 @@ const ParentContent = () => {
 			{/*Health Workers Table*/}
 			<HealthWorkerTable />
 		</div>
+				</>
+		</HelmetProvider>
 	);
 }
 

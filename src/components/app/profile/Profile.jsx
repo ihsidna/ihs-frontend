@@ -4,6 +4,7 @@ import {useNavigate} from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import Spinner from "../Spinner";
+import {Helmet, HelmetProvider} from "react-helmet-async";
 
 const UPDATE_PASSWORD = '/user/updatePassword';
 
@@ -35,7 +36,13 @@ const Profile = () => {
 	}
 
 	return (
-		<>
+		<HelmetProvider>
+			<>
+				<Helmet>
+					<title>My Profile | IHS Dashboard</title>
+					<link rel="canonical" href="https://www.ihsmdinc.com/" />
+				</Helmet>
+				<>
 			{loading && <Spinner />}
 			<div className="lg:p-20 md:p-10 p-3">
 				<button className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 md:mb-20 md:mt-0 my-10" onClick={() => navigate("/dashboard")}>
@@ -134,6 +141,8 @@ const Profile = () => {
 
 			</div>
 		</>
+			</>
+		</HelmetProvider>
 	);
 };
 
