@@ -36,9 +36,12 @@ const ViewHealthWorker = () => {
 							<h3 className="md:text-3xl text-2xl py-8 md:px-8 px-2">Health Worker Details</h3>
 						</div>
 
-						<Link to={`/healthworkers/updatehealthworker/${healthWorkerDetails?.id}`} className="text-gray-600 hover:text-gray-700">
-							<h3 className="text-xl md:px-8 px-3 hover:underline">Update</h3>
-						</Link>
+						<div className="pr-2">
+							<Link to={`/healthworkers/updatehealthworker/${healthWorkerDetails?.id}`} className="text-gray-600 hover:text-gray-700">
+								<button className="sm:text-xl text-sm px-3">Update</button>
+							</Link>
+						</div>
+
 
 					</div>
 
