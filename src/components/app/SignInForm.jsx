@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import useAuth from "../../hooks/useAuth";
 import axios from "../../api/axios";
 import Spinner from "./Spinner";
-import {useNavigate, useLocation} from "react-router-dom";
+import {useNavigate, useLocation, Link} from "react-router-dom";
 
 const LOGIN_URL = "/user/login";
 
@@ -97,7 +97,11 @@ const SignInForm = () => {
 				</div>
 
 				<div className="">
-					<label htmlFor="password" className="block text-sm font-medium text-gray-700 mt-5">Password  <span className="text-red-600">*</span></label>
+					<div className="flex justify-between">
+						<label htmlFor="password" className="block text-sm font-medium text-gray-700 mt-5">Password  <span className="text-red-600">*</span></label>
+						<label className="block text-sm font-medium mt-5 text-ihs-green hover:underline"><Link to="/reset-password">Forgot Password?</Link></label>
+					</div>
+
 					<div className="mt-1">
 						<input
 							value={password}
