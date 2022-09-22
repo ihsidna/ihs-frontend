@@ -4,16 +4,25 @@ import Objectives from "../components/website/about/Objectives";
 import People from "../components/website/about/People";
 import Navbar from "../components/website/globals/Navbar";
 import Footer from "../components/website/globals/Footer";
+import {Helmet, HelmetProvider} from "react-helmet-async";
 
 const About = () => {
 	return (
-		<>
-			<Navbar />
-			<AboutHero />
-			<Objectives />
-			<People />
-			<Footer />
-		</>
+		<HelmetProvider>
+			<>
+				<Helmet>
+					<title>About Us | IHS</title>
+					<link rel="canonical" href="https://www.ihsmdinc.com/" />
+				</Helmet>
+				<>
+					<Navbar />
+					<AboutHero />
+					<Objectives />
+					<People />
+					<Footer />
+				</>
+			</>
+		</HelmetProvider>
 	);
 };
 

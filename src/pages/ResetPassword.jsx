@@ -1,24 +1,20 @@
 import React from 'react';
-import ContactHero from "../components/website/contact/ContactHero";
-import ContactForm from "../components/website/contact/ContactForm";
-import ContactDetails from "../components/website/contact/ContactDetails";
 import Navbar from "../components/website/globals/Navbar";
 import Footer from "../components/website/globals/Footer";
+import ResetPasswordPage from "../components/website/globals/ResetPasswordPage";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 
-const Contact = () => {
+const ResetPassword = () => {
 	return (
 		<HelmetProvider>
 			<>
 				<Helmet>
-					<title>Contact Us | IHS</title>
+					<title>Reset Password | IHS</title>
 					<link rel="canonical" href="https://www.ihsmdinc.com/" />
 				</Helmet>
 				<>
 					<Navbar />
-					<ContactHero />
-					<ContactForm />
-					<ContactDetails />
+					<ResetPasswordPage />
 					<Footer />
 				</>
 			</>
@@ -26,4 +22,4 @@ const Contact = () => {
 	);
 };
 
-export default Contact;
+export default ResetPassword;
