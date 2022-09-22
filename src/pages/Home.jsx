@@ -12,7 +12,7 @@ const Home = () => {
 		<HelmetProvider>
 			<>
 				<Helmet>
-					<title>Home | IHS | Primary and Secondary Healthcare</title>
+					<title>Primary Home Care | Secondary & Tertiary Healthcare</title>
 					<link rel="canonical" href="https://www.ihsmdinc.com/" />
 				</Helmet>
 				<>
