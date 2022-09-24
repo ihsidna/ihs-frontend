@@ -5,6 +5,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import useAuth from "../../../hooks/useAuth";
 import {Helmet, HelmetProvider} from "react-helmet-async";
+import {appointmentStatus} from "../../../data/enums";
 
 const AssignHealthWorker = () => {
 	const appointment = useParams();
@@ -66,7 +67,7 @@ const AssignHealthWorker = () => {
 			//select service name
 			await axiosPrivate.patch(`/admin/appointment/${appointmentId}`,
 				JSON.stringify({
-					healthWorkerName: getHealthWorkerName(), healthWorkerId}),
+					healthWorkerName: getHealthWorkerName(), healthWorkerId, status: appointmentStatus.Confirmed}),
 				{
 					headers: {
 						'Content-Type': 'application/json',
