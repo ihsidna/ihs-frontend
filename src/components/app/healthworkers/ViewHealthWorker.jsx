@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {ChevronLeftIcon, IdentificationIcon} from "@heroicons/react/outline";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import {Helmet, HelmetProvider} from "react-helmet-async";
+import HealthWorkerDropdown from "./HealthWorkerDropdown";
 
 const ViewHealthWorker = () => {
 	const [healthWorkerDetails, setHealthWorkerDetails] = useState({});
@@ -36,12 +37,7 @@ const ViewHealthWorker = () => {
 							<h3 className="md:text-3xl text-2xl py-8 md:px-8 px-2">Health Worker Details</h3>
 						</div>
 
-						<div className="pr-2">
-							<Link to={`/healthworkers/updatehealthworker/${healthWorkerDetails?.id}`} className="text-gray-600 hover:text-gray-700">
-								<button className="sm:text-xl text-sm px-3">Update</button>
-							</Link>
-						</div>
-
+						<HealthWorkerDropdown healthWorkerDetails={healthWorkerDetails}/>
 
 					</div>
 

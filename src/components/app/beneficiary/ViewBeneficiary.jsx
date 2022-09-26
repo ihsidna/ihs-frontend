@@ -1,9 +1,10 @@
 import React, {useEffect, useState, lazy, Suspense} from 'react';
 import {ChevronLeftIcon, UserCircleIcon} from "@heroicons/react/outline";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import Spinner from "../Spinner";
 import {Helmet, HelmetProvider} from "react-helmet-async";
+import BeneficiaryDropdown from "./BeneficiaryDropdown";
 const ViewBeneficiaryAppointments = lazy(() => import('./ViewBeneficiaryAppointments'));
 
 const months = [
@@ -63,10 +64,7 @@ const ViewBeneficiary = () => {
 									<h3 className="md:text-3xl sm:text-2xl text-xl py-8 md:px-8 px-2">Beneficiary Details</h3>
 								</div>
 
-								<Link to={`/beneficiaries/updatebeneficiary/${beneficiaryDetails?.id}`} className="text-gray-600 hover:text-gray-700 pr-2">
-									<button className="sm:text-xl text-sm px-3">Update</button>
-								</Link>
-
+								<BeneficiaryDropdown beneficiaryDetails={beneficiaryDetails} />
 							</div>
 
 							<div className="my-10 ml-5 text-gray-600 md:text-xl" >

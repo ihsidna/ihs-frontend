@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {ChevronLeftIcon, ClipboardCheckIcon} from "@heroicons/react/outline";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import {userRoles} from "../../../data/enums";
 import { StarRating } from 'react-star-rating-element';
 import {Helmet, HelmetProvider} from "react-helmet-async";
+import AppointmentDropdown from "./AppointmentDropdown";
 
 const months = [
 	'January',
@@ -24,7 +25,7 @@ const months = [
 const ViewAppointment = () => {
 	const appointment = useParams();
 	const navigate = useNavigate();
-	const {auth, allAppointments, appointments, loggedInUser} = useAuth();
+	const {auth, allAppointments, appointments} = useAuth();
 	const [appointmentDetails, setAppointmentDetails] = useState({});
 
 	const getDate = (dateString) =>{
@@ -72,25 +73,7 @@ const ViewAppointment = () => {
 									<h3 className="md:text-2xl text-lg py-8 md:px-8 px-2">Appointments Details</h3>
 								</div>
 
-								<div className="flex md:flex-row flex-col items-center md:gap-x-2 pr-2">
-									{loggedInUser?.id === appointmentDetails?.userId && (
-										<Link to={`/appointments/review/${appointmentDetails?.id}`} className="text-gray-600 hover:text-gray-700">
-											<button className="sm:text-xl text-sm px-3">Review</button>
-										</Link>
-									)}
-
-									{auth?.userType === userRoles.Admin && (
-										<>
-											<Link to={`/allappointments/assignworker/${appointmentDetails?.id}`} className="text-gray-600 hover:text-gray-700">
-												<button className="sm:text-xl text-sm px-3 my-2">Assign</button>
-											</Link>
-											<Link to={`/allappointments/updateappointment/${appointmentDetails?.id}`} className="text-gray-600 hover:text-gray-700">
-												<button className="sm:text-xl text-sm px-3">Update</button>
-											</Link>
-										</>
-
-									)}
-								</div>
+								<AppointmentDropdown appointmentDetails={appointmentDetails}/>
 
 							</div>
 
