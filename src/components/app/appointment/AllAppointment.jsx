@@ -6,6 +6,7 @@ import useAuth from "../../../hooks/useAuth";
 import UpdateAppointment from "./UpdateAppointment";
 import AssignHealthWorker from "./AssignHealthWorker";
 import {Helmet, HelmetProvider} from "react-helmet-async";
+import UploadReport from "./UploadReport";
 
 const Appointment = () => {
 	return (
@@ -15,6 +16,7 @@ const Appointment = () => {
 			<Route path="/allappointments" element={<AllAppointmentTable />}/>
 			<Route path="/updateappointment/:appointmentId" element={<UpdateAppointment />}/>
 			<Route path="/assignworker/:appointmentId" element={<AssignHealthWorker />}/>
+			<Route path="/updateappointment/:appointmentId/uploadreport" element={<UploadReport />}/>
 		</Routes>
 	);
 }
