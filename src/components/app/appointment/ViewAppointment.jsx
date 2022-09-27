@@ -38,6 +38,10 @@ const ViewAppointment = () => {
 		return formattedDate;
 	}
 
+	const download = () => {
+			window.open(appointmentDetails.reportUrl,"_blank");
+	}
+
 	useEffect(() => {
 		let filteredAppointment;
 
@@ -82,49 +86,59 @@ const ViewAppointment = () => {
 									<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Beneficiary: </p>
 									<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{appointmentDetails?.beneficiaryName} </p>
 								</div>
+
 								<div className="grid grid-cols-4 items-center">
 									<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Service: </p>
 									<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{appointmentDetails?.serviceName} </p>
 								</div>
+
 								<div className="grid grid-cols-4 items-center">
 									<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Health Worker: </p>
 									<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{appointmentDetails?.healthWorkerName ? appointmentDetails?.healthWorkerName : "Unassigned"} </p>
 								</div>
+
 								<div className="grid grid-cols-4 items-center">
 									<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Date: </p>
 									<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{getDate(appointmentDetails?.date)} </p>
 								</div>
+
 								<div className="grid grid-cols-4 items-center">
 									<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Time: </p>
 									<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{appointmentDetails?.time}</p>
 								</div>
+
 								<div className="grid grid-cols-4 items-center">
 									<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Status: </p>
 									<p className="py-5 md:ml-5 md:col-start-2 col-span-2 capitalize">{appointmentDetails?.status}</p>
 								</div>
 
-								{/*	Review */}
-								<div>
-									<div className="grid grid-cols-4 items-center">
-										<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Review: </p>
-										<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{appointmentDetails?.review ? appointmentDetails?.review : "Unreviewed Appointment"} </p>
-									</div>
-									<div className="grid grid-cols-4 items-center">
-										<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Rating: </p>
+								<div className="grid grid-cols-4 items-center">
+									<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Review: </p>
+									<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{appointmentDetails?.review ? appointmentDetails?.review : "Unreviewed Appointment"} </p>
+								</div>
 
-										<div className="py-5 md:ml-3 md:col-start-2 col-span-2">
-											<StarRating
-												ratingValue={appointmentDetails?.rating}
-												starEmptyColor="#999999"
-												starSpacing={5}
-												starDimension={25}
-												starRatedColor="#1eb7b8"
-											/>
-										</div>
+								<div className="grid grid-cols-4 items-center">
+									<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Rating: </p>
 
+									<div className="py-5 md:ml-3 md:col-start-2 col-span-2">
+										<StarRating
+											ratingValue={appointmentDetails?.rating}
+											starEmptyColor="#999999"
+											starSpacing={5}
+											starDimension={25}
+											starRatedColor="#1eb7b8"
+										/>
 									</div>
 								</div>
 
+								{/*Report*/}
+								{appointmentDetails?.reportUrl &&
+									<div className="grid grid-cols-4 items-center">
+										<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Report: </p>
+
+											<button className="px-3 my-2" onClick={download}> Download</button>
+									</div>
+								}
 							</div>
 						</div>
 					</div>
