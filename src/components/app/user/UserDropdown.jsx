@@ -3,6 +3,7 @@ import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/outline'
 import Modal from "../Modal";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import {active} from "../../../data/enums";
 
 export default function UserDropdown({userDetails}) {
 	const axiosPrivate  = useAxiosPrivate();
@@ -16,7 +17,7 @@ export default function UserDropdown({userDetails}) {
 		try {
 			await axiosPrivate.patch(`/user/${userDetails.id}/deactivate`,
 				JSON.stringify({
-					accountActive: false}),
+					accountActive: active.False}),
 				{
 					headers: {
 						'Content-Type': 'application/json',
