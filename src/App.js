@@ -25,8 +25,10 @@ import PersistLogin from "./components/app/PersistLogin";
 import Service from "./components/app/service/Service";
 import AllAppointment from "./components/app/appointment/AllAppointment";
 import ResetPassword from "./pages/ResetPassword";
+import useAnalytics from "./hooks/useAnalytics";
 
 function App() {
+  useAnalytics()
   return (
     <Router>
       <Routes>
