@@ -20,3 +20,8 @@ export const avatar = {
 	ForegroundColor: "#666666",
 	width: "30px",
 }
+
+export const active = {
+	True: true,
+	False: false
+}

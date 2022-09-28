@@ -4,6 +4,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import ViewUserBeneficiaries from "./ViewUserBeneficiaries";
 import {Helmet, HelmetProvider} from "react-helmet-async";
+import UserDropdown from "./UserDropdown";
 
 const ViewUser = () => {
 	const user = useParams();
@@ -37,6 +38,7 @@ const ViewUser = () => {
 							<h3 className="md:text-3xl text-2xl py-8 md:px-8 px-2">User Details</h3>
 						</div>
 
+						<UserDropdown userDetails={userDetails} />
 					</div>
 
 					<div className="my-10 ml-5 text-gray-600 text-xl" >
