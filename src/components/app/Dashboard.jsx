@@ -15,7 +15,7 @@ const Dashboard = () => {
 	const location = useLocation();
 	const [loading, setLoading] = useState(false)
 	const [hasLoaded, setHasLoaded] = useState(false);
-	const {loggedInUser, setLoggedInUser, beneficiaries, appointments, auth, allAppointments, setAllAppointments, setBeneficiaries, setAppointments, users, healthWorkers, setHealthWorkers} = useAuth();
+	const {loggedInUser, setLoggedInUser, beneficiaries, appointments, auth, allAppointments, setAllAppointments, setBeneficiaries, setAppointments, metrics, setMetrics} = useAuth();
 
 	useEffect( () => {
 		let isMounted = true;
@@ -39,7 +39,6 @@ const Dashboard = () => {
 				isMounted && setLoggedInUser(loggedInUserObject);
 
 				// todo: move the next line to the auth context
-				localStorage.setItem("loggedInUser", JSON.stringify(loggedInUserObject))
 				setLoading(false)
 			} catch (err){
 				// if status is 401 then redirect to signin page
@@ -50,7 +49,6 @@ const Dashboard = () => {
 			}
 		}
 		getLoggedInUser();
-
 
 		return () => {
 			isMounted = false;
@@ -72,7 +70,6 @@ const Dashboard = () => {
 					});
 
 				isMounted && setAllAppointments(response.data.data);
-				localStorage.setItem("allAppointments", JSON.stringify(response.data.data));
 				setHasLoaded(true);
 				setLoading(false);
 			} catch (err){
@@ -103,7 +100,6 @@ const Dashboard = () => {
 					});
 
 				isMounted && setBeneficiaries(response.data.data);
-				localStorage.setItem("beneficiaries", JSON.stringify(response.data.data))
 				setLoading(false)
 			} catch (err){
 				console.error(err)
@@ -133,7 +129,6 @@ const Dashboard = () => {
 					});
 
 				isMounted && setAppointments(response.data.data);
-				localStorage.setItem("appointments", JSON.stringify(response.data.data))
 				setLoading(false)
 			} catch (err){
 				console.error(err)
@@ -141,6 +136,34 @@ const Dashboard = () => {
 		}
 
 		getAppointments();
+
+		return () => {
+			isMounted = false;
+			controller.abort();
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	useEffect(() => {
+		let isMounted = true;
+		const controller = new AbortController();
+
+		const getMetrics = async () => {
+			try {
+				const response = await axiosPrivate.get(
+					"/metrics",
+					{
+						signal: controller?.signal
+					});
+
+				isMounted && setMetrics(response.data.data);
+				setLoading(false)
+			} catch (err){
+				console.error(err)
+			}
+		}
+
+		getMetrics();
 
 		return () => {
 			isMounted = false;
@@ -183,15 +206,15 @@ const Dashboard = () => {
 							<div className="grid md:grid-cols-3 grid-cols-2 md:gap-7 gap-3 my-10">
 								<div className="h-40 md:p-5 p-3 rounded-md bg-ihs-green-shade-50 text-lg shadow-md">
 									<p>Total Users</p>
-									<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">{users ? users?.length : 0}</span>Users</p>
+									<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">{metrics ? metrics?.totalUsers : 0}</span>Users</p>
 								</div>
 								<div className="h-40 md:p-5 p-3 rounded-md bg-ihs-blue-shade-50 text-lg shadow-md">
 									<p>Total Appointments</p>
-									<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">{allAppointments ? allAppointments?.length : 0}</span>Appointments</p>
+									<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">{metrics ? metrics?.totalAppointments : 0}</span>Appointments</p>
 								</div>
 								<div className="h-40 md:p-5 p-3 rounded-md bg-ihs-green-shade-50 text-lg shadow-md">
 									<p>Total Health Workers</p>
-									<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">{healthWorkers ? healthWorkers?.length : 0}</span>Health Workers</p>
+									<p className="my-10"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">{metrics ? metrics?.totalHealthWorkers : 0}</span>Health Workers</p>
 								</div>
 							</div>
 						</>
