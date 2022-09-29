@@ -1,12 +1,10 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import Nodata from "../../../assets/images/noData.svg";
-import useAuth from "../../../hooks/useAuth";
 import Avatar from "react-avatar"
 import {avatar} from "../../../data/enums";
 
-const UserTable = () => {
-	const {users} = useAuth();
+const UserTable = ({users}) => {
 
 	return (
 		<div className="flex flex-col mt-8">

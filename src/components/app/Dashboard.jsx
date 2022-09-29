@@ -15,7 +15,7 @@ const Dashboard = () => {
 	const location = useLocation();
 	const [loading, setLoading] = useState(false)
 	const [hasLoaded, setHasLoaded] = useState(false);
-	const {loggedInUser, setLoggedInUser, beneficiaries, appointments, auth, allAppointments, setAllAppointments, setBeneficiaries, setAppointments, users, setUsers, healthWorkers, setHealthWorkers} = useAuth();
+	const {loggedInUser, setLoggedInUser, beneficiaries, appointments, auth, allAppointments, setAllAppointments, setBeneficiaries, setAppointments, users, healthWorkers, setHealthWorkers} = useAuth();
 
 	useEffect( () => {
 		let isMounted = true;
@@ -141,40 +141,6 @@ const Dashboard = () => {
 		}
 
 		getAppointments();
-
-		return () => {
-			isMounted = false;
-			controller.abort();
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
-	useEffect(() => {
-		setLoading(true)
-		let isMounted = true;
-		const controller = new AbortController();
-
-		const getUsers = async () => {
-			try {
-				const response = await axiosPrivate.get(
-					"/users/all",
-					{
-						signal: controller?.signal
-					});
-
-				//remove logged in user from userList to be displayed on users screen
-				const userList = response.data.data.filter(user => loggedInUser.id !== user.id)
-				isMounted && setUsers(userList);
-				localStorage.setItem("users", JSON.stringify(userList))
-				setLoading(false)
-
-			} catch (err){
-				console.error(err)
-			}
-		}
-
-		getUsers();
-
 
 		return () => {
 			isMounted = false;

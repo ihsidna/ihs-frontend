@@ -30,10 +30,6 @@ export const AuthProvider = ({children}) => {
 	}, []);
 
 	useEffect(() => {
-		setUsers(JSON.parse(localStorage.getItem("users")))
-	}, []);
-
-	useEffect(() => {
 		setHealthWorkers(JSON.parse(localStorage.getItem("healthWorkers")));
 	}, []);
 
