@@ -1,49 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {Link} from "react-router-dom";
-import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
-import useAuth from "../../../hooks/useAuth";
 import Nodata from "../../../assets/images/noData.svg";
-import Spinner from "../Spinner";
 
-const ServiceTable = () => {
-	const {services, setServices} = useAuth();
-	const axiosPrivate = useAxiosPrivate();
-	const [loading, setLoading] = useState(false);
-
-	useEffect(() => {
-		setLoading(true)
-		let isMounted = true;
-		const controller = new AbortController();
-
-		const getServices = async () => {
-			try {
-				const response = await axiosPrivate.get(
-					"/admin/service/all",
-					{
-						signal: controller?.signal
-					});
-
-				isMounted && setServices(response.data.data);
-				localStorage.setItem("services", JSON.stringify(response.data.data))
-				setLoading(false)
-			} catch (err){
-				console.error(err)
-			}
-		}
-
-		getServices();
-
-		return () => {
-			isMounted = false;
-			controller.abort();
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
+const ServiceTable = ({services}) => {
 
 	return (
 		<div className="flex flex-col mt-8">
-			{loading && <Spinner />}
 			<div className="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
 				<div
 					className="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 rounded-md">

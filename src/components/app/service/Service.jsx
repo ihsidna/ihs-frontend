@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {Route, Routes, useNavigate} from "react-router-dom";
 import AddService from "./AddService";
 import ViewService from "./ViewService";
 import ServiceTable from "./ServiceTable";
 import {Helmet, HelmetProvider} from "react-helmet-async";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import useAuth from "../../../hooks/useAuth";
+import Spinner from "../Spinner";
 
 const Service = () => {
 	return (
@@ -16,10 +19,31 @@ const Service = () => {
 }
 
 const ParentContent = () => {
+	const {services, setServices} = useAuth();
 	const navigate = useNavigate();
+	const axiosPrivate = useAxiosPrivate();
+	const [loading, setLoading] = useState();
+
+	const getServices = useCallback( async () => {
+		const response = await axiosPrivate.get(
+			"/admin/service/all");
+		setServices(response.data.data);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	useEffect(() => {
+		if (services.length === 0){
+			setLoading(true)
+			getServices().then(() => {
+				setLoading(false)
+			})
+		}
+	}, [services.length, getServices]);
+
 
 	return (
 		<HelmetProvider>
+			{loading && <Spinner />}
 			<>
 				<Helmet>
 					<title>Services | IHS Dashboard</title>
@@ -34,7 +58,7 @@ const ParentContent = () => {
 				<hr className="my-10"/>
 
 				{/*Services Table*/}
-				<ServiceTable />
+				<ServiceTable services={services}/>
 			</div>
 			</>
 		</HelmetProvider>
