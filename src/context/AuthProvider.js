@@ -22,10 +22,6 @@ export const AuthProvider = ({children}) => {
 	}, []);
 
 	useEffect(() => {
-		setServices(JSON.parse(localStorage.getItem("services")))
-	}, []);
-
-	useEffect(() => {
 		setAppointments(JSON.parse(localStorage.getItem("appointments")))
 	}, []);
 

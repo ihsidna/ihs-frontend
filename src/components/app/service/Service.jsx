@@ -36,7 +36,7 @@ const ParentContent = () => {
 			setLoading(true)
 			getServices().then(() => {
 				setLoading(false)
-			})
+			});
 		}
 	}, [services.length, getServices]);
 
