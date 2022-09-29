@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useCallback, useState, useEffect} from 'react';
 import {Route, Routes, useNavigate} from "react-router-dom";
 import ViewHealthWorker from "./ViewHealthWorker";
 import AddHealthWorker from "./AddHealthWorker";
 import UpdateHealthWorker from "./UpdateHealthWorker";
 import HealthWorkerTable from "./HealthWorkerTable";
 import {Helmet, HelmetProvider} from "react-helmet-async";
+import useAuth from "../../../hooks/useAuth";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import Spinner from "../Spinner";
 
 
 const HealthWorkers = () => {
@@ -20,8 +23,31 @@ const HealthWorkers = () => {
 
 const ParentContent = () => {
 	const navigate = useNavigate();
+	const axiosPrivate = useAxiosPrivate();
+	const [loading, setLoading] = useState();
+	const {healthWorkers, setHealthWorkers} = useAuth();
+
+
+	const getHealthWorkers = useCallback(async () => {
+		const response = await axiosPrivate.get(
+			"/worker/all");
+
+		setHealthWorkers(response.data.data);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	useEffect(() => {
+		if (healthWorkers.length === 0){
+			setLoading(true)
+			getHealthWorkers().then(() => {
+				setLoading(false);
+			});
+		}
+	}, [healthWorkers.length, getHealthWorkers]);
+
 	return (
 		<HelmetProvider>
+			{loading && <Spinner />}
 			<>
 				<Helmet>
 					<title>View Health Workers | IHS Dashboard</title>
@@ -37,7 +63,7 @@ const ParentContent = () => {
 			<hr className="my-10"/>
 
 			{/*Health Workers Table*/}
-			<HealthWorkerTable />
+			<HealthWorkerTable healthWorkers={healthWorkers}/>
 		</div>
 				</>
 		</HelmetProvider>

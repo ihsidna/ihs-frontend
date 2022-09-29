@@ -3,10 +3,8 @@ import {Link} from "react-router-dom";
 import Nodata from "../../../assets/images/noData.svg";
 import Avatar from "react-avatar";
 import {avatar} from "../../../data/enums";
-import useAuth from "../../../hooks/useAuth";
 
-const HealthWorkerTable = () => {
-	const {healthWorkers} = useAuth();
+const HealthWorkerTable = ({healthWorkers}) => {
 
 	return (
 		<div className="flex flex-col mt-8">

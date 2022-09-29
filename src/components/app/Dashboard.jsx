@@ -149,37 +149,6 @@ const Dashboard = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	useEffect(() => {
-		setLoading(true)
-		let isMounted = true;
-		const controller = new AbortController();
-
-		const getHealthWorkers = async () => {
-			try {
-				const response = await axiosPrivate.get(
-					"/worker/all",
-					{
-						signal: controller?.signal
-					});
-
-				isMounted && setHealthWorkers(response.data.data);
-				localStorage.setItem("healthWorkers", JSON.stringify(response.data.data))
-				setLoading(false)
-			} catch (err){
-				console.error(err)
-			}
-		}
-
-		getHealthWorkers();
-
-
-		return () => {
-			isMounted = false;
-			controller.abort();
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
 	return (
 		<HelmetProvider>
 			<>

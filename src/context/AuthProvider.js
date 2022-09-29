@@ -26,10 +26,6 @@ export const AuthProvider = ({children}) => {
 	}, []);
 
 	useEffect(() => {
-		setHealthWorkers(JSON.parse(localStorage.getItem("healthWorkers")));
-	}, []);
-
-	useEffect(() => {
 		setAllAppointments(JSON.parse(localStorage.getItem("allAppointments")));
 	}, []);
 
