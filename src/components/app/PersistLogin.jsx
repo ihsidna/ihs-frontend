@@ -2,7 +2,14 @@ import {Outlet} from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import useRefreshToken	 from "../../hooks/useRefreshToken";
 import useAuth from "../../hooks/useAuth";
-import Spinner from "./Spinner";
+import TopBarProgress from "react-topbar-progress-indicator";
+
+TopBarProgress.config({
+	barColors: {
+		"0": "#05afb0"
+	},
+	shadowBlur: 5
+});
 
 const PersistLogin = () => {
 	const [loading, setLoading] = useState(true);
@@ -38,7 +45,7 @@ const PersistLogin = () => {
 			{!persist
 				? <Outlet />
 				: loading
-					? <Spinner />
+					? <TopBarProgress />
 					: <Outlet />
 			}
 

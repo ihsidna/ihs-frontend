@@ -8,7 +8,14 @@ import ViewUserBeneficiary from "./ViewUserBeneficiary";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import {useState, useEffect, useCallback} from "react";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
-import Spinner from "../Spinner";
+import TopBarProgress from "react-topbar-progress-indicator";
+
+TopBarProgress.config({
+	barColors: {
+		"0": "#05afb0"
+	},
+	shadowBlur: 5
+});
 
 const Users = () => {
 	return (
@@ -36,17 +43,14 @@ const ParentContent = () => {
 	}, []);
 
 	useEffect(() => {
-		if (users.length === 0){
-			setLoading(true)
-			getUsers().then(() => {
-				setLoading(false);
-			});
-		}
-	}, [users.length, getUsers]);
+		setLoading(true)
+		getUsers();
+		setLoading(false);
+	}, [getUsers]);
 
 	return (
 		<HelmetProvider>
-			{loading && <Spinner />}
+			{loading && <TopBarProgress />}
 			<>
 				<Helmet>
 					<title>Users | IHS Dashboard</title>

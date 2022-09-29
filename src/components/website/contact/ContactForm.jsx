@@ -1,7 +1,14 @@
 import React, {useState} from 'react';
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import {CheckIcon} from "@heroicons/react/outline";
-import Spinner from "../../app/Spinner";
+import TopBarProgress from "react-topbar-progress-indicator";
+
+TopBarProgress.config({
+	barColors: {
+		"0": "#05afb0"
+	},
+	shadowBlur: 5
+});
 
 const CONTACT_URL = '/contact';
 
@@ -60,7 +67,7 @@ const ContactForm = () => {
 					<div className="py-10">
 						<div className="flex justify-around">
 							<div className="bg-white lg:w-1/2 md:w-2/3 w-full md:px-16 md:py-8 px-10 md:rounded-3xl md:shadow-lg">
-								{loading && <Spinner />}
+								{loading && <TopBarProgress />}
 								<form className="mb-0 space-y-0" onSubmit={handleSubmit}>
 									<div>
 										<label htmlFor="firstName" className="block text-sm font-medium text-gray-700">Full Name <span

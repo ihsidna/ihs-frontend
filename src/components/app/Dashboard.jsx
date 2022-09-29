@@ -6,8 +6,15 @@ import BeneficiaryTable from "./beneficiary/BeneficiaryTable";
 import AppointmentTable from "./appointment/AppointmentTable";
 import {userRoles} from "../../data/enums";
 import AllAppointmentTable from "./appointment/AllAppointmentTable";
-import Spinner from "./Spinner";
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import TopBarProgress from "react-topbar-progress-indicator";
+
+TopBarProgress.config({
+	barColors: {
+		"0": "#05afb0"
+	},
+	shadowBlur: 5
+});
 
 const Dashboard = () => {
 	const navigate = useNavigate();
@@ -180,7 +187,7 @@ const Dashboard = () => {
 					<link rel="canonical" href="https://www.ihsmdinc.com/" />
 				</Helmet>
 				<div className="lg:p-20 md:p-10 p-3">
-					{loading && <Spinner />}
+					{loading && <TopBarProgress />}
 					<div className="mb-5 mt-2">
 						<h2 className="md:text-4xl text-3xl mb-3">Hello {loggedInUser?.firstName}</h2>
 						<p className="text-slate-500 text-xl">Welcome to your dashboard</p>
@@ -257,7 +264,7 @@ const Dashboard = () => {
 
 							{/*Appointments Table*/}
 
-							{!hasLoaded ? <Spinner/> : <AllAppointmentTable data={allAppointments.slice(0, 5)} rowsPerPage={5} />}
+							{hasLoaded && <AllAppointmentTable data={allAppointments.slice(0, 5)} rowsPerPage={5} />}
 							{/*<AppointmentTable />*/}
 						</>
 					}

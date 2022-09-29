@@ -1,7 +1,14 @@
 import React, {useState} from 'react';
 import {useLocation, useNavigate} from "react-router-dom";
 import axios from "../../api/axios";
-import Spinner from "./Spinner";
+import TopBarProgress from "react-topbar-progress-indicator";
+
+TopBarProgress.config({
+	barColors: {
+		"0": "#05afb0"
+	},
+	shadowBlur: 5
+});
 
 const RESET_URL = "/user/resetPassword";
 
@@ -51,7 +58,7 @@ const ResetPasswordForm = () => {
 
 	return (
 		<>
-			{loading && <Spinner />}
+			{loading && <TopBarProgress />}
 			{errMsg ? (
 					<p className="rounded-md p-4 mb-4 bg-ihs-green-shade-200 text-red-500 font-normal text-lg">{errMsg}</p>
 				) :

@@ -1,7 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {Link, useParams} from "react-router-dom";
 import {BaseURL} from '../../api/axios';
-import Spinner from "./Spinner";
+import TopBarProgress from "react-topbar-progress-indicator";
+
+TopBarProgress.config({
+	barColors: {
+		"0": "#05afb0"
+	},
+	shadowBlur: 5
+});
 
 const EmailConfirmed = () => {
 	const {confirmationCode} = useParams();
@@ -36,7 +43,7 @@ const EmailConfirmed = () => {
 
 	return (
 		<>
-			{loading && <Spinner />}
+			{loading && <TopBarProgress />}
 			<div className="flex flex-col justify-center items-center py-4 md:py-56 pt-44 pb-20 relative">
 				{success ? <h1 className="md:text-4xl text-2xl text-ihs-green py-2">{successMessage}</h1>  : <h1 className="md:text-4xl text-2xl text-ihs-green py-2">{errMsg}</h1>}
 				{!loading && <p className="text-lg py-2">Proceed to <span className="text-ihs-green hover:underline"><Link to="/signin">Sign In</Link></span></p>}

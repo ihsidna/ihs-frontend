@@ -2,7 +2,14 @@ import React, { useRef, useState, useEffect } from 'react';
 
 import axios from '../../api/axios';
 import {Link} from "react-router-dom";
-import Spinner from "./Spinner";
+import TopBarProgress from "react-topbar-progress-indicator";
+
+TopBarProgress.config({
+	barColors: {
+		"0": "#05afb0"
+	},
+	shadowBlur: 5
+});
 
 const REGISTER_URL = '/user/signup';
 // const HEALTH_URL = '/users/all';
@@ -82,7 +89,7 @@ const SignUpForm = () => {
 				</section>
 			) : (
 				<section>
-					{loading && <Spinner />}
+					{loading && <TopBarProgress />}
 					<p ref={errRef} className={errMsg ? "rounded-md p-4 mb-4 bg-ihs-green-shade-200 text-red-500 font-normal text-lg" : "absolute -left-[99999px]"} aria-live="assertive">{errMsg}</p>
 					<form className="mb-0 space-y-0 relative" onSubmit={handleSubmit}>
 						<div>

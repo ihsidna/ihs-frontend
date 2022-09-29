@@ -6,7 +6,14 @@ import ServiceTable from "./ServiceTable";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import useAuth from "../../../hooks/useAuth";
-import Spinner from "../Spinner";
+import TopBarProgress from "react-topbar-progress-indicator";
+
+TopBarProgress.config({
+	barColors: {
+		"0": "#05afb0"
+	},
+	shadowBlur: 5
+});
 
 const Service = () => {
 	return (
@@ -32,18 +39,16 @@ const ParentContent = () => {
 	}, []);
 
 	useEffect(() => {
-		if (services.length === 0){
 			setLoading(true)
 			getServices().then(() => {
 				setLoading(false)
 			});
-		}
-	}, [services.length, getServices]);
+	}, [getServices]);
 
 
 	return (
 		<HelmetProvider>
-			{loading && <Spinner />}
+			{loading && <TopBarProgress />}
 			<>
 				<Helmet>
 					<title>Services | IHS Dashboard</title>

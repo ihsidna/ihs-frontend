@@ -2,8 +2,15 @@ import React, {useEffect, useState}  from 'react';
 import {ChevronLeftIcon, IdentificationIcon} from "@heroicons/react/outline";
 import {useNavigate, useParams} from "react-router-dom";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
-import Spinner from "../Spinner";
 import {Helmet, HelmetProvider} from "react-helmet-async";
+import TopBarProgress from "react-topbar-progress-indicator";
+
+TopBarProgress.config({
+	barColors: {
+		"0": "#05afb0"
+	},
+	shadowBlur: 5
+});
 
 const UpdateHealthWorker = () => {
 	const navigate = useNavigate();
@@ -102,7 +109,7 @@ const UpdateHealthWorker = () => {
 					<link rel="canonical" href="https://www.ihsmdinc.com/" />
 				</Helmet>
 				<div className="lg:p-20 md:p-10 p-3">
-			{loading && <Spinner />}
+			{loading && <TopBarProgress />}
 				<button className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 md:mb-20 md:mt-0 my-8" onClick={() => navigate("/healthworkers")}>
 					<ChevronLeftIcon className="w-6" /> <p className="text-lg px-5">Back to HealthWorkers</p>
 				</button>

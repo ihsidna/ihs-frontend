@@ -4,7 +4,14 @@ import {appointmentStatus, avatar, booleanString} from "../../../data/enums";
 import {Link, useParams} from "react-router-dom";
 import Nodata from "../../../assets/images/noData.svg";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
-import Spinner from "../Spinner";
+import TopBarProgress from "react-topbar-progress-indicator";
+
+TopBarProgress.config({
+	barColors: {
+		"0": "#05afb0"
+	},
+	shadowBlur: 5
+});
 
 const ViewBeneficiaryAppointments = () => {
 	const axiosPrivate = useAxiosPrivate();
@@ -45,7 +52,7 @@ const ViewBeneficiaryAppointments = () => {
 
 	return (
 		<div className="flex flex-col mt-8">
-			{loading && <Spinner />}
+			{loading && <TopBarProgress />}
 			<div className="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
 				<div
 					className="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 rounded-md">

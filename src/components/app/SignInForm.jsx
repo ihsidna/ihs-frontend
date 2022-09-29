@@ -1,8 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import useAuth from "../../hooks/useAuth";
 import axios from "../../api/axios";
-import Spinner from "./Spinner";
 import {useNavigate, useLocation, Link} from "react-router-dom";
+import TopBarProgress from "react-topbar-progress-indicator";
+
+TopBarProgress.config({
+	barColors: {
+		"0": "#05afb0"
+	},
+	shadowBlur: 5
+});
 
 const LOGIN_URL = "/user/login";
 
@@ -72,7 +79,7 @@ const SignInForm = () => {
 
 	return (
 		<>
-			{loading && <Spinner />}
+			{loading && <TopBarProgress />}
 			{errMsg ? (
 				<p className="rounded-md p-4 mb-4 bg-ihs-green-shade-200 text-red-500 font-normal text-lg">{errMsg}</p>
 			) :

@@ -7,8 +7,14 @@ import HealthWorkerTable from "./HealthWorkerTable";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
-import Spinner from "../Spinner";
+import TopBarProgress from "react-topbar-progress-indicator";
 
+TopBarProgress.config({
+	barColors: {
+		"0": "#05afb0"
+	},
+	shadowBlur: 5
+});
 
 const HealthWorkers = () => {
 	return (
@@ -37,17 +43,15 @@ const ParentContent = () => {
 	}, []);
 
 	useEffect(() => {
-		if (healthWorkers.length === 0){
-			setLoading(true)
-			getHealthWorkers().then(() => {
-				setLoading(false);
-			});
-		}
-	}, [healthWorkers.length, getHealthWorkers]);
+		setLoading(true)
+		getHealthWorkers()
+		setLoading(false);
+
+	}, [getHealthWorkers]);
 
 	return (
 		<HelmetProvider>
-			{loading && <Spinner />}
+			{loading && <TopBarProgress />}
 			<>
 				<Helmet>
 					<title>View Health Workers | IHS Dashboard</title>

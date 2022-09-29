@@ -2,10 +2,19 @@ import React, {useEffect, useState, lazy, Suspense} from 'react';
 import {ChevronLeftIcon, UserCircleIcon} from "@heroicons/react/outline";
 import {useNavigate, useParams} from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
-import Spinner from "../Spinner";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import BeneficiaryDropdown from "./BeneficiaryDropdown";
+import TopBarProgress from "react-topbar-progress-indicator";
+
+TopBarProgress.config({
+	barColors: {
+		"0": "#05afb0"
+	},
+	shadowBlur: 5
+});
+
 const ViewBeneficiaryAppointments = lazy(() => import('./ViewBeneficiaryAppointments'));
+
 
 const months = [
 	'January',
@@ -109,7 +118,7 @@ const ViewBeneficiary = () => {
 					</div>
 
 					<hr className="my-10"/>
-					<Suspense fallback={<Spinner />}>
+					<Suspense fallback={<TopBarProgress />}>
 						<ViewBeneficiaryAppointments />
 					</Suspense>
 				</div>
