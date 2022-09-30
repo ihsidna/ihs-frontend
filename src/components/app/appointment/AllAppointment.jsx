@@ -29,7 +29,7 @@ const ParentContent = () => {
 	const [loading, setLoading] = useState(false);
 
 	const getAllAppointments = useCallback(async () => {
-		const response = await axiosPrivate.get("/user/appointments");
+		const response = await axiosPrivate.get("/admin/appointments");
 
 		const appointmentList = response.data.data;
 		setAllAppointments(appointmentList);

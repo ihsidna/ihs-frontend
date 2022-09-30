@@ -31,8 +31,7 @@ const UpdateAppointment = () => {
 		const response = await axiosPrivate.get(
 			"/admin/service/all");
 		setServices(response.data.data);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [axiosPrivate, setServices]);
 
 	useEffect(() => {
 		setLoading(true)
