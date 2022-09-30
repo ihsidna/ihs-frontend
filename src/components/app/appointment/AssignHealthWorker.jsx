@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {ChevronLeftIcon, ClipboardCopyIcon} from "@heroicons/react/outline";
 import {useNavigate, useParams} from "react-router-dom";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
@@ -17,7 +17,7 @@ TopBarProgress.config({
 const AssignHealthWorker = () => {
 	const appointment = useParams();
 	const appointmentId = appointment.appointmentId;
-	const {services, healthWorkers} = useAuth();
+	const {services, healthWorkers, setHealthWorkers} = useAuth();
 	const axiosPrivate = useAxiosPrivate();
 	const navigate = useNavigate();
 	const [beneficiaryName, setBeneficiaryName] = useState('');
@@ -26,6 +26,12 @@ const AssignHealthWorker = () => {
 	const [date, setDate] = useState('');
 	const [time, setTime] = useState('');
 	const [loading, setLoading] = useState(false);
+
+	const getHealthWorkers = useCallback( async () => {
+		const response = await axiosPrivate.get(
+			"/worker/all");
+		setHealthWorkers(response.data.data);
+	}, [axiosPrivate, setHealthWorkers]);
 
 	useEffect(() => {
 		setLoading(true)
@@ -52,7 +58,9 @@ const AssignHealthWorker = () => {
 			}
 		}
 
-		getAppointment();
+		getHealthWorkers().then(() => {
+			getAppointment();
+		});
 
 		return () => {
 			isMounted = false;
