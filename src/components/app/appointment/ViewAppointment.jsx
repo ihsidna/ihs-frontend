@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {ChevronLeftIcon, ClipboardCheckIcon} from "@heroicons/react/outline";
 import {useNavigate, useParams} from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
@@ -6,6 +6,15 @@ import {userRoles} from "../../../data/enums";
 import { StarRating } from 'react-star-rating-element';
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import AppointmentDropdown from "./AppointmentDropdown";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import TopBarProgress from "react-topbar-progress-indicator";
+
+TopBarProgress.config({
+	barColors: {
+		"0": "#05afb0"
+	},
+	shadowBlur: 5
+});
 
 const months = [
 	'January',
@@ -23,10 +32,13 @@ const months = [
 ]
 
 const ViewAppointment = () => {
+	const axiosPrivate = useAxiosPrivate();
 	const appointment = useParams();
+	const appointmentId = appointment.appointmentId;
 	const navigate = useNavigate();
-	const {auth, allAppointments, appointments} = useAuth();
+	const {auth} = useAuth();
 	const [appointmentDetails, setAppointmentDetails] = useState({});
+	const [loading, setLoading] = useState(false);
 
 	const getDate = (dateString) =>{
 		const date = new Date(dateString)
@@ -42,20 +54,22 @@ const ViewAppointment = () => {
 			window.open(appointmentDetails.reportUrl,"_blank");
 	}
 
-	useEffect(() => {
-		let filteredAppointment;
-
-		const appointmentId = appointment.appointmentId;
-
+	const getAppointment = useCallback(async () => {
 		if (auth?.userType === userRoles.User){
-			filteredAppointment = appointments.filter(appointment => appointment.id === appointmentId);
-		} else{
-			filteredAppointment = allAppointments.filter(appointment => appointment.id === appointmentId)
+			const response = await axiosPrivate.get(`/user/appointments/${appointmentId}`);
+			setAppointmentDetails(response.data.data[0])
+		} else {
+			const response = await axiosPrivate.get(`/admin/appointment/${appointmentId}`);
+			setAppointmentDetails(response.data.data[0])
 		}
+	}, [appointmentId, axiosPrivate, auth?.userType])
 
-		filteredAppointment?.length === 0 ? navigate(-1) : setAppointmentDetails(filteredAppointment[0]);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	useEffect(() => {
+		setLoading(true);
+		getAppointment().then(() => {
+			setLoading(false);
+		});
+	}, [getAppointment]);
 
 	return (
 		<HelmetProvider>
@@ -65,6 +79,7 @@ const ViewAppointment = () => {
 					<link rel="canonical" href="https://www.ihsmdinc.com/" />
 				</Helmet>
 				<div className="lg:p-20 md:p-10 p-3">
+					{loading && <TopBarProgress />}
 					<button className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 md:mb-20 md:mt-0 my-10" onClick={() => navigate(-1)}>
 						<ChevronLeftIcon className="w-6" /> <p className="text-lg px-5">Back to Appointments</p>
 					</button>
@@ -99,7 +114,7 @@ const ViewAppointment = () => {
 
 								<div className="grid grid-cols-4 items-center">
 									<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Date: </p>
-									<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{getDate(appointmentDetails?.date)} </p>
+									<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{appointmentDetails?.date ? getDate(appointmentDetails?.date) : ""} </p>
 								</div>
 
 								<div className="grid grid-cols-4 items-center">

@@ -1,4 +1,4 @@
-import React, {createContext, useEffect, useState} from 'react';
+import React, {createContext, useState} from 'react';
 
 const AuthContext = createContext({});
 
@@ -12,23 +12,7 @@ export const AuthProvider = ({children}) => {
 	const [users, setUsers] = useState([]);
 	const [healthWorkers, setHealthWorkers] = useState([]);
 	const [allAppointments, setAllAppointments] = useState([]);
-	const [metrics, setMetrics] = useState([])
-
-	useEffect(() => {
-		setBeneficiaries(JSON.parse(localStorage.getItem("beneficiaries")));
-	}, []);
-
-	useEffect(() => {
-		setLoggedInUser(JSON.parse(localStorage.getItem("loggedInUser")))
-	}, []);
-
-	useEffect(() => {
-		setAppointments(JSON.parse(localStorage.getItem("appointments")))
-	}, []);
-
-	useEffect(() => {
-		setAllAppointments(JSON.parse(localStorage.getItem("allAppointments")));
-	}, []);
+	const [metrics, setMetrics] = useState([]);
 
 	return (
 		<AuthContext.Provider value={{

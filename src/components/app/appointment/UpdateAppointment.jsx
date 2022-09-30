@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {ChevronLeftIcon, ClipboardCopyIcon} from "@heroicons/react/outline";
 import {useNavigate, useParams} from "react-router-dom";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
@@ -17,7 +17,7 @@ TopBarProgress.config({
 const UpdateAppointment = () => {
 	const appointment = useParams();
 	const appointmentId = appointment.appointmentId;
-	const {auth, services} = useAuth();
+	const {auth, services, setServices} = useAuth();
 	const axiosPrivate = useAxiosPrivate();
 	const navigate = useNavigate();
 	const [beneficiaryName, setBeneficiaryName] = useState('');
@@ -26,6 +26,13 @@ const UpdateAppointment = () => {
 	const [time, setTime] = useState('');
 	const [loading, setLoading] = useState(false);
 	const [completed, setCompleted] = useState(true);
+
+	const getServices = useCallback( async () => {
+		const response = await axiosPrivate.get(
+			"/admin/service/all");
+		setServices(response.data.data);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	useEffect(() => {
 		setLoading(true)
@@ -52,7 +59,9 @@ const UpdateAppointment = () => {
 			}
 		}
 
-		getAppointment();
+		getServices().then(() => {
+			getAppointment();
+		});
 
 		return () => {
 			isMounted = false;

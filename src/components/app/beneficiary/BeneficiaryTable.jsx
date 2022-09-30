@@ -1,12 +1,10 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import Nodata from "../../../assets/images/noData.svg";
-import useAuth from "../../../hooks/useAuth"
 import Avatar from "react-avatar";
 import {avatar} from "../../../data/enums";
 
-const BeneficiaryTable = () => {
-	const {beneficiaries} = useAuth();
+const BeneficiaryTable = ({beneficiaries}) => {
 
 	const calculateAge = (dateString) =>{
 			const today = new Date();

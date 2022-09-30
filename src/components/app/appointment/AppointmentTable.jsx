@@ -1,12 +1,10 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import Nodata from "../../../assets/images/noData.svg";
-import useAuth from "../../../hooks/useAuth";
 import {appointmentStatus, avatar, booleanString} from "../../../data/enums";
 import Avatar from "react-avatar";
 
-const AppointmentTable = () => {
-	const {appointments} = useAuth();
+const AppointmentTable = ({appointments}) => {
 
 	return (
 		<div className="flex flex-col mt-8">

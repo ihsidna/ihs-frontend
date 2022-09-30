@@ -50,26 +50,27 @@ const ParentContent = () => {
 
 	return (
 		<HelmetProvider>
-			{loading && <TopBarProgress />}
 			<>
 				<Helmet>
 					<title>Users | IHS Dashboard</title>
 					<link rel="canonical" href="https://www.ihsmdinc.com/" />
 				</Helmet>
 				<div className="lg:p-20 md:p-10 p-3">
-			{/*Users Section*/}
-			<div className="flex justify-between items-center mt-10">
+					{loading && <TopBarProgress />}
+
+					{/*Users Section*/}
+					<div className="flex justify-between items-center mt-10">
 				<h2 className="md:text-2xl text-xl">All Users</h2>
 				{auth?.userType === userRoles.Admin &&
 					<button className="py-3 md:px-4 px-2" onClick={() => navigate('/users/adduser')}>Add Admin User</button>
 				}
 			</div>
 
-			<hr className="my-10"/>
+					<hr className="my-10"/>
 
-			{/*Users Table*/}
-			<UserTable users={users}/>
-		</div>
+					{/*Users Table*/}
+					<UserTable users={users}/>
+				</div>
 			</>
 		</HelmetProvider>
 	);

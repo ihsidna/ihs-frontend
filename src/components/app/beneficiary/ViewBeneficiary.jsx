@@ -1,10 +1,10 @@
-import React, {useEffect, useState, lazy, Suspense} from 'react';
+import React, {useEffect, useState, lazy, Suspense, useCallback} from 'react';
 import {ChevronLeftIcon, UserCircleIcon} from "@heroicons/react/outline";
 import {useNavigate, useParams} from "react-router-dom";
-import useAuth from "../../../hooks/useAuth";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import BeneficiaryDropdown from "./BeneficiaryDropdown";
 import TopBarProgress from "react-topbar-progress-indicator";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 
 TopBarProgress.config({
 	barColors: {
@@ -14,7 +14,6 @@ TopBarProgress.config({
 });
 
 const ViewBeneficiaryAppointments = lazy(() => import('./ViewBeneficiaryAppointments'));
-
 
 const months = [
 	'January',
@@ -32,17 +31,24 @@ const months = [
 ]
 
 const ViewBeneficiary = () => {
+	const axiosPrivate = useAxiosPrivate();
 	const [beneficiaryDetails, setBeneficiaryDetails] = useState({});
 	const beneficiary = useParams();
+	const beneficiaryId = beneficiary.beneficiaryId;
 	const navigate = useNavigate();
-	const {beneficiaries} = useAuth();
+	const [loading, setLoading] = useState();
+
+	const getBeneficiary = useCallback(async () => {
+			const response = await axiosPrivate.get(`/user/beneficiary/${beneficiaryId}`);
+			setBeneficiaryDetails(response.data.data)
+	}, [beneficiaryId, axiosPrivate])
 
 	useEffect(() => {
-		const beneficiaryId = beneficiary.beneficiaryId;
-		const filteredBeneficiary = beneficiaries.filter(beneficiary => beneficiary.id === beneficiaryId);
-		filteredBeneficiary.length === 0 ? navigate(-1) : setBeneficiaryDetails(filteredBeneficiary[0])
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+		setLoading(true);
+		getBeneficiary().then(() => {
+			setLoading(false);
+		});
+	}, [getBeneficiary]);
 
 	const getDate = (dateString) =>{
 		const date = new Date(dateString)
@@ -62,6 +68,7 @@ const ViewBeneficiary = () => {
 					<link rel="canonical" href="https://www.ihsmdinc.com/" />
 				</Helmet>
 				<div className="lg:p-20 md:p-10 p-3">
+					{loading && <TopBarProgress />}
 					<button className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 md:mb-20 md:mt-0 my-10" onClick={() => navigate("/beneficiaries")}>
 						<ChevronLeftIcon className="w-6" /> <p className="text-lg px-5">Back to Beneficiaries</p>
 					</button>
@@ -83,7 +90,7 @@ const ViewBeneficiary = () => {
 								</div>
 								<div className="grid grid-cols-4">
 									<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Date of Birth: </p>
-									<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{beneficiaryDetails ? getDate(beneficiaryDetails?.dob) : ""} </p>
+									<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{beneficiaryDetails?.dob ? getDate(beneficiaryDetails?.dob) : ""} </p>
 								</div>
 								<div className="grid grid-cols-4">
 									<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Relationship: </p>
