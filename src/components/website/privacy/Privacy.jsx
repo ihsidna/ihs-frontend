@@ -84,7 +84,7 @@ const Privacy = () => {
 				<p className="my-5">IHS Medical Inc.<br />
 					PO Box 131 - 3731 Carp Rd.,<br />
 					Ottawa, ON K0A 1L0<br />
-					IHSMedical@outlook.com<br /></p>
+					support@ihsmdinc.com<br /></p>
 
 				<p className="my-5 uppercase font-semibold">Additional Information</p>
 
