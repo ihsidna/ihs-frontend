@@ -1,14 +1,35 @@
-import React from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import Nodata from "../../../assets/images/noData.svg";
 import Avatar from "react-avatar"
 import {avatar} from "../../../data/enums";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import useAuth from "../../../hooks/useAuth";
+import TopBarProgress from "react-topbar-progress-indicator";
 
-const UserTable = ({users}) => {
+const UserTable = () => {
+		const axiosPrivate = useAxiosPrivate();
+		const {users, setUsers, loggedInUser} = useAuth();
+		const [loading, setLoading] = useState(false);
+
+		const getUsers = useCallback(async () => {
+				const response = await axiosPrivate.get("/users/all");
+
+				const userList = response.data.data.filter(user => loggedInUser.id !== user.id);
+				setUsers(userList);
+		}, [axiosPrivate, setUsers, loggedInUser.id]);
+
+		useEffect(() => {
+				setLoading(true);
+				getUsers().then(() => {
+						setLoading(false);
+				});
+		}, [getUsers]);
 
 	return (
 		<div className="flex flex-col mt-8">
-			<div className="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+				{loading && <TopBarProgress />}
+				<div className="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
 				<div
 					className="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 rounded-md">
 					<table className="table-auto min-w-full">

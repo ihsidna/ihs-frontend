@@ -6,8 +6,6 @@ import {userRoles} from "../../../data/enums";
 import useAuth from "../../../hooks/useAuth";
 import ViewUserBeneficiary from "./ViewUserBeneficiary";
 import {Helmet, HelmetProvider} from "react-helmet-async";
-import {useState, useEffect, useCallback} from "react";
-import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import TopBarProgress from "react-topbar-progress-indicator";
 
 TopBarProgress.config({
@@ -29,24 +27,8 @@ const Users = () => {
 };
 
 const ParentContent = () => {
-	const axiosPrivate = useAxiosPrivate();
 	const navigate = useNavigate();
-	const {auth, loggedInUser, users, setUsers} = useAuth();
-	const [loading, setLoading] = useState(false);
-
-	const getUsers = useCallback(async () => {
-		const response = await axiosPrivate.get("/users/all");
-
-		const userList = response.data.data.filter(user => loggedInUser.id !== user.id)
-		setUsers(userList);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
-	useEffect(() => {
-		setLoading(true)
-		getUsers();
-		setLoading(false);
-	}, [getUsers]);
+	const {auth} = useAuth();
 
 	return (
 		<HelmetProvider>
@@ -56,7 +38,6 @@ const ParentContent = () => {
 					<link rel="canonical" href="https://www.ihsmdinc.com/" />
 				</Helmet>
 				<div className="lg:p-20 md:p-10 p-3">
-					{loading && <TopBarProgress />}
 
 					{/*Users Section*/}
 					<div className="flex justify-between items-center mt-10">
@@ -69,7 +50,7 @@ const ParentContent = () => {
 					<hr className="my-10"/>
 
 					{/*Users Table*/}
-					<UserTable users={users}/>
+					<UserTable />
 				</div>
 			</>
 		</HelmetProvider>
