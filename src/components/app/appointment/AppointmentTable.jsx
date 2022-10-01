@@ -1,13 +1,42 @@
-import React from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import Nodata from "../../../assets/images/noData.svg";
 import {appointmentStatus, avatar, booleanString} from "../../../data/enums";
 import Avatar from "react-avatar";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import useAuth from "../../../hooks/useAuth";
+import TopBarProgress from "react-topbar-progress-indicator";
 
-const AppointmentTable = ({appointments}) => {
+TopBarProgress.config({
+		barColors: {
+				"0": "#05afb0"
+		},
+		shadowBlur: 5
+});
+
+const AppointmentTable = () => {
+		const axiosPrivate = useAxiosPrivate();
+		const {appointments, setAppointments} = useAuth();
+		const [loading, setLoading] = useState(false);
+
+
+		const getAppointments = useCallback(async () => {
+				const response = await axiosPrivate.get("/user/appointments");
+
+				const appointmentList = response.data.data;
+				setAppointments(appointmentList);
+		}, [axiosPrivate, setAppointments]);
+
+		useEffect(() => {
+				setLoading(true);
+				getAppointments().then(() => {
+						setLoading(false);
+				})
+		}, [getAppointments]);
 
 	return (
 		<div className="flex flex-col mt-8">
+				{loading && <TopBarProgress />}
 			<div className="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
 				<div
 					className="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 rounded-md">
