@@ -156,6 +156,7 @@ const Dashboard = () => {
 		const controller = new AbortController();
 
 		const getMetrics = async () => {
+				setLoading(true);
 			try {
 				const response = await axiosPrivate.get(
 					"/metrics",
@@ -176,8 +177,7 @@ const Dashboard = () => {
 			isMounted = false;
 			controller.abort();
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [axiosPrivate, setMetrics]);
 
 	return (
 		<HelmetProvider>
