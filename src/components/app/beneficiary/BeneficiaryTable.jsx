@@ -1,12 +1,25 @@
-import React from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import Nodata from "../../../assets/images/noData.svg";
 import Avatar from "react-avatar";
 import {avatar} from "../../../data/enums";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import useAuth from "../../../hooks/useAuth";
+import TopBarProgress from "react-topbar-progress-indicator";
 
-const BeneficiaryTable = ({beneficiaries}) => {
+TopBarProgress.config({
+		barColors: {
+				"0": "#05afb0"
+		},
+		shadowBlur: 5
+});
 
-	const calculateAge = (dateString) =>{
+const BeneficiaryTable = () => {
+		const axiosPrivate = useAxiosPrivate();
+		const {beneficiaries, setBeneficiaries} = useAuth();
+		const [loading, setLoading] = useState(false);
+
+		const calculateAge = (dateString) =>{
 			const today = new Date();
 			const birthDate = new Date(dateString);
 			let age = today.getFullYear() - birthDate.getFullYear();
@@ -17,8 +30,23 @@ const BeneficiaryTable = ({beneficiaries}) => {
 			return age;
 	}
 
+		const getBeneficiaries = useCallback(async () => {
+				const response = await axiosPrivate.get("/user/beneficiaries");
+
+				const beneficiariesList = response.data.data;
+				setBeneficiaries(beneficiariesList);
+		}, [axiosPrivate, setBeneficiaries]);
+
+		useEffect(() => {
+				setLoading(true);
+				getBeneficiaries().then(() => {
+						setLoading(false);
+				});
+		}, [getBeneficiaries]);
+
 	return (
 		<div className="flex flex-col mt-8">
+				{loading && <TopBarProgress/>}
 			<div className="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
 				<div
 					className="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 rounded-md">
