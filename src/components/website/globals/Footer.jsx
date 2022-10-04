@@ -35,8 +35,8 @@ const Footer = () => {
 							<li className="text-lg py-1">
 								<Link to="/faqs" className="text-slate-400">FAQs</Link>
 							</li>
-							<li className="text-lg py-1 text-slate-400">(+1) 613 491 2197</li>
-							<li className="text-lg py-1 text-slate-400">support@ihsmdinc.com</li>
+							<li className="text-lg py-1 text-slate-400"><a href="tel:+1 (613) 491-2197"> +1 (613) 491-2197 </a></li>
+							<li className="text-lg py-1 text-slate-400"><a href="mailto:support@ihsmdinc.com"> support@ihsmdinc.com </a></li>
 						</ul>
 					</div>
 					<div className="px-8 mt-4">
