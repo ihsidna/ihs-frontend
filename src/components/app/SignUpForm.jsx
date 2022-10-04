@@ -180,7 +180,7 @@ const SignUpForm = () => {
 						</div>
 
 						<div className="flex justify-center">
-							<p className="text-lg pt-5 text-slate-500">By clicking sign up agree to IHS's <Link to="/terms" className="text-ihs-green">Terms of Use</Link> and <Link to="/privacy-policy" className="text-ihs-green">Privacy Policy</Link></p>
+							<p className="text-lg pt-5 text-slate-500">By clicking Sign Up, you agree to to IHS’ <Link to="/terms" className="text-ihs-green">Terms of Use</Link> and <Link to="/privacy-policy" className="text-ihs-green">Privacy Policy.</Link></p>
 						</div>
 						<div>
 							<button
