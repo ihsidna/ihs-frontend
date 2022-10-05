@@ -1,6 +1,6 @@
 import axios from 'axios';
 // const DEV_URL = 'http://localhost:5001/ihs-project/us-central1/ihsApiv1';
-const PROD_URL = 'https://api.ihsmdinc.com';
+const PROD_URL = ' https://us-central1-ihs-dev-1972b.cloudfunctions.net/ihsApiv1';
 export default axios.create({
 	baseURL: PROD_URL
 });
