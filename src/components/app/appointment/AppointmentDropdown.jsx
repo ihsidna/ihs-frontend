@@ -50,20 +50,26 @@ export default function AppointmentDropdown({appointmentDetails}) {
 								<hr />
 							</>
 						)}
-						{auth?.userType === userRoles.Admin && (
+					{auth?.userType === userRoles.Admin && (
 							<>
-								<Menu.Item>
-									{({ active }) => (
-										<Link to={`/allappointments/assignworker/${appointmentDetails?.id}`}
-											className={classNames(
-												active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-												'block px-4 py-2 text-sm'
+
+									<Menu.Item>
+											{({active}) => (
+													<Link to={`/allappointments/assignworker/${appointmentDetails?.id}`}
+																			className={classNames(
+																					active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+																					'block px-4 py-2 text-sm'
+																			)}
+													>
+															Assign Health Worker
+													</Link>
 											)}
-										>
-											Assign Health Worker
-										</Link>
-									)}
-								</Menu.Item>
+									</Menu.Item>
+							</>
+					)}
+
+					{auth?.userType !== userRoles.User && (
+							<>
 								<Menu.Item>
 									{({ active }) => (
 										<Link to={`/allappointments/updateappointment/${appointmentDetails?.id}`}
@@ -76,6 +82,7 @@ export default function AppointmentDropdown({appointmentDetails}) {
 										</Link>
 									)}
 								</Menu.Item>
+
 								<Menu.Item>
 									{({ active }) => (
 										<Link to={`/allappointments/updateappointment/${appointmentDetails?.id}/uploadreport`}
@@ -90,6 +97,7 @@ export default function AppointmentDropdown({appointmentDetails}) {
 								</Menu.Item>
 							</>
 						)}
+
 					</div>
 				</Menu.Items>
 			</Transition>
