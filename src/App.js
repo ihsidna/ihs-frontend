@@ -25,6 +25,7 @@ import PersistLogin from "./components/app/PersistLogin";
 import Service from "./components/app/service/Service";
 import AllAppointment from "./components/app/appointment/AllAppointment";
 import ResetPassword from "./pages/ResetPassword";
+import Pricing from "./pages/Pricing";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
         <Route path="confirm/:confirmationCode" element={<EmailConfirmation />} />
         <Route path="unauthorized" element={<UnauthorizedPage />} />
         <Route path="reset-password" element={<ResetPassword />} />
+        <Route path="pricing" element={<Pricing />} />
         <Route element={<PersistLogin />}>
           <Route element={<Layout />}>
             <Route element={<RequireAuth allowedUserTypes={["user", "employee", "admin"]}/>} >
