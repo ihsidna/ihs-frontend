@@ -6,6 +6,7 @@ import UpdateBeneficiary from "./UpdateBeneficiary";
 import BeneficiaryTable from "./BeneficiaryTable";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import TopBarProgress from "react-topbar-progress-indicator";
+import Checkout from "./Checkout";
 
 TopBarProgress.config({
 	barColors: {
@@ -21,6 +22,7 @@ const Beneficiaries = () => {
 			<Route path="/addbeneficiary" element={<AddBeneficiary />} />
 			<Route path="/viewbeneficiary/:beneficiaryId" element={<ViewBeneficiary />} />
 			<Route path="/updatebeneficiary/:beneficiaryId" element={<UpdateBeneficiary />} />
+			<Route path="/updatebeneficiary/:beneficiaryId/addhealthcoverage" element={<Checkout/>} />
 		</Routes>
 	);
 }
