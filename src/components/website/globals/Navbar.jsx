@@ -34,6 +34,9 @@ const Navbar = () => {
 						<li>
 							<Link to="/services" className="text-gray-800 hover:text-gray-900" onClick={() => {return scrollToTop}}>Services</Link>
 						</li>
+							<li>
+							<Link to="/pricing" className="text-gray-800 hover:text-gray-900" onClick={() => {return scrollToTop}}>Pricing</Link>
+						</li>
 						<li>
 							<Link to="/contact" className="text-gray-800 hover:text-gray-900" onClick={() => {return scrollToTop}}>Contact</Link>
 						</li>
@@ -82,6 +85,11 @@ const Navbar = () => {
 				<li className="border-b-2 border-zinc-200 w-full" onClick={handleNav}>
 					<Link to="/services">
 						<div onClick={() => {return scrollToTop}}>Services</div>
+					</Link>
+				</li>
+					<li className="border-b-2 border-zinc-200 w-full" onClick={handleNav}>
+					<Link to="/pricing">
+						<div onClick={() => {return scrollToTop}}>Pricing</div>
 					</Link>
 				</li>
 				<li className="border-b-2 border-zinc-200 w-full" onClick={handleNav}>

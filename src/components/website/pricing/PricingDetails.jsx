@@ -3,12 +3,12 @@ import {Link} from "react-router-dom";
 
 const PricingDetails = () => {
 		return (
-				<section className="bg-white dark:bg-gray-800 mb-20">
+				<section className="bg-white mb-20">
 						<div className="container px-6 py-8 mx-auto">
 								<div className="sm:flex sm:items-center sm:justify-between">
 										<div>
-												<h2 className="md:text-3xl text-xl font-bold text-gray-800 dark:text-gray-100">Simple, transparent pricing</h2>
-												<p className="mt-4 text-gray-500 font-thin dark:text-gray-400">No Contracts. No Hidden Fees.</p>
+												<h2 className="md:text-3xl text-xl font-bold text-gray-800">Simple, transparent pricing</h2>
+												<p className="mt-4 text-gray-500 font-thin">No Contracts. No Hidden Fees.</p>
 										</div>
 								</div>
 
@@ -16,10 +16,10 @@ const PricingDetails = () => {
 
 										<div
 												className="px-6 py-4 transition-colors duration-200 transform rounded-lg hover:bg-ihs-green-shade-50 border shadow">
-												<p className="text-lg font-medium text-gray-800 dark:text-gray-100">Bi-Weekly Coverage</p>
-												<h4 className="mt-2 text-4xl font-semibold text-gray-800 dark:text-gray-100">$50 <span
-														className="text-base font-normal text-gray-600 dark:text-gray-400">/ Beneficiary / 2 Weeks</span></h4>
-												<p className="mt-4 text-gray-500 dark:text-gray-300">Coverage Description.</p>
+												<p className="text-lg font-medium text-gray-800">Bi-Weekly Coverage</p>
+												<h4 className="mt-2 text-4xl font-semibold text-gray-800 ">$50 <span
+														className="text-base font-normal text-gray-600">/ Beneficiary / 2 Weeks</span></h4>
+												<p className="mt-4 text-gray-500">Coverage Description.</p>
 
 												<div className="mt-8 space-y-8">
 														<div className="flex items-center">
@@ -31,7 +31,7 @@ const PricingDetails = () => {
 																								clipRule="evenodd"/>
 																</svg>
 
-																<span className="mx-4 text-gray-700 dark:text-gray-300">Feature One</span>
+																<span className="mx-4 text-gray-700">Feature One</span>
 														</div>
 
 														<div className="flex items-center">
@@ -42,7 +42,7 @@ const PricingDetails = () => {
 																								clipRule="evenodd"/>
 																</svg>
 
-																<span className="mx-4 text-gray-700 dark:text-gray-300">Feature Two</span>
+																<span className="mx-4 text-gray-700 ">Feature Two</span>
 														</div>
 
 														<div className="flex items-center">
@@ -53,7 +53,7 @@ const PricingDetails = () => {
 																								clipRule="evenodd"/>
 																</svg>
 
-																<span className="mx-4 text-gray-700 dark:text-gray-300">Feature Three</span>
+																<span className="mx-4 text-gray-700">Feature Three</span>
 														</div>
 
 														<div className="flex items-center">
@@ -64,7 +64,7 @@ const PricingDetails = () => {
 																								clipRule="evenodd"/>
 																</svg>
 
-																<span className="mx-4 text-gray-700 dark:text-gray-300">Feature Four</span>
+																<span className="mx-4 text-gray-700">Feature Four</span>
 														</div>
 
 														<div className="flex items-center">
@@ -75,7 +75,7 @@ const PricingDetails = () => {
 																								clipRule="evenodd"/>
 																</svg>
 
-																<span className="mx-4 text-gray-700 dark:text-gray-300">Feature Five</span>
+																<span className="mx-4 text-gray-700">Feature Five</span>
 														</div>
 												</div>
 
@@ -159,11 +159,11 @@ const PricingDetails = () => {
 										</div>
 
 										<div
-												className="px-6 py-4 transition-colors duration-200 transform rounded-lg hover:bg-gray-200  border shadow hover:bg-ihs-green-shade-50">
-												<p className="text-lg font-medium text-gray-800 dark:text-gray-100">Yearly Coverage</p>
-												<h4 className="mt-2 text-4xl font-semibold text-gray-800 dark:text-gray-100">$1200 <span
-														className="text-base font-normal text-gray-600 dark:text-gray-400">/ Beneficiary / Year</span></h4>
-												<p className="mt-4 text-gray-500 dark:text-gray-300">Coverage Description</p>
+												className="px-6 py-4 transition-colors duration-200 transform rounded-lg border shadow hover:bg-ihs-green-shade-50">
+												<p className="text-lg font-medium text-gray-800">Yearly Coverage</p>
+												<h4 className="mt-2 text-4xl font-semibold text-gray-800">$1200 <span
+														className="text-base font-normal text-gray-600">/ Beneficiary / Year</span></h4>
+												<p className="mt-4 text-gray-500">Coverage Description</p>
 
 												<div className="mt-8 space-y-8">
 														<div className="flex items-center">
@@ -174,7 +174,7 @@ const PricingDetails = () => {
 																								clipRule="evenodd"/>
 																</svg>
 
-																<span className="mx-4 text-gray-700 dark:text-gray-300">Feature One</span>
+																<span className="mx-4 text-gray-700">Feature One</span>
 														</div>
 
 														<div className="flex items-center">
@@ -185,7 +185,7 @@ const PricingDetails = () => {
 																								clipRule="evenodd"/>
 																</svg>
 
-																<span className="mx-4 text-gray-700 dark:text-gray-300">Feature Two</span>
+																<span className="mx-4 text-gray-700">Feature Two</span>
 														</div>
 
 														<div className="flex items-center">
@@ -196,7 +196,7 @@ const PricingDetails = () => {
 																								clipRule="evenodd"/>
 																</svg>
 
-																<span className="mx-4 text-gray-700 dark:text-gray-300">Feature Three</span>
+																<span className="mx-4 text-gray-700">Feature Three</span>
 														</div>
 
 														<div className="flex items-center">
@@ -207,7 +207,7 @@ const PricingDetails = () => {
 																								clipRule="evenodd"/>
 																</svg>
 
-																<span className="mx-4 text-gray-700 dark:text-gray-300">Feature Four</span>
+																<span className="mx-4 text-gray-700">Feature Four</span>
 														</div>
 
 														<div className="flex items-center">
@@ -218,7 +218,7 @@ const PricingDetails = () => {
 																								clipRule="evenodd"/>
 																</svg>
 
-																<span className="mx-4 text-gray-700 dark:text-gray-300">Feature Five</span>
+																<span className="mx-4 text-gray-700">Feature Five</span>
 														</div>
 												</div>
 
