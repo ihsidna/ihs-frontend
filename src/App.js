@@ -1,4 +1,5 @@
 import React from 'react';
+import "@stripe/stripe-js";
 import About from "./pages/About";
 import Home from "./pages/Home";
 import Services from "./pages/Services";
