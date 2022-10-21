@@ -148,6 +148,12 @@ const ViewBeneficiary = () => {
 											<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Coverage End Date: </p>
 											<p className="py-5 md:ml-5 md:col-start-2 col-span-2 capitalize">{beneficiaryDetails?.subscription ? coverageEndDate(beneficiaryDetails.subscription.endDate) : ""} </p>
 										</div>
+										{beneficiaryDetails?.subscription?.cancelAt !== null &&  (
+											<div className="grid grid-cols-4">
+												<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Cancel Coverage On: </p>
+												<p className="py-5 md:ml-5 md:col-start-2 col-span-2 capitalize">{beneficiaryDetails?.subscription?.cancelAt ? coverageEndDate(beneficiaryDetails.subscription.cancelAt) : ""} </p>
+											</div>
+										)}
 									</>
 								)}
 
