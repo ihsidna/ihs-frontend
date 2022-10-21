@@ -54,13 +54,11 @@ const PricingDetails = () => {
 	useEffect(() => {
 		const beneficiary = beneficiaries.filter((beneficiary) => beneficiary.id === beneficiaryId);
 
-		if (loggedInUser?.length > 0){
 			if (!beneficiary[0]?.subscription?.status || beneficiary[0]?.subscription?.status !== 'active') {
 				setBeneficiarySubscriptionStatus(false)
 			} else {
 				setBeneficiarySubscriptionStatus(true)
 			}
-		}
 	}, [beneficiaries, beneficiaryId, loggedInUser])
 
 
