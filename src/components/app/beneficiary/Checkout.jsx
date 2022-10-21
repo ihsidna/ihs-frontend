@@ -1,11 +1,10 @@
 import React from 'react';
-import useAuth from "../../../hooks/useAuth";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import {ChevronLeftIcon, ShoppingBagIcon} from "@heroicons/react/outline";
 import {useNavigate} from "react-router-dom";
+import PricingDetails from "../../website/pricing/PricingDetails";
 
 const Checkout = () => {
-	const {loggedInUser} = useAuth();
 	const navigate = useNavigate();
 
 	return (
@@ -14,7 +13,6 @@ const Checkout = () => {
 				<Helmet>
 					<title>My Beneficiaries | IHS Dashboard</title>
 					<link rel="canonical" href="https://www.ihsmdinc.com/" />
-					<script async src="https://js.stripe.com/v3/pricing-table.js"></script>
 				</Helmet>
 
 				<div className="lg:p-20 md:p-10 p-3">
@@ -32,11 +30,7 @@ const Checkout = () => {
 							</div>
 
 							<div className="my-16 space-y-0" >
-								<stripe-pricing-table pricing-table-id="prctbl_1LsWSIIGWAGjsS3Fu70MSfma"
-																			publishable-key={process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY}
-																			client-reference-id={loggedInUser.id}
-																			customer-email={loggedInUser.email}>
-								</stripe-pricing-table>
+								<PricingDetails />
 							</div>
 						</div>
 					</div>
