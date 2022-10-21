@@ -40,7 +40,7 @@ const ViewBeneficiary = () => {
 
 	const getBeneficiary = useCallback(async () => {
 			const response = await axiosPrivate.get(`/user/beneficiary/${beneficiaryId}`);
-			setBeneficiaryDetails(response.data.data)
+			setBeneficiaryDetails(response.data.data);
 	}, [beneficiaryId, axiosPrivate])
 
 	useEffect(() => {
@@ -58,6 +58,28 @@ const ViewBeneficiary = () => {
 		const monthName = months[monthIndex]
 		const formattedDate = `${day} ${monthName} ${year}`
 		return formattedDate;
+	}
+
+	const coverageEndDate = (timestamp) => {
+		let date;
+		date = new Date(timestamp * 1000);
+		date = date.toDateString();
+
+		return getDate(date);
+	}
+
+	const duration = (amount) => {
+
+		switch (amount) {
+			case 50:
+				return "2 Weeks";
+			case 100:
+				return "1 Month";
+			case 1200:
+				return "1 Year";
+			default:
+				break;
+		}
 	}
 
 	return (
@@ -97,10 +119,6 @@ const ViewBeneficiary = () => {
 									<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{beneficiaryDetails ? beneficiaryDetails?.relationship : ""} </p>
 								</div>
 								<div className="grid grid-cols-4">
-									<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Email: </p>
-									<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{beneficiaryDetails ? beneficiaryDetails?.email : ""} </p>
-								</div>
-								<div className="grid grid-cols-4">
 									<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Phone Number: </p>
 									<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{beneficiaryDetails ? beneficiaryDetails?.phone : ""} </p>
 								</div>
@@ -116,6 +134,23 @@ const ViewBeneficiary = () => {
 									<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">State: </p>
 									<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{beneficiaryDetails ? beneficiaryDetails?.state : ""} </p>
 								</div>
+								<div className="grid grid-cols-4">
+									<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Coverage Status: </p>
+									<p className="py-5 md:ml-5 md:col-start-2 col-span-2 capitalize">{beneficiaryDetails?.subscription ? beneficiaryDetails.subscription.status : "No Health Coverage"} </p>
+								</div>
+								{beneficiaryDetails?.subscription && (
+									<>
+										<div className="grid grid-cols-4">
+											<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Coverage Duration: </p>
+											<p className="py-5 md:ml-5 md:col-start-2 col-span-2 capitalize">{beneficiaryDetails?.subscription ? duration(beneficiaryDetails.subscription.amount) : ""} </p>
+										</div>
+										<div className="grid grid-cols-4">
+											<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Coverage End Date: </p>
+											<p className="py-5 md:ml-5 md:col-start-2 col-span-2 capitalize">{beneficiaryDetails?.subscription ? coverageEndDate(beneficiaryDetails.subscription.endDate) : ""} </p>
+										</div>
+									</>
+								)}
+
 
 							</div>
 						</div>
