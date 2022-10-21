@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {ChevronLeftIcon, UserCircleIcon} from "@heroicons/react/outline";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import {Helmet, HelmetProvider} from "react-helmet-async";
@@ -17,11 +17,53 @@ const UPDATE_PASSWORD = '/user/updatePassword';
 
 const Profile = () => {
 	const navigate = useNavigate();
+	const location = useLocation();
 	const axiosPrivate = useAxiosPrivate();
-	const {loggedInUser, setAuth} = useAuth();
+	const {loggedInUser, setLoggedInUser, setAuth} = useAuth();
 
 	const [newPassword, setNewPassword] = useState('');
 	const [loading, setLoading] = useState(false);
+
+	useEffect( () => {
+		let isMounted = true;
+		const controller = new AbortController();
+
+		const getLoggedInUser = async () => {
+			try {
+				const response = await axiosPrivate.get(
+					"/user/profile",
+					{signal: controller?.signal}
+				);
+
+				const loggedInUserObject = {
+					id: response.data.data.id,
+					firstName: response.data.data.firstName,
+					lastName: response.data.data.lastName,
+					phone: response.data.data.phone,
+					email: response.data.data.email,
+					customerId: response.data.data.stripeCustomerId
+
+				}
+
+				isMounted && setLoggedInUser(loggedInUserObject);
+
+				// todo: move the next line to the auth context
+				setLoading(false)
+			} catch (err){
+				// if status is 401 then redirect to signin page
+				if (err?.response?.status === 401) {
+					navigate('/signin', {state: {from: location}, replace: true});
+				}
+				console.error(err)
+			}
+		}
+		getLoggedInUser();
+
+		return () => {
+			isMounted = false;
+			controller.abort();
+		}
+	}, [axiosPrivate, setLoggedInUser, location, navigate]);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -40,6 +82,33 @@ const Profile = () => {
 		setAuth({});
 		localStorage.clear();
 		navigate('/signin');
+	}
+
+	const handlePortal = async (e) => {
+		e.preventDefault();
+
+		setLoading(true);
+
+		try	{
+			const res = await axiosPrivate.post("/portal",
+
+				JSON.stringify( {
+					customer: loggedInUser.customerId,
+				}),
+				{
+					headers: { 'Content-Type': 'application/json' },
+					withCredentials: true
+				}
+			)
+
+			setLoading(false);
+
+			const body = await res.data
+			window.location.href = body.url
+
+		} catch (e) {
+			console.log(`Uncaught Exception ${e}`);
+		}
 	}
 
 	return (
@@ -91,32 +160,24 @@ const Profile = () => {
 					</div>
 				</div>
 
-				<p className="text-xl text-ihs-green my-10 ">Change Password</p>
+				<hr className="my-10"/>
+				<p className="text-xl text-ihs-green my-5">Manage Subscriptions</p>
+
+				<form onSubmit={handlePortal}>
+					<input type="hidden" name="priceId" id="priceId" value="price_1LrhbqIGWAGjsS3FN6qfb8fW" />
+					<button type="submit" className="px-4 py-3 mt-5 mb-5 bg-ihs-green hover:font-bold focus: outline-none focus:ring-2 focus:ring-ihs-green-shade-500 w-96 text-lg">
+						Visit Customer Portal
+					</button>
+				</form>
+
+				<hr className="my-10"/>
+
+				<p className="text-xl text-ihs-green">Change Password</p>
 
 				<form className="my-5 space-y-0" onSubmit={handleSubmit}>
 
 					{/*Password*/}
 					<div className="flex flex-col">
-
-						{/*<div>*/}
-						{/*	<label*/}
-						{/*		htmlFor="password"*/}
-						{/*		className="block text-md font-medium text-gray-500"*/}
-						{/*	>*/}
-						{/*		Current Password*/}
-						{/*		<span	className="text-red-600">*</span>*/}
-						{/*	</label>*/}
-						{/*	<div className="mt-1">*/}
-						{/*		<input*/}
-						{/*			type="password"*/}
-						{/*			id="password"*/}
-						{/*			required*/}
-						{/*			placeholder="Current Password"*/}
-						{/*			value={currentPassword}*/}
-						{/*			onChange={(e) => setCurrentPassword(e.target.value)}*/}
-						{/*			className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 w-96"/>*/}
-						{/*	</div>*/}
-						{/*</div>*/}
 
 						<div className="my-5">
 							<label
