@@ -40,7 +40,9 @@ const Dashboard = () => {
 					firstName: response.data.data.firstName,
 					lastName: response.data.data.lastName,
 					phone: response.data.data.phone,
-					email: response.data.data.email
+					email: response.data.data.email,
+					customerId: response.data.data.stripeCustomerId
+
 				}
 
 				isMounted && setLoggedInUser(loggedInUserObject);
@@ -61,8 +63,7 @@ const Dashboard = () => {
 			isMounted = false;
 			controller.abort();
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [axiosPrivate, setLoggedInUser, location, navigate]);
 
 	useEffect(() => {
 		let isMounted = true;
