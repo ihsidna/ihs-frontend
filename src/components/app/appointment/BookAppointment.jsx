@@ -6,6 +6,7 @@ import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import {appointmentStatus} from "../../../data/enums";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import TopBarProgress from "react-topbar-progress-indicator";
+import Modal from "../Modal";
 
 TopBarProgress.config({
 	barColors: {
@@ -27,31 +28,44 @@ const BookAppointment = () => {
 	const [time, setTime] = useState('');
 	const [loading, setLoading] = useState(false);
 
+	const [toggleModal, setToggleModal] = useState(false)
+
+	const clicked = () => {
+		setToggleModal(true)
+	}
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setLoading(true);
 
 		try {
-			await axiosPrivate.post(BOOK_APPOINTMENT,
-				JSON.stringify({
-					beneficiaryId: beneficiary, serviceId: service, date, time, status: appointmentStatus.Booked}),
-				{
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					withCredentials: true
-				}
-			)
 
-			setBeneficiary('');
-			setService('');
-			setDate('');
-			setTime('');
+			// verify beneficiary coverage subscription
+			const exactBeneficiary = beneficiaries.filter((ben) => ben.id === beneficiary);
 
-			setLoading(false);
-			// setSuccess(true);
+			if(exactBeneficiary[0].subscription.status === 'active'){
+				await axiosPrivate.post(BOOK_APPOINTMENT,
+					JSON.stringify({
+						beneficiaryId: beneficiary, serviceId: service, date, time, status: appointmentStatus.Booked}),
+					{
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						withCredentials: true
+					}
+				);
 
-			navigate('/appointments')
+				setBeneficiary('');
+				setService('');
+				setDate('');
+				setTime('');
+
+				setLoading(false);
+
+				navigate('/appointments')
+			}else {
+				clicked();
+			}
 
 		} catch (err) {
 			if (!err.response) {
@@ -61,6 +75,10 @@ const BookAppointment = () => {
 				console.error(err)
 			}
 		}
+	}
+
+	const redirectToPricingPage = () => {
+		navigate(`/beneficiaries/updatebeneficiary/${beneficiary}/addhealthcoverage`);
 	}
 
 	useEffect(() => {
@@ -248,6 +266,7 @@ const BookAppointment = () => {
 						</div>
 					</div>
 				</div>
+				{toggleModal && <Modal setToggleModal={setToggleModal} executeFunction={redirectToPricingPage} message="Add a health Coverage to beneficiary?" header={"Beneficiary has no health coverage"} /> }
 			</>
 		</HelmetProvider>
 	);
