@@ -142,7 +142,7 @@ const Layout = () => {
 				</div>
 
 			</div>
-			{toggleModal && <Modal setToggleModal={setToggleModal} executeFunction={logout} message="Are you sure you want to logout?" /> }
+			{toggleModal && <Modal setToggleModal={setToggleModal} executeFunction={logout} message="Are you sure you want to logout?" header='Are You Sure?' /> }
 		</div>
 	);
 };

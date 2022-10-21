@@ -3,7 +3,7 @@ import {Helmet, HelmetProvider} from "react-helmet-async";
 import Navbar from "../components/website/globals/Navbar";
 import Footer from "../components/website/globals/Footer";
 import PricingHero from "../components/website/pricing/PricingHero";
-import PricingDetails from "../components/website/pricing/PricingDetails";
+import PricingInfo from "../components/website/pricing/PricingInfo";
 
 const Pricing = () => {
 		return (
@@ -16,7 +16,7 @@ const Pricing = () => {
 								<>
 										<Navbar />
 										<PricingHero />
-										<PricingDetails />
+										<PricingInfo />
 										<Footer />
 								</>
 						</>

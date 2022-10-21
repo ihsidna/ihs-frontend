@@ -1,6 +1,6 @@
 import {useNavigate} from "react-router-dom";
 
-const Modal = ({ setToggleModal, executeFunction, message}) => {
+const Modal = ({ setToggleModal, executeFunction, message, header}) => {
 	const navigate = useNavigate();
 
 	const handleYesClick = () => {
@@ -26,7 +26,7 @@ const Modal = ({ setToggleModal, executeFunction, message}) => {
 									<path d="M12 5.99L19.53 19H4.47L12 5.99M12 2L1 21h22L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z"/>
 								</svg>
 							</div>
-							<h2 className="mt-2 md:text-2xl font-semibold text-gray-800">Are You Sure?</h2>
+							<h2 className="mt-2 md:text-2xl font-semibold text-gray-800">{header}</h2>
 							<p className="mt-2 md:text-xl text-gray-600 leading-relaxed">{message}</p>
 						</div>
 
