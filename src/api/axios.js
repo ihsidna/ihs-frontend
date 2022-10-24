@@ -1,14 +1,12 @@
 import axios from 'axios';
-// const DEV_URL = 'http://localhost:5001/ihs-project/us-central1/ihsApiv1';
-const PROD_URL = ' https://us-central1-ihs-dev-1972b.cloudfunctions.net/ihsApiv1';
 export default axios.create({
-	baseURL: PROD_URL
+	baseURL: process.env.REACT_APP_URL
 });
 
 export const axiosPrivate = axios.create({
-	baseURL: PROD_URL,
+	baseURL: process.env.REACT_APP_URL,
 	headers: { ContentType: 'application/json' },
 	withCredentials: true
 });
 
-export const BaseURL = PROD_URL;
+export const BaseURL = process.env.REACT_APP_URL;
