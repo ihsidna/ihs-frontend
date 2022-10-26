@@ -87,7 +87,7 @@ const AddBeneficiary = () => {
 					<button className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 md:mb-20 md:mt-0 my-8" onClick={() => navigate("/beneficiaries")}>
 						<ChevronLeftIcon className="w-6" /> <p className="text-lg px-5">Back to Beneficiaries</p>
 					</button>
-					<div className="flex md:justify-start justify-center md:items-start items-center">
+					<div className="flex justify-center md:items-start items-center mx-4">
 						<div className="md:flex-1">
 
 							<div className="flex justify-between items-center h-24 bg-ihs-green-shade-50 rounded-md shadow-sm text-gray-600">
@@ -102,7 +102,7 @@ const AddBeneficiary = () => {
 							<form className="my-16 space-y-0" onSubmit={handleSubmit}>
 
 								{/*First Name and last Name*/}
-								<div className="flex md:flex-row flex-col">
+								<div className="flex lg:flex-row flex-col">
 									<div>
 										<label htmlFor="firstName" className="block text-md font-medium text-gray-500">
 											First Name
@@ -123,7 +123,7 @@ const AddBeneficiary = () => {
 										</div>
 									</div>
 
-									<div className="md:ml-10 md:mt-0 mt-5">
+									<div className="lg:ml-10 lg:mt-0 mt-5">
 										<label htmlFor="lastName" className="block text-md font-medium text-gray-500">
 											Last Name
 											<span className="text-red-600">*</span>
@@ -143,7 +143,7 @@ const AddBeneficiary = () => {
 								</div>
 
 								{/*DOB and Relationship*/}
-								<div className="flex md:pt-10 pt-5 md:flex-row flex-col">
+								<div className="flex lg:pt-10 pt-5 lg:flex-row flex-col">
 									<div>
 										<label htmlFor="dob" className="block text-md font-medium text-gray-500">
 											Date of birth
@@ -161,7 +161,7 @@ const AddBeneficiary = () => {
 										</div>
 									</div>
 
-									<div className="md:ml-10 md:mt-0 mt-5">
+									<div className="lg:ml-10 lg:mt-0 mt-5">
 										<label htmlFor="relationship" className="block text-md font-medium text-gray-500">Relationship<span
 											className="text-red-600">*</span></label>
 										<div className="mt-1">
@@ -200,9 +200,9 @@ const AddBeneficiary = () => {
 									</div>
 								</div>
 
-								{/*Email and Phone Number*/}
-								<div className="flex md:flex-row flex-col md:pt-10 pt-5 ">
-									<div className=" md:mt-0 mt-5">
+								{/*Phone Number and Address*/}
+								<div className="flex lg:flex-row flex-col lg:pt-10 pt-5 ">
+									<div className=" lg:mt-0 ">
 										<label htmlFor="phone" className="block text-md font-medium text-gray-500">
 											Phone Number
 											<span className="text-red-600">*</span>
@@ -220,7 +220,7 @@ const AddBeneficiary = () => {
 										</div>
 									</div>
 
-									<div className="md:ml-10">
+									<div className="lg:ml-10 mt-5">
 										<label htmlFor="address" className="block text-md font-medium text-gray-500">
 											Address
 											<span className="text-red-600">*</span>
@@ -240,11 +240,11 @@ const AddBeneficiary = () => {
 
 								</div>
 
-								{/*Address, City and State*/}
-								<div className="flex md:flex-wrap md:flex-row flex-col md:pt-10 pt-5">
+								{/*City and State*/}
+								<div className="flex md:flex-wrap lg:flex-row flex-col lg:pt-10">
 
 
-									<div className="md:mt-0 mt-5">
+									<div className="lg:mt-0 mt-5">
 										<label htmlFor="city" className="block text-md font-medium text-gray-500">
 											City
 											<span className="text-red-600">*</span>
@@ -262,7 +262,7 @@ const AddBeneficiary = () => {
 										</div>
 									</div>
 
-									<div className="lg:ml-10 lg:mt-0 md:mt-10 mt-5">
+									<div className="lg:ml-10 lg:mt-0 mt-5">
 										<label htmlFor="state" className="block text-md font-medium text-gray-500">
 											State
 											<span className="text-red-600">*</span>

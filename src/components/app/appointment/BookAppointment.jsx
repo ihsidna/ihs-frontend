@@ -213,8 +213,8 @@ const BookAppointment = () => {
 
 								</div>
 
-								{/*Date and Time*/}
-								<div className="flex md:flex-wrap md:flex-row flex-col md:pt-10 pt-5 ">
+								<div className="flex md:pt-10 pt-5 md:flex-row flex-col">
+
 									<div>
 										<label
 											htmlFor="date"
@@ -232,11 +232,15 @@ const BookAppointment = () => {
 												aria-required="true"
 												value={date}
 												onChange={(e) => setDate(e.target.value)}
-												className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 lg:w-96 md:w-72"/>
+												className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 lg:w-96 md:w-96"/>
 										</div>
 									</div>
 
-									<div className="lg:ml-10 lg:mt-0 md:mt-0 md:ml-10 mt-5">
+								</div>
+
+								<div className="flex md:pt-10 pt-5 md:flex-row flex-col">
+
+									<div className="">
 										<label
 											htmlFor="time"
 											className="block text-md font-medium text-gray-500"
@@ -253,11 +257,12 @@ const BookAppointment = () => {
 												aria-required="true"
 												value={time}
 												onChange={(e) => setTime(e.target.value)}
-												className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 lg:w-96 md:w-72"/>
+												className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 lg:w-96 md:w-96"/>
 										</div>
 									</div>
 
 								</div>
+
 								<div className="flex justify-start">
 									<button type="submit" className="px-4 py-3 my-20 bg-ihs-green hover:font-bold focus: outline-none focus:ring-2 focus:ring-ihs-green-shade-500 w-96 text-lg">
 										Submit
