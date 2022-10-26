@@ -5,6 +5,7 @@ import {Helmet, HelmetProvider} from "react-helmet-async";
 import BeneficiaryDropdown from "./BeneficiaryDropdown";
 import TopBarProgress from "react-topbar-progress-indicator";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import {timePeriod} from "../../../data/enums";
 
 TopBarProgress.config({
 	barColors: {
@@ -141,12 +142,13 @@ const ViewBeneficiary = () => {
 								{beneficiaryDetails?.subscription && (
 									<>
 										<div className="grid grid-cols-4">
-											<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Coverage Duration: </p>
+											<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Payment Frequency: </p>
 											<p className="py-5 md:ml-5 md:col-start-2 col-span-2 capitalize">{beneficiaryDetails?.subscription ? duration(beneficiaryDetails.subscription.amount) : ""} </p>
 										</div>
 										<div className="grid grid-cols-4">
 											<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Coverage End Date: </p>
-											<p className="py-5 md:ml-5 md:col-start-2 col-span-2 capitalize">{beneficiaryDetails?.subscription ? coverageEndDate(beneficiaryDetails.subscription.endDate) : ""} </p>
+											{/*31536000 is 1 */}
+											<p className="py-5 md:ml-5 md:col-start-2 col-span-2 capitalize">{beneficiaryDetails?.subscription ? coverageEndDate(beneficiaryDetails.subscription.startDate + timePeriod.year) : ""} </p>
 										</div>
 										{beneficiaryDetails?.subscription?.cancelAt !== null &&  (
 											<div className="grid grid-cols-4">

@@ -25,3 +25,7 @@ export const active = {
 	True: true,
 	False: false
 }
+
+export const timePeriod = {
+	year: 31536000
+}
