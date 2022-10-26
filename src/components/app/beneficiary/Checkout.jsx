@@ -3,6 +3,7 @@ import {Helmet, HelmetProvider} from "react-helmet-async";
 import {ChevronLeftIcon, ShoppingBagIcon} from "@heroicons/react/outline";
 import {useNavigate} from "react-router-dom";
 import PricingDetails from "../../website/pricing/PricingDetails";
+import CoverageScope from "../CoverageScope";
 
 const Checkout = () => {
 	const navigate = useNavigate();
@@ -20,17 +21,18 @@ const Checkout = () => {
 						<ChevronLeftIcon className="w-6" /> <p className="text-lg px-5">Back</p>
 					</button>
 					<div className="flex md:justify-start justify-center md:items-start items-center">
-						<div className="md:flex-1">
+						<div className="flex-1">
 
 							<div className="flex justify-between items-center h-24 bg-ihs-green-shade-50 rounded-md shadow-sm text-gray-600">
 								<div className="flex">
-									<ShoppingBagIcon className="md:w-14 w-8 md:ml-10 ml-3" />
-									<h3 className="md:text-3xl text-2xl py-8 md:px-8 px-2">Add Health Coverage</h3>
+									<ShoppingBagIcon className="md:w-14 w-6 md:ml-10 ml-3" />
+									<h3 className="md:text-3xl text-xl py-8 md:px-8 px-2">Add Health Coverage</h3>
 								</div>
 							</div>
 
-							<div className="my-16 space-y-0" >
+							<div className="my-10 space-y-0" >
 								<PricingDetails />
+								<CoverageScope />
 							</div>
 						</div>
 					</div>

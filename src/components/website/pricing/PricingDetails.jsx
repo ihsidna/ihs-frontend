@@ -68,8 +68,8 @@ const PricingDetails = () => {
 			<div className="container px-6 py-8 mx-auto">
 				<div className="sm:flex sm:items-center sm:justify-between">
 					<div>
-						<h2 className="md:text-3xl text-xl font-bold text-gray-800">Simple, transparent pricing</h2>
-						<p className="mt-4 text-gray-500 font-thin">No Contracts. No Hidden Fees.</p>
+						<h2 className="md:text-3xl text-xl font-bold text-gray-800">Transparent Pricing,</h2>
+						<p className="mt-1 text-gray-500 font-thin">No Hidden Fees.</p>
 					</div>
 				</div>
 
@@ -77,68 +77,12 @@ const PricingDetails = () => {
 					<div
 							 className="px-6 py-4 transition-colors duration-200 transform rounded-lg hover:bg-ihs-green-shade-50 border shadow">
 						<p className="text-lg font-medium text-gray-800">Bi-Weekly Coverage</p>
-						<h4 className="mt-2 text-4xl font-semibold text-gray-800 ">$50 <span
-							className="text-base font-normal text-gray-600 capitalize">/ Beneficiary / 2 Weeks
-						</span></h4>
-						<p className="mt-4 text-gray-500">Coverage Description</p>
-
-						<div className="mt-8 space-y-8">
-							<div className="flex items-center">
-
-								<svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-ihs-green" viewBox="0 0 20 20"
-										 fill="currentColor">
-									<path fillRule="evenodd"
-												d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-												clipRule="evenodd"/>
-								</svg>
-
-								<span className="mx-4 text-gray-700">Feature One</span>
-							</div>
-
-							<div className="flex items-center">
-								<svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-ihs-green" viewBox="0 0 20 20"
-										 fill="currentColor">
-									<path fillRule="evenodd"
-												d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-												clipRule="evenodd"/>
-								</svg>
-
-								<span className="mx-4 text-gray-700 ">Feature Two</span>
-							</div>
-
-							<div className="flex items-center">
-								<svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-ihs-green" viewBox="0 0 20 20"
-										 fill="currentColor">
-									<path fillRule="evenodd"
-												d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-												clipRule="evenodd"/>
-								</svg>
-
-								<span className="mx-4 text-gray-700">Feature Three</span>
-							</div>
-
-							<div className="flex items-center">
-								<svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-ihs-green" viewBox="0 0 20 20"
-										 fill="currentColor">
-									<path fillRule="evenodd"
-												d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-												clipRule="evenodd"/>
-								</svg>
-
-								<span className="mx-4 text-gray-700">Feature Four</span>
-							</div>
-
-							<div className="flex items-center">
-								<svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-ihs-green" viewBox="0 0 20 20"
-										 fill="currentColor">
-									<path fillRule="evenodd"
-												d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-												clipRule="evenodd"/>
-								</svg>
-
-								<span className="mx-4 text-gray-700">Feature Five</span>
-							</div>
-						</div>
+						<h4 className="mt-2 md:text-3xl text-lg font-semibold text-gray-800 ">
+							$50
+							<span className="font-light text-sm text-gray-600 capitalize">
+								/ Beneficiary / 2 Weeks
+							</span>
+						</h4>
 
 						<form onSubmit={handleCheckout} onFocus={(e) => setPriceId("price_1LrhMVIGWAGjsS3FZXla9scy")}>
 							<input type="hidden" name="priceId" id="priceId" value="price_1LrhMVIGWAGjsS3FZXla9scy" />
@@ -151,68 +95,9 @@ const PricingDetails = () => {
 					<div
 						className="px-6 py-4 transition-colors duration-200 transform rounded-lg hover:bg-ihs-green-shade-50 border shadow">
 						<p className="text-lg font-medium text-gray-800">Monthly Coverage</p>
-						<h4 className="mt-2 text-4xl font-semibold text-gray-800 ">$100 <span
-							className="text-base font-normal text-gray-600 capitalize">/ Beneficiary / Month
+						<h4 className="mt-2 md:text-3xl text-lg font-semibold text-gray-800 ">$100 <span
+							className="font-light text-sm text-gray-600 capitalize">/ Beneficiary / Month
 						</span></h4>
-						<p className="mt-4 text-gray-500">Coverage Description</p>
-
-						<div className="mt-8 space-y-8">
-							<div className="flex items-center">
-
-								<svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-ihs-green" viewBox="0 0 20 20"
-										 fill="currentColor">
-									<path fillRule="evenodd"
-												d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-												clipRule="evenodd"/>
-								</svg>
-
-								<span className="mx-4 text-gray-700">Feature One</span>
-							</div>
-
-							<div className="flex items-center">
-								<svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-ihs-green" viewBox="0 0 20 20"
-										 fill="currentColor">
-									<path fillRule="evenodd"
-												d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-												clipRule="evenodd"/>
-								</svg>
-
-								<span className="mx-4 text-gray-700 ">Feature Two</span>
-							</div>
-
-							<div className="flex items-center">
-								<svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-ihs-green" viewBox="0 0 20 20"
-										 fill="currentColor">
-									<path fillRule="evenodd"
-												d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-												clipRule="evenodd"/>
-								</svg>
-
-								<span className="mx-4 text-gray-700">Feature Three</span>
-							</div>
-
-							<div className="flex items-center">
-								<svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-ihs-green" viewBox="0 0 20 20"
-										 fill="currentColor">
-									<path fillRule="evenodd"
-												d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-												clipRule="evenodd"/>
-								</svg>
-
-								<span className="mx-4 text-gray-700">Feature Four</span>
-							</div>
-
-							<div className="flex items-center">
-								<svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-ihs-green" viewBox="0 0 20 20"
-										 fill="currentColor">
-									<path fillRule="evenodd"
-												d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-												clipRule="evenodd"/>
-								</svg>
-
-								<span className="mx-4 text-gray-700">Feature Five</span>
-							</div>
-						</div>
 
 						<form onSubmit={handleCheckout} onFocus={(e) => setPriceId("price_1LrhTJIGWAGjsS3FrpT98sG8")}>
 							<input type="hidden" name="priceId" id="priceId" value="price_1LrhTJIGWAGjsS3FrpT98sG8" />
@@ -225,68 +110,9 @@ const PricingDetails = () => {
 					<div
 						className="px-6 py-4 transition-colors duration-200 transform rounded-lg hover:bg-ihs-green-shade-50 border shadow">
 						<p className="text-lg font-medium text-gray-800">Yearly Coverage</p>
-						<h4 className="mt-2 text-4xl font-semibold text-gray-800 ">$1200 <span
-							className="text-base font-normal text-gray-600 capitalize">/ Beneficiary / Year
+						<h4 className="mt-2 md:text-3xl text-lg font-semibold text-gray-800 ">$1200 <span
+							className="font-light text-sm text-gray-600 capitalize">/ Beneficiary / Year
 						</span></h4>
-						<p className="mt-4 text-gray-500">Coverage Description</p>
-
-						<div className="mt-8 space-y-8">
-							<div className="flex items-center">
-
-								<svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-ihs-green" viewBox="0 0 20 20"
-										 fill="currentColor">
-									<path fillRule="evenodd"
-												d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-												clipRule="evenodd"/>
-								</svg>
-
-								<span className="mx-4 text-gray-700">Feature One</span>
-							</div>
-
-							<div className="flex items-center">
-								<svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-ihs-green" viewBox="0 0 20 20"
-										 fill="currentColor">
-									<path fillRule="evenodd"
-												d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-												clipRule="evenodd"/>
-								</svg>
-
-								<span className="mx-4 text-gray-700 ">Feature Two</span>
-							</div>
-
-							<div className="flex items-center">
-								<svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-ihs-green" viewBox="0 0 20 20"
-										 fill="currentColor">
-									<path fillRule="evenodd"
-												d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-												clipRule="evenodd"/>
-								</svg>
-
-								<span className="mx-4 text-gray-700">Feature Three</span>
-							</div>
-
-							<div className="flex items-center">
-								<svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-ihs-green" viewBox="0 0 20 20"
-										 fill="currentColor">
-									<path fillRule="evenodd"
-												d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-												clipRule="evenodd"/>
-								</svg>
-
-								<span className="mx-4 text-gray-700">Feature Four</span>
-							</div>
-
-							<div className="flex items-center">
-								<svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-ihs-green" viewBox="0 0 20 20"
-										 fill="currentColor">
-									<path fillRule="evenodd"
-												d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-												clipRule="evenodd"/>
-								</svg>
-
-								<span className="mx-4 text-gray-700">Feature Five</span>
-							</div>
-						</div>
 
 						<form onSubmit={handleCheckout} onFocus={(e) => setPriceId("price_1LrhbqIGWAGjsS3FN6qfb8fW")}>
 							<input type="hidden" name="priceId" id="priceId" value="price_1LrhbqIGWAGjsS3FN6qfb8fW" />
