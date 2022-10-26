@@ -272,7 +272,7 @@ const CoverageScope = () => {
 					<br/>
 
 					<a href="https://firebasestorage.googleapis.com/v0/b/ihs-project.appspot.com/o/documents%2FIHSMD%20-%20Coverage%20Scope%20A.pdf?alt=media&token=e97db995-be6b-43f4-a2bd-94d6ebda5dec"
-						 download="Coverage-Scope (70-85 years)" target="_blank" className="text-ihs-green underline">
+						 download="Coverage-Scope (70-85 years)" target="_blank"  rel="noreferrer" className="text-ihs-green underline">
 						Download Coverage Scope
 					</a>
 				</div>
@@ -480,7 +480,7 @@ const CoverageScope = () => {
 					<br/>
 
 					<a href="https://firebasestorage.googleapis.com/v0/b/ihs-project.appspot.com/o/documents%2FIHSMD%20-%20Coverage%20Scope%20B.pdf?alt=media&token=e38ac0d0-91fc-4a51-bc86-1c0f20e80873"
-						 download="Coverage-Scope (70-85 years)" target="_blank" className="text-ihs-green underline">
+						 download="Coverage-Scope (70-85 years)" target="_blank"  rel="noreferrer" className="text-ihs-green underline">
 						Download Coverage Scope
 					</a>
 				</div>
