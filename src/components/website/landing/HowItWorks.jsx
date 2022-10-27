@@ -8,25 +8,25 @@ const HowItWorks = () => {
 		<div className="bg-gray-50 w-full md:py-32 py-20 md:px-20 px-10">
 			<div className="max-w-[1240] mx-auto">
 				<div className="flex justify-center items-center">
-					<h2 className="md:text-6xl text-4xl font-semibold pb-2 mb-10 text-gray-800  border-b-2 border-b-ihs-blue rounded-lg">
+					<h2 className="md:text-4xl text-2xl font-semibold pb-2 text-gray-800 border-b-2 border-b-ihs-blue rounded-lg">
 						How It Works
 					</h2>
 				</div>
-				<div className="grid md:grid-cols-3 md:gap-5 gap-5 px-2 text-center my-10">
+				<div className="grid md:grid-cols-3 gap-4 text-center my-10 ">
 
-					<div className="border md:py-8 py-6 md:px-8 px-4 rounded-xl shadow-md bg-white">
-						<p className="md:text-4xl text-3xl text-gray-800 py-4 ">Step 1</p>
-						<p className="text-gray-500 md:text-2xl text-xl py-4">Create An Account</p>
+					<div className="bg-white shadow py-5 flex flex-col justify-center items-center">
+						<p className="text-gray-700 text-2xl">Step 1</p>
+						<p className="text-gray-400 font-thin text-lg">Create An Account</p>
 					</div>
 
-					<div className="border md:py-8 py-6 md:px-8 px-4 rounded-xl shadow-md bg-white">
-						<p className="md:text-4xl text-3xl text-gray-800 py-4">Step 2</p>
-						<p className="text-gray-500 md:text-2xl text-xl py-4">Add A Beneficiary</p>
+					<div className="bg-white shadow py-5 flex flex-col justify-center items-center">
+						<p className="text-gray-700 text-2xl">Step 2</p>
+						<p className="text-gray-400 font-thin text-lg">Add A Beneficiary</p>
 					</div>
 
-					<div className="border md:py-8 py-6 md:px-8 px-4 rounded-xl shadow-md bg-white">
-						<p className="md:text-4xl text-3xl text-gray-800 py-4">Step 3</p>
-						<p className="text-gray-500 md:text-2xl text-xl py-4">Book An Appointment</p>
+					<div className="bg-white shadow py-5 flex flex-col justify-center items-center">
+						<p className="text-gray-700 text-2xl">Step 2</p>
+						<p className="text-gray-400 font-thin text-lg">Book An Appointment</p>
 					</div>
 
 				</div>
