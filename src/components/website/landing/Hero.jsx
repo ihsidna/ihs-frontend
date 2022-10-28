@@ -12,7 +12,7 @@ const Hero = () => {
 					<h1 className="lg:text-6xl md:text-4xl text-3xl md:py-2 sm:py-2 py-1 font-semibold text-gray-800">Healthcare</h1>
 					<h1 className="lg:text-6xl md:text-4xl text-3xl md:py-2 sm:py-2 py-1 font-semibold text-gray-800 "> For Loved Ones</h1>
 					<h1 className="lg:text-6xl md:text-4xl text-3xl md:py-2 sm:py-2 py-1 font-semibold text-gray-800">At Home</h1>
-					<button className="lg:text-2xl md:text-xl py-3 px-6 w-[60%] sm:w-[60%] my-4 text-xl shadow-md" onClick={() => { navigate('/signup')}}>Get Started</button>
+					<button className="py-4 px-8 lg:px-20 my-4 text-xl shadow-md" onClick={() => { navigate('/signup')}}>Get Started</button>
 				</div>
 				<div className="w-full px-8 py-8 md:align-middle">
 					<img src={HeroImage} alt="hero" className="rounded-lg shadow-xl "/>
