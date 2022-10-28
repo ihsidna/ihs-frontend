@@ -5,6 +5,7 @@ import ViewAppointment from "./ViewAppointment";
 import ReviewAppointment from "./ReviewAppointment";
 import AppointmentTable from "./AppointmentTable";
 import {Helmet, HelmetProvider} from "react-helmet-async";
+import BookFollowUpAppointment from "./BookFollowUpAppointment";
 
 const Appointment = () => {
 	return (
@@ -13,6 +14,7 @@ const Appointment = () => {
 			<Route path="/bookappointment" element={<BookAppointment />} />
 			<Route path="/viewappointment/:appointmentId" element={<ViewAppointment />} />
 			<Route path="/review/:appointmentId" element={<ReviewAppointment />} />
+			<Route path="/bookfollowup/:beneficiaryId" element={<BookFollowUpAppointment />} />
 		</Routes>
 	);
 }
