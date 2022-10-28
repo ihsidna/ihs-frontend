@@ -7,48 +7,38 @@ const Footer = () => {
 	const navigate = useNavigate();
 
 	return (
-		<div className="w-full border-t-2 border-gray-200">
-			<div className="bg-gray-100 lg:px-32 md:px-8 lg:py-8 md:py-8 py-16">
-				<div className="grid md:grid-cols-4 md:py-1">
-					<div className="lg:py-0 md:py-28 px-8">
-						<img src={Logo} alt="ihs logo" className="w-[70%] sm:w-2/3 lg:w-full"/>
+		<div className="border-t-2 border-gray-200">
+			<div className="bg-gray-100 py-10">
+				<div className="grid md:grid-cols-4 px-4 space-y-10 md:space-y-0">
+					<div className="">
+						<img src={Logo} alt="ihs logo" className="w-44"/>
 					</div>
-					<div className="px-8 mt-4">
-						<ul className="flex flex-col items-start">
-							<li className="uppercase text-xl font-medium text-neutral-600">Next Steps</li>
-							<li>
-								<button className="py-2 px-6 w-full text-lg shadow-2xl" onClick={() =>{
-									navigate("/signup")
-								}}>Get Started</button>
-							</li>
-							<li>
-								<button className="bg-ihs-blue py-2 px-6 w-full text-lg shadow-2xl hover:text-ihs-blue hover:border-ihs-blue" onClick={() =>{navigate("/signin")}}>Sign In</button>
-							</li>
-						</ul>
+
+					<div className="md:ml-4">
+						<p className="capitalize text-xl font-semibold text-slate-600 py-4 md:pt-0">Next Steps</p>
+						<div className="flex flex-col w-44 space-y-2">
+							<button className="p-4 text-lg shadow-md md:w-44" onClick={() =>{navigate("/signup")}}>Get Started</button>
+							<button className="bg-ihs-blue p-4 text-lg shadow-md hover:text-ihs-blue hover:border-ihs-blue" onClick={() =>{navigate("/signin")}}>Sign In</button>
+						</div>
 					</div>
-					<div className="px-8 mt-4">
-						<ul className="flex flex-col items-start">
-							<li className="uppercase text-xl font-medium text-neutral-600">Help & Support</li>
-							<li className="text-lg py-1">
-								<Link to="/contact" className="text-slate-400">Contact Us</Link>
-							</li>
-							<li className="text-lg py-1">
-								<Link to="/faqs" className="text-slate-400">FAQs</Link>
-							</li>
-							<li className="text-lg py-1 text-slate-400"><a href="tel:+1 (613) 491-2197"> +1 (613) 491-2197 </a></li>
-							<li className="text-lg py-1 text-slate-400"><a href="mailto:support@ihsmdinc.com"> support@ihsmdinc.com </a></li>
-						</ul>
+
+					<div className="md:ml-4">
+						<p className="capitalize text-xl font-semibold text-slate-600 py-4 md:pt-0">Help & Support</p>
+						<div className="flex flex-col w-44 space-y-2 text-lg text-slate-400">
+							<p><Link to="/contact" className="text-slate-400">Contact Us</Link></p>
+							<p><Link to="/faqs" className="text-slate-400">FAQs</Link></p>
+							<p><a href="tel:+1 (613) 491-2197"> +1 (613) 491-2197 </a></p>
+							<p><a href="mailto:support@ihsmdinc.com"> support@ihsmdinc.com </a>
+							</p>
+						</div>
 					</div>
-					<div className="px-8 mt-4">
-						<ul className="flex flex-col items-start">
-							<li className="uppercase text-xl font-medium text-neutral-600">Legal</li>
-							<li className="text-lg py-1">
-								<Link to="/terms" className="text-slate-400">Terms of Use</Link>
-							</li>
-							<li className="text-lg py-1">
-								<Link to="/privacy-policy" className="text-slate-400">Privacy Policy</Link>
-							</li>
-						</ul>
+
+					<div className="md:ml-4">
+						<p className="capitalize text-xl font-semibold text-slate-600 py-4 md:pt-0">Legal</p>
+						<div className="flex flex-col w-44 space-y-2 text-lg text-slate-400">
+							<p><Link to="/terms" className="text-slate-400">Terms of Use</Link></p>
+							<p><Link to="/privacy-policy" className="text-slate-400">Privacy Policy</Link></p>
+						</div>
 					</div>
 				</div>
 			</div>
