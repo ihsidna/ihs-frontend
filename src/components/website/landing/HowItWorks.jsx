@@ -34,7 +34,7 @@ const HowItWorks = () => {
 			</div>
 
 			<div className="flex justify-center md:py-10 py-6">
-				<button className="bg-ihs-blue md:py-6 py-4  md:px-6 px-4 md:text-2xl text-xl md:hover:bg-transparent md:hover:text-ihs-blue md:hover:border-ihs-blue md:hover:font-bold hover:bg-transparent hover:text-ihs-blue hover:border-ihs-blue hover:font-bold shadow-md" onClick={() => {
+				<button className="bg-ihs-blue py-4 px-4 md:text-2xl text-xl md:hover:bg-transparent md:hover:text-ihs-blue md:hover:border-ihs-blue md:hover:font-bold hover:bg-transparent hover:text-ihs-blue hover:border-ihs-blue hover:font-bold shadow-md" onClick={() => {
 					navigate('/signup')
 				}}>Create An Account</button>
 			</div>
