@@ -7,6 +7,7 @@ import Navbar from "../components/website/globals/Navbar";
 import Footer from "../components/website/globals/Footer";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import Affiliations from "../components/website/landing/Affiliations";
+import Cookie from "../components/website/globals/Cookie";
 
 const Home = () => {
 	return (
@@ -24,6 +25,7 @@ const Home = () => {
 					<WhyUs />
 					<Affiliations />
 					<Footer />
+					<Cookie />
 				</>
 			</>
 		</HelmetProvider>
