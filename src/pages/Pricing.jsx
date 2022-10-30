@@ -16,8 +16,10 @@ const Pricing = () => {
 								<>
 										<Navbar />
 										<PricingHero />
-										<PricingInfo />
-										<Footer />
+										<div className="lg:mx-20 xl:mx-30">
+											<PricingInfo />
+										</div>
+									<Footer />
 								</>
 						</>
 				</HelmetProvider>

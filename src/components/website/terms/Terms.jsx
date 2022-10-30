@@ -4,7 +4,7 @@ const Terms = () => {
 	return (
 		<div className="md:py-20 pb-20 pt-8">
 			<div className="mx-8 sm:mx-12 lg:mx-24  text-justify">
-				<p className="my-5 uppercase font-semibold text-2xl">IHS Medical Inc. - General Terms of Use</p>
+				<p className="my-5 uppercase font-semibold text-2xl">General Terms of Use</p>
 
 				<ol className="list-decimal">
 					<li>
