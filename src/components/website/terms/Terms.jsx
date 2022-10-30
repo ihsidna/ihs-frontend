@@ -282,8 +282,6 @@ const Terms = () => {
 							IHS may, in its sole discretion, decide to deliver this Agreement and any documents related to this Agreement or any notices required by applicable law by email or any other electronic means. The User hereby consents to (i) conduct business electronically (ii) receive such documents and notices by such electronic delivery and (iii) sign documents electronically and agrees to participate through an on-line or electronic system established and maintained by the Company or a third party designated by the Company.
 						</p>
 					</li>
-
-					<strong>I have carefully read, understand and agree to be absolutely, unconditionally and irrevocably bound by the terms and conditions contained in this Agreement.</strong>
 				</ol>
 
 			</div>
