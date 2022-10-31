@@ -3,8 +3,8 @@ import React from 'react';
 const Unauthorized = () => {
 	return (
 		<>
-			<div className="flex flex-col justify-center items-center py-4 md:py-56 pt-44 pb-20 relative">
-				<p className="md:text-4xl text-2xl text-ihs-green py-2">You are not authorized to access this page</p>
+			<div className="flex justify-center items-center lg:py-60 py-32">
+				<p className="md:text-2xl text-lg text-ihs-green py-2 px-10 text-center">You are not authorized to access this page</p>
 			</div>
 		</>
 	);
