@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import {ChevronLeftIcon, ClipboardCopyIcon} from "@heroicons/react/outline";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import {appointmentStatus} from "../../../data/enums";
@@ -15,14 +15,17 @@ TopBarProgress.config({
 	shadowBlur: 5
 });
 
-const BOOK_APPOINTMENT = "/appointment/create"
+const BOOK_APPOINTMENT = "/appointment/createfollowup"
 
-const BookAppointment = () => {
+const BookFollowUpAppointment = () => {
 	const axiosPrivate = useAxiosPrivate();
 	const navigate = useNavigate();
-	const {beneficiaries, services, setServices} = useAuth();
+	const beneficiary = useParams();
+	const beneficiaryId = beneficiary.beneficiaryId;
+	const {services, setServices} = useAuth();
 
-	const [beneficiary, setBeneficiary] = useState('');
+	const [beneficiaryDetails, setBeneficiaryDetails] = useState({});
+	const [userName, setUserName] = useState('');
 	const [service, setService] = useState('');
 	const [date, setDate] = useState('');
 	const [time, setTime] = useState('');
@@ -41,12 +44,17 @@ const BookAppointment = () => {
 		try {
 
 			// verify beneficiary coverage subscription
-			const exactBeneficiary = beneficiaries.filter((ben) => ben.id === beneficiary);
-
-			if(exactBeneficiary[0]?.subscription?.status === 'active'){
+			if(beneficiaryDetails?.subscription?.status === 'active'){
 				await axiosPrivate.post(BOOK_APPOINTMENT,
 					JSON.stringify({
-						beneficiaryId: beneficiary, serviceId: service, date, time, status: appointmentStatus.Booked}),
+						beneficiaryId: beneficiaryDetails.id,
+						serviceId: service,
+						date,
+						time,
+						status: appointmentStatus.Booked,
+						userId: beneficiaryDetails.userId,
+						userName: userName
+					}),
 					{
 						headers: {
 							'Content-Type': 'application/json',
@@ -55,14 +63,14 @@ const BookAppointment = () => {
 					}
 				);
 
-				setBeneficiary('');
+				setBeneficiaryDetails('');
 				setService('');
 				setDate('');
 				setTime('');
 
 				setLoading(false);
 
-				navigate('/appointments')
+				navigate('/allappointments')
 			}else {
 				clicked();
 			}
@@ -79,9 +87,34 @@ const BookAppointment = () => {
 	}
 
 	const redirectToPricingPage = () => {
-		navigate(`/beneficiaries/updatebeneficiary/${beneficiary}/addhealthcoverage`);
+		navigate(-1);
 	}
 
+	const getBeneficiary = useCallback(async () => {
+		const response = await axiosPrivate.get(`/user/beneficiary/${beneficiaryId}`);
+		setBeneficiaryDetails(response.data.data)
+	}, [beneficiaryId, axiosPrivate])
+
+	useEffect(() => {
+		setLoading(true);
+		getBeneficiary().then(() => {
+			setLoading(false);
+		});
+	}, [getBeneficiary]);
+
+	const getUserName = useCallback(async () => {
+		const response = await axiosPrivate.get(`/user/${beneficiaryDetails.userId}`);
+		setUserName(`${response.data.data.firstName} ${response.data.data.lastName}`)
+	}, [beneficiaryDetails.userId, axiosPrivate])
+
+	useEffect(() => {
+		setLoading(true);
+		getUserName().then(() => {
+			setLoading(false);
+		});
+	}, [getUserName]);
+
+	// get services
 	useEffect(() => {
 		setLoading(true)
 		let isMounted = true;
@@ -121,8 +154,8 @@ const BookAppointment = () => {
 				</Helmet>
 				<div className="lg:p-20 md:p-10 p-3">
 					{loading && <TopBarProgress />}
-					<button className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 md:mb-20 md:mt-0 my-8" onClick={() => navigate("/appointments")}>
-						<ChevronLeftIcon className="w-6" /> <p className="text-lg px-5">Back to Appointments</p>
+					<button className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 md:mb-20 md:mt-0 my-8" onClick={() => navigate("/allappointments")}>
+						<ChevronLeftIcon className="w-6" /> <p className="text-lg px-5">Back to All Appointments</p>
 					</button>
 					<div className="flex md:justify-start justify-center md:items-start items-center">
 						<div className="md:flex-1">
@@ -130,7 +163,7 @@ const BookAppointment = () => {
 							<div className="flex justify-between items-center h-24 bg-ihs-green-shade-50 rounded-md shadow-sm text-gray-600">
 								<div className="flex">
 									<ClipboardCopyIcon className="md:w-14 w-8 md:ml-10 ml-3" />
-									<h3 className="md:text-3xl text-2xl py-8 md:px-8 px-2">Book Appointment</h3>
+									<h3 className="md:text-3xl text-2xl py-8 md:px-8 px-2">Book Follow Up Appointment</h3>
 								</div>
 							</div>
 
@@ -152,23 +185,10 @@ const BookAppointment = () => {
 												id="beneficiary"
 												required
 												aria-required="true"
-												value={beneficiary}
-												onChange={(e) => setBeneficiary(e.target.value)}
+												value={beneficiaryId}
+												disabled
 												className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 w-96">
-												<option value="">Select Beneficiary</option>
-												{beneficiaries?.length
-													?
-													beneficiaries.map((beneficiary, index) => (
-														<option
-															key={index}
-															value={beneficiary?.id}
-														>
-															{beneficiary?.firstName} {beneficiary?.lastName}
-														</option>
-													))
-													:
-													<option value="">You have no beneficiaries</option>
-												}
+												<option value={beneficiaryId}>{beneficiaryDetails.firstName} {beneficiaryDetails.lastName}</option>
 											</select>
 										</div>
 									</div>
@@ -272,10 +292,10 @@ const BookAppointment = () => {
 						</div>
 					</div>
 				</div>
-				{toggleModal && <Modal setToggleModal={setToggleModal} executeFunction={redirectToPricingPage} message="Add a health Coverage to beneficiary?" header={"Beneficiary has no health coverage"} /> }
+				{toggleModal && <Modal setToggleModal={setToggleModal} executeFunction={redirectToPricingPage} message="Go Back?" header={"Beneficiary has no health coverage"} /> }
 			</>
 		</HelmetProvider>
 	);
 };
 
-export default BookAppointment;
+export default BookFollowUpAppointment;

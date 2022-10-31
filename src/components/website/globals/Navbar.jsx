@@ -17,7 +17,7 @@ const Navbar = () => {
 
 				<div className="flex items-center">
 					<Link to="/" onClick={() => {return scrollToTop}}>
-						<img src={Logo} alt="ihs-logo" className="ml-0 w-1/2 sm:w-3/5 md:w-[50%]"/>
+						<img src={Logo} alt="ihs-logo" className="w-44"/>
 					</Link>
 				</div>
 
@@ -33,6 +33,9 @@ const Navbar = () => {
 						</li>
 						<li>
 							<Link to="/services" className="text-gray-800 hover:text-gray-900" onClick={() => {return scrollToTop}}>Services</Link>
+						</li>
+							<li>
+							<Link to="/pricing" className="text-gray-800 hover:text-gray-900" onClick={() => {return scrollToTop}}>Pricing</Link>
 						</li>
 						<li>
 							<Link to="/contact" className="text-gray-800 hover:text-gray-900" onClick={() => {return scrollToTop}}>Contact</Link>
@@ -82,6 +85,11 @@ const Navbar = () => {
 				<li className="border-b-2 border-zinc-200 w-full" onClick={handleNav}>
 					<Link to="/services">
 						<div onClick={() => {return scrollToTop}}>Services</div>
+					</Link>
+				</li>
+					<li className="border-b-2 border-zinc-200 w-full" onClick={handleNav}>
+					<Link to="/pricing">
+						<div onClick={() => {return scrollToTop}}>Pricing</div>
 					</Link>
 				</li>
 				<li className="border-b-2 border-zinc-200 w-full" onClick={handleNav}>

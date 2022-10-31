@@ -2,128 +2,287 @@ import React from 'react';
 
 const Terms = () => {
 	return (
-		<div className="md:py-40 pb-20 pt-8">
-			<div className="md:mx-52 mx-8 text-gray-600 md:text-2xl text-lg leading-relaxed">
-				<p className="my-5 uppercase font-semibold">TERMS OF USE</p>
+		<div className="md:py-20 pb-20 pt-8">
+			<div className="mx-8 sm:mx-12 lg:mx-24  text-justify">
+				<p className="my-5 uppercase font-semibold text-2xl">General Terms of Use</p>
 
-				<p className="my-5 uppercase font-semibold">1. Introduction</p>
+				<ol className="list-decimal">
+					<li>
+						<p className="uppercase font-bold">Applicability</p>
 
-				<p className="my-5">This website is operated by IHS Medical Inc. (IHS). The terms “we”, “us”, and “our” refer to IHS.
-					The use of our website is subject to the following terms and conditions of use, as amended
-					from time to time (the “Terms”). The Terms are to be read together by you with any terms,
-					conditions or disclaimers provided in the pages of our website. Please review the Terms
-					carefully. The Terms apply to all users of our website, including without limitation, users who
-					are browsers, customers, merchants, vendors and/or contributors of content. If you access and
-					use this website, you accept and agree to be bound by and comply with the Terms and our
-					Privacy Policy. If you do not agree to the Terms or our Privacy Policy, you are not authorized to
-					access our website, use any of our products or complete service requests on any of our
-					provided platforms.</p>
+						<ol className="list-disc text-gray-500 font-thin">
+							<li>
+								These general terms of use (the “Terms”) are the only terms that govern the provision of services
+								by IHS Medical Inc. (hereinafter “IHS”), a federal corporation with its principal place of business at 3731 Carp Rd., Ottawa ON, K0A 1L0, to individuals who wish to retain IHS for accessing, coordinating, managing, and monitoring cross-border healthcare services ("Users") for consenting relatives ("Beneficiaries") by regulated providers in Nigeria, together hereinafter the parties, (each a "Party" and collectively the "Parties").
+							</li>
+							<li>
+								IHS has agreed to provide the logistical services on the Terms provided herein.
+							</li>
+							<li>
+								By signing up for an IHS account (the “IHS Account”), the User is agreeing to be bound by the following Terms.
+							</li>
+						<li>
+							These Terms (collectively, this "Agreement") comprise the entire agreement between the parties, and supersede all prior or contemporaneous understandings, agreements, negotiations, representations and warranties, and communications, both written and oral.
+						</li>
+							<li>
+								These Terms prevail over any of User's general terms and conditions regardless of whether or when User has submitted its request for proposal, order, or such terms. Provision of services to the User does not constitute acceptance of any of the User's terms and conditions and does not serve to modify or amend these Terms.						</li>
+						</ol>
+					</li>
 
-				<p className="my-5 uppercase font-semibold">2. Use of our Website</p>
+					<li className="my-2">
+						<p className="uppercase font-bold">Term</p>
 
-				<p className="my-5">You agree to use our website and its auxiliary product(s) for legitimate purposes and not for
-					any illegal or unauthorized purpose, including without limitation, in violation of any intellectual
-					property or privacy law. By agreeing to the Terms, you represent and warrant that you are at
-					least the age of majority in your state, province or country of residence and are legally capable
-					of entering into a binding contract.
-					You agree to not use our website to conduct any activity that would constitute a civil or criminal
-					offence or violate any law. You agree not to attempt to interfere with our website’s network or
-					security features or to gain unauthorized access to our systems.
-					You agree to provide us with accurate personal information, such as your email address, mailing
-					address and other contact details in order to complete registration or contact you as needed.
-					You agree to promptly update your account and information. You authorize us to collect and
-					use this information to contact you in accordance with our Privacy Policy.</p>
+						<p className="text-gray-500 font-thin mb-1">
+							This Agreement shall commence on the date of registration and continue to the date of termination or expiration of the final subscription term.
+						</p>
+					</li>
 
-				<p className="my-5 uppercase font-semibold">3. General Conditions</p>
+					<li className="my-2">
+						<p className="uppercase font-bold">Service</p>
 
-				<p className="my-5">We reserve the right to refuse service to anyone, at any time, for any reason. We reserve the
-					right to make any modifications to the website, including terminating, changing, suspending, or
-					discontinuing any aspect of the website at any time, without notice. We may impose additional
-					rules or limits on the use of our website. You agree to review the Terms regularly and your
-					continued access or use of our website will mean that you agree to any changes.
-					You agree that we will not be liable to you or any third party for any modification, suspension,
-					or discontinuance of our website or for any service, content, feature, or product offered
-					through our website.</p>
+						<p className="text-gray-500 font-thin mb-1">
+							IHS provides access to a secure information management platform (the “IHS Application”) on a subscription basis for Users to coordinate, manage, and monitor cross-border healthcare services for consenting Beneficiaries by regulated providers within Nigeria (the “Services”). IHS grants the Users a non-exclusive, non-transferable, worldwide right to access and use the IHS Application and Services during the Term, solely for the Users’ personal, household and family purposes. Any new features or tools which are added to the current Services shall also be subject to this Agreement. IHS reserves all other rights.
+						</p>
+					</li>
 
-				<p className="my-5 uppercase font-semibold">4. Products or Services</p>
+					<li className="my-2">
+						<p className="uppercase font-bold mb-1">Declaration</p>
 
-				<p className="my-5">All purchases and registration through our website are subject to product or service availability.
-					We may, in our sole discretion, limit items offered on our website or limit the sale of our
-					products or services to any person, household, geographic region or jurisdiction.
-					Prices for our products and services are subject to change, without notice. Unless otherwise
-					indicated, prices displayed on our website are quoted in Canadian Dollars (CAD), European
-					Euros (EUR), Great Britain Pounds (GBP), and United States Dollars (USD), contingent on user
-					location.</p>
+						<p className="text-gray-500 font-thin">
+							The Users acknowledge that their enrollment and subscription is purely voluntary and is in no way mandated by IHS. The Users understand and affirm that IHS is not a hospital, rather a logistical firm that leverages technology in accessing, coordinating, managing, and monitoring cross-border healthcare Services.
+						</p>
+					</li>
 
-				<p className="my-5">We reserve the right, in our sole discretion, to refuse service, including without limitation,
-					service that appear to be requested by distributors or resellers. If we believe that you have
-					made a false or fraudulent service request, we will be entitled to cancel the request and inform
-					the relevant authorities.
-					We do not guarantee the accuracy of the colour, description, or design of items on our website.
-					We have made efforts to ensure the colour, description and design of items are displayed as
-					accurately as possible on our website.</p>
+					<li className="my-2">
+						<p className="uppercase font-bold mb-1">IHS Account</p>
 
-				<p className="my-5 uppercase font-semibold">5. Links to Third-Party Websites</p>
+						<p className="text-gray-500 font-thin">
+								IHS shall enable the IHS Account for the User to access the Services. IHS shall allow the Users create usernames and passwords for the IHS Account. The User must register for an IHS Account by providing a legal name, email address, phone number, Beneficiary details, and any other information required by IHS. IHS may, in its sole and absolute discretion, reject any application for an Account for any reason, and IHS reserves the right to refuse service to anyone for any reason at any time. The User shall maintain the confidentiality of all usernames, passwords, and account information under their internal control.
+								The User agrees to provide IHS with accurate personal information, such as the email address, mailing address and other contact details in order to complete registration or contact the User as needed. The User agrees to promptly update the IHS Account and information. The User authorizes IHS to collect and use this information to contact them in accordance with IHS Privacy Policy.
+						</p>
+					</li>
 
-				<p className="my-5">Links from or to websites outside our website are meant for convenience only. We do not
-					review, endorse, approve, or control, and are not responsible for any sites linked from or to our
-					website, the content of those sites, the third parties named therein, or their products and
-					services. Linking to any other site is at your sole risk and we will not be responsible or liable for
-					any damages in connection with linking. Links to downloadable software sites are for
-					convenience only and we are not responsible or liable for any difficulties or consequences
-					associated with downloading the software. Use of any downloaded software is governed by the
-					terms of the license agreement, if any, which accompanies or is provided with the software.</p>
+					<li className="my-2">
+						<p className="uppercase font-bold mb-1">Use of IHS website and account</p>
 
-				<p className="my-5 uppercase font-semibold">6. Use Comments, Feedback, and Other Submissions</p>
+						<p className="text-gray-500 font-thin">
+							The User agrees to use the IHS website and its auxiliary product(s) for legitimate purposes and not for any illegal or unauthorized purpose, including without limitation, in violation of any intellectual property or
+							privacy law. By accepting this Agreement, the User represents and warrants that they are at least the age of majority in the province/state of residence and are legally capable of entering into a binding contract.
+							The User agrees to not use the IHS website and IHS account to conduct any activity that would constitute a civil or criminal offence or violate any law. The User agrees not to attempt to interfere with the IHS website’s network or security features or to gain unauthorized access to IHS systems.
+						</p>
+					</li>
 
-				<p className="my-5">You acknowledge that you are responsible for the information, profiles, opinions, messages,
-					comments, and any other content (collectively, the “Content”) that you post, distribute, or
-					share on or through our website or services available in connection with our website. You
-					further acknowledge that you have full responsibility for the Content, including but limited to,
-					with respect to its legality, and its trademark, copyright, and other intellectual property
-					ownership.
-					You agree that any Content submitted by you in response to a request by us for a specific
-					submission may be edited, adapted, modified, recreated, published, or distributed by us. You
-					further agree that we are under no obligation to maintain any Content in confidence, to pay
-					compensation for any Content or to respond to any Content.
-					You agree that you will not post, distribute, or share any Content on our website that is
-					protected by copyright, trademark, patent, or any other proprietary right without the express
-					consent of the owner of such proprietary right. You further agree that your Content will not be
-					unlawful, abusive, or obscene nor will it contain any malware or computer virus that could
-					affect our website’s operations. You will be solely liable for any Content that you make and its
-					accuracy. We have no responsibility and assume no liability for any Content posted by you or
-					any third-party.
+					<li className="my-2">
+						<p className="uppercase font-bold">Use of the Service</p>
 
-					We reserve the right to terminate your ability to post on our website and to remove and/or
-					delete any Content that we deem objectionable. You consent to such removal and/or deletion
-					and waive any claim against us for the removal and/or deletion of your Content.</p>
+						<ol className="list-disc text-gray-500 font-thin">
+							<li>
+								<b>IHS Responsibilities.</b> IHS shall: (i) communicate with the regulated healthcare providers in Nigeria;
+								(ii) collect the health-related information regarding the User’s Beneficiaries in Nigeria; (iii) coordinate, manage, and monitor cross-border healthcare services for the Beneficiaries in Nigeria and translate back to Users abroad; (iv) maintain integrity of the Services; (v) provide technical support services to the User, at no additional charge; (vi) use commercially reasonable efforts to make the Services available 24 hours a day, 7 days a week.
+							</li>
+							<li>
+								<b>User Responsibilities.</b> The User shall: (i) have sole responsibility for the accuracy, reliability, and appropriateness of all collected information under the IHS Account; (ii) use reasonable efforts to prevent unauthorized access to, or use of, the Services, IHS Account and notify IHS promptly of any such unauthorized access or use of the Services or IHS account.							</li>
+						</ol>
+					</li>
 
-				<p className="my-5 uppercase font-semibold">7. Your Personal Information</p>
+					<li className="my-2">
+						<p className="uppercase font-bold mb-1">Location</p>
 
-				<p className="my-5">Please see our Privacy Policy to learn about how we collect, use, and share your personal
-					information.</p>
+						<p className="text-gray-500 font-thin">
+							The User understands and acknowledges that Services will be provided virtually through the IHS Application.
+						</p>
+					</li>
 
-				<p className="my-5 uppercase font-semibold">8. Errors and Omissions</p>
+					<li className="my-2">
+						<p className="uppercase font-bold">Fees</p>
 
-				<p className="my-5">Please note that our website may contain typographical errors or inaccuracies and may not be
-					complete or current. We reserve the right to correct any errors, inaccuracies, or omissions and
-					to change or update information at any time, without prior notice (including after a service
-					request has been submitted). Such errors, inaccuracies or omissions may relate to product
-					description, pricing, promotion and availability and we reserve the right to cancel or refuse any
-					service request based on incorrect pricing or availability information, to the extent permitted by
-					applicable law.
-					We do not undertake to update, modify, or clarify information on our website, except as
-					required by law.</p>
+						<ol className="list-disc text-gray-500 font-thin">
+							<li>
+								The fee for the Services is $1,200 USD including all applicable taxes when paid in full (the “Fees”).
+								Fees for the Services include the annual health insurance for applicable secondary care (the “HMO Coverage”).
+							</li>
+							<li>
+								The User may choose to pay the Fees in twelve equal monthly installments of $100 USD, including all applicable taxes, or the twenty-four equal bi-weekly installments of $50 USD, including all applicable taxes. The first installment will be due when the User activates the account on the IHS Application.
+							</li>
+							<li>
+								Where a payment installment is late, the access to the account on the IHS Application will be paused until all outstanding amounts owing have been received by IHS.							</li>
+							<li>
+								All Fees are non-refundable. The User agrees that IHS may charge any credit card they have on file to collect any outstanding payments.							</li>
+						</ol>
+					</li>
 
-				<p className="my-5 uppercase font-semibold">9. Consent and Understanding</p>
+					<li className="my-2">
+						<p className="uppercase font-bold">Payment Processing</p>
 
-				<p className="my-5">By accessing and using this website, auxiliary product(s) and other IHS related services, you
-					understand and affirm that:
-					(a) IHS is not a Hospital, rather a Logistical Firm that leverages Technology in accessing,
-					coordinating, managing, and monitoring cross-border Healthcare Services for consenting
-					beneficiaries by regulated providers within their respective jurisdictions.
-					(b) The sharing, transfer, and use of provided data with, to and/or by Healthcare Providers,
-					Health Maintenance Organizations, Legal Partners, and Corporate Affiliates is duly authorized.</p>
+						<ol className="list-disc text-gray-500 font-thin">
+							<li>
+								To the extent that payment is made in relation to any Services, the Users acknowledge that such payments are being made by them to the third-party payment processor of choice, including Stripe, Inc. (“Stripe”).
+							</li>
+							<li>
+								In making payments to Stripe, Users irrevocably agree to be bound by any and all applicable terms, conditions and policies as provided by Stripe and which can be found on their website at www.stripe.com, as the case may be.
+							</li>
+							<li>
+								In making such payments to Stripe, Users irrevocably agree to contract solely with Stripe and acknowledge that any issues that might arise related to the processing of such payment is strictly between each User and Stripe and that IHS does not in any way form part such issues or of each User’s agreement with Stripe.
+								All Fees are non-refundable. The User agrees that IHS may charge any credit card they have on file to collect any outstanding payments.
+							</li>
+						</ol>
+					</li>
+
+					<li className="my-2">
+						<p className="uppercase font-bold mb-1">Intellectual Property</p>
+
+						<p className="text-gray-500 font-thin">
+							Nothing in this Agreement will function to transfer any of IHS intellectual property rights to the User. All IHS website content, any and all produced codebase, software, technologies related thereto, including any and all algorithms or processes developed by IHS and all derivatives, modifications, or improvements of or to any of the foregoing made by or for IHS, whether or not created or developed in connection with the Services, are copyrighted materials and are solely for the use of the User during the Term of the Agreement and are not to be copied, distributed, or shared with any third party under any circumstances.
+						</p>
+					</li>
+
+					<li className="my-2">
+						<p className="uppercase font-bold mb-1">Disclosure and Confidentiality</p>
+
+						<p className="text-gray-500 font-thin">
+							IHS agrees to keep the Users’ personal information, the beneficiaries’ personal information and applicable assessments confidential and not to disclose the contents of the assessment to anyone, unless required by law, or otherwise approved or requested by the User in writing. Users agree to authorize IHS, as provider of the Services and all related assessments, to disclose and review the personal information and any applicable assessments to Users’ approved health care professionals as needed. The User agrees to indemnify and hold IHS and affiliates, employees, agents, representatives, successors, and assigns harmless from any liability, loss, cost, or expense that Users or their beneficiaries may incur attributable to any failure or omission of any assessment undertaken during the Term of this Agreement.						</p>
+					</li>
+
+					<li className="my-2">
+						<p className="uppercase font-bold mb-1">Privacy & Security</p>
+
+						<p className="text-gray-500 font-thin">
+							User privacy is a top priority at IHS. IHS collects and safeguards Beneficiaries’ personal health information under the authority of the Health Insurance Portability and Accountability Act, 1996 (HIPAA), and the Personal Information Protection Act, 2003 (PIPA). All IHS’ employees and contractors sign a confidentiality agreement and are educated on protecting User privacy and compliance with Ontario’s privacy legislation. In addition, strict security and audit controls are in place to ensure the User’s information is viewed only when required.
+							<br /><br/>
+							<strong>If You would like to know more about how your personal health information is handled and shared, please call +1 613 491 2197 and ask to speak to the Chief Regulatory Officer.</strong>
+						</p>
+					</li>
+
+					<li className="my-2">
+						<p className="uppercase font-bold mb-1">Media Release</p>
+
+						<p className="text-gray-500 font-thin">
+							Users hereby grant IHS permission to use willingly provided testimonials. These testimonials may be used on all social media sites such as but not limited to Facebook, Twitter, Google and Instagram, as well for the promotion and marketing of IHS-related Services. Promotion will include websites, publications and any media coverage. User acknowledges that they will not seek any compensation, financial or otherwise from the use of these testimonials through IHS.
+							<br /><br/>
+							By accepting the Terms, the User expressly AGREE to having their testimonials taken and used as described above. This authorization is ongoing and can only be withdrawn by the User in writing.
+
+						</p>
+					</li>
+
+					<li className="my-2">
+						<p className="uppercase font-bold">Warranties</p>
+
+						<ol className="list-disc text-gray-500 font-thin">
+							<li>
+								Mutual Warranties. Each Party represents and warrants to the other Party that (i) it has the
+								authority to enter into this Agreement and perform its obligations hereunder; (ii) the Agreement
+								does not conflict with any other agreement entered into by it; and (iii) it does not conduct business for any unlawful purpose.
+							</li>
+							<li>
+								User Warranties. The User represents and warrants that for any personal information controlled by the User or its’ beneficiaries and affiliated with the IHS Account, or any other sensitive personal information, as applicable, has obtained the necessary consent or legal right to provide or transmit such data.							</li>
+							<li>
+								IHS Warranties. IHS represents and warrants that (i) it will provide the Services using personnel of required skill, experience, and qualifications and in a professional and workmanlike manner in accordance with generally recognized industry standards for similar services and shall devote adequate resources to meet its obligations under this Agreement; (ii) IHS shall not be liable for a breach of the warranty set forth in Section 14(c) unless the User gives written notice of the defective Services, reasonably described, to IHS within Seven (7) days of the time when the User discovers or ought to have discovered that the Services were defective; (iii) IHS owns or otherwise has sufficient rights in the Services to grant to the User the rights to use the Services granted herein; and (iii) the Services do not infringe any intellectual property rights of any third party.
+							</li>
+						</ol>
+					</li>
+
+					<li className="my-2">
+						<p className="uppercase font-bold">Limitations of liability</p>
+
+						<ol className="list-disc text-gray-500 font-thin">
+							<li>
+								IN NO EVENT SHALL IHS BE LIABLE TO THE USER OR TO ANY THIRD PARTY FOR ANY LOSS OF USE, REVENUE, OR PROFIT OR LOSS OF DATA OR DIMINUTION IN VALUE, OR FOR ANY CONSEQUENTIAL, INCIDENTAL, INDIRECT, EXEMPLARY, SPECIAL, AGGRAVATED, OR PUNITIVE DAMAGES WHETHER ARISING OUT OF BREACH OF CONTRACT, TORT (INCLUDING NEGLIGENCE), OR OTHERWISE, REGARDLESS OF WHETHER SUCH DAMAGE WAS FORESEEABLE AND WHETHER OR NOT SUCH PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES, AND NOTWITHSTANDING THE FAILURE OF ANY AGREED OR OTHER REMEDY OF ITS ESSENTIAL PURPOSE.
+							</li>
+							<li>
+								IN NO EVENT SHALL IHS AGGREGATE LIABILITY ARISING OUT OF OR RELATED TO THIS AGREEMENT, WHETHER ARISING OUT OF OR RELATED TO BREACH OF CONTRACT, TORT (INCLUDING NEGLIGENCE), OR OTHERWISE, EXCEED THE TOTAL AGGREGATE AMOUNTS PAID OR PAYABLE TO IHS PURSUANT TO THIS AGREEMENT IN THE TWELVE (12) MONTH PERIOD PRECEDING THE EVENT GIVING RISE TO THE CLAIM.
+							</li>
+						</ol>
+					</li>
+
+					<li className="my-2">
+						<p className="uppercase font-bold">Termination</p>
+
+						<ol className="list-disc text-gray-500 font-thin">
+							<li>
+								Either Party may terminate this Agreement for any reason at any time with 14 days’ written notice.
+							</li>
+							<li>
+								The User understands and acknowledges that the Services’ fees are non-refundable and non- transferable without exception.
+							</li>
+						</ol>
+					</li>
+
+					<li className="my-2">
+						<p className="uppercase font-bold mb-1">Notices</p>
+
+						<p className="text-gray-500 font-thin">
+							Any notice or other communication to be given in connection with this Agreement shall be delivered by e-mail to the e-mail address provided by the User at the time of registration to the Services. It is the User’s responsibility to keep IHS apprised of any changes to respective email address(es). All notices or other communications shall be deemed received at the time they are sent by IHS.
+						</p>
+					</li>
+
+					<li className="my-2">
+						<p className="uppercase font-bold mb-1">Force Majeure</p>
+
+						<p className="text-gray-500 font-thin">
+							No Party shall be liable or responsible to the other Party, nor be deemed to have defaulted under or breached this Agreement, for any failure or delay in fulfilling or performing any term of this Agreement except for any obligations to make payments to the other Party, when and to the extent such failure or delay is caused by or results from acts beyond the impacted Party's ("Impacted Party") reasonable control, including, without limitation, the following force majeure events ("Force Majeure Event(s)"): (a) acts of God; (b) flood, fire, earthquake, tsunami, epidemics, pandemics, including the 2019 novel coronavirus pandemic (COVID-19), OTHER POTENTIAL DISASTER(S) OR CATASTROPHE(S), or explosion; (c) war, invasion, hostilities (whether war is declared or not), terrorist threats or acts, riot, or other civil unrest; (d) government order or law; (e) actions, embargoes, or blockades in effect on or after the date of this Agreement; (f) action by any governmental authority; and (g) national or regional emergency; and (j) other similar events beyond the reasonable control of the Impacted Party.						</p>
+					</li>
+
+					<li className="my-2">
+						<p className="uppercase font-bold mb-1">Compliance with Law</p>
+
+						<p className="text-gray-500 font-thin">
+							Both parties shall maintain knowledge of and comply with all applicable federal, provincial and municipal laws, rules, and regulations, and shall not knowingly participate or assist in any violation of such laws, rules, or regulations.
+						</p>
+					</li>
+
+					<li className="my-2">
+						<p className="uppercase font-bold mb-1">Compliance with Law</p>
+
+						<p className="text-gray-500 font-thin">
+							Both parties shall maintain knowledge of and comply with all applicable federal, provincial and municipal laws, rules, and regulations, and shall not knowingly participate or assist in any violation of such laws, rules, or regulations.
+						</p>
+					</li>
+
+					<li className="my-2">
+						<p className="uppercase font-bold mb-1">Entire Agreement</p>
+
+						<p className="text-gray-500 font-thin">
+							This Agreement constitutes the entire agreement between the parties hereto with respect to the subject matter hereof and cancels and supersedes any prior understandings and agreements between the parties hereto with respect thereto. There are no representations, warranties, terms, conditions, or undertakings, express, implied or statutory, between the parties other than as expressly set forth in this Agreement.
+						</p>
+					</li>
+
+					<li className="my-2">
+						<p className="uppercase font-bold mb-1">Governing Law</p>
+
+						<p className="text-gray-500 font-thin">
+							This Agreement shall be governed by and construed in accordance with the laws of the Province of Ontario and the federal laws of Canada applicable therein.
+						</p>
+					</li>
+
+					<li className="my-2">
+						<p className="uppercase font-bold">Arbitration</p>
+
+						<ol className="list-disc text-gray-500 font-thin">
+							<li>
+								If any dispute occurs between the parties relating to the application, interpretation, implementation or validity of this Agreement, the parties agree to seek to resolve the dispute or controversy through mediation with the Canadian Arbitration Association before pursuing any other proceedings. Nothing herein shall preclude any Party from seeking injunctive relief in the event that a Party perceives that without such injunctive relief, serious harm may be done to the Party. Any Party to the dispute may serve notice on the other Party of its desire to resolve a particular dispute by mediation. The mediator shall be appointed by agreement between the Parties or, if the Parties cannot agree within five (5) days after receipt of the notice of intention to mediate, the mediator will be appointed by the Canadian Arbitration Association. The mediation will be held at Ottawa, ON. The Parties agree to attempt to resolve their dispute at mediation. The costs of the mediator shall be shared equally by the Parties. If the dispute has not been resolved within thirty (30) days of the notice of desire to mediate, any Party may terminate the mediation and proceed to arbitration as set out below.							</li>
+							<li>
+								Subject to the mediation provisions set out above, if any dispute or controversy occurs between the Parties relating to the interpretation or implementation of any of the provisions of this Agreement, the dispute will be resolved by arbitration at Canadian Arbitration Association pursuant to the general Canadian Arbitration Association Rules for Arbitration. Any Party may serve notice of its desire to refer a dispute to arbitration. The arbitration shall be conducted by a
+								single arbitrator. The arbitration shall be held in Ottawa, ON. The arbitration shall proceed in accordance with the provisions of the Arbitration Act (ON). The decision arrived at by the arbitrator shall be final and binding and no appeal shall lie therefrom. Judgement upon the award rendered by the arbitrator may be entered in any court having jurisdiction. The costs of the arbitrator shall be divided equally between the Parties.
+							</li>
+						</ol>
+					</li>
+
+					<li className="my-2">
+						<p className="uppercase font-bold mb-1">Counterparts</p>
+
+						<p className="text-gray-500 font-thin">
+							This Agreement may be executed in any number of counterparts, each of which when so executed and delivered shall be deemed an original, and all of which together shall constitute one and the same agreement. Execution of a facsimile copy will have the same force and effect as execution of an original, and a facsimile signature will be deemed an original and valid signature.
+						</p>
+					</li>
+
+					<li className="my-2">
+						<p className="uppercase font-bold mb-1">Electronic Delivery</p>
+
+						<p className="text-gray-500 font-thin">
+							IHS may, in its sole discretion, decide to deliver this Agreement and any documents related to this Agreement or any notices required by applicable law by email or any other electronic means. The User hereby consents to (i) conduct business electronically (ii) receive such documents and notices by such electronic delivery and (iii) sign documents electronically and agrees to participate through an on-line or electronic system established and maintained by the Company or a third party designated by the Company.
+						</p>
+					</li>
+				</ol>
 
 			</div>
 		</div>

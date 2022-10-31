@@ -8,10 +8,10 @@ const FaqHero = () => {
 				<img src={FaqHeroImage} alt="" className="w-full h-full object-cover mix-blend-overlay"/>
 			</div>
 
-			<div className="flex flex-col justify-center items-center relative text-white max-w-[1240px] mx-auto md:py-48 py-20">
+			<div className="flex flex-col justify-center items-center relative text-white max-w-[1240px] mx-auto sm:py-32 py-20">
 				<div className="px-4">
 					<h2 className="md:text-3xl text-xl text-slate-300 uppercase text-center">FAQs</h2>
-					<h3 className="md:text-5xl text-2xl font-semibold py-6 text-center">Frequently Asked Questions.</h3>
+					<h3 className="md:text-5xl font-semibold py-6 text-center">Frequently Asked Questions.</h3>
 				</div>
 			</div>
 		</div>
