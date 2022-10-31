@@ -50,7 +50,7 @@ export default function AppointmentDropdown({appointmentDetails}) {
 								<hr />
 							</>
 						)}
-						{auth?.userType === userRoles.Admin && (
+					{auth?.userType === userRoles.Admin && (
 							<>
 								<Menu.Item>
 									{({active}) => (
