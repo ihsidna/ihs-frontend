@@ -23,16 +23,16 @@ const Services = () => {
 					{/*<p className="flex justify-center md:text-3xl text-2xl py-3 lg:px-32 md:px-16 text-slate-300">We offer adults of all ages the expert care and support they need to live independently at home.</p>*/}
 				</div>
 
-				<div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 md:gap-x-8 gap-y-16 px-4 pt-12 sm:pt-20 text-gray-800 md:mx-10 lg:mx-12">
+				<div className=" grid grid-cols-1 md:grid-cols-2 md:gap-x-8 gap-y-16 px-4 pt-12 sm:pt-20 text-gray-800 md:mx-10 lg:mx-12">
 
 					<div className="shadow-md">
 						<div>
 							<img src={PrimaryCareImage} alt="Primary Care" className="rounded-t-lg shadow-md" />
 						</div>
 						<div className="bg-white md:py-14 py-10 -mt-1">
-							<div className="flex space-x-4 mx-4">
-								<HeartIcon className="md:w-12 w-12 md:p-2 p-2.5 bg-ihs-green text-white rounded-md"/>
-								<p className="font-normal text-2xl md:text-4xl my-2">Primary Care</p>
+							<div className="grid grid-cols-6 lg:flex mx-2">
+								<HeartIcon className="w-12 p-2.5 bg-ihs-green text-white rounded-md col-span-1"/>
+								<p className="font-semibold text-2xl md:text-3xl m-2 col-span-5">Primary Care</p>
 							</div>
 						</div>
 						<div className="bg-slate-100 pl-8 py-4 md:inset-x-0 md:bottom-0 cursor-pointer -mt-1" onClick={() => { navigate("services")}}>
@@ -44,9 +44,9 @@ const Services = () => {
 							<img src={SecondaryCareImage} alt="Secondary Care" className="rounded-t-lg shadow-md" />
 						</div>
 						<div className="bg-white md:py-14 py-10 -mt-1">
-							<div className="flex space-x-4 mx-4">
-								<ShieldExclamationIcon className="md:w-12 w-12 md:p-2 p-2.5 bg-ihs-green text-white rounded-md"/>
-								<p className="font-normal text-2xl md:text-4xl my-2">Secondary Care</p>
+							<div className="grid grid-cols-6 lg:flex mx-2">
+								<ShieldExclamationIcon className="w-12 p-2.5 bg-ihs-green text-white rounded-md col-span-1"/>
+								<p className="font-semibold text-2xl md:text-3xl my-2 ml-2 col-span-5">Secondary Care</p>
 							</div>
 						</div>
 						<div className="bg-slate-100 pl-8 py-4 md:inset-x-0 md:bottom-0 cursor-pointer -mt-1" onClick={() => { navigate("services")}}>

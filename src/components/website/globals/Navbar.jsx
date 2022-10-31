@@ -17,7 +17,7 @@ const Navbar = () => {
 
 				<div className="flex items-center">
 					<Link to="/" onClick={() => {return scrollToTop}}>
-						<img src={Logo} alt="ihs-logo" className="ml-0 w-1/2 sm:w-3/5 md:w-[50%]"/>
+						<img src={Logo} alt="ihs-logo" className="w-44"/>
 					</Link>
 				</div>
 

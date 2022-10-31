@@ -2,10 +2,10 @@ import React, {useState} from 'react';
 import {Link, NavLink, Outlet, useNavigate} from "react-router-dom";
 import Logo from "../../assets/images/logo.svg";
 import {LogoutIcon, MenuIcon, XIcon} from "@heroicons/react/outline";
-import {footerLinks, userLinks, adminLinks} from "../../data/data";
+import {footerLinks, userLinks, adminLinks, employeeLinks} from "../../data/data";
 import useAuth from "../../hooks/useAuth";
 import axios from "../../api/axios";
-import {avatar} from "../../data/enums";
+import {avatar, userRoles} from "../../data/enums";
 import Avatar from "react-avatar";
 import Modal from "./Modal";
 
@@ -73,7 +73,7 @@ const Layout = () => {
 							</Link>
 						</div>
 						<div className="mt-5">
-							{ auth?.userType === "user"
+							{ auth?.userType === userRoles.User
 								?
 									userLinks.map((item) => (
 										<NavLink to={`/${item.path}`} key={item.path} onClick={() => {toggleSidebarOnMobile(); return scrollToTop} } className={({isActive}) => isActive ? activeLink : normalLink}>
@@ -82,13 +82,25 @@ const Layout = () => {
 										</NavLink>
 									))
 								:
-									adminLinks.map((item) => (
-										<NavLink to={`/${item.path}`} key={item.path} onClick={() => {toggleSidebarOnMobile(); return scrollToTop} } className={({isActive}) => isActive ? activeLink : normalLink}>
-											{item.icon}
-											<span className="capitalize">{item.title}</span>
-										</NavLink>
-									))}
+									auth?.userType === userRoles.Employee
+									?
+										employeeLinks.map((item) => (
+											<NavLink to={`/${item.path}`} key={item.path} onClick={() => {toggleSidebarOnMobile(); return scrollToTop} } className={({isActive}) => isActive ? activeLink : normalLink}>
+												{item.icon}
+												<span className="capitalize">{item.title}</span>
+											</NavLink>
+										))
+									:
+										adminLinks.map((item) => (
+											<NavLink to={`/${item.path}`} key={item.path} onClick={() => {toggleSidebarOnMobile(); return scrollToTop} } className={({isActive}) => isActive ? activeLink : normalLink}>
+												{item.icon}
+												<span className="capitalize">{item.title}</span>
+											</NavLink>
+										))
+							}
 						</div>
+
+						{/*Footer*/}
 						<div className="border border-0 border-t border-slate-200 fixed bottom-2 py-4">
 							{footerLinks.map((item) => (
 								<NavLink to={`/${item.path}`}
@@ -108,10 +120,14 @@ const Layout = () => {
 
 								<p className="pl-7 py-4 text-sm">© 2022 Copyright. v1.0.0</p>
 						</div>
+						{/*	End Footer*/}
+
 					</div>
 				{/*	End Sidebar*/}
 				</div>
+
 				<div className=" overflow-x-hidden grow w-screen">
+
 					{/*Navbar*/}
 					<nav className="flex justify-between h-20 border border-0 border-b border-slate-200 sticky top-0 bg-white">
 						<button onClick={() => {toggleSidebar()}} className="md:invisible bg-transparent text-slate-500 text-xl border border-slate-300 hover:border-ihs-green-shade-100 m-4 p-2 block">
@@ -134,6 +150,7 @@ const Layout = () => {
 
 					</nav>
 					{/*End Navbar*/}
+
 					{/*when sidebar is active, dashboard content is hidden*/}
 					<div className={`"block" ${!mobile ? "block" : sidebar ? "hidden" : "block"}`}>
 						<Outlet />
