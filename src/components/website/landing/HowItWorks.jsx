@@ -25,7 +25,7 @@ const HowItWorks = () => {
 					</div>
 
 					<div className="bg-white shadow py-5 flex flex-col justify-center items-center">
-						<p className="text-gray-700 text-2xl">Step 2</p>
+						<p className="text-gray-700 text-2xl">Step 3</p>
 						<p className="text-gray-400 font-thin text-lg">Book An Appointment</p>
 					</div>
 
