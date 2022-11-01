@@ -76,11 +76,11 @@ const PricingDetails = () => {
 				<div className="grid gap-6 mt-16 sm:gap-8 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
 					<div
 							 className="px-6 py-4 transition-colors duration-200 transform rounded-lg hover:bg-ihs-green-shade-50 border shadow">
-						<p className="text-lg font-medium text-gray-800">Bi-Weekly Coverage</p>
+						<p className="text-lg font-medium text-gray-800">Bi-Weekly Payment</p>
 						<h4 className="mt-2 md:text-3xl text-lg font-semibold text-gray-800 ">
 							$50
 							<span className="font-light text-sm text-gray-600 capitalize">
-								/ Beneficiary / 2 Weeks
+								/ Beneficiary
 							</span>
 						</h4>
 
@@ -94,9 +94,9 @@ const PricingDetails = () => {
 
 					<div
 						className="px-6 py-4 transition-colors duration-200 transform rounded-lg hover:bg-ihs-green-shade-50 border shadow">
-						<p className="text-lg font-medium text-gray-800">Monthly Coverage</p>
+						<p className="text-lg font-medium text-gray-800">Monthly Payment</p>
 						<h4 className="mt-2 md:text-3xl text-lg font-semibold text-gray-800 ">$100 <span
-							className="font-light text-sm text-gray-600 capitalize">/ Beneficiary / Month
+							className="font-light text-sm text-gray-600 capitalize">/ Beneficiary
 						</span></h4>
 
 						<form onSubmit={handleCheckout} onFocus={(e) => setPriceId("price_1LrhTJIGWAGjsS3FrpT98sG8")}>
@@ -109,9 +109,9 @@ const PricingDetails = () => {
 
 					<div
 						className="px-6 py-4 transition-colors duration-200 transform rounded-lg hover:bg-ihs-green-shade-50 border shadow">
-						<p className="text-lg font-medium text-gray-800">Yearly Coverage</p>
+						<p className="text-lg font-medium text-gray-800">Yearly Payment</p>
 						<h4 className="mt-2 md:text-3xl text-lg font-semibold text-gray-800 ">$1200 <span
-							className="font-light text-sm text-gray-600 capitalize">/ Beneficiary / Year
+							className="font-light text-sm text-gray-600 capitalize">/ Beneficiary
 						</span></h4>
 
 						<form onSubmit={handleCheckout} onFocus={(e) => setPriceId("price_1LrhbqIGWAGjsS3FN6qfb8fW")}>
