@@ -29,7 +29,7 @@ const months = [
 
 const ViewUserBeneficiary = () => {
 	const [beneficiaryDetails, setBeneficiaryDetails] = useState({});
-	const beneficiary = useParams();
+	const user = useParams();
 	const navigate = useNavigate();
 	const axiosPrivate = useAxiosPrivate();
 	const [loading, setLoading] = useState();
@@ -45,8 +45,8 @@ const ViewUserBeneficiary = () => {
 	}
 
 	useEffect(() => {
-		const beneficiaryId = beneficiary.beneficiaryId;
-		const userId = beneficiary.userId;
+		const beneficiaryId = user.beneficiaryId;
+		const userId = user.userId;
 
 		setLoading(true)
 		let isMounted = true;
@@ -92,13 +92,16 @@ const ViewUserBeneficiary = () => {
 				<div className="flex-1">
 					<div className="flex justify-between items-center h-24 bg-ihs-green-shade-50 rounded-md shadow-sm text-gray-600">
 						<div className="flex">
-							<UserCircleIcon className="md:w-14 w-8 md:ml-10 ml-3" />
-							<h3 className="md:text-3xl sm:text-2xl text-xl py-8 md:px-8 px-2">Beneficiary Details</h3>
+							<UserCircleIcon className="md:w-12 w-8 xl:ml-10 ml-3" />
+							<h3 className="xl:text-3xl text-xl py-8 xl:px-8 px-4">Beneficiary Details</h3>
+						</div>
+						<div>
+							<button className="xl:p-2 md:text-lg text-sm mx-2 p-2" onClick={() => navigate(`/appointments/bookappointmentbyadmin/${beneficiaryDetails.id}`)}>Book Appointment</button>
 						</div>
 
 					</div>
 
-					<div className="my-10 ml-5 text-gray-600 md:text-xl" >
+					<div className="my-10 ml-5 text-gray-600 lg:text-xl" >
 						<div className="grid grid-cols-4">
 							<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Full Name: </p>
 							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{beneficiaryDetails?.firstName}  {beneficiaryDetails?.lastName} </p>
@@ -110,10 +113,6 @@ const ViewUserBeneficiary = () => {
 						<div className="grid grid-cols-4">
 							<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Relationship: </p>
 							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{beneficiaryDetails ? beneficiaryDetails?.relationship : ""} </p>
-						</div>
-						<div className="grid grid-cols-4">
-							<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Email: </p>
-							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{beneficiaryDetails ? beneficiaryDetails?.email : ""} </p>
 						</div>
 						<div className="grid grid-cols-4">
 							<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Phone Number: </p>
