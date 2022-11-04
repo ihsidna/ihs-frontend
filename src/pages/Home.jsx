@@ -7,6 +7,7 @@ import Navbar from "../components/website/globals/Navbar";
 import Footer from "../components/website/globals/Footer";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import Affiliations from "../components/website/landing/Affiliations";
+import Reviews from "../components/website/landing/Reviews";
 
 const Home = () => {
 	return (
@@ -22,6 +23,7 @@ const Home = () => {
 					<HowItWorks />
 					<Services />
 					<WhyUs />
+					<Reviews />
 					<Affiliations />
 					<Footer />
 				</>
