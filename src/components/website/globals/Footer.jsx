@@ -2,6 +2,10 @@ import React from 'react';
 
 import Logo from "../../../assets/images/logo.svg";
 import {Link, useNavigate} from "react-router-dom";
+import Instagram from '../../../assets/images/instagram.svg'
+import Twitter from '../../../assets/images/twitter.svg'
+import Facebook from '../../../assets/images/facebook.svg'
+import LinkedIn from '../../../assets/images/linkedin.svg'
 
 const Footer = () => {
 	const navigate = useNavigate();
@@ -17,18 +21,20 @@ const Footer = () => {
 					<div className="md:ml-4">
 						<p className="capitalize text-xl font-semibold text-slate-600 py-4 md:pt-0">Next Steps</p>
 						<div className="flex flex-col w-44 space-y-2">
-							<button className="p-4 text-lg shadow-md md:w-44" onClick={() =>{navigate("/signup")}}>Get Started</button>
-							<button className="bg-ihs-blue p-4 text-lg shadow-md hover:text-ihs-blue hover:border-ihs-blue" onClick={() =>{navigate("/signin")}}>Sign In</button>
+							<button className="p-4 text-lg shadow-md md:w-44 text-base"
+											onClick={() =>{navigate("/signup")}}>Get Started</button>
+							<button className="bg-ihs-blue p-4 text-lg shadow-md hover:text-ihs-blue hover:border-ihs-blue text-base"
+											onClick={() =>{navigate("/signin")}}>Sign In</button>
 						</div>
 					</div>
 
 					<div className="md:ml-4">
 						<p className="capitalize text-xl font-semibold text-slate-600 py-4 md:pt-0">Help & Support</p>
 						<div className="flex flex-col w-44 space-y-2 text-lg text-slate-400">
-							<p><Link to="/contact" className="text-slate-400">Contact Us</Link></p>
-							<p><Link to="/faqs" className="text-slate-400">FAQs</Link></p>
-							<p><a href="tel:+1 (613) 491-2197"> +1 (613) 491-2197 </a></p>
-							<p><a href="mailto:support@ihsmdinc.com"> support@ihsmdinc.com </a>
+							<p><Link to="/contact" className="text-slate-400 text-base">Contact Us</Link></p>
+							<p><Link to="/faqs" className="text-slate-400 text-base">FAQs</Link></p>
+							<p><a href="tel:+1 (613) 491-2197" className="text-base"> +1 (613) 491-2197 </a></p>
+							<p><a href="mailto:support@ihsmdinc.com" className="text-base"> support@ihsmdinc.com </a>
 							</p>
 						</div>
 					</div>
@@ -36,8 +42,30 @@ const Footer = () => {
 					<div className="md:ml-4">
 						<p className="capitalize text-xl font-semibold text-slate-600 py-4 md:pt-0">Legal</p>
 						<div className="flex flex-col w-44 space-y-2 text-lg text-slate-400">
-							<p><Link to="/terms" className="text-slate-400">Terms of Use</Link></p>
-							<p><Link to="/privacy-policy" className="text-slate-400">Privacy Policy</Link></p>
+							<p><Link to="/terms" className="text-slate-400 text-base">Terms of Use</Link></p>
+							<p><Link to="/privacy-policy" className="text-slate-400 text-base">Privacy Policy</Link></p>
+							<p className="flex">
+								<span>
+									<a href='https://www.instagram.com/ihsmdinc/'>
+									<img src={Instagram} className="" alt="instagram" />
+									</a>
+								</span>
+								<span>
+									<a href='https://twitter.com/IHSMDINC'>
+									<img src={Twitter} className="" alt="twitter" />
+									</a>
+								</span>
+								<span>
+									<a href='https://www.facebook.com/IHSMDINC'>
+									<img src={Facebook} className="" alt="facebook" />
+									</a>
+								</span>
+								<span>
+									<a href='https://www.linkedin.com/company/ihsmdinc'>
+									<img src={LinkedIn} className="" alt="linkedIn" />
+									</a>
+								</span>
+							</p>
 						</div>
 					</div>
 				</div>
