@@ -12,7 +12,7 @@ import Tobi from "../../../assets/images/Tobi.jpg";
 const People = () => {
 	return (
 		<div>
-			<div className="md:py-40 py-20 bg-gray-100">
+			<div className="md:py-20 py-20">
 				<div className="max-w-[1240] mx-auto">
 					<div className="flex justify-center items-start">
 						<h2 className="md:text-4xl text-2xl font-semibold pb-2 text-gray-800 border-b-2 border-b-ihs-blue rounded-lg">
