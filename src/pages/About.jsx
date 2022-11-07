@@ -17,8 +17,8 @@ const About = () => {
 				<>
 					<Navbar />
 					<AboutHero />
-					<Objectives />
 					<People />
+					<Objectives />
 					<Footer />
 				</>
 			</>
