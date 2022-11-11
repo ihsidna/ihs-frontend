@@ -50,19 +50,6 @@ const People = () => {
 								</div>
 								<div className="shadow-md md:mx-4 my-6 bg-white">
 									<div>
-										<img src={Tobi} alt="Secondary & tertiary Care" className="rounded-t-lg shadow-md w-full" />
-									</div>
-									<div className="bg-white md:py-10 py-8 -mt-1 rounded-b-lg">
-										<div className="flex flex-col mx-4">
-											<p className="font-normal text-xl md:text-3xl pb-2">Tobi Akintokun</p>
-											<p className="font-light text-base md:text-xl text-gray-500"><span className="font-normal">Focus: </span>Health Infrastructure & Analytics</p>
-											<p className="font-light text-base md:text-xl text-gray-500"><span className="font-normal">Sector: </span> Healthcare</p>
-											<p className="font-light text-base md:text-xl text-gray-500"><span className="font-normal">Location: </span> ON, Canada</p>
-										</div>
-									</div>
-								</div>
-								<div className="shadow-md md:mx-4 my-6 bg-white">
-									<div>
 										<img src={Dapo} alt="Secondary & tertiary Care" className="rounded-t-lg shadow-md w-full" />
 									</div>
 									<div className="bg-white md:py-10 py-8 -mt-1 rounded-b-lg">
@@ -122,6 +109,19 @@ const People = () => {
 											<p className="font-normal text-xl md:text-3xl pb-2">Zainab Adewusi</p>
 											<p className="font-light text-base md:text-xl text-gray-500"><span className="font-normal">Focus: </span>Legal & Corporate Compliance</p>
 											<p className="font-light text-base md:text-xl text-gray-500"><span className="font-normal">Sector: </span> Legal</p>
+											<p className="font-light text-base md:text-xl text-gray-500"><span className="font-normal">Location: </span> ON, Canada</p>
+										</div>
+									</div>
+								</div>
+								<div className="shadow-md md:mx-4 my-6 bg-white">
+									<div>
+										<img src={Tobi} alt="Secondary & tertiary Care" className="rounded-t-lg shadow-md w-full" />
+									</div>
+									<div className="bg-white md:py-10 py-8 -mt-1 rounded-b-lg">
+										<div className="flex flex-col mx-4">
+											<p className="font-normal text-xl md:text-3xl pb-2">Tobi Akintokun</p>
+											<p className="font-light text-base md:text-xl text-gray-500"><span className="font-normal">Focus: </span>Human Capital Infrastructure</p>
+											<p className="font-light text-base md:text-xl text-gray-500"><span className="font-normal">Sector: </span> Human Resources</p>
 											<p className="font-light text-base md:text-xl text-gray-500"><span className="font-normal">Location: </span> ON, Canada</p>
 										</div>
 									</div>
