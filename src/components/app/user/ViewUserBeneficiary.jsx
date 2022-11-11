@@ -4,6 +4,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import TopBarProgress from "react-topbar-progress-indicator";
+import {timePeriod} from "../../../data/enums";
 
 TopBarProgress.config({
 	barColors: {
@@ -28,6 +29,29 @@ const months = [
 ]
 
 const ViewUserBeneficiary = () => {
+
+	const coverageEndDate = (timestamp) => {
+		let date;
+		date = new Date(timestamp * 1000);
+		date = date.toDateString();
+
+		return getDate(date);
+	}
+
+	const duration = (amount) => {
+
+		switch (amount) {
+			case 50:
+				return "2 Weeks";
+			case 100:
+				return "1 Month";
+			case 1200:
+				return "1 Year";
+			default:
+				break;
+		}
+	}
+
 	const [beneficiaryDetails, setBeneficiaryDetails] = useState({});
 	const user = useParams();
 	const navigate = useNavigate();
@@ -130,6 +154,29 @@ const ViewUserBeneficiary = () => {
 							<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">State: </p>
 							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{beneficiaryDetails ? beneficiaryDetails?.state : ""} </p>
 						</div>
+						<div className="grid grid-cols-4">
+							<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Coverage Status: </p>
+							<p className="py-5 md:ml-5 md:col-start-2 col-span-2 capitalize">{beneficiaryDetails?.subscription ? beneficiaryDetails.subscription.status : "No Health Coverage"} </p>
+						</div>
+						{beneficiaryDetails?.subscription && (
+							<>
+								<div className="grid grid-cols-4">
+									<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Payment Frequency: </p>
+									<p className="py-5 md:ml-5 md:col-start-2 col-span-2 capitalize">{beneficiaryDetails?.subscription ? duration(beneficiaryDetails.subscription.amount) : ""} </p>
+								</div>
+								<div className="grid grid-cols-4">
+									<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Coverage End Date: </p>
+									{/*31536000 is 1 */}
+									<p className="py-5 md:ml-5 md:col-start-2 col-span-2 capitalize">{beneficiaryDetails?.subscription ? coverageEndDate(beneficiaryDetails.subscription.startDate + timePeriod.year) : ""} </p>
+								</div>
+								{beneficiaryDetails?.subscription?.cancelAt !== null &&  (
+									<div className="grid grid-cols-4">
+										<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Cancel Coverage On: </p>
+										<p className="py-5 md:ml-5 md:col-start-2 col-span-2 capitalize">{beneficiaryDetails?.subscription?.cancelAt ? coverageEndDate(beneficiaryDetails.subscription.cancelAt) : ""} </p>
+									</div>
+								)}
+							</>
+						)}
 
 					</div>
 				</div>
