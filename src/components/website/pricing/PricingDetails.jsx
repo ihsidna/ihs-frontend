@@ -84,8 +84,8 @@ const PricingDetails = () => {
 							</span>
 						</h4>
 
-						<form onSubmit={handleCheckout} onFocus={(e) => setPriceId("price_1LrhMVIGWAGjsS3FZXla9scy")}>
-							<input type="hidden" name="priceId" id="priceId" value="price_1LrhMVIGWAGjsS3FZXla9scy" />
+						<form onSubmit={handleCheckout} onFocus={(e) => setPriceId("price_1LyxXsIGWAGjsS3FsxeZJGoG")}>
+							<input type="hidden" name="priceId" id="priceId" value="price_1LyxXsIGWAGjsS3FsxeZJGoG" />
 							<button disabled={beneficiarySubscriptionStatus} className="disabled:bg-slate-400 disabled:border-slate-200 disabled:hover:text-white bg-ihs-green w-full px-4 py-2 mt-10 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform rounded-md focus:outline-none ">
 								Subscribe
 							</button>
@@ -99,8 +99,8 @@ const PricingDetails = () => {
 							className="font-light text-sm text-gray-600 capitalize">/ Beneficiary
 						</span></h4>
 
-						<form onSubmit={handleCheckout} onFocus={(e) => setPriceId("price_1LrhTJIGWAGjsS3FrpT98sG8")}>
-							<input type="hidden" name="priceId" id="priceId" value="price_1LrhTJIGWAGjsS3FrpT98sG8" />
+						<form onSubmit={handleCheckout} onFocus={(e) => setPriceId("price_1LyxXlIGWAGjsS3FOgUK9mtv")}>
+							<input type="hidden" name="priceId" id="priceId" value="price_1LyxXlIGWAGjsS3FOgUK9mtv" />
 							<button disabled={beneficiarySubscriptionStatus} className="disabled:bg-slate-400 disabled:border-slate-200 disabled:hover:text-white bg-ihs-green w-full px-4 py-2 mt-10 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform rounded-md focus:outline-none ">
 								Subscribe
 							</button>
@@ -114,8 +114,8 @@ const PricingDetails = () => {
 							className="font-light text-sm text-gray-600 capitalize">/ Beneficiary
 						</span></h4>
 
-						<form onSubmit={handleCheckout} onFocus={(e) => setPriceId("price_1LrhbqIGWAGjsS3FN6qfb8fW")}>
-							<input type="hidden" name="priceId" id="priceId" value="price_1LrhbqIGWAGjsS3FN6qfb8fW" />
+						<form onSubmit={handleCheckout} onFocus={(e) => setPriceId("price_1LyxWsIGWAGjsS3FApAVIdPc")}>
+							<input type="hidden" name="priceId" id="priceId" value="price_1LyxWsIGWAGjsS3FApAVIdPc" />
 							<button disabled={beneficiarySubscriptionStatus} className="disabled:bg-slate-400 disabled:border-slate-200 disabled:hover:text-white bg-ihs-green w-full px-4 py-2 mt-10 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform rounded-md focus:outline-none ">
 								Subscribe
 							</button>
