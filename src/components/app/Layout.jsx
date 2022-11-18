@@ -24,7 +24,7 @@ const Layout = () => {
 						</div>
 					</div>
 				</nav>
-				<Fragment className="w-screen">
+				<Fragment>
 					<Outlet />
 				</Fragment>
 			</div>

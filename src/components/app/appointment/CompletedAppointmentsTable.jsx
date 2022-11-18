@@ -1,6 +1,5 @@
 import React, {useMemo, useState} from 'react';
 import {appointmentStatus, avatar, booleanString, pageSize} from "../../../data/enums";
-import useAuth from "../../../hooks/useAuth";
 import Avatar from "react-avatar";
 import {Link, useNavigate} from "react-router-dom";
 import Pagination from "../Pagination";
@@ -10,10 +9,9 @@ import {getDate} from "../../../hooks/useFormatDate";
 const mobilePageSize = pageSize.Mobile;
 const laptopPageSize = pageSize.Laptop;
 
-const CompletedAppointmentsTable = () => {
+const CompletedAppointmentsTable = ({appointmentList, urlPath}) => {
 	const navigate = useNavigate();
-	const {allAppointments} = useAuth();
-	const completedAppointments = allAppointments.filter((appointment) =>
+	const completedAppointments = appointmentList.filter((appointment) =>
 		appointment.status === appointmentStatus.Completed);
 
 	const [currentPage, setCurrentPage] = useState(1);
@@ -99,7 +97,7 @@ const CompletedAppointmentsTable = () => {
 
 										<td
 											className="px-6 py-4 md:text-lg text-base leading-5 text-ihs-green ">
-											<Link to={`/allappointments/viewappointment/${el?.id}`}>
+											<Link to={`/${urlPath}/viewappointment/${el?.id}`}>
 												View Details
 											</Link>
 										</td>
@@ -150,7 +148,7 @@ const CompletedAppointmentsTable = () => {
 							{mobileTableData?.length
 								?
 								mobileTableData.map(el => (
-									<tr className="py-4 whitespace-no-wrap border-b even:bg-gray-100" key={el.id} onClick={() => navigate(`/allappointments/viewappointment/${el?.id}`)}>
+									<tr className="py-4 whitespace-no-wrap border-b even:bg-gray-100" key={el.id} onClick={() => navigate(`/${urlPath}/viewappointment/${el?.id}`)}>
 										<td className="p-4 ">
 											<div className="flex justify-between items-center text-md text-gray-800">
 												<span>{el?.beneficiaryName}</span>

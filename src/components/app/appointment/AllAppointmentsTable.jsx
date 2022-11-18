@@ -2,12 +2,15 @@ import React from 'react';
 import {Tab} from "@headlessui/react";
 import UpcomingAppointmentsTable from "./UpcomingAppointmentsTable";
 import CompletedAppointmentsTable from "./CompletedAppointmentsTable";
+import useAuth from "../../../hooks/useAuth";
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(' ')
 }
 
 const AllAppointmentsTable = () => {
+
+	const {allAppointments} = useAuth();
 
 	return (
 		<div className="w-full px-2 pb-16 sm:px-0">
@@ -37,11 +40,11 @@ const AllAppointmentsTable = () => {
 				<Tab.Panels>
 
 					<Tab.Panel>
-						<UpcomingAppointmentsTable />
+						<UpcomingAppointmentsTable appointmentList={allAppointments} urlPath='allAppointments' />
 					</Tab.Panel>
 
 					<Tab.Panel>
-						<CompletedAppointmentsTable />
+						<CompletedAppointmentsTable appointmentList={allAppointments} urlPath='allAppointments' />
 					</Tab.Panel>
 
 				</Tab.Panels>

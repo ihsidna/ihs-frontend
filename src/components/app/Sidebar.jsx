@@ -56,7 +56,7 @@ const Sidebar = () => {
 
 					<ViewListIcon className="w-10 h-10 px-2 bg-ihs-green text-white rounded-md shadow-xl"/>
 				</span>
-				<div className="sidebar fixed top-0 bottom-0 left-0 left-[-300px] duration-1000
+				<div className="sidebar fixed top-0 bottom-0 left-0 left-[-300px] duration-500
 				 w-[300px] overflow-y-auto text-center bg-cyan-50 shadow h-screen">
 						<div>
 							<div className="p-2.5 mt-1 flex items-center rounded-md ">
