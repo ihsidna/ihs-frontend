@@ -49,7 +49,7 @@ const Pagination = props => {
 						</div>
 					</button>
 
-					{paginationRange.map(pageNumber => {
+					{paginationRange.map((pageNumber, index) => {
 
 						// If the pageItem is a DOT, render the DOTS unicode character
 						if (pageNumber === DOTS) {
@@ -57,7 +57,7 @@ const Pagination = props => {
 						}
 
 						return (
-							<div className="sm:flex hidden">
+							<div className="sm:flex hidden" key={index}>
 								<p
 									className="text-sm font-medium leading-none cursor-pointer text-gray-600 hover:text-ihs-green-shade-700 border-t border-transparent hover:border-ihs-green-shade-400 pt-3 mr-4 px-2 focus:text-ihs-green"
 									onClick={() => onPageChange(pageNumber)}>{pageNumber}</p>

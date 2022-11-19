@@ -6,6 +6,7 @@ import BeneficiaryDropdown from "./BeneficiaryDropdown";
 import TopBarProgress from "react-topbar-progress-indicator";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import {timePeriod} from "../../../data/enums";
+import {getDate} from "../../../hooks/useFormatDate";
 
 TopBarProgress.config({
 	barColors: {
@@ -15,21 +16,6 @@ TopBarProgress.config({
 });
 
 const ViewBeneficiaryAppointments = lazy(() => import('./ViewBeneficiaryAppointments'));
-
-const months = [
-	'January',
-	'February',
-	'March',
-	'April',
-	'May',
-	'June',
-	'July',
-	'August',
-	'September',
-	'October',
-	'November',
-	'December'
-]
 
 const ViewBeneficiary = () => {
 	const axiosPrivate = useAxiosPrivate();
@@ -50,16 +36,6 @@ const ViewBeneficiary = () => {
 			setLoading(false);
 		});
 	}, [getBeneficiary]);
-
-	const getDate = (dateString) =>{
-		const date = new Date(dateString)
-		const year = date.getFullYear()
-		const day = date.getDate()
-		const monthIndex = date.getMonth()
-		const monthName = months[monthIndex]
-		const formattedDate = `${day} ${monthName} ${year}`
-		return formattedDate;
-	}
 
 	const coverageEndDate = (timestamp) => {
 		let date;
@@ -106,10 +82,10 @@ const ViewBeneficiary = () => {
 								<BeneficiaryDropdown beneficiaryDetails={beneficiaryDetails} />
 							</div>
 
-							<div className="my-10 ml-5 text-gray-600 md:text-xl" >
+							<div className="my-10 ml-5 text-gray-600 md:text-xl text-md" >
 								<div className="grid grid-cols-4">
 									<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Full Name: </p>
-									<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{beneficiaryDetails?.firstName}  {beneficiaryDetails?.lastName} </p>
+									<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{beneficiaryDetails?.firstName} {beneficiaryDetails?.lastName} </p>
 								</div>
 								<div className="grid grid-cols-4">
 									<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Date of Birth: </p>

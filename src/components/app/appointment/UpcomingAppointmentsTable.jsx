@@ -11,7 +11,16 @@ const laptopPageSize = pageSize.Laptop;
 
 const UpcomingAppointmentsTable = ({appointmentList, urlPath}) => {
 	const navigate = useNavigate();
-	const upcomingAppointments = appointmentList.filter((appointment) =>
+
+	let appointmentsProp;
+
+	if (appointmentList === "Appointment not found"){
+		appointmentsProp = [];
+	} else{
+		appointmentsProp = appointmentList;
+	}
+
+	const upcomingAppointments = appointmentsProp.filter((appointment) =>
 		appointment.status !== appointmentStatus.Completed);
 
 	const [currentPage, setCurrentPage] = useState(1);

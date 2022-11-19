@@ -82,8 +82,8 @@ const AddBeneficiary = () => {
 					<link rel="canonical" href="https://www.ihsmdinc.com/" />
 				</Helmet>
 				<div className="md:py-10 md:px-10 p-4">
-					{loading && <TopBarProgress />}
 
+					{loading && <TopBarProgress />}
 					<button className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 md:mb-20 md:mt-0 my-8" onClick={() => navigate("/beneficiaries")}>
 						<ChevronLeftIcon className="w-6" /> <p className="text-lg px-5">Back to Beneficiaries</p>
 					</button>
