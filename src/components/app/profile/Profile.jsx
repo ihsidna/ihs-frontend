@@ -132,28 +132,24 @@ const Profile = () => {
 								<h3 className="md:text-3xl sm:text-2xl text-xl py-8 md:px-8 px-2">My Profile</h3>
 							</div>
 
-							{/*<Link to="/beneficiaries/updatebeneficiary" className="text-gray-600 hover:text-gray-700">*/}
-							{/*	<h3 className="md:text-xl text-lg md:px-8 px-3 hover:underline">Update</h3>*/}
-							{/*</Link>*/}
-
 						</div>
 
-						<div className="my-10 ml-5 text-gray-600 md:text-xl" >
-							<div className="grid grid-cols-4">
+						<div className="my-10 ml-5 text-gray-600 md:text-xl text-md" >
+							<div className="grid grid-cols-5">
 								<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">First Name: </p>
-								<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{loggedInUser ? loggedInUser?.firstName : ""} </p>
+								<p className="py-5 md:ml-5 md:col-start-2">{loggedInUser ? loggedInUser?.firstName : ""} </p>
 							</div>
-							<div className="grid grid-cols-4">
+							<div className="grid grid-cols-5">
 								<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Last Name: </p>
-								<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{loggedInUser ? loggedInUser?.lastName : ""} </p>
+								<p className="py-5 md:ml-5 md:col-start-2">{loggedInUser ? loggedInUser?.lastName : ""} </p>
 							</div>
-							<div className="grid grid-cols-4">
+							<div className="grid grid-cols-5">
 								<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Email: </p>
-								<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{loggedInUser ? loggedInUser?.email : ""} </p>
+								<p className="py-5 md:ml-5 md:col-start-2">{loggedInUser ? loggedInUser?.email : ""} </p>
 							</div>
-							<div className="grid grid-cols-4">
+							<div className="grid grid-cols-5">
 								<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Phone Number: </p>
-								<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{loggedInUser ? loggedInUser?.phone : ""} </p>
+								<p className="py-5 md:ml-5 md:col-start-2">{loggedInUser ? loggedInUser?.phone : ""} </p>
 							</div>
 						</div>
 
@@ -165,7 +161,7 @@ const Profile = () => {
 
 				<form onSubmit={handlePortal}>
 					<input type="hidden" name="priceId" id="priceId" value="price_1LrhbqIGWAGjsS3FN6qfb8fW" />
-					<button type="submit" className="px-4 py-3 mt-5 mb-5 bg-ihs-green hover:font-bold focus: outline-none focus:ring-2 focus:ring-ihs-green-shade-500 w-96 text-lg">
+					<button type="submit" className="px-4 py-3 mt-5 mb-5 bg-ihs-green hover:font-bold focus: outline-none focus:ring-2 focus:ring-ihs-green-shade-500 sm:w-96 w-72 text-lg">
 						Visit Customer Portal
 					</button>
 				</form>
@@ -195,13 +191,13 @@ const Profile = () => {
 									placeholder="New Password"
 									value={newPassword}
 									onChange={(e) => setNewPassword(e.target.value)}
-									className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 w-96"/>
+									className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 sm:w-96 w-72"/>
 							</div>
 						</div>
 					</div>
 
 					<div className="flex justify-start">
-						<button type="submit" className="px-4 py-3 mt-5 mb-10 bg-ihs-green hover:font-bold focus: outline-none focus:ring-2 focus:ring-ihs-green-shade-500 w-96 text-lg">
+						<button type="submit" className="px-4 py-3 mt-5 mb-10 bg-ihs-green hover:font-bold focus: outline-none focus:ring-2 focus:ring-ihs-green-shade-500 sm:w-96 w-72 text-lg">
 							Update Password
 						</button>
 					</div>

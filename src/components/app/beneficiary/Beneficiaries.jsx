@@ -5,15 +5,7 @@ import ViewBeneficiary from "./ViewBeneficiary";
 import UpdateBeneficiary from "./UpdateBeneficiary";
 import BeneficiaryTable from "./BeneficiaryTable";
 import {Helmet, HelmetProvider} from "react-helmet-async";
-import TopBarProgress from "react-topbar-progress-indicator";
 import Checkout from "./Checkout";
-
-TopBarProgress.config({
-	barColors: {
-		"0": "#05afb0"
-	},
-	shadowBlur: 5
-});
 
 const Beneficiaries = () => {
 	return (
@@ -41,7 +33,7 @@ const ParentContent = () => {
 					{/*Beneficiaries Section*/}
 					<div className="flex justify-between items-center mt-10">
 						<h2 className="md:text-2xl text-xl">Your Beneficiaries</h2>
-						<button className="py-3 md:px-4 px-2" onClick={() => navigate('/beneficiaries/addbeneficiary')}>Add Beneficiary</button>
+						<button className="py-3 md:px-4 px-2 " onClick={() => navigate('/beneficiaries/addbeneficiary')}>Add Beneficiary</button>
 					</div>
 
 					<hr className="my-10"/>

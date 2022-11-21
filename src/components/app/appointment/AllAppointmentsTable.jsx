@@ -1,22 +1,16 @@
-import useAuth from "../../../hooks/useAuth";
-import TopBarProgress from "react-topbar-progress-indicator";
+import React from 'react';
 import {Tab} from "@headlessui/react";
 import UpcomingAppointmentsTable from "./UpcomingAppointmentsTable";
 import CompletedAppointmentsTable from "./CompletedAppointmentsTable";
+import useAuth from "../../../hooks/useAuth";
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(' ')
 }
 
-TopBarProgress.config({
-		barColors: {
-				"0": "#05afb0"
-		},
-		shadowBlur: 5
-});
+const AllAppointmentsTable = () => {
 
-const AppointmentTable = () => {
-	const {appointments} = useAuth();
+	const {allAppointments} = useAuth();
 
 	return (
 		<div className="w-full px-2 pb-16 sm:px-0">
@@ -46,11 +40,11 @@ const AppointmentTable = () => {
 				<Tab.Panels>
 
 					<Tab.Panel>
-						<UpcomingAppointmentsTable appointmentList={appointments} urlPath='appointments' />
+						<UpcomingAppointmentsTable appointmentList={allAppointments} urlPath='allAppointments' />
 					</Tab.Panel>
 
 					<Tab.Panel>
-						<CompletedAppointmentsTable appointmentList={appointments} urlPath='appointments' />
+						<CompletedAppointmentsTable appointmentList={allAppointments} urlPath='allAppointments' />
 					</Tab.Panel>
 
 				</Tab.Panels>
@@ -60,4 +54,4 @@ const AppointmentTable = () => {
 	);
 };
 
-export default AppointmentTable;
+export default AllAppointmentsTable;

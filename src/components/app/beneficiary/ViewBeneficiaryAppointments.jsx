@@ -1,10 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import Avatar from "react-avatar";
-import {appointmentStatus, avatar, booleanString} from "../../../data/enums";
-import {Link, useParams} from "react-router-dom";
-import Nodata from "../../../assets/images/noData.svg";
+import {useParams} from "react-router-dom";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import TopBarProgress from "react-topbar-progress-indicator";
+import {Tab} from "@headlessui/react";
+import UpcomingAppointmentsTable from "../appointment/UpcomingAppointmentsTable";
+import CompletedAppointmentsTable from "../appointment/CompletedAppointmentsTable";
+
+function classNames(...classes) {
+	return classes.filter(Boolean).join(' ')
+}
 
 TopBarProgress.config({
 	barColors: {
@@ -49,112 +53,47 @@ const ViewBeneficiaryAppointments = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-
 	return (
-		<div className="flex flex-col mt-8">
+
+		<div className="w-full px-2 pb-16 sm:px-0">
 			{loading && <TopBarProgress />}
-			<div className="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-				<div
-					className="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 rounded-md">
-					<table className="table-auto min-w-full">
-						<thead>
-						<tr>
-							<th
-								className="px-6 py-5 text-base font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-ihs-green-shade-50">
-							</th>
-							<th
-								className="px-6 py-5 text-base font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-ihs-green-shade-50">
-								<p>Beneficiary</p>
-							</th>
-							<th
-								className="px-6 py-3 text-base font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-ihs-green-shade-50">
-								Purpose
-							</th>
-							<th
-								className="px-6 py-3 text-base font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-ihs-green-shade-50">
-								Status
-							</th>
-							<th
-								className="px-6 py-3 text-base font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-ihs-green-shade-50">
-								More...
-							</th>
-						</tr>
-						</thead>
+			<Tab.Group>
+				<Tab.List className="flex space-x-1 rounded-xl bg-white p-1">
 
-						<tbody className="bg-white">
-						{Array.isArray(appointments)
-							? (
-								appointments?.length
-									?
-									appointments.map((appointment, index) => (
-										<tr key={index}>
-											<td>
-												<div className="mx-4">
-													<Avatar name={`${appointment?.beneficiaryName}`} color={avatar.BackgroundColor} fgColor={avatar.ForegroundColor}  size={avatar.width} round={true}/>
-												</div>
-											</td>
-											<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-												<div className="flex items-center">
+					<Tab key="upcoming" className={({selected}) => classNames(
+						'w-full md:w-1/4 rounded-lg py-2.5 text-sm font-medium leading-5 text-ihs-green',
+						'ring-white ring-opacity-60 ring-offset-2 ring-offset-ihs-green-shade-400 focus:outline-none focus:ring-2',
+						selected
+							? 'bg-ihs-green text-white shadow'
+							: 'text-ihs-green hover:bg-white/[0.12] hover:text-white'
+					)}>
+						Upcoming
+					</Tab>
+					<Tab key="completed" className={({selected}) => classNames(
+						'w-full md:w-1/4 rounded-lg py-2.5 text-sm font-medium leading-5 text-ihs-green',
+						'ring-white ring-opacity-60 ring-offset-2 ring-offset-ihs-green-shade-400 focus:outline-none focus:ring-2',
+						selected
+							? 'bg-ihs-green text-white shadow'
+							: 'text-ihs-green hover:bg-white/[0.12] hover:text-white ring-0'
+					)}>
+						Completed
+					</Tab>
+				</Tab.List>
+				<Tab.Panels>
 
+					<Tab.Panel>
+						<UpcomingAppointmentsTable appointmentList={appointments} urlPath='appointments' />
+					</Tab.Panel>
 
-													<div className="md:text-lg text-base font-medium leading-5 text-gray-500">
-														{appointment?.beneficiaryName}
-													</div>
+					<Tab.Panel>
+						<CompletedAppointmentsTable appointmentList={appointments} urlPath='appointments' />
+					</Tab.Panel>
 
-												</div>
-											</td>
+				</Tab.Panels>
+			</Tab.Group>
 
-											<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-												<div className="md:text-lg text-base leading-5 text-gray-500">{appointment?.serviceName}</div>
-											</td>
-
-											<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-										<span
-											className={appointment?.completed.toString() === booleanString.True
-												? "inline-flex p-2 py-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-md capitalize"
-												: appointment?.status === appointmentStatus.Confirmed
-													? "inline-flex p-2 py-2 text-xs font-semibold leading-5 text-green-800 bg-ihs-blue-shade-200 rounded-md capitalize"
-													:"inline-flex p-2 text-xs font-semibold leading-5 text-green-800 bg-red-100 rounded-md capitalize"}>
-											{appointment?.completed.toString() === booleanString.True ? appointmentStatus.Completed : appointment?.status}
-											</span>
-											</td>
-
-											<td
-												className="px-6 py-4 md:text-lg text-base leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
-												<Link to={`/appointments/viewappointment/${appointment?.id}`}>
-													View Details
-												</Link>
-											</td>
-
-										</tr>
-									))
-									:
-									<tr>
-										<td colSpan="5" className="px-6 py-4 text-center">
-											<div className="flex flex-col justify-center items-center py-20">
-												<img src={Nodata} alt="No Data" className="w-40 my-10"/>
-												<p className="text-lg md:mx-32 mx-5 text-center">You have no appointment. Book an appointment to begin</p>
-											</div>
-										</td>
-									</tr>
-							)
-							:
-							// If it returns a string, it means, it returned a "Appointment Not Found" Message
-							<tr>
-								<td colSpan="5" className="px-6 py-4 text-center">
-									<div className="flex flex-col justify-center items-center py-20">
-										<img src={Nodata} alt="No Data" className="w-40 my-10"/>
-										<p className="text-lg md:mx-32 mx-5 text-center">You have no appointment. Book an appointment to begin</p>
-									</div>
-								</td>
-							</tr>
-						}
-
-						</tbody>
-					</table>
-				</div>
-			</div>
 		</div>
+
 	);
 };
 

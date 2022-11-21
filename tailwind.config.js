@@ -1,5 +1,4 @@
 /** @type {autoprefixer | ((options?: autoprefixer.Options) => (Plugin & autoprefixer.ExportedAPI)) | ((browsers: string[], options?: autoprefixer.Options) => (Plugin & autoprefixer.ExportedAPI)) | (<T extends string[]>(...args: [...T, autoprefixer.Options]) => (Plugin & autoprefixer.ExportedAPI))} */
-const autoprefixer = require("autoprefixer");
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
@@ -20,6 +19,9 @@ module.exports = {
 
       '2xl': '1536px',
       // => @media (min-width: 1536px) { ... }
+
+      '3xl': '2561px',
+      // => @media (min-width: 2561px) { ... }
     },
     extend: {
      colors:{

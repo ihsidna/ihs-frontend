@@ -8,6 +8,7 @@ import {Helmet, HelmetProvider} from "react-helmet-async";
 import AppointmentDropdown from "./AppointmentDropdown";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import TopBarProgress from "react-topbar-progress-indicator";
+import {getDate} from "../../../hooks/useFormatDate";
 
 TopBarProgress.config({
 	barColors: {
@@ -15,21 +16,6 @@ TopBarProgress.config({
 	},
 	shadowBlur: 5
 });
-
-const months = [
-	'January',
-	'February',
-	'March',
-	'April',
-	'May',
-	'June',
-	'July',
-	'August',
-	'September',
-	'October',
-	'November',
-	'December'
-]
 
 const ViewAppointment = () => {
 	const axiosPrivate = useAxiosPrivate();
@@ -39,16 +25,6 @@ const ViewAppointment = () => {
 	const {auth} = useAuth();
 	const [appointmentDetails, setAppointmentDetails] = useState({});
 	const [loading, setLoading] = useState(false);
-
-	const getDate = (dateString) =>{
-		const date = new Date(dateString)
-		const year = date.getFullYear()
-		const day = date.getDate()
-		const monthIndex = date.getMonth()
-		const monthName = months[monthIndex]
-		const formattedDate = `${day} ${monthName} ${year}`
-		return formattedDate;
-	}
 
 	const download = () => {
 			window.open(appointmentDetails.reportUrl,"_blank");
@@ -96,49 +72,49 @@ const ViewAppointment = () => {
 
 							</div>
 
-							<div className="mt-10 text-gray-600 md:text-xl" >
+							<div className="mt-10 text-gray-600 md:text-xl text-md" >
 								<div className="grid grid-cols-4 items-center">
-									<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Beneficiary: </p>
+									<p className="py-5 font-semibold px-5 col-start-1 md:col-span-1 col-span-2">Beneficiary: </p>
 									<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{appointmentDetails?.beneficiaryName} </p>
 								</div>
 
 								<div className="grid grid-cols-4 items-center">
-									<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Contact: </p>
+									<p className="py-5 font-semibold px-5 col-start-1 md:col-span-1 col-span-2">Contact: </p>
 									<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{appointmentDetails?.beneficiaryPhone} </p>
 								</div>
 
 								<div className="grid grid-cols-4 items-center">
-									<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Service: </p>
+									<p className="py-5 font-semibold px-5 col-start-1 md:col-span-1 col-span-2">Service: </p>
 									<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{appointmentDetails?.serviceName} </p>
 								</div>
 
 								<div className="grid grid-cols-4 items-center">
-									<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Health Worker: </p>
+									<p className="py-5 font-semibold px-5 col-start-1 md:col-span-1 col-span-2">Health Worker: </p>
 									<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{appointmentDetails?.healthWorkerName ? appointmentDetails?.healthWorkerName : "Unassigned"} </p>
 								</div>
 
 								<div className="grid grid-cols-4 items-center">
-									<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Date: </p>
+									<p className="py-5 font-semibold px-5 col-start-1 md:col-span-1 col-span-2">Date: </p>
 									<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{appointmentDetails?.date ? getDate(appointmentDetails?.date) : ""} </p>
 								</div>
 
 								<div className="grid grid-cols-4 items-center">
-									<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Time: </p>
+									<p className="py-5 font-semibold px-5 col-start-1 md:col-span-1 col-span-2">Time: </p>
 									<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{appointmentDetails?.time}</p>
 								</div>
 
 								<div className="grid grid-cols-4 items-center">
-									<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Status: </p>
+									<p className="py-5 font-semibold px-5 col-start-1 md:col-span-1 col-span-2">Status: </p>
 									<p className="py-5 md:ml-5 md:col-start-2 col-span-2 capitalize">{appointmentDetails?.status}</p>
 								</div>
 
 								<div className="grid grid-cols-4 items-center">
-									<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Review: </p>
+									<p className="py-5 font-semibold px-5 col-start-1 md:col-span-1 col-span-2">Review: </p>
 									<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{appointmentDetails?.review ? appointmentDetails?.review : "Unreviewed Appointment"} </p>
 								</div>
 
 								<div className="grid grid-cols-4 items-center">
-									<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Rating: </p>
+									<p className="py-5 font-semibold px-5 col-start-1 md:col-span-1 col-span-2">Rating: </p>
 
 									<div className="py-5 md:ml-3 md:col-start-2 col-span-2">
 										<StarRating
@@ -154,7 +130,7 @@ const ViewAppointment = () => {
 								{/*Report*/}
 								{appointmentDetails?.reportUrl &&
 									<div className="grid grid-cols-4 items-center">
-										<p className="py-5 font-semibold px-10 col-start-1 md:col-span-1 col-span-2">Report: </p>
+										<p className="py-5 font-semibold px-5 col-start-1 md:col-span-1 col-span-2">Report: </p>
 
 											<button className="px-3 my-2" onClick={download}> Download</button>
 									</div>

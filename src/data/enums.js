@@ -29,3 +29,8 @@ export const active = {
 export const timePeriod = {
 	year: 31536000
 }
+
+export const pageSize = {
+	Mobile: 5,
+	Laptop: 10
+}
