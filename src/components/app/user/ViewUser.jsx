@@ -41,20 +41,20 @@ const ViewUser = () => {
 						<UserDropdown userDetails={userDetails} />
 					</div>
 
-					<div className="my-10 ml-5 text-gray-600 text-xl" >
-						<div className="grid grid-cols-4">
+					<div className="my-10 ml-5 text-gray-600 text-md" >
+						<div className="grid grid-cols-5">
 							<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Full Name: </p>
 							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{userDetails?.firstName} {userDetails?.lastName} </p>
 						</div>
-						<div className="grid grid-cols-4">
+						<div className="grid grid-cols-5">
 							<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Email: </p>
 							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{userDetails?.email} </p>
 						</div>
-						<div className="grid grid-cols-4">
+						<div className="grid grid-cols-5">
 							<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Phone: </p>
 							<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{userDetails?.phone}</p>
 						</div>
-						<div className="grid grid-cols-4">
+						<div className="grid grid-cols-5">
 							<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Role: </p>
 							<p className="py-5 md:ml-5 md:col-start-2 col-span-2 capitalize">{userDetails?.userType}</p>
 						</div>

@@ -1,6 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {Route, Routes} from "react-router-dom";
-import AllAppointmentTable from "./AllAppointmentTable";
 import ViewAppointment from "./ViewAppointment";
 import useAuth from "../../../hooks/useAuth";
 import UpdateAppointment from "./UpdateAppointment";
@@ -9,13 +8,14 @@ import {Helmet, HelmetProvider} from "react-helmet-async";
 import UploadReport from "./UploadReport";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import TopBarProgress from "react-topbar-progress-indicator";
+import AllAppointmentsTable from "./AllAppointmentsTable";
 
 const Appointment = () => {
 	return (
 		<Routes>
 			<Route index element={<ParentContent />} />
 			<Route path="/viewappointment/:appointmentId" element={<ViewAppointment />} />
-			<Route path="/allappointments" element={<AllAppointmentTable />}/>
+			<Route path="/allappointments" element={<AllAppointmentsTable />}/>
 			<Route path="/updateappointment/:appointmentId" element={<UpdateAppointment />}/>
 			<Route path="/assignworker/:appointmentId" element={<AssignHealthWorker />}/>
 			<Route path="/updateappointment/:appointmentId/uploadreport" element={<UploadReport />}/>
@@ -25,7 +25,7 @@ const Appointment = () => {
 
 const ParentContent = () => {
 	const axiosPrivate = useAxiosPrivate();
-	const {allAppointments, setAllAppointments} = useAuth();
+	const {setAllAppointments} = useAuth();
 	const [loading, setLoading] = useState(false);
 
 	const getAllAppointments = useCallback(async () => {
@@ -50,16 +50,17 @@ const ParentContent = () => {
 				</Helmet>
 				<div className="lg:p-20 md:p-10 p-3">
 					{loading && <TopBarProgress/>}
-				<div className="flex justify-between items-center mt-10">
-					<h2 className="md:text-2xl text-xl">All Appointments</h2>
+					<div className="flex justify-between items-center mt-10">
+						<h2 className="md:text-2xl text-xl">All Appointments</h2>
+					</div>
+
+					<hr className="my-10"/>
+
+					{/*	Mobile Appointment Table*/}
+					<AllAppointmentsTable />
+
 				</div>
-
-				<hr className="my-10"/>
-
-				{/*Appointments Table*/}
-				<AllAppointmentTable data={allAppointments} rowsPerPage={10} />
-			</div>
-				</>
+			</>
 		</HelmetProvider>
 	);
 };

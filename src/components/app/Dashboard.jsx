@@ -5,9 +5,9 @@ import useAuth from "../../hooks/useAuth";
 import BeneficiaryTable from "./beneficiary/BeneficiaryTable";
 import AppointmentTable from "./appointment/AppointmentTable";
 import {userRoles} from "../../data/enums";
-import AllAppointmentTable from "./appointment/AllAppointmentTable";
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import TopBarProgress from "react-topbar-progress-indicator";
+import AllAppointmentsTable from "./appointment/AllAppointmentsTable";
 
 TopBarProgress.config({
 	barColors: {
@@ -22,7 +22,7 @@ const Dashboard = () => {
 	const location = useLocation();
 	const [loading, setLoading] = useState(false)
 	const [hasLoaded, setHasLoaded] = useState(false);
-	const {loggedInUser, setLoggedInUser, beneficiaries, appointments, auth, allAppointments, setAllAppointments, setBeneficiaries, setAppointments, metrics, setMetrics} = useAuth();
+	const {loggedInUser, setLoggedInUser, beneficiaries, appointments, auth, setAllAppointments, setBeneficiaries, setAppointments, metrics, setMetrics} = useAuth();
 
 	useEffect( () => {
 		let isMounted = true;
@@ -265,7 +265,7 @@ const Dashboard = () => {
 
 							{/*Appointments Table*/}
 
-							{hasLoaded && <AllAppointmentTable data={allAppointments.slice(0, 5)} rowsPerPage={5} />}
+							{hasLoaded && <AllAppointmentsTable />}
 							{/*<AppointmentTable />*/}
 						</>
 					}
