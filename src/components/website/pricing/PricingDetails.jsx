@@ -128,6 +128,7 @@ const PricingDetails = () => {
 											disabled:hover:text-white bg-ihs-green w-full px-4 py-2 mt-10
 											font-medium tracking-wide text-white capitalize transition-colors
 											duration-200 transform rounded-md focus:outline-none " onClick={() => setPriceId(yearlyPricing)}>
+
 								Subscribe
 							</button>
 						</form>
