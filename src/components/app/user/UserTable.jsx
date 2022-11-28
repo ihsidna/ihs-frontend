@@ -36,7 +36,16 @@ const UserTable = () => {
 	const laptopTableData = useMemo(() => {
 		const firstPageIndex = (currentPage - 1) * laptopPageSize;
 		const lastPageIndex = firstPageIndex + laptopPageSize;
-		return users.slice(firstPageIndex, lastPageIndex);
+		return users.slice(firstPageIndex, lastPageIndex).sort(
+			(a, b) => {
+				if (a.firstName < b.firstName) {
+					return -1;
+				}
+				if (a.firstName > b.firstName) {
+					return 1;
+				}
+				return 0;
+			})
 	}, [currentPage, users]);
 
 	const mobileTableData = useMemo(() => {
@@ -95,7 +104,7 @@ const UserTable = () => {
 											<div className="flex items-center">
 												<div>
 													<div className="md:text-lg text-base font-medium leading-5 text-gray-500">
-														{user?.firstName} {user?.lastName}
+														<span className="capitalize">{user?.firstName.toLowerCase()} {user?.lastName.toLowerCase()} </span>
 													</div>
 												</div>
 											</div>
@@ -171,7 +180,7 @@ const UserTable = () => {
 									<tr className="py-4 whitespace-no-wrap border-b even:bg-gray-100" key={el.id} onClick={() => navigate(`viewuser/${el?.id}`)}>
 										<td className="p-4 ">
 											<div className="flex justify-between items-center text-md text-gray-800">
-												<span>{el?.firstName} {el?.lastName}</span>
+												<span className="capitalize">{el?.firstName.toLowerCase()} {el?.lastName.toLowerCase()} </span>
 												<span
 													className={el?.userType === userRoles.Admin
 														? "inline-flex px-2 py-1 text-xs font-normal text-green-900 bg-green-100 rounded-lg capitalize"
