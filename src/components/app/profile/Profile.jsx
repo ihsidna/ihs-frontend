@@ -157,7 +157,6 @@ const Profile = () => {
 				</div>
 
 				<hr className="my-10"/>
-				<p className="text-xl text-ihs-green my-5">Manage Subscriptions</p>
 
 				<form onSubmit={handlePortal}>
 					<input type="hidden" name="priceId" id="priceId" value="price_1LrhbqIGWAGjsS3FN6qfb8fW" />
