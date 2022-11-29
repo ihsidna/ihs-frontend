@@ -2,7 +2,7 @@ import React from 'react';
 import Boye from "../../../assets/images/Boye.jpg";
 import Caleb from "../../../assets/images/Caleb.jpg";
 import Michael from "../../../assets/images/Michael.jpg";
-import Esther from "../../../assets/images/Esther.jpg";
+import Esther from "../../../assets/images/Esther.jpeg";
 import Olakanmi from "../../../assets/images/Olakanmi.jpg";
 import Dapo from "../../../assets/images/Dapo.jpg";
 import Zainab from "../../../assets/images/Zainab.jpg";
