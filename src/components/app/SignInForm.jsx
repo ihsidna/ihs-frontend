@@ -6,7 +6,7 @@ import {useFormik} from "formik";
 import {signinSchema} from "../../utils/formSchema";
 import {ExclamationCircleIcon} from "@heroicons/react/solid";
 import {useDispatch, useSelector} from "react-redux";
-import {signInUser, storeAuthInfo} from "../../redux/features/authSlice";
+import {signInUser, storeAuthInfo, togglePersist} from "../../redux/features/authSlice";
 
 TopBarProgress.config({
 	barColors: {
@@ -31,9 +31,12 @@ const SignInForm = () => {
 		const email = values.email;
 		const password = values.password;
 
-		dispatch(signInUser({ email, password })).unwrap()
+		await dispatch(signInUser({ email, password })).unwrap()
 		.then(
 			async (result) => {
+				localStorage.setItem('userType', result.data.userType)
+				localStorage.setItem('loggedInFlag', JSON.stringify(true))
+
 				if (typeof result === "string"){
 					setErrMsg(await result)
 				} else {
@@ -57,7 +60,7 @@ const SignInForm = () => {
 		onSubmit,
 	})
 
-	const togglePersist = () => {
+	const togglePersistCheckbox = () => {
 		dispatch(togglePersist)
 	}
 
@@ -129,7 +132,7 @@ const SignInForm = () => {
 						className="mr-1 accent-ihs-green-shade-500"
 						type="checkbox"
 						id="persist"
-						onChange={togglePersist}
+						onChange={togglePersistCheckbox}
 						checked={persist}
 					/>
 					<label className="text-sm font-light text-gray-600" htmlFor="persist">Remember Password?</label>

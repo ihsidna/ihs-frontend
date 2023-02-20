@@ -3,15 +3,16 @@ import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/outline'
 import {Link} from "react-router-dom";
-import useAuth from "../../../hooks/useAuth";
 import {userRoles} from "../../../data/enums";
+import {useSelector} from "react-redux";
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(' ')
 }
 
 export default function AppointmentDropdown({appointmentDetails}) {
-	const {auth, loggedInUser} = useAuth();
+	const loggedInUser = useSelector((state) => state.auth.loggedInUser);
+	const userType = useSelector((state) => state.auth.userAccess.userType);
 
 	return (
 		<Menu as="div" className="relative inline-block text-left pr-4">
@@ -50,7 +51,7 @@ export default function AppointmentDropdown({appointmentDetails}) {
 								<hr />
 							</>
 						)}
-					{auth?.userType === userRoles.Admin && (
+					{userType === userRoles.Admin && (
 							<>
 								<Menu.Item>
 									{({active}) => (
@@ -79,7 +80,7 @@ export default function AppointmentDropdown({appointmentDetails}) {
 							</>
 						)}
 
-					{auth?.userType !== userRoles.User && (
+					{userType !== userRoles.User && (
 							<>
 								<Menu.Item>
 									{({ active }) => (

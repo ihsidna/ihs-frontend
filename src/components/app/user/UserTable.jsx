@@ -7,14 +7,16 @@ import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import useAuth from "../../../hooks/useAuth";
 import TopBarProgress from "react-topbar-progress-indicator";
 import Pagination from "../Pagination";
+import {useSelector} from "react-redux";
 
 const mobilePageSize = pageSize.Mobile;
 const laptopPageSize = pageSize.Laptop;
 
 const UserTable = () => {
+	const loggedInUser = useSelector((state) => state.auth.loggedInUser);
 	const navigate = useNavigate();
 	const axiosPrivate = useAxiosPrivate();
-	const {users, setUsers, loggedInUser} = useAuth();
+	const {users, setUsers} = useAuth();
 
 	const [loading, setLoading] = useState(false);
 	const [currentPage, setCurrentPage] = useState(1);
