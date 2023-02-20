@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import useAuth from "../../hooks/useAuth";
-import axios from "../../api/axios";
 import {useNavigate, useLocation, Link} from "react-router-dom";
 import TopBarProgress from "react-topbar-progress-indicator";
 import {EyeIcon, EyeOffIcon} from "@heroicons/react/outline";
 import {useFormik} from "formik";
 import {signinSchema} from "../../utils/formSchema";
 import {ExclamationCircleIcon} from "@heroicons/react/solid";
+import {useDispatch, useSelector} from "react-redux";
+import {signInUser, storeAuthInfo} from "../../redux/features/authSlice";
 
 TopBarProgress.config({
 	barColors: {
@@ -15,56 +15,37 @@ TopBarProgress.config({
 	shadowBlur: 5
 });
 
-const LOGIN_URL = "/user/login";
-
 const SignInForm = () => {
-	const {auth, setAuth, persist, setPersist} = useAuth();
-
+	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const location = useLocation();
 	const from = location.state?.from?.pathname || "/";
+
+	const { persist, accessToken } = useSelector((state) => state.auth.userAccess)
 
 	const [errMsg, setErrMsg] = useState('');
 	const [revealPwd, setRevealPwd] = useState(false);
 
 
-	const onSubmit = async (values, actions) => {
+	const onSubmit = async (values) => {
 		const email = values.email;
 		const password = values.password;
 
-		try {
-			const response = await axios.post(LOGIN_URL,
-				JSON.stringify({ email, password }),
-				{
-					headers: { 'Content-Type': 'application/json' },
-					withCredentials: true
+		dispatch(signInUser({ email, password })).unwrap()
+		.then(
+			async (result) => {
+				if (typeof result === "string"){
+					setErrMsg(await result)
+				} else {
+					dispatch(storeAuthInfo(result.data))
+					if (from === "/") {
+						navigate('/dashboard');
+					} else {
+						navigate(from, {replace: true});
+					}
+					dispatch(storeAuthInfo(result.data))
 				}
-			);
-
-			const accessToken = response?.data?.data?.accessToken
-			const userType = response?.data?.data?.userType
-			setAuth({accessToken, userType});
-
-			localStorage.setItem('userType', userType);
-			localStorage.setItem('loggedInFlag', JSON.stringify(true));
-
-			actions.resetForm();
-
-			if (from === "/") {
-				navigate('/dashboard');
-			} else {
-				navigate(from, {replace: true});
-			}
-
-		} catch (err) {
-			if (!err.response) {
-				setErrMsg('No Server Response');
-			} else if (err.response.status === 409 || err.response.status === 500) {
-				setErrMsg(err.response.data.message);
-			} else {
-				setErrMsg('Something went wrong');
-			}
-		}
+			});
 	}
 
 	const {values, errors, touched, isSubmitting, handleChange, handleBlur, handleSubmit} = useFormik({
@@ -77,11 +58,11 @@ const SignInForm = () => {
 	})
 
 	const togglePersist = () => {
-		setPersist(prev => !prev)
+		dispatch(togglePersist)
 	}
 
 	useEffect(() => {
-		if (auth?.accessToken){
+		if (accessToken){
 			navigate("/dashboard");
 		}
 	})

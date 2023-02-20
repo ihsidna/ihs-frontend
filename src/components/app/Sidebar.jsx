@@ -4,19 +4,23 @@ import Logo from "../../assets/images/logo.svg";
 import {userRoles} from "../../data/enums";
 import {adminLinks, employeeLinks, footerLinks, userLinks} from "../../data/data";
 import {NavLink, useNavigate} from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
 import Modal from "./Modal";
 import axios from "../../api/axios";
 import OutsideClick from "../../hooks/outsideClick";
+import {storeAuthInfo} from "../../redux/features/authSlice";
+import {useDispatch, useSelector} from "react-redux";
 
 const activeLink = "flex w-70 items-center gap-5 text-lg text-ihs-green bg-ihs-green-shade-200 border border-0 border-r-2 border-r-ihs-green pl-5 py-2"
 const normalLink = "flex w-70 items-center gap-5 text-lg hover:bg-ihs-green-shade-100 border border-0 hover:border-r-2 hover:border-r-ihs-green pl-5 py-2"
 
 const Sidebar = () => {
+	const dispatch = useDispatch();
+
+	const userType = useSelector((state) => state.auth.userAccess.userType);
+
 	const sidebarRef = useRef(null);
 	const outsideSidebarClick = OutsideClick(sidebarRef);
 
-	const {auth, setAuth} = useAuth();
 	const navigate = useNavigate();
 	const [toggleModal, setToggleModal] = useState(false)
 
@@ -25,7 +29,11 @@ const Sidebar = () => {
 	}
 
 	const logout = async () => {
-		setAuth({});
+		dispatch(storeAuthInfo({
+			accessToken: '',
+			userType: '',
+		}));
+
 		await axios('/logout', {
 			withCredentials: true
 		});
@@ -71,9 +79,9 @@ const Sidebar = () => {
 
 							<div className="relative lg:h-[calc(100vh_-_110px)] h-[calc(100vh_-_100px)]">
 
-								{ auth?.userType === userRoles.User
+								{ userType === userRoles.User
 										? displayLinks(userLinks)
-										: auth?.userType === userRoles.Employee
+										: userType === userRoles.Employee
 											? displayLinks(employeeLinks)
 											: displayLinks(adminLinks)
 									}

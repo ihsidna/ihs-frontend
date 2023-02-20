@@ -3,12 +3,12 @@ import ViewUser from "./ViewUser";
 import UserTable from "./UserTable";
 import AddUser from "./AddUser";
 import {userRoles} from "../../../data/enums";
-import useAuth from "../../../hooks/useAuth";
 import ViewUserBeneficiary from "./ViewUserBeneficiary";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import TopBarProgress from "react-topbar-progress-indicator";
 import AddUserModal from "./AddUserModal";
 import {useState} from "react";
+import {useSelector} from "react-redux";
 
 TopBarProgress.config({
 	barColors: {
@@ -29,7 +29,7 @@ const Users = () => {
 };
 
 const ParentContent = () => {
-	const {auth} = useAuth();
+	const userType = useSelector((state) => state.auth.userAccess.userType);
 
 	const [showAddUserModal, setShowAddUserModal] = useState(false);
 	const [addUserModalSuccess, setAddUserModalSuccess] = useState(false);
@@ -58,7 +58,7 @@ const ParentContent = () => {
 					{/*Users Section*/}
 					<div className="flex justify-between items-center md:mt-16 mt-20">
 				<h2 className="md:text-2xl text-xl">All Users</h2>
-				{auth?.userType === userRoles.Admin &&
+				{userType === userRoles.Admin &&
 					<button className="py-3 md:px-4 px-2" onClick={handleShowAddUserModal}>Add Admin User</button>
 				}
 			</div>

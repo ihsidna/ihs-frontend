@@ -1,8 +1,8 @@
 import {Outlet} from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import useRefreshToken	 from "../../hooks/useRefreshToken";
-import useAuth from "../../hooks/useAuth";
 import TopBarProgress from "react-topbar-progress-indicator";
+import {useSelector} from "react-redux";
 
 TopBarProgress.config({
 	barColors: {
@@ -12,9 +12,11 @@ TopBarProgress.config({
 });
 
 const PersistLogin = () => {
+	const accessToken = useSelector((state) => state.auth.userAccess.accessToken);
+	const persist = useSelector((state) => state.auth.userAccess.persist);
+
 	const [loading, setLoading] = useState(true);
 	const refresh = useRefreshToken();
-	const {auth, persist} = useAuth();
 
 	useEffect(() => {
 		let isMounted = true;
@@ -30,7 +32,7 @@ const PersistLogin = () => {
 		}
 
 		// !auth?.accessToken && persist ? verifyRefreshToken() : setLoading(false);
-		!auth?.accessToken ? verifyRefreshToken() : setLoading(false);
+		!accessToken ? verifyRefreshToken() : setLoading(false);
 
 		if (isMounted) {
 			return () => {

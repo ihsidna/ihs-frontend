@@ -1,7 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {ChevronLeftIcon, ClipboardCheckIcon} from "@heroicons/react/outline";
 import {useNavigate, useParams} from "react-router-dom";
-import useAuth from "../../../hooks/useAuth";
 import {userRoles} from "../../../data/enums";
 import { StarRating } from 'react-star-rating-element';
 import {Helmet, HelmetProvider} from "react-helmet-async";
@@ -10,6 +9,7 @@ import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import TopBarProgress from "react-topbar-progress-indicator";
 import {getDate} from "../../../hooks/useFormatDate";
 import Shimmer from "../Shimmer";
+import {useSelector} from "react-redux";
 
 TopBarProgress.config({
 	barColors: {
@@ -19,11 +19,12 @@ TopBarProgress.config({
 });
 
 const ViewAppointment = () => {
+	const userType = useSelector((state) => state.auth.userAccess.userType);
+
 	const axiosPrivate = useAxiosPrivate();
 	const appointment = useParams();
 	const appointmentId = appointment.appointmentId;
 	const navigate = useNavigate();
-	const {auth} = useAuth();
 	const [appointmentDetails, setAppointmentDetails] = useState({});
 	const [loading, setLoading] = useState(false);
 
@@ -32,14 +33,14 @@ const ViewAppointment = () => {
 	}
 
 	const getAppointment = useCallback(async () => {
-		if (auth?.userType === userRoles.User){
+		if (userType === userRoles.User){
 			const response = await axiosPrivate.get(`/user/appointments/${appointmentId}`);
 			setAppointmentDetails(response.data.data[0])
 		} else {
 			const response = await axiosPrivate.get(`/admin/appointment/${appointmentId}`);
 			setAppointmentDetails(response.data.data[0])
 		}
-	}, [appointmentId, axiosPrivate, auth?.userType])
+	}, [appointmentId, axiosPrivate, userType])
 
 	useEffect(() => {
 		setLoading(true);

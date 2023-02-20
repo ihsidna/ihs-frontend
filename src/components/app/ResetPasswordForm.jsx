@@ -14,8 +14,6 @@ const RESET_URL = "/user/resetPassword";
 
 const ResetPasswordForm = () => {
 	const navigate = useNavigate();
-	// const location = useLocation();
-	// const from = location.state?.from?.pathname || "/";
 
 	const [email, setEmail] = useState('');
 	const [loading, setLoading] = useState(false);

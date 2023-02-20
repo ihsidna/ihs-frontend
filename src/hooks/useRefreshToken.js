@@ -1,21 +1,19 @@
 import axios from "../api/axios";
-import useAuth from "./useAuth";
+import {storeAuthInfo} from "../redux/features/authSlice";
+import {useDispatch} from "react-redux";
 
 const useRefreshToken = () => {
-	const { setAuth } = useAuth();
+	const dispatch = useDispatch();
 
 	const refresh = async () => {
 		const response = await axios.get("/refresh",
 			{ withCredentials: true }
 		);
 
-		setAuth(prev => {
-			return {
-				...prev,
-				userType: localStorage.getItem("userType"),
-				accessToken: response.data.data
-			};
-		});
+		dispatch(storeAuthInfo({
+			userType: localStorage.getItem("userType"),
+			accessToken: response.data.data
+		}))
 
 		// return an object with accessToken and userType
 		return response.data.data;

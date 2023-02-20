@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import {ChevronLeftIcon, EyeIcon, EyeOffIcon, UserCircleIcon} from "@heroicons/react/outline";
 import {useLocation, useNavigate} from "react-router-dom";
-import useAuth from "../../../hooks/useAuth";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import TopBarProgress from "react-topbar-progress-indicator";
 import {useFormik} from "formik";
 import {changePasswordSchema} from "../../../utils/formSchema";
 import ChangePhoneNumberModal from "./ChangePhoneNumberModal";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchUserProfile, storeAuthInfo, storeLoggedInUser} from "../../../redux/features/authSlice";
 
 TopBarProgress.config({
 	barColors: {
@@ -19,10 +20,12 @@ TopBarProgress.config({
 const UPDATE_PASSWORD = '/user/updatePassword';
 
 const Profile = () => {
+	const dispatch = useDispatch();
+	const loggedInUser = useSelector((state) => state.auth.loggedInUser);
+
 	const navigate = useNavigate();
 	const location = useLocation();
 	const axiosPrivate = useAxiosPrivate();
-	const {loggedInUser, setLoggedInUser, setAuth} = useAuth();
 
 	const [loading, setLoading] = useState(false);
 	const [revealPwd, setRevealPwd] = useState(false);
@@ -30,52 +33,28 @@ const Profile = () => {
 	const [showUpdatePhoneModal, setShowUpdatePhoneModal] = useState(false);
 	const [updatePhoneModalSuccess, setUpdatePhoneModalSuccess] = useState(false);
 
-	useEffect( () => {
-		let isMounted = true;
-		const controller = new AbortController();
+	useEffect(() => {
+		dispatch(fetchUserProfile()).unwrap()
+		.then((result) => {
+			dispatch(storeLoggedInUser(result));
+		}).catch((err) => {
+			if (err?.response?.status === 401) {
+				navigate('/', {state: {from: location}, replace: true});
+			}
+		})
 
-		const getLoggedInUser = async () => {
-			try {
-				const response = await axiosPrivate.get(
-					"/user/profile",
-					{signal: controller?.signal}
-				);
-
-				const loggedInUserObject = {
-					id: response.data.data.id,
-					firstName: response.data.data.firstName,
-					lastName: response.data.data.lastName,
-					phone: response.data.data.phone,
-					email: response.data.data.email,
-					customerId: response.data.data.stripeCustomerId
-
-				}
-
-				isMounted && setLoggedInUser(loggedInUserObject);
-
-				// todo: move the next line to the auth context
-				setLoading(false)
-			} catch (err){
-				// if status is 401 then redirect to signin page
+		if (updatePhoneModalSuccess === true) {
+			dispatch(fetchUserProfile()).unwrap()
+			.then((result) => {
+				dispatch(storeLoggedInUser(result));
+			}).catch((err) => {
 				if (err?.response?.status === 401) {
 					navigate('/', {state: {from: location}, replace: true});
 				}
-				console.error(err)
-			}
+			})
 		}
 
-		// refetch user information if phone number was updated on the modal
-		if (updatePhoneModalSuccess === true) {
-			getLoggedInUser();
-		}
-
-		getLoggedInUser();
-
-		return () => {
-			isMounted = false;
-			controller.abort();
-		}
-	}, [axiosPrivate, setLoggedInUser, location, navigate, updatePhoneModalSuccess]);
+	}, [location, navigate, updatePhoneModalSuccess, dispatch])
 
 	const handlePortal = async (e) => {
 		e.preventDefault();
@@ -118,7 +97,12 @@ const Profile = () => {
 
 		setLoading(false);
 		actions.resetForm();
-		setAuth({});
+
+		dispatch(storeAuthInfo({
+			accessToken: '',
+			userType: '',
+		}));
+
 		localStorage.clear();
 		navigate('/');
 	}

@@ -6,6 +6,7 @@ import useAuth from "../../../hooks/useAuth";
 import {appointmentStatus, userRoles} from "../../../data/enums";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import TopBarProgress from "react-topbar-progress-indicator";
+import {useSelector} from "react-redux";
 
 TopBarProgress.config({
 	barColors: {
@@ -15,9 +16,11 @@ TopBarProgress.config({
 });
 
 const UpdateAppointment = () => {
+	const userType = useSelector((state) => state.auth.userAccess.userType);
+
 	const appointment = useParams();
 	const appointmentId = appointment.appointmentId;
-	const {auth, services, setServices} = useAuth();
+	const {services, setServices} = useAuth();
 	const axiosPrivate = useAxiosPrivate();
 	const navigate = useNavigate();
 	const [beneficiaryName, setBeneficiaryName] = useState('');
@@ -171,7 +174,7 @@ const UpdateAppointment = () => {
 
 							{!completed &&
 								<div className="flex md:flex-row flex-col items-center md:gap-x-2 pr-2">
-									{auth?.userType === userRoles.Admin && (
+									{userType === userRoles.Admin && (
 										<>
 											<button className="sm:text-xl text-sm px-3 my-2" onClick={handleCompleteAppointment}>Mark as Complete</button>
 										</>
