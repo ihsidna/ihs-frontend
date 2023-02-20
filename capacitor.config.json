@@ -1,0 +1,32 @@
+{
+  "appId": "com.ihsmedical",
+  "appName": "IHS Medical",
+  "webDir": "build",
+  "bundledWebRuntime": false,
+  "backgroundColor": "#f3f3f3",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 3000,
+      "launchAutoHide": true,
+      "backgroundColor": "#ffffffff",
+      "androidSplashResourceName": "splash",
+      "androidScaleType": "CENTER_CROP",
+      "showSpinner": false,
+      "androidSpinnerStyle": "large",
+      "iosSpinnerStyle": "large",
+      "spinnerColor": "#F53971",
+      "splashFullScreen": true,
+      "splashImmersive": true,
+      "layoutName": "launch_screen",
+      "useDialog": true
+    },
+    "Keyboard": {
+      "resize": "none",
+      "resizeOnFullScreen": true
+    }
+  },
+  "ios":{
+    "backgroundColor": "#f3f3f3",
+    "preferredContentMode": "mobile"
+  }
+}
