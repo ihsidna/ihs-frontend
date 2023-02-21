@@ -68,3 +68,17 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+### Mobile App instructions
+
+to build run: 
+
+1. npm run build-mobile:staging or  npm run build-mobile:prod - you can find this in package.json file 
+
+2. npx cap sync 
+
+3. npx cap open ios (you will need to download xcode for this to work)
+
+4. to open android run : npx cap open android
+
