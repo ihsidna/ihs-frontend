@@ -3,7 +3,7 @@
   "appName": "IHS Medical",
   "webDir": "build",
   "bundledWebRuntime": false,
-  "backgroundColor": "#f3f3f3",
+  "backgroundColor": "#fff",
   "plugins": {
     "SplashScreen": {
       "launchShowDuration": 3000,
@@ -26,7 +26,8 @@
     }
   },
   "ios":{
-    "backgroundColor": "#f3f3f3",
-    "preferredContentMode": "mobile"
+    "backgroundColor": "#fff",
+    "preferredContentMode": "mobile",
+    "contentInset": "never"
   }
 }
