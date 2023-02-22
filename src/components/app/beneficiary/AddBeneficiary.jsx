@@ -15,13 +15,11 @@ TopBarProgress.config({
 const ADD_BENEFICIARY = "/user/addBeneficiary"
 
 const AddBeneficiary = () => {
-	// const {auth} = useAuth();
 	const axiosPrivate = useAxiosPrivate();
 	const navigate = useNavigate();
 
 	const [loading, setLoading] = useState(false);
 	const [errMsg, setErrMsg] = useState('');
-	// const [success, setSuccess] = useState(false);
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
 	const [dob, setDob] = useState('');
@@ -59,7 +57,6 @@ const AddBeneficiary = () => {
 			setState('');
 
 			setLoading(false);
-			// setSuccess(true);
 
 			navigate('/beneficiaries')
 

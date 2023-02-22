@@ -10,6 +10,7 @@ import TopBarProgress from "react-topbar-progress-indicator";
 import AllAppointmentsTable from "./appointment/AllAppointmentsTable";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchUserProfile, storeLoggedInUser} from "../../redux/features/authSlice";
+import {fetchBeneficiaries, storeBeneficiaries} from "../../redux/features/beneficiarySlice";
 
 TopBarProgress.config({
 	barColors: {
@@ -23,14 +24,16 @@ const Dashboard = () => {
 
 	const userType = useSelector((state) => state.auth.userAccess.userType);
 	const loggedInUser = useSelector((state) => state.auth.loggedInUser);
+	const beneficiaries = useSelector(state => state.userBeneficiaries.beneficiaries)
 
 	const navigate = useNavigate();
 	const axiosPrivate = useAxiosPrivate();
 	const location = useLocation();
 	const [loading, setLoading] = useState(false)
 	const [hasLoaded, setHasLoaded] = useState(false);
-	const {beneficiaries, appointments, setAllAppointments, setBeneficiaries, setAppointments, metrics, setMetrics} = useAuth();
+	const {appointments, setAllAppointments, setAppointments, metrics, setMetrics} = useAuth();
 
+	// get loggedin user
 	useEffect(() => {
 		dispatch(fetchUserProfile()).unwrap()
 		.then((result) => {
@@ -40,122 +43,106 @@ const Dashboard = () => {
 				navigate('/', {state: {from: location}, replace: true});
 			}
 		})
-	}, [dispatch, axiosPrivate, location, navigate])
+	}, [dispatch])
 
-	useEffect(() => {
-		let isMounted = true;
-		const controller = new AbortController();
-
-		const getAllAppointments = async () => {
-			try {
-				const response = await axiosPrivate.get(
-					"/admin/appointments",
-					{
-						signal: controller?.signal
-					});
-
-				isMounted && setAllAppointments(response.data.data);
-				setHasLoaded(true);
-				setLoading(false);
-			} catch (err){
-				console.error(err)
-			}
-		}
-
-		getAllAppointments();
-
-		return () => {
-			isMounted = false;
-			controller.abort();
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
+	// get loggedin user beneficiaries
 	useEffect(() => {
 		setLoading(true)
-		let isMounted = true;
-		const controller = new AbortController();
+		dispatch(fetchBeneficiaries()).unwrap()
+		.then((result) => {
+			dispatch(storeBeneficiaries(result));
+			setLoading(false)
+		})
+	}, [dispatch])
 
-		const getBeneficiaries = async () => {
-			try {
-				const response = await axiosPrivate.get(
-					"/user/beneficiaries",
-					{
-						signal: controller?.signal
-					});
+	// get all appointments
+	// useEffect(() => {
+	// 	let isMounted = true;
+	// 	const controller = new AbortController();
+	//
+	// 	const getAllAppointments = async () => {
+	// 		try {
+	// 			const response = await axiosPrivate.get(
+	// 				"/admin/appointments",
+	// 				{
+	// 					signal: controller?.signal
+	// 				});
+	//
+	// 			isMounted && setAllAppointments(response.data.data);
+	// 			setHasLoaded(true);
+	// 			setLoading(false);
+	// 		} catch (err){
+	// 			console.error(err)
+	// 		}
+	// 	}
+	//
+	// 	getAllAppointments();
+	//
+	// 	return () => {
+	// 		isMounted = false;
+	// 		controller.abort();
+	// 	}
+	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
+	// }, []);
 
-				isMounted && setBeneficiaries(response.data.data);
-				setLoading(false)
-			} catch (err){
-				console.error(err)
-			}
-		}
+	// get appointments
+	// useEffect(() => {
+	// 	setLoading(true)
+	// 	let isMounted = true;
+	// 	const controller = new AbortController();
+	//
+	// 	const getAppointments = async () => {
+	// 		try {
+	// 			const response = await axiosPrivate.get(
+	// 				"/user/appointments",
+	// 				{
+	// 					signal: controller?.signal
+	// 				});
+	//
+	// 			isMounted && setAppointments(response.data.data);
+	// 			setLoading(false)
+	// 		} catch (err){
+	// 			console.error(err)
+	// 		}
+	// 	}
+	//
+	// 	getAppointments();
+	//
+	// 	return () => {
+	// 		isMounted = false;
+	// 		controller.abort();
+	// 	}
+	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
+	// }, []);
 
-		getBeneficiaries();
-
-		return () => {
-			isMounted = false;
-			controller.abort();
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
-	useEffect(() => {
-		setLoading(true)
-		let isMounted = true;
-		const controller = new AbortController();
-
-		const getAppointments = async () => {
-			try {
-				const response = await axiosPrivate.get(
-					"/user/appointments",
-					{
-						signal: controller?.signal
-					});
-
-				isMounted && setAppointments(response.data.data);
-				setLoading(false)
-			} catch (err){
-				console.error(err)
-			}
-		}
-
-		getAppointments();
-
-		return () => {
-			isMounted = false;
-			controller.abort();
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
-	useEffect(() => {
-		let isMounted = true;
-		const controller = new AbortController();
-
-		const getMetrics = async () => {
-				setLoading(true);
-			try {
-				const response = await axiosPrivate.get(
-					"/metrics",
-					{
-						signal: controller?.signal
-					});
-
-				isMounted && setMetrics(response.data.data);
-				setLoading(false)
-			} catch (err){
-				console.error(err)
-			}
-		}
-
-		getMetrics();
-
-		return () => {
-			isMounted = false;
-			controller.abort();
-		}
-	}, [axiosPrivate, setMetrics]);
+	// get metrics
+	// useEffect(() => {
+	// 	let isMounted = true;
+	// 	const controller = new AbortController();
+	//
+	// 	const getMetrics = async () => {
+	// 			setLoading(true);
+	// 		try {
+	// 			const response = await axiosPrivate.get(
+	// 				"/metrics",
+	// 				{
+	// 					signal: controller?.signal
+	// 				});
+	//
+	// 			isMounted && setMetrics(response.data.data);
+	// 			setLoading(false)
+	// 		} catch (err){
+	// 			console.error(err)
+	// 		}
+	// 	}
+	//
+	// 	getMetrics();
+	//
+	// 	return () => {
+	// 		isMounted = false;
+	// 		controller.abort();
+	// 	}
+	// }, [axiosPrivate, setMetrics]);
 
 	return (
 		<HelmetProvider>

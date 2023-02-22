@@ -7,6 +7,7 @@ import {appointmentStatus} from "../../../data/enums";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import TopBarProgress from "react-topbar-progress-indicator";
 import Modal from "../Modal";
+import {useSelector} from "react-redux";
 
 TopBarProgress.config({
 	barColors: {
@@ -20,7 +21,10 @@ const BOOK_APPOINTMENT = "/appointment/create"
 const BookAppointment = () => {
 	const axiosPrivate = useAxiosPrivate();
 	const navigate = useNavigate();
-	const {beneficiaries, services, setServices} = useAuth();
+
+	const beneficiaries = useSelector(state => state.userBeneficiaries.beneficiaries)
+
+	const {services, setServices} = useAuth();
 
 	const [beneficiary, setBeneficiary] = useState('');
 	const [service, setService] = useState('');
