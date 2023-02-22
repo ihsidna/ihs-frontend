@@ -8,7 +8,7 @@ import {useFormik} from "formik";
 import {changePasswordSchema} from "../../../utils/formSchema";
 import ChangePhoneNumberModal from "./ChangePhoneNumberModal";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchUserProfile, storeAuthInfo, storeLoggedInUser} from "../../../redux/features/authSlice";
+import {fetchUserProfile, revertAll, storeLoggedInUser} from "../../../redux/features/authSlice";
 
 TopBarProgress.config({
 	barColors: {
@@ -98,10 +98,7 @@ const Profile = () => {
 		setLoading(false);
 		actions.resetForm();
 
-		dispatch(storeAuthInfo({
-			accessToken: '',
-			userType: '',
-		}));
+		dispatch(revertAll());
 
 		localStorage.clear();
 		navigate('/');

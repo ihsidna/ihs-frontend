@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit"
+import {createAction, createAsyncThunk, createSlice} from "@reduxjs/toolkit"
 import {axiosPrivate} from "../../api/axios"
 import axios from "../../api/axios";
 
@@ -58,10 +58,12 @@ export const fetchUserProfile = createAsyncThunk('user/profile', async () => {
 	}
 
 })
+export const revertAll = createAction('REVERT_ALL')
 
 const authSlice = createSlice({
 	name: 'auth',
 	initialState,
+	extraReducers: (builder) => builder.addCase(revertAll, () => initialState),
 	reducers: {
 		togglePersist(state){
 			state.userAccess = {...state.userAccess, persist: !state.userAccess.persist};

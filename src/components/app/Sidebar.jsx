@@ -7,7 +7,7 @@ import {NavLink, useNavigate} from "react-router-dom";
 import Modal from "./Modal";
 import axios from "../../api/axios";
 import OutsideClick from "../../hooks/outsideClick";
-import {storeAuthInfo} from "../../redux/features/authSlice";
+import {revertAll} from "../../redux/features/authSlice";
 import {useDispatch, useSelector} from "react-redux";
 
 const activeLink = "flex w-70 items-center gap-5 text-lg text-ihs-green bg-ihs-green-shade-200 border border-0 border-r-2 border-r-ihs-green pl-5 py-2"
@@ -29,16 +29,13 @@ const Sidebar = () => {
 	}
 
 	const logout = async () => {
-		dispatch(storeAuthInfo({
-			accessToken: '',
-			userType: '',
-		}));
+		localStorage.clear();
+
+		await dispatch(revertAll());
 
 		await axios('/logout', {
 			withCredentials: true
 		});
-
-		localStorage.clear();
 
 		navigate('/');
 	}

@@ -34,19 +34,19 @@ const SignInForm = () => {
 		await dispatch(signInUser({ email, password })).unwrap()
 		.then(
 			async (result) => {
-				localStorage.setItem('userType', result.data.userType)
-				localStorage.setItem('loggedInFlag', JSON.stringify(true))
-
 				if (typeof result === "string"){
 					setErrMsg(await result)
 				} else {
+					localStorage.setItem('userType', result.data.userType)
+					localStorage.setItem('loggedInFlag', JSON.stringify(true))
+
 					dispatch(storeAuthInfo(result.data))
+
 					if (from === "/") {
 						navigate('/dashboard');
 					} else {
 						navigate(from, {replace: true});
 					}
-					dispatch(storeAuthInfo(result.data))
 				}
 			});
 	}
