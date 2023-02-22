@@ -43,7 +43,7 @@ const Dashboard = () => {
 				navigate('/', {state: {from: location}, replace: true});
 			}
 		})
-	}, [dispatch])
+	}, [dispatch, location, navigate])
 
 	// get loggedin user beneficiaries
 	useEffect(() => {
