@@ -153,9 +153,9 @@ const Dashboard = () => {
 					<title>Dashboard | IHS Dashboard</title>
 					<link rel="canonical" href="https://www.ihsmdinc.com/" />
 				</Helmet>
-				<div className="lg:p-20 md:p-10 p-3">
+				<div className="lg:px-20 lg:py-4 md:px-10 p-3">
 					{loading && <TopBarProgress />}
-					<div className="mb-5 lg:mt-10 md:mt-16 mt-24">
+					<div className="mb-5 lg:mt-10">
 						<h2 className="md:text-4xl text-3xl mb-3">Hello {loggedInUser?.firstName}</h2>
 						<p className="text-slate-500 text-xl">Welcome to your dashboard</p>
 					</div>

@@ -1,21 +1,30 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import {Link, Outlet} from "react-router-dom";
 import Logo from "../../assets/images/logo.svg";
 import {avatar} from "../../data/enums";
 import Avatar from "react-avatar";
 import Sidebar from "./Sidebar";
 import {useSelector} from "react-redux";
+import {Capacitor} from "@capacitor/core";
+import {iosStyles} from "../../mobileStyles";
 
 const Layout = () => {
 	const loggedInUser = useSelector((state) => state.auth.loggedInUser);
 
+	const [platform, setPlatform] = useState('')
+
+	useEffect(() => {
+		setPlatform(Capacitor.getPlatform());
+	}, [])
+
 	return (
 		<div className="flex-1">
 			<div>
-				<nav className="flex justify-between h-20 border border-0 border-b border-slate-200 bg-white fixed w-full">
+				<nav className={`flex justify-between border border-0 border-b border-slate-200 bg-white sticky top-0 w-full pb-2 
+				 ${platform === 'ios' ? iosStyles.safeAreaTopPadding : 'py-4'}`}>
 					<div className='flex'>
-						<Sidebar />
-						<img src={Logo} alt="logo" className="w-28 ml-20" />
+						<Sidebar platform={platform}/>
+						<img src={Logo} alt="logo" className="w-28 ml-10" />
 					</div>
 
 					<div className="flex flex-row items-center">

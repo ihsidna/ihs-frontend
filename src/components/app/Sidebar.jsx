@@ -9,11 +9,12 @@ import axios from "../../api/axios";
 import OutsideClick from "../../hooks/outsideClick";
 import {revertAll} from "../../redux/features/authSlice";
 import {useDispatch, useSelector} from "react-redux";
+import {iosStyles} from "../../mobileStyles";
 
 const activeLink = "flex w-70 items-center gap-5 text-lg text-ihs-green bg-ihs-green-shade-200 border border-0 border-r-2 border-r-ihs-green pl-5 py-2"
 const normalLink = "flex w-70 items-center gap-5 text-lg hover:bg-ihs-green-shade-100 border border-0 hover:border-r-2 hover:border-r-ihs-green pl-5 py-2"
 
-const Sidebar = () => {
+const Sidebar = ({platform}) => {
 	const dispatch = useDispatch();
 
 	const userType = useSelector((state) => state.auth.userAccess.userType);
@@ -61,14 +62,13 @@ const Sidebar = () => {
 	return (
 		<>
 			<div ref={sidebarRef}>
-				<span className="absolute text-white text-4xl top-5 left-4 cursor-pointer" onClick={openBar}>
-
-					<ViewListIcon className="w-10 h-10 px-2 bg-ihs-green text-white rounded-md shadow-xl"/>
+				<span className='text-white text-4xl cursor-pointer' onClick={openBar}>
+					<ViewListIcon className={` ${platform === 'ios' ? iosStyles.navigationIcon : 'ml-3 w-10 h-10 px-2 bg-ihs-green text-white rounded-md shadow-xl'} `}/>
 				</span>
 				<div className={`sidebar fixed top-0 bottom-0 3xl:left-0 left-[-300px] duration-500
 				 w-[300px] overflow-y-auto text-center bg-cyan-50 shadow h-full z-10 ${outsideSidebarClick ? 'left-[-300px]' : ''}`}>
 						<div>
-							<div className="p-2.5 mt-1 flex items-center rounded-md ">
+							<div className={`p-2.5 mt-1 flex items-center rounded-md ${platform === 'ios' ? iosStyles.safeAreaTopPadding : ''}`}>
 								<img src={Logo} alt="logo" className="w-40" />
 								<XIcon className="ml-20 text-slate-500 w-10 h-10 bg-transparent border" onClick={openBar}/>
 							</div>
