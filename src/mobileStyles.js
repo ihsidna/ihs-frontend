@@ -3,4 +3,5 @@ export const iosStyles = {
 	safeAreaTopPadding: 'pt-[3.75rem]',
 	safeAreaSidebarTopMargin: 'mt-[3.75rem]',
 	safeAreaBottomPadding: 'pt-[2.5rem]',
+	androidNavbar: 'h-20 py-4',
 }
