@@ -10,7 +10,6 @@ import TopBarProgress from "react-topbar-progress-indicator";
 import AllAppointmentsTable from "./appointment/AllAppointmentsTable";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchUserProfile, storeLoggedInUser} from "../../redux/features/authSlice";
-import {fetchBeneficiaries, storeBeneficiaries} from "../../redux/features/beneficiarySlice";
 
 TopBarProgress.config({
 	barColors: {
@@ -24,16 +23,15 @@ const Dashboard = () => {
 
 	const userType = useSelector((state) => state.auth.userAccess.userType);
 	const loggedInUser = useSelector((state) => state.auth.loggedInUser);
-	const beneficiaries = useSelector(state => state.userBeneficiaries.beneficiaries)
 
 	const navigate = useNavigate();
 	const axiosPrivate = useAxiosPrivate();
 	const location = useLocation();
 	const [loading, setLoading] = useState(false)
 	const [hasLoaded, setHasLoaded] = useState(false);
-	const {appointments, setAllAppointments, setAppointments, metrics, setMetrics} = useAuth();
+	const {beneficiaries, setBeneficiaries, appointments, setAllAppointments, setAppointments, metrics, setMetrics} = useAuth();
 
-	// get loggedin user
+	// get logged in user
 	useEffect(() => {
 		dispatch(fetchUserProfile()).unwrap()
 		.then((result) => {
@@ -48,12 +46,32 @@ const Dashboard = () => {
 	// get loggedin user beneficiaries
 	useEffect(() => {
 		setLoading(true)
-		dispatch(fetchBeneficiaries()).unwrap()
-		.then((result) => {
-			dispatch(storeBeneficiaries(result));
-			setLoading(false)
-		})
-	}, [dispatch])
+		let isMounted = true;
+		const controller = new AbortController();
+
+		const getBeneficiaries = async () => {
+			try {
+				const response = await axiosPrivate.get(
+					"/user/beneficiaries",
+					{
+						signal: controller?.signal
+					});
+
+				isMounted && setBeneficiaries(response.data.data);
+				setLoading(false)
+			} catch (err){
+				console.error(err)
+			}
+		}
+
+		getBeneficiaries();
+
+		return () => {
+			isMounted = false;
+			controller.abort();
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	// get all appointments
 	useEffect(() => {

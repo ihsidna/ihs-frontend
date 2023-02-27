@@ -3,6 +3,7 @@ import TopBarProgress from "react-topbar-progress-indicator";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import {useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
+import useAuth from "../../../hooks/useAuth";
 
 TopBarProgress.config({
 	barColors: {
@@ -17,10 +18,10 @@ const yearlyPricing = process.env.REACT_APP_YEARLY_PRICING;
 
 const PricingDetails = () => {
 	const loggedInUser = useSelector((state) => state.auth.loggedInUser);
-	const beneficiaries = useSelector(state => state.userBeneficiaries.beneficiaries)
 
 	const axiosPrivate = useAxiosPrivate();
 	const [priceId, setPriceId] = useState('');
+	const {beneficiaries} = useAuth();
 	const [loading, setLoading] = useState(false);
 	const [beneficiarySubscriptionStatus, setBeneficiarySubscriptionStatus] = useState(false);
 	const beneficiary = useParams();

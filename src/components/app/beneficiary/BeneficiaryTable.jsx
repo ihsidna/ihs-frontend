@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useMemo} from 'react';
+import React, {useEffect, useState, useMemo, useCallback} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import Nodata from "../../../assets/images/noData.svg";
 import Avatar from "react-avatar";
@@ -7,8 +7,7 @@ import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import TopBarProgress from "react-topbar-progress-indicator";
 import {calculateAge} from "../../../hooks/useCalculateAge";
 import Pagination from "../Pagination";
-import {useDispatch, useSelector} from "react-redux";
-import {fetchBeneficiaries, storeBeneficiaries} from "../../../redux/features/beneficiarySlice";
+import useAuth from "../../../hooks/useAuth";
 
 TopBarProgress.config({
 		barColors: {
@@ -21,23 +20,26 @@ const mobilePageSize = pageSize.Mobile;
 const laptopPageSize = pageSize.Laptop;
 
 const BeneficiaryTable = () => {
-	const dispatch = useDispatch();
-
 	const navigate = useNavigate();
 	const axiosPrivate = useAxiosPrivate();
-	const beneficiaries = useSelector(state => state.userBeneficiaries.beneficiaries)
+	const {beneficiaries, setBeneficiaries} = useAuth();
 
 	const [loading, setLoading] = useState(false);
 	const [currentPage, setCurrentPage] = useState(1);
 
+	const getBeneficiaries = useCallback(async () => {
+		const response = await axiosPrivate.get("/user/beneficiaries");
+
+		const beneficiariesList = response.data.data;
+		setBeneficiaries(beneficiariesList);
+	}, [axiosPrivate, setBeneficiaries]);
+
 	useEffect(() => {
-		setLoading(true)
-		dispatch(fetchBeneficiaries()).unwrap()
-		.then((result) => {
-			dispatch(storeBeneficiaries(result));
-			setLoading(false)
-		})
-	}, [dispatch, axiosPrivate])
+		setLoading(true);
+		getBeneficiaries().then(() => {
+			setLoading(false);
+		});
+	}, [getBeneficiaries]);
 
 	const laptopTableData = useMemo(() => {
 		const firstPageIndex = (currentPage - 1) * laptopPageSize;
