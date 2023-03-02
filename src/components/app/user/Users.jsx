@@ -7,8 +7,9 @@ import ViewUserBeneficiary from "./ViewUserBeneficiary";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import TopBarProgress from "react-topbar-progress-indicator";
 import AddUserModal from "./AddUserModal";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
+import {getKey} from "../../../utils/mobilePreferences";
 
 TopBarProgress.config({
 	barColors: {
@@ -33,6 +34,18 @@ const ParentContent = () => {
 
 	const [showAddUserModal, setShowAddUserModal] = useState(false);
 	const [addUserModalSuccess, setAddUserModalSuccess] = useState(false);
+	const [mobileAuth, setMobileAuth] = useState('');
+
+	// get auth mobile preferences
+	useEffect(() => {
+		getKey('auth')
+		.then((result) => {
+			setMobileAuth(result);
+		})
+		.catch((err) => {
+			console.error(err);
+		});
+	}, [])
 
 	const handleShowAddUserModal = () => {
 		setShowAddUserModal(true);
@@ -58,7 +71,7 @@ const ParentContent = () => {
 					{/*Users Section*/}
 					<div className="flex justify-between items-center md:mt-16 mt-20">
 				<h2 className="md:text-2xl text-xl">All Users</h2>
-				{userType === userRoles.Admin &&
+				{(mobileAuth?.userType || userType) === userRoles.Admin &&
 					<button className="py-3 md:px-4 px-2" onClick={handleShowAddUserModal}>Add Admin User</button>
 				}
 			</div>

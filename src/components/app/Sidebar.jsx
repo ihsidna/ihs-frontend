@@ -1,4 +1,4 @@
-import {useRef, useState} from 'react';
+import {useRef, useState, useEffect} from 'react';
 import {LogoutIcon, ViewListIcon, XIcon} from "@heroicons/react/outline";
 import Logo from "../../assets/images/logo.svg";
 import {userRoles} from "../../data/enums";
@@ -10,35 +10,59 @@ import OutsideClick from "../../hooks/outsideClick";
 import {revertAll} from "../../redux/features/authSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {iosStyles} from "../../mobileStyles";
+import {getKey, removeKey} from "../../utils/mobilePreferences";
 
 const activeLink = "flex w-70 items-center gap-5 text-lg text-ihs-green bg-ihs-green-shade-200 border border-0 border-r-2 border-r-ihs-green pl-5 py-2"
 const normalLink = "flex w-70 items-center gap-5 text-lg hover:bg-ihs-green-shade-100 border border-0 hover:border-r-2 hover:border-r-ihs-green pl-5 py-2"
 
 const Sidebar = ({platform}) => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const userType = useSelector((state) => state.auth.userAccess.userType);
 
 	const sidebarRef = useRef(null);
 	const outsideSidebarClick = OutsideClick(sidebarRef);
 
-	const navigate = useNavigate();
 	const [toggleModal, setToggleModal] = useState(false)
+	const [mobileAuth, setMobileAuth] = useState('');
 
 	const showModal = () => {
 		setToggleModal(true)
 	}
 
-	const logout = async () => {
-		localStorage.clear();
-
-		await dispatch(revertAll());
-
-		await axios('/logout', {
-			withCredentials: true
+	// get auth mobile preferences
+	useEffect(() => {
+		getKey('auth')
+		.then((result) => {
+			setMobileAuth(result);
+		})
+		.catch((err) => {
+			console.error(err);
 		});
+	}, [])
 
-		navigate('/');
+	const logoutApiCall = async () => {
+		try {
+			await axios("/logout", { withCredentials: true });
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	const logout = async () => {
+		try {
+			await logoutApiCall();
+
+			await dispatch(revertAll());
+			localStorage.clear();
+			await removeKey('auth');
+			await removeKey('loggedInUser')
+
+			navigate('/');
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	const displayLinks = (links) => {
@@ -76,13 +100,12 @@ const Sidebar = ({platform}) => {
 
 							<div className="relative lg:h-[calc(100vh_-_110px)] h-[calc(100vh_-_100px)]">
 
-								{ userType === userRoles.User
+								{ (mobileAuth?.userType || userType) === userRoles.User
 										? displayLinks(userLinks)
-										: userType === userRoles.Employee
+										: (mobileAuth?.userType || userType) === userRoles.Employee
 											? displayLinks(employeeLinks)
 											: displayLinks(adminLinks)
 									}
-
 
 								<div className="absolute py-4 bottom-0 w-full">
 

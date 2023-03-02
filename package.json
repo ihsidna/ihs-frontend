@@ -6,6 +6,7 @@
     "@capacitor/android": "^4.6.3",
     "@capacitor/core": "^4.6.3",
     "@capacitor/ios": "^4.6.3",
+    "@capacitor/preferences": "^4.0.2",
     "@headlessui/react": "^1.7.2",
     "@heroicons/react": "^1.0.6",
     "@reduxjs/toolkit": "^1.9.2",

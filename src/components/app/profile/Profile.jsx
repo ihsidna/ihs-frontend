@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {ChevronLeftIcon, EyeIcon, EyeOffIcon, UserCircleIcon} from "@heroicons/react/outline";
 import {useLocation, useNavigate} from "react-router-dom";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
@@ -9,6 +9,7 @@ import {changePasswordSchema} from "../../../utils/formSchema";
 import ChangePhoneNumberModal from "./ChangePhoneNumberModal";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchUserProfile, revertAll, storeLoggedInUser} from "../../../redux/features/authSlice";
+import {setKey} from "../../../utils/mobilePreferences";
 
 TopBarProgress.config({
 	barColors: {
@@ -33,28 +34,29 @@ const Profile = () => {
 	const [showUpdatePhoneModal, setShowUpdatePhoneModal] = useState(false);
 	const [updatePhoneModalSuccess, setUpdatePhoneModalSuccess] = useState(false);
 
-	useEffect(() => {
-		dispatch(fetchUserProfile()).unwrap()
-		.then((result) => {
+	const fetchUserData = useCallback(async () => {
+		try {
+			const result = await dispatch(fetchUserProfile()).unwrap();
 			dispatch(storeLoggedInUser(result));
-		}).catch((err) => {
+
+			// mobile storage
+			await setKey('loggedInUser', result);
+		} catch (err) {
 			if (err?.response?.status === 401) {
-				navigate('/', {state: {from: location}, replace: true});
+				navigate('/', { state: { from: location }, replace: true });
 			}
-		})
-
-		if (updatePhoneModalSuccess === true) {
-			dispatch(fetchUserProfile()).unwrap()
-			.then((result) => {
-				dispatch(storeLoggedInUser(result));
-			}).catch((err) => {
-				if (err?.response?.status === 401) {
-					navigate('/', {state: {from: location}, replace: true});
-				}
-			})
 		}
+	}, [dispatch, location, navigate]);
 
-	}, [location, navigate, updatePhoneModalSuccess, dispatch])
+	useEffect(() => {
+		fetchUserData();
+	}, [fetchUserData]);
+
+	useEffect(() => {
+		if (updatePhoneModalSuccess === true) {
+			fetchUserData();
+		}
+	}, [fetchUserData, updatePhoneModalSuccess]);
 
 	const handlePortal = async (e) => {
 		e.preventDefault();

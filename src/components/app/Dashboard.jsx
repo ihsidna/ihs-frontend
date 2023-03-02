@@ -10,6 +10,7 @@ import TopBarProgress from "react-topbar-progress-indicator";
 import AllAppointmentsTable from "./appointment/AllAppointmentsTable";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchUserProfile, storeLoggedInUser} from "../../redux/features/authSlice";
+import {getKey, setKey} from "../../utils/mobilePreferences";
 
 TopBarProgress.config({
 	barColors: {
@@ -19,6 +20,8 @@ TopBarProgress.config({
 });
 
 const Dashboard = () => {
+	const [mobileAuth, setMobileAuth] = useState('');
+	const [mobileLoggedInUser, setMobileLoggedInUser] = useState('')
 	const dispatch = useDispatch();
 
 	const userType = useSelector((state) => state.auth.userAccess.userType);
@@ -31,11 +34,36 @@ const Dashboard = () => {
 	const [hasLoaded, setHasLoaded] = useState(false);
 	const {beneficiaries, setBeneficiaries, appointments, setAllAppointments, setAppointments, metrics, setMetrics} = useAuth();
 
+	// get auth mobile preferences
+	useEffect(() => {
+		getKey('auth')
+		.then((result) => {
+			setMobileAuth(result);
+		})
+		.catch((err) => {
+			console.error(err);
+		});
+	}, [])
+
+	useEffect(() => {
+		getKey('loggedInUser')
+		.then((result) => {
+			setMobileLoggedInUser(result);
+		})
+		.catch((err) => {
+			console.error(err);
+		})
+	}, [])
+
 	// get logged in user
 	useEffect(() => {
 		dispatch(fetchUserProfile()).unwrap()
-		.then((result) => {
+		.then(async (result) => {
 			dispatch(storeLoggedInUser(result));
+
+			// mobile storage
+			await setKey('loggedInUser', result)
+
 		}).catch((err) => {
 			if (err?.response?.status === 401) {
 				navigate('/', {state: {from: location}, replace: true});
@@ -43,7 +71,7 @@ const Dashboard = () => {
 		})
 	}, [dispatch, location, navigate])
 
-	// get loggedin user beneficiaries
+	// get user beneficiaries
 	useEffect(() => {
 		setLoading(true)
 		let isMounted = true;
@@ -94,7 +122,7 @@ const Dashboard = () => {
 			}
 		}
 
-		if (userType === userRoles.Admin){
+		if ((mobileAuth?.userType || userType) === userRoles.Admin){
 			getAllAppointments();
 		}
 
@@ -102,7 +130,7 @@ const Dashboard = () => {
 			isMounted = false;
 			controller.abort();
 		}
-	}, [axiosPrivate, setAllAppointments, userType]);
+	}, [axiosPrivate, setAllAppointments, userType, mobileAuth?.userType]);
 
 	// get appointments
 	useEffect(() => {
@@ -154,7 +182,7 @@ const Dashboard = () => {
 			}
 		}
 
-		if (userType === userRoles.Admin) {
+		if ((mobileAuth?.userType || userType) === userRoles.Admin) {
 			getMetrics();
 		}
 
@@ -162,7 +190,7 @@ const Dashboard = () => {
 			isMounted = false;
 			controller.abort();
 		}
-	}, [axiosPrivate, setMetrics, userType]);
+	}, [axiosPrivate, setMetrics, userType, mobileAuth?.userType]);
 
 	return (
 		<HelmetProvider>
@@ -174,7 +202,7 @@ const Dashboard = () => {
 				<div className="lg:px-20 lg:py-4 md:px-10 p-3">
 					{loading && <TopBarProgress />}
 					<div className="mb-5 lg:mt-10">
-						<h2 className="md:text-4xl text-3xl mb-3">Hello {loggedInUser?.firstName}</h2>
+						<h2 className="md:text-4xl text-3xl mb-3">Hello {loggedInUser?.firstName || mobileLoggedInUser?.firstName}</h2>
 						<p className="text-slate-500 text-xl">Welcome to your dashboard</p>
 					</div>
 
@@ -192,7 +220,7 @@ const Dashboard = () => {
 						</div>
 					</div>
 
-					{userType !== userRoles.User &&
+					{(mobileAuth?.userType || userType) !== userRoles.User &&
 						<>
 							{/*Admin Cards*/}
 							<div className="grid md:grid-cols-3 grid-cols-2 md:gap-7 gap-3 my-10">
@@ -212,7 +240,7 @@ const Dashboard = () => {
 						</>
 					}
 
-					{userType === userRoles.User &&
+					{(mobileAuth?.userType || userType) === userRoles.User &&
 						<>
 							{/*Beneficiaries Section*/}
 							<div className="flex justify-between items-center mt-20">
@@ -238,7 +266,7 @@ const Dashboard = () => {
 						</>
 					}
 
-					{userType !== userRoles.User &&
+					{(mobileAuth?.userType || userType) !== userRoles.User &&
 						<>
 							{/*Appointments Section*/}
 							<div className="flex justify-between items-center mt-20">

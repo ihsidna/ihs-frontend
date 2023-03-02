@@ -10,6 +10,7 @@ import TopBarProgress from "react-topbar-progress-indicator";
 import {getDate} from "../../../hooks/useFormatDate";
 import Shimmer from "../Shimmer";
 import {useSelector} from "react-redux";
+import {getKey} from "../../../utils/mobilePreferences";
 
 TopBarProgress.config({
 	barColors: {
@@ -27,20 +28,32 @@ const ViewAppointment = () => {
 	const navigate = useNavigate();
 	const [appointmentDetails, setAppointmentDetails] = useState({});
 	const [loading, setLoading] = useState(false);
+	const [mobileAuth, setMobileAuth] = useState('');
 
 	const download = () => {
 			window.open(appointmentDetails.reportUrl,"_blank");
 	}
 
 	const getAppointment = useCallback(async () => {
-		if (userType === userRoles.User){
+		if ((mobileAuth?.userType || userType) === userRoles.User){
 			const response = await axiosPrivate.get(`/user/appointments/${appointmentId}`);
 			setAppointmentDetails(response.data.data[0])
 		} else {
 			const response = await axiosPrivate.get(`/admin/appointment/${appointmentId}`);
 			setAppointmentDetails(response.data.data[0])
 		}
-	}, [appointmentId, axiosPrivate, userType])
+	}, [appointmentId, axiosPrivate, userType, mobileAuth?.userType])
+
+	// get auth mobile preferences
+	useEffect(() => {
+		getKey('auth')
+		.then((result) => {
+			setMobileAuth(result);
+		})
+		.catch((err) => {
+			console.error(err);
+		});
+	}, [])
 
 	useEffect(() => {
 		setLoading(true);

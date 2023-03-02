@@ -7,14 +7,26 @@ import Sidebar from "./Sidebar";
 import {useSelector} from "react-redux";
 import {Capacitor} from "@capacitor/core";
 import {iosStyles} from "../../mobileStyles";
+import {getKey} from "../../utils/mobilePreferences";
 
 const Layout = () => {
 	const loggedInUser = useSelector((state) => state.auth.loggedInUser);
 
 	const [platform, setPlatform] = useState('')
+	const [mobileLoggedInUser, setMobileLoggedInUser] = useState('')
 
 	useEffect(() => {
 		setPlatform(Capacitor.getPlatform());
+	}, [])
+
+	useEffect(() => {
+		getKey('loggedInUser')
+		.then((result) => {
+			setMobileLoggedInUser(result);
+		})
+		.catch((err) => {
+			console.error(err);
+		})
 	}, [])
 
 	return (
@@ -28,10 +40,10 @@ const Layout = () => {
 					</div>
 
 					<div className="flex flex-row items-center">
-						<p className="text-xl text-gray-700 hidden md:block"><Link to="/profile">{loggedInUser?.firstName} {loggedInUser?.lastName}</Link></p>
+						<p className="text-xl text-gray-700 hidden md:block"><Link to="/profile">{loggedInUser?.firstName || mobileLoggedInUser?.firstName} {loggedInUser?.lastName || mobileLoggedInUser?.lastName}</Link></p>
 						<div className="px-5">
 							<Link to="/profile">
-								<Avatar name={`${loggedInUser?.firstName} ${loggedInUser?.lastName}`} color={avatar.BackgroundColor} fgColor={avatar.ForegroundColor}  size={avatar.width} round={true}/>
+								<Avatar name={`${loggedInUser?.firstName || mobileLoggedInUser?.firstName} ${loggedInUser?.lastName || mobileLoggedInUser?.lastName}`} color={avatar.BackgroundColor} fgColor={avatar.ForegroundColor}  size={avatar.width} round={true}/>
 							</Link>
 						</div>
 					</div>

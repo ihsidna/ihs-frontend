@@ -7,6 +7,7 @@ import {signinSchema} from "../../utils/formSchema";
 import {ExclamationCircleIcon} from "@heroicons/react/solid";
 import {useDispatch, useSelector} from "react-redux";
 import {signInUser, storeAuthInfo, togglePersist} from "../../redux/features/authSlice";
+import {getKey, setKey} from "../../utils/mobilePreferences";
 
 TopBarProgress.config({
 	barColors: {
@@ -25,7 +26,7 @@ const SignInForm = () => {
 
 	const [errMsg, setErrMsg] = useState('');
 	const [revealPwd, setRevealPwd] = useState(false);
-
+	const [mobileAuth, setMobileAuth] = useState('');
 
 	const onSubmit = async (values) => {
 		const email = values.email;
@@ -41,6 +42,8 @@ const SignInForm = () => {
 					localStorage.setItem('loggedInFlag', JSON.stringify(true))
 
 					dispatch(storeAuthInfo(result.data))
+
+					await setKey('auth', result.data)
 
 					if (from === "/") {
 						navigate('/dashboard');
@@ -65,7 +68,17 @@ const SignInForm = () => {
 	}
 
 	useEffect(() => {
-		if (accessToken){
+		getKey('auth')
+		.then((result) => {
+			setMobileAuth(result);
+		})
+		.catch((err) => {
+			console.error(err);
+		});
+	}, [])
+
+	useEffect(() => {
+		if (mobileAuth?.accessToken || accessToken){
 			navigate("/dashboard");
 		}
 	})

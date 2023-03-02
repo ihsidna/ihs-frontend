@@ -7,6 +7,7 @@ import {appointmentStatus, userRoles} from "../../../data/enums";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import TopBarProgress from "react-topbar-progress-indicator";
 import {useSelector} from "react-redux";
+import {getKey} from "../../../utils/mobilePreferences";
 
 TopBarProgress.config({
 	barColors: {
@@ -30,12 +31,24 @@ const UpdateAppointment = () => {
 	const [loading, setLoading] = useState(false);
 	const [completed, setCompleted] = useState(true);
 	const [notes, setNotes] = useState('');
+	const [mobileAuth, setMobileAuth] = useState('');
 
 	const getServices = useCallback( async () => {
 		const response = await axiosPrivate.get(
 			"/admin/service/all");
 		setServices(response.data.data);
 	}, [axiosPrivate, setServices]);
+
+	// get auth mobile preferences
+	useEffect(() => {
+		getKey('auth')
+		.then((result) => {
+			setMobileAuth(result);
+		})
+		.catch((err) => {
+			console.error(err);
+		});
+	}, [])
 
 	useEffect(() => {
 		setLoading(true)
@@ -174,7 +187,7 @@ const UpdateAppointment = () => {
 
 							{!completed &&
 								<div className="flex md:flex-row flex-col items-center md:gap-x-2 pr-2">
-									{userType === userRoles.Admin && (
+									{(mobileAuth?.userType || userType) === userRoles.Admin && (
 										<>
 											<button className="sm:text-xl text-sm px-3 my-2" onClick={handleCompleteAppointment}>Mark as Complete</button>
 										</>

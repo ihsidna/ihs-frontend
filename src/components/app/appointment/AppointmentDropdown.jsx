@@ -1,18 +1,31 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from 'react'
+import {Fragment, useEffect, useState} from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/outline'
 import {Link} from "react-router-dom";
 import {userRoles} from "../../../data/enums";
 import {useSelector} from "react-redux";
+import {getKey} from "../../../utils/mobilePreferences";
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(' ')
 }
 
 export default function AppointmentDropdown({appointmentDetails}) {
+	const [mobileAuth, setMobileAuth] = useState('');
+
 	const loggedInUser = useSelector((state) => state.auth.loggedInUser);
 	const userType = useSelector((state) => state.auth.userAccess.userType);
+
+	useEffect(() => {
+		getKey('auth')
+		.then((result) => {
+			setMobileAuth(result);
+		})
+		.catch((err) => {
+			console.error(err);
+		});
+	}, [])
 
 	return (
 		<Menu as="div" className="relative inline-block text-left pr-4">
@@ -51,7 +64,7 @@ export default function AppointmentDropdown({appointmentDetails}) {
 								<hr />
 							</>
 						)}
-					{userType === userRoles.Admin && (
+					{(mobileAuth?.userType || userType) === userRoles.Admin && (
 							<>
 								<Menu.Item>
 									{({active}) => (
@@ -80,7 +93,7 @@ export default function AppointmentDropdown({appointmentDetails}) {
 							</>
 						)}
 
-					{userType !== userRoles.User && (
+					{(mobileAuth?.userType || userType) !== userRoles.User && (
 							<>
 								<Menu.Item>
 									{({ active }) => (
