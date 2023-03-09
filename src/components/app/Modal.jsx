@@ -1,6 +1,6 @@
 import {useNavigate} from "react-router-dom";
 
-const Modal = ({ setToggleModal, executeFunction, message, header}) => {
+const Modal = ({setToggleModal, executeFunction, message, header}) => {
 	const navigate = useNavigate();
 
 	const handleYesClick = () => {

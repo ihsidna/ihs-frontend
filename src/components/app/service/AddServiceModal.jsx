@@ -13,7 +13,8 @@ const AddServiceModal = ({setAddServiceModalSuccess, setShowAddServiceModal, add
 
 		await axiosPrivate.post(ADD_SERVICE,
 			JSON.stringify({
-				name, category}),
+				name, category
+			}),
 			{
 				headers: {
 					'Content-Type': 'application/json',

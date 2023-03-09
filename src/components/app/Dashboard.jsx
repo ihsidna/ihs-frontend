@@ -5,7 +5,7 @@ import useAuth from "../../hooks/useAuth";
 import BeneficiaryTable from "./beneficiary/BeneficiaryTable";
 import AppointmentTable from "./appointment/AppointmentTable";
 import {userRoles} from "../../data/enums";
-import { Helmet, HelmetProvider } from 'react-helmet-async';
+import {Helmet, HelmetProvider} from 'react-helmet-async';
 import TopBarProgress from "react-topbar-progress-indicator";
 import AllAppointmentsTable from "./appointment/AllAppointmentsTable";
 import {useDispatch, useSelector} from "react-redux";
@@ -32,7 +32,15 @@ const Dashboard = () => {
 	const location = useLocation();
 	const [loading, setLoading] = useState(false)
 	const [hasLoaded, setHasLoaded] = useState(false);
-	const {beneficiaries, setBeneficiaries, appointments, setAllAppointments, setAppointments, metrics, setMetrics} = useAuth();
+	const {
+		beneficiaries,
+		setBeneficiaries,
+		appointments,
+		setAllAppointments,
+		setAppointments,
+		metrics,
+		setMetrics
+	} = useAuth();
 
 	// get auth mobile preferences
 	useEffect(() => {
@@ -87,7 +95,7 @@ const Dashboard = () => {
 
 				isMounted && setBeneficiaries(response.data.data);
 				setLoading(false)
-			} catch (err){
+			} catch (err) {
 				console.error(err)
 			}
 		}
@@ -117,12 +125,12 @@ const Dashboard = () => {
 				isMounted && setAllAppointments(response.data.data);
 				setHasLoaded(true);
 				setLoading(false);
-			} catch (err){
+			} catch (err) {
 				console.error(err)
 			}
 		}
 
-		if ((mobileAuth?.userType || userType) === userRoles.Admin){
+		if ((mobileAuth?.userType || userType) === userRoles.Admin) {
 			getAllAppointments();
 		}
 
@@ -148,7 +156,7 @@ const Dashboard = () => {
 
 				isMounted && setAppointments(response.data.data);
 				setLoading(false)
-			} catch (err){
+			} catch (err) {
 				console.error(err)
 			}
 		}
@@ -167,7 +175,7 @@ const Dashboard = () => {
 		const controller = new AbortController();
 
 		const getMetrics = async () => {
-				setLoading(true);
+			setLoading(true);
 			try {
 				const response = await axiosPrivate.get(
 					"/metrics",
@@ -177,7 +185,7 @@ const Dashboard = () => {
 
 				isMounted && setMetrics(response.data.data);
 				setLoading(false)
-			} catch (err){
+			} catch (err) {
 				console.error(err)
 			}
 		}
@@ -197,12 +205,13 @@ const Dashboard = () => {
 			<>
 				<Helmet>
 					<title>Dashboard | IHS Dashboard</title>
-					<link rel="canonical" href="https://www.ihsmdinc.com/" />
+					<link rel="canonical" href="https://www.ihsmdinc.com/"/>
 				</Helmet>
 				<div className="lg:px-20 lg:py-4 md:px-10 p-3">
-					{loading && <TopBarProgress />}
-					<div className="mb-5 lg:mt-10">
-						<h2 className="md:text-4xl text-3xl mb-3">Hello {loggedInUser?.firstName || mobileLoggedInUser?.firstName}</h2>
+					{loading && <TopBarProgress/>}
+					<div className="my-5 lg:mt-10">
+						<h2
+							className="md:text-4xl text-3xl mb-3">Hello {loggedInUser?.firstName || mobileLoggedInUser?.firstName}</h2>
 						<p className="text-slate-500 text-xl">Welcome to your dashboard</p>
 					</div>
 
@@ -210,13 +219,19 @@ const Dashboard = () => {
 
 					{/*User Cards*/}
 					<div className="grid md:grid-cols- grid-cols-2 md:gap-7 gap-3 my-10">
-						<div className="h-40 md:p-5 p-3 rounded-md bg-ihs-blue-shade-50 md:text-lg shadow-md flex flex-col justify-between">
+						<div
+							className="h-40 md:p-5 p-3 rounded-md bg-ihs-blue-shade-50 md:text-lg shadow-md flex flex-col justify-between">
 							<p>Your Beneficiaries</p>
-							<p className="mb-4"><span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">{beneficiaries ? beneficiaries?.length : 0}</span>Beneficiaries</p>
+							<p className="mb-4"><span
+								className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">{beneficiaries ? beneficiaries?.length : 0}</span>Beneficiaries
+							</p>
 						</div>
-						<div className="h-40 md:p-5 p-3 rounded-md bg-ihs-green-shade-50 md:text-lg shadow-md flex flex-col justify-between">
+						<div
+							className="h-40 md:p-5 p-3 rounded-md bg-ihs-green-shade-50 md:text-lg shadow-md flex flex-col justify-between">
 							<p>Your Appointments</p>
-							<p className="mb-4"><span className="font-semibold md:text-3xl text-xl pr-0.5 md:pr-2">{appointments ? appointments?.length : 0}</span>Appointments</p>
+							<p className="mb-4"><span
+								className="font-semibold md:text-3xl text-xl pr-0.5 md:pr-2">{appointments ? appointments?.length : 0}</span>Appointments
+							</p>
 						</div>
 					</div>
 
@@ -224,17 +239,26 @@ const Dashboard = () => {
 						<>
 							{/*Admin Cards*/}
 							<div className="grid md:grid-cols-3 grid-cols-2 md:gap-7 gap-3 my-10">
-								<div className="h-40 md:p-5 p-3 rounded-md bg-ihs-green-shade-50 md:text-lg shadow-md flex flex-col justify-between">
+								<div
+									className="h-40 md:p-5 p-3 rounded-md bg-ihs-green-shade-50 md:text-lg shadow-md flex flex-col justify-between">
 									<p>Total Users</p>
-									<p className="mb-4"><span className="font-semibold md:text-3xl text-xl pr-0.5 md:pr-2">{metrics ? metrics?.totalUsers : 0}</span>Users</p>
+									<p className="mb-4"><span
+										className="font-semibold md:text-3xl text-xl pr-0.5 md:pr-2">{metrics ? metrics?.totalUsers : 0}</span>Users
+									</p>
 								</div>
-								<div className="h-40 md:p-5 p-3 rounded-md bg-ihs-blue-shade-50 md:text-lg shadow-md flex flex-col justify-between">
+								<div
+									className="h-40 md:p-5 p-3 rounded-md bg-ihs-blue-shade-50 md:text-lg shadow-md flex flex-col justify-between">
 									<p>Total Appointments</p>
-									<p className="mb-4"><span className="font-semibold md:text-3xl text-xl pr-0.5 md:pr-2">{metrics ? metrics?.totalAppointments : 0}</span>Appointments</p>
+									<p className="mb-4"><span
+										className="font-semibold md:text-3xl text-xl pr-0.5 md:pr-2">{metrics ? metrics?.totalAppointments : 0}</span>Appointments
+									</p>
 								</div>
-								<div className="h-40 md:p-5 p-3 rounded-md bg-ihs-green-shade-50 md:text-lg shadow-md flex flex-col justify-between">
+								<div
+									className="h-40 md:p-5 p-3 rounded-md bg-ihs-green-shade-50 md:text-lg shadow-md flex flex-col justify-between">
 									<p>Total Health Workers</p>
-									<p className="mb-4"><span className="font-semibold md:text-3xl text-xl pr-0.5 md:pr-2">{metrics ? metrics?.totalHealthWorkers : 0}</span>Health Workers</p>
+									<p className="mb-4"><span
+										className="font-semibold md:text-3xl text-xl pr-0.5 md:pr-2">{metrics ? metrics?.totalHealthWorkers : 0}</span>Health
+										Workers</p>
 								</div>
 							</div>
 						</>
@@ -245,24 +269,28 @@ const Dashboard = () => {
 							{/*Beneficiaries Section*/}
 							<div className="flex justify-between items-center mt-20">
 								<h2 className="md:text-2xl text-xl">Your Beneficiaries</h2>
-								<button className="py-3 md:px-4 px-2" onClick={() => navigate('/beneficiaries/addbeneficiary')}>Add Beneficiary</button>
+								<button className="py-3 md:px-4 px-2" onClick={() => navigate('/beneficiaries/addbeneficiary')}>Add
+									Beneficiary
+								</button>
 							</div>
 
 							<hr className="my-10"/>
 
 							{/*Beneficiaries Table*/}
-							<BeneficiaryTable />
+							<BeneficiaryTable/>
 
 							{/*Appointments Section*/}
 							<div className="flex justify-between items-center mt-20">
 								<h2 className="md:text-2xl text-xl">Your Appointments</h2>
-								<button className="py-3 md:px-4 px-2" onClick={() => navigate('/appointments/bookappointment')}>Book Appointments</button>
+								<button className="py-3 md:px-4 px-2" onClick={() => navigate('/appointments/bookappointment')}>Book
+									Appointments
+								</button>
 							</div>
 
 							<hr className="my-10"/>
 
 							{/*Appointments Table*/}
-							<AppointmentTable />
+							<AppointmentTable/>
 						</>
 					}
 
@@ -277,7 +305,7 @@ const Dashboard = () => {
 
 							{/*Appointments Table*/}
 
-							{hasLoaded && <AllAppointmentsTable />}
+							{hasLoaded && <AllAppointmentsTable/>}
 							{/*<AppointmentTable />*/}
 						</>
 					}

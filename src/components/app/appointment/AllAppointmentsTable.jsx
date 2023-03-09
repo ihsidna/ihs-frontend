@@ -38,11 +38,11 @@ const AllAppointmentsTable = () => {
 				<Tab.Panels>
 
 					<Tab.Panel>
-						<UpcomingAppointmentsTable appointmentList={allAppointments} urlPath='allAppointments' />
+						<UpcomingAppointmentsTable appointmentList={allAppointments} urlPath='allAppointments'/>
 					</Tab.Panel>
 
 					<Tab.Panel>
-						<CompletedAppointmentsTable appointmentList={allAppointments} urlPath='allAppointments' />
+						<CompletedAppointmentsTable appointmentList={allAppointments} urlPath='allAppointments'/>
 					</Tab.Panel>
 
 				</Tab.Panels>

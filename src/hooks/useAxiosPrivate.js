@@ -33,7 +33,7 @@ const UseAxiosPrivate = () => {
 				return config;
 			},
 			(error) => Promise.reject(error)
-			);
+		);
 
 		const responseIntercept = axiosPrivate.interceptors.response.use(
 			response => response,
@@ -61,7 +61,8 @@ const UseAxiosPrivate = () => {
 						await removeKey('auth');
 						await removeKey('loggedInUser')
 
-						navigate('/');					}
+						navigate('/');
+					}
 				}
 				return Promise.reject(error);
 			});

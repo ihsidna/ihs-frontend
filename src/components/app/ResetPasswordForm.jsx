@@ -25,8 +25,9 @@ const ResetPasswordForm = () => {
 		setLoading(true);
 		try {
 			await axios.post(RESET_URL,
-				JSON.stringify({ email}),
-				{ headers: { 'Content-Type': 'application/json' },
+				JSON.stringify({email}),
+				{
+					headers: {'Content-Type': 'application/json'},
 					withCredentials: true
 				}
 			);
@@ -59,17 +60,23 @@ const ResetPasswordForm = () => {
 				<section className='flex flex-col items-center space-y-2'>
 					<h1>You have initiated a password reset</h1>
 					<p>Please check your email inbox (including junk/spam folder) to reset your password.</p>
-					<button className="px-8 py-3" onClick={() => {navigate('/')}}>Sign In</button>
+					<button className="px-8 py-3" onClick={() => {
+						navigate('/')
+					}}>Sign In
+					</button>
 				</section>
 			) : (
 				<section>
-					{loading && <TopBarProgress />}
+					{loading && <TopBarProgress/>}
 
-					<p className={errMsg ? "rounded-md p-4 mb-4 bg-ihs-green-shade-200 text-red-500 font-normal text-lg" : "absolute -left-[99999px]"} aria-live="assertive">{errMsg}</p>
+					<p
+						className={errMsg ? "rounded-md p-4 mb-4 bg-ihs-green-shade-200 text-red-500 font-normal text-lg" : "absolute -left-[99999px]"}
+						aria-live="assertive">{errMsg}</p>
 					<form className="mb-0 space-y-0" onSubmit={handleReset}>
 
 						<div className="">
-							<label htmlFor="email" className="block text-sm font-medium text-gray-700 mt-5">Email Address <span className="text-red-600">*</span></label>
+							<label htmlFor="email" className="block text-sm font-medium text-gray-700 mt-5">Email Address <span
+								className="text-red-600">*</span></label>
 							<div className="mt-1">
 								<input
 									value={email}
@@ -84,7 +91,8 @@ const ResetPasswordForm = () => {
 						</div>
 
 						<div>
-							<button className="px-4 py-2 w-full mt-8 bg-ihs-green hover:font-bold focus: outline-none focus:ring-2 focus:ring-ihs-green-shade-500">
+							<button
+								className="px-4 py-2 w-full mt-8 bg-ihs-green hover:font-bold focus: outline-none focus:ring-2 focus:ring-ihs-green-shade-500">
 								Reset Password
 							</button>
 						</div>
@@ -93,7 +101,7 @@ const ResetPasswordForm = () => {
 					</form>
 
 				</section>
-				)}
+			)}
 
 		</>
 	);

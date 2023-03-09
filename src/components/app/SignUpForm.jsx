@@ -53,9 +53,9 @@ const SignUpForm = () => {
 
 		try {
 			await axios.post(REGISTER_URL,
-				JSON.stringify({ firstName, lastName, phone, email, password }),
+				JSON.stringify({firstName, lastName, phone, email, password}),
 				{
-					headers: { 'Content-Type': 'application/json' },
+					headers: {'Content-Type': 'application/json'},
 					withCredentials: true
 				}
 			);
@@ -90,19 +90,20 @@ const SignUpForm = () => {
 		<>
 			{success ?
 				(
-					<section className="rounded-md p-4 my-4 shadow-md border-0 border-l-4 border-ihs-green-shade-500 text-slate-500 font-thin md:text-lg text-sm">
+					<section
+						className="rounded-md p-4 my-4 shadow-md border-0 border-l-4 border-ihs-green-shade-500 text-slate-500 font-thin md:text-lg text-sm">
 						<h1>You’ve been successfully registered.</h1>
-					<br />
+						<br/>
 						<p>Please check your email inbox (including junk/spam folder) to verify account.</p>
 					</section>
 				)
 				:
 				(
 					<section>
-						{isSubmitting && <TopBarProgress />}
+						{isSubmitting && <TopBarProgress/>}
 						<p
-							 className={errMsg ? "rounded-md p-4 my-4 shadow-md border-0 border-l-4 border-ihs-green-shade-500 text-slate-500 font-thin md:text-lg text-sm" : "absolute -left-[99999px]"}
-							 aria-live="assertive">
+							className={errMsg ? "rounded-md p-4 my-4 shadow-md border-0 border-l-4 border-ihs-green-shade-500 text-slate-500 font-thin md:text-lg text-sm" : "absolute -left-[99999px]"}
+							aria-live="assertive">
 							<span className="flex items-center">
 								<ExclamationCircleIcon className="text-ihs-green w-6 mr-2 inline"/>
 								{errMsg}
@@ -120,7 +121,8 @@ const SignUpForm = () => {
 								type="text" id="firstName"
 								placeholder='John'
 								className={` ${errors.firstName && touched.firstName ? 'focus:ring-red-600' : 'focus:ring-ihs-green-shade-600'} w-full border border-gray-300 px-3 py-3 text-gray-500 rounded-md focus:outline-none focus:ring-1`}/>
-								{errors.firstName && touched.firstName && <p className="text-red-500 normal-case text-xs mt-2">{errors.firstName}</p>}
+							{errors.firstName && touched.firstName &&
+								<p className="text-red-500 normal-case text-xs mt-2">{errors.firstName}</p>}
 
 							<label htmlFor="lastName" className="block text-sm font-medium text-gray-500 my-2">
 								Last Name <span className="text-red-600">*</span>
@@ -131,8 +133,9 @@ const SignUpForm = () => {
 								onBlur={handleBlur}
 								type="text" id="lastName"
 								placeholder='Doe'
-								className={` ${errors.lastName && touched.lastName? 'focus:ring-red-600' : 'focus:ring-ihs-green-shade-600'} w-full border border-gray-300 px-3 py-3 text-gray-500 rounded-md focus:outline-none focus:ring-1`}/>
-								{errors.lastName && touched.lastName && <p className="text-red-500 normal-case text-xs mt-2">{errors.lastName}</p>}
+								className={` ${errors.lastName && touched.lastName ? 'focus:ring-red-600' : 'focus:ring-ihs-green-shade-600'} w-full border border-gray-300 px-3 py-3 text-gray-500 rounded-md focus:outline-none focus:ring-1`}/>
+							{errors.lastName && touched.lastName &&
+								<p className="text-red-500 normal-case text-xs mt-2">{errors.lastName}</p>}
 
 							<label htmlFor="phone" className="block text-sm font-medium text-gray-500 my-2">
 								Phone <span className="text-red-600">*</span>
@@ -143,8 +146,8 @@ const SignUpForm = () => {
 								onBlur={handleBlur}
 								type="tel" id="phone"
 								placeholder='Phone Number'
-								className={` ${errors.phone && touched.phone? 'focus:ring-red-600' : 'focus:ring-ihs-green-shade-600'} w-full border border-gray-300 px-3 py-3 text-gray-500 rounded-md focus:outline-none focus:ring-1`}/>
-								{errors.phone && touched.phone && <p className="text-red-500 normal-case text-xs mt-2">{errors.phone}</p>}
+								className={` ${errors.phone && touched.phone ? 'focus:ring-red-600' : 'focus:ring-ihs-green-shade-600'} w-full border border-gray-300 px-3 py-3 text-gray-500 rounded-md focus:outline-none focus:ring-1`}/>
+							{errors.phone && touched.phone && <p className="text-red-500 normal-case text-xs mt-2">{errors.phone}</p>}
 
 							<label htmlFor="email" className="block text-sm font-medium text-gray-500 my-2">
 								Email <span className="text-red-600">*</span>
@@ -156,8 +159,8 @@ const SignUpForm = () => {
 								type="email" id="email"
 								autoComplete="false"
 								placeholder='johndoe@email.com'
-								className={` ${errors.email && touched.email? 'focus:ring-red-600' : 'focus:ring-ihs-green-shade-600'} w-full border border-gray-300 px-3 py-3 text-gray-500 rounded-md focus:outline-none focus:ring-1`}/>
-								{errors.email && touched.email && <p className="text-red-500 normal-case text-xs mt-2">{errors.email}</p>}
+								className={` ${errors.email && touched.email ? 'focus:ring-red-600' : 'focus:ring-ihs-green-shade-600'} w-full border border-gray-300 px-3 py-3 text-gray-500 rounded-md focus:outline-none focus:ring-1`}/>
+							{errors.email && touched.email && <p className="text-red-500 normal-case text-xs mt-2">{errors.email}</p>}
 
 							<label htmlFor="password" className="block text-sm font-medium text-gray-500 my-2">
 								Password <span className="text-red-600">*</span>
@@ -167,19 +170,21 @@ const SignUpForm = () => {
 									value={values.password}
 									onChange={handleChange}
 									onBlur={handleBlur}
-									type= {revealPwd ? "text" : "password"}
+									type={revealPwd ? "text" : "password"}
 									id="password"
 									placeholder='Password'
-									className={` ${errors.password && touched.password? 'focus:ring-red-600' : 'focus:ring-ihs-green-shade-600'} w-full border border-gray-300 px-3 py-3 text-gray-500 rounded-md focus:outline-none focus:ring-1`} />
+									className={` ${errors.password && touched.password ? 'focus:ring-red-600' : 'focus:ring-ihs-green-shade-600'} w-full border border-gray-300 px-3 py-3 text-gray-500 rounded-md focus:outline-none focus:ring-1`}/>
 
 								{revealPwd ?
-									<EyeOffIcon className="w-4 -ml-6 text-gray-500" onClick={() => setRevealPwd(prevState => !prevState) }/>
+									<EyeOffIcon className="w-4 -ml-6 text-gray-500"
+															onClick={() => setRevealPwd(prevState => !prevState)}/>
 									:
-									<EyeIcon className="w-4 -ml-6 text-gray-500" onClick={() => setRevealPwd(prevState => !prevState) } />
+									<EyeIcon className="w-4 -ml-6 text-gray-500" onClick={() => setRevealPwd(prevState => !prevState)}/>
 								}
 							</span>
 
-								{errors.password && touched.password && <p className="text-red-500 normal-case text-xs mt-2">{errors.password}</p>}
+							{errors.password && touched.password &&
+								<p className="text-red-500 normal-case text-xs mt-2">{errors.password}</p>}
 
 							<div className="mt-4">
 								<ReCAPTCHA
@@ -199,7 +204,7 @@ const SignUpForm = () => {
 							</p>
 							<button
 								type="submit"
-								disabled={ Object.keys(errors).length > 0 || isSubmitting || captcha === false }
+								disabled={Object.keys(errors).length > 0 || isSubmitting || captcha === false}
 								className="disabled:bg-ihs-green-shade-200 disabled:text-slate-600 disabled:border-slate-200 disabled:shadow-none px-4 py-2 w-full mt-5 bg-ihs-green hover:font-bold focus: outline-none focus:ring-2 focus:ring-ihs-green-shade-500"
 							>
 								{isSubmitting ? "Submitting" : "Sign Up"}
@@ -211,7 +216,7 @@ const SignUpForm = () => {
 		</>
 
 
-);
+	);
 };
 
 export default SignUpForm;

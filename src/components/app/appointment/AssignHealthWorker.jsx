@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {ChevronLeftIcon, ClipboardCopyIcon} from "@heroicons/react/outline";
 import {useNavigate, useParams} from "react-router-dom";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
@@ -27,7 +27,7 @@ const AssignHealthWorker = () => {
 	const [time, setTime] = useState('');
 	const [loading, setLoading] = useState(false);
 
-	const getHealthWorkers = useCallback( async () => {
+	const getHealthWorkers = useCallback(async () => {
 		const response = await axiosPrivate.get(
 			"/worker/all");
 		setHealthWorkers(response.data.data);
@@ -53,7 +53,7 @@ const AssignHealthWorker = () => {
 				setDate(response.data.data[0].date);
 				setTime(response.data.data[0].time);
 				setLoading(false);
-			} catch (err){
+			} catch (err) {
 				console.error(err)
 			}
 		}
@@ -82,7 +82,8 @@ const AssignHealthWorker = () => {
 			//select service name
 			await axiosPrivate.patch(`/admin/appointment/${appointmentId}`,
 				JSON.stringify({
-					healthWorkerName: getHealthWorkerName(), healthWorkerId, status: appointmentStatus.Confirmed}),
+					healthWorkerName: getHealthWorkerName(), healthWorkerId, status: appointmentStatus.Confirmed
+				}),
 				{
 					headers: {
 						'Content-Type': 'application/json',
@@ -117,18 +118,21 @@ const AssignHealthWorker = () => {
 			<>
 				<Helmet>
 					<title>Assign Health Worker | IHS Dashboard</title>
-					<link rel="canonical" href="https://www.ihsmdinc.com/" />
+					<link rel="canonical" href="https://www.ihsmdinc.com/"/>
 				</Helmet>
-				<div className="md:py-10 md:px-10 p-4">
+				<div className="lg:px-20 lg:py-4 md:px-10 p-3">
 
-					{loading && <TopBarProgress />}
-					<button className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 md:mt-14 md:mb-4 mt-20 mb-4" onClick={() => navigate(-1)}>
-						<ChevronLeftIcon className="w-6" /> <p className="text-lg px-5">Back</p>
+					{loading && <TopBarProgress/>}
+					<button
+						className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 lg:mt-10 my-5"
+						onClick={() => navigate(-1)}>
+						<ChevronLeftIcon className="w-6"/> <p className="text-lg px-5">Back</p>
 					</button>
 
-					<div className="flex justify-between items-center h-24 bg-ihs-green-shade-50 rounded-md shadow-sm text-gray-600">
+					<div
+						className="flex justify-between items-center h-24 bg-ihs-green-shade-50 rounded-md shadow-sm text-gray-600">
 						<div className="flex">
-							<ClipboardCopyIcon className="md:w-12 w-8 md:ml-10 ml-3" />
+							<ClipboardCopyIcon className="md:w-12 w-8 md:ml-10 ml-3"/>
 							<h3 className="md:text-2xl text-lg py-8 md:px-8 px-2">Assign Health Worker</h3>
 						</div>
 					</div>
@@ -176,7 +180,7 @@ const AssignHealthWorker = () => {
 										aria-required="true"
 										value={serviceId}
 										onChange={(e) => setServiceId(e.target.value)}
-										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 text-gray-500 w-96">
+										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 text-gray-500 lg:w-96 md:w-72">
 										<option value="">Select a service</option>
 										{services?.length
 											?
@@ -215,7 +219,7 @@ const AssignHealthWorker = () => {
 										aria-required="true"
 										value={healthWorkerId}
 										onChange={(e) => setHealthWorkerId(e.target.value)}
-										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 text-gray-500 w-96">
+										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 text-gray-500 lg:w-96 md:w-72">
 										<option value="">Select a Health Worker</option>
 										{healthWorkers?.length
 											?
@@ -282,7 +286,8 @@ const AssignHealthWorker = () => {
 
 						</div>
 						<div className="flex justify-start">
-							<button type="submit" className="px-4 py-3 my-20 bg-ihs-green hover:font-bold focus: outline-none focus:ring-2 focus:ring-ihs-green-shade-500 w-96 text-lg">
+							<button type="submit"
+											className="px-4 py-3 my-20 bg-ihs-green hover:font-bold focus: outline-none focus:ring-2 focus:ring-ihs-green-shade-500 w-96 text-lg">
 								Update
 							</button>
 						</div>

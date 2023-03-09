@@ -118,7 +118,8 @@ const ServiceTable = ({services}) => {
 							{mobileTableData?.length
 								?
 								mobileTableData.map((service, index) => (
-									<tr className="py-4 whitespace-no-wrap border-b even:bg-gray-100" key={index} onClick={() => navigate(`viewservice/${service?.id}`)}>
+									<tr className="py-4 whitespace-no-wrap border-b even:bg-gray-100" key={index}
+											onClick={() => navigate(`viewservice/${service?.id}`)}>
 										<td className="p-4 ">
 											<div className="flex justify-between items-center text-md text-gray-800">
 												<span>{service?.name}</span>

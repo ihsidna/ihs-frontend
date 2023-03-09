@@ -1,4 +1,4 @@
-import { Preferences } from '@capacitor/preferences';
+import {Preferences} from '@capacitor/preferences';
 
 export const setKey = async (key, data) => {
 	try {
@@ -13,7 +13,7 @@ export const setKey = async (key, data) => {
 
 export const getKey = async (key) => {
 	try {
-		const { value } = await Preferences.get({ key: key });
+		const {value} = await Preferences.get({key: key});
 		if (value) {
 			return JSON.parse(value);
 		}
@@ -26,7 +26,7 @@ export const getKey = async (key) => {
 
 export const removeKey = async (key) => {
 	try {
-		await Preferences.remove({ key: key });
+		await Preferences.remove({key: key});
 	} catch (error) {
 		console.error(`Error removing auth info: ${error}`);
 	}

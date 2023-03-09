@@ -4,7 +4,7 @@ import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import ErrorPage from "./pages/ErrorPage";
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Dashboard from "./components/app/Dashboard";
 import Beneficiaries from "./components/app/beneficiary/Beneficiaries";
 import Appointments from "./components/app/appointment/Appointment";
@@ -20,34 +20,34 @@ import AllAppointment from "./components/app/appointment/AllAppointment";
 import ResetPassword from "./pages/ResetPassword";
 
 function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="signup" element={<SignUp />} />
-        <Route path="/" element={<SignIn />} />
-        <Route path="confirm/:confirmationCode" element={<EmailConfirmation />} />
-        <Route path="reset-password" element={<ResetPassword />} />
-        <Route element={<PersistLogin />}>
-          <Route element={<Layout />}>
-            <Route element={<RequireAuth allowedUserTypes={["user", "employee", "admin"]}/>} >
-              <Route path="dashboard" element={<Dashboard />} />
-              <Route path="beneficiaries/*" element={<Beneficiaries />} />
-              <Route path="appointments/*" element={<Appointments />} />
-              <Route path="profile/*" element={<Profile />} />
-            </Route>
+	return (
+		<Router>
+			<Routes>
+				<Route path="signup" element={<SignUp/>}/>
+				<Route path="/" element={<SignIn/>}/>
+				<Route path="confirm/:confirmationCode" element={<EmailConfirmation/>}/>
+				<Route path="reset-password" element={<ResetPassword/>}/>
+				<Route element={<PersistLogin/>}>
+					<Route element={<Layout/>}>
+						<Route element={<RequireAuth allowedUserTypes={["user", "employee", "admin"]}/>}>
+							<Route path="dashboard" element={<Dashboard/>}/>
+							<Route path="beneficiaries/*" element={<Beneficiaries/>}/>
+							<Route path="appointments/*" element={<Appointments/>}/>
+							<Route path="profile/*" element={<Profile/>}/>
+						</Route>
 
-            <Route element={<RequireAuth allowedUserTypes={["employee", "admin"]}/>} >
-              <Route path="users/*" element={<Users />} />
-              <Route path="servicess/*" element={<Service />} />
-              <Route path="healthworkers/*" element={<HealthWorkers />} />
-              <Route path="allappointments/*" element={<AllAppointment />} />
-            </Route>
-          </Route>
-        </Route>
-        <Route path="*" element={<ErrorPage />} />
-      </Routes>
-    </Router>
-  );
+						<Route element={<RequireAuth allowedUserTypes={["employee", "admin"]}/>}>
+							<Route path="users/*" element={<Users/>}/>
+							<Route path="servicess/*" element={<Service/>}/>
+							<Route path="healthworkers/*" element={<HealthWorkers/>}/>
+							<Route path="allappointments/*" element={<AllAppointment/>}/>
+						</Route>
+					</Route>
+				</Route>
+				<Route path="*" element={<ErrorPage/>}/>
+			</Routes>
+		</Router>
+	);
 }
 
 export default App;

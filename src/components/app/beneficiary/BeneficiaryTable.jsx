@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useMemo, useCallback} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import Nodata from "../../../assets/images/noData.svg";
 import Avatar from "react-avatar";
@@ -10,10 +10,10 @@ import Pagination from "../Pagination";
 import useAuth from "../../../hooks/useAuth";
 
 TopBarProgress.config({
-		barColors: {
-				"0": "#05afb0"
-		},
-		shadowBlur: 5
+	barColors: {
+		"0": "#05afb0"
+	},
+	shadowBlur: 5
 });
 
 const mobilePageSize = pageSize.Mobile;
@@ -94,7 +94,9 @@ const BeneficiaryTable = () => {
 										<td className=" py-4 whitespace-no-wrap border-b border-gray-200">
 											<div className="flex items-center">
 												<div className="mx-4">
-													<Avatar name={`${beneficiary?.firstName} ${beneficiary?.lastName}`} color={avatar.BackgroundColor} fgColor={avatar.ForegroundColor}  size={avatar.width} round={true}/>
+													<Avatar name={`${beneficiary?.firstName} ${beneficiary?.lastName}`}
+																	color={avatar.BackgroundColor} fgColor={avatar.ForegroundColor} size={avatar.width}
+																	round={true}/>
 												</div>
 											</div>
 										</td>
@@ -109,7 +111,8 @@ const BeneficiaryTable = () => {
 										</td>
 
 										<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-											<div className="md:text-lg text-base leading-5 text-gray-500">{beneficiary?.city}, {beneficiary?.state}</div>
+											<div
+												className="md:text-lg text-base leading-5 text-gray-500">{beneficiary?.city}, {beneficiary?.state}</div>
 										</td>
 
 										<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -130,7 +133,8 @@ const BeneficiaryTable = () => {
 									<td colSpan="5" className="px-6 py-4 text-center">
 										<div className="flex flex-col justify-center items-center py-20">
 											<img src={Nodata} alt="No Data" className="w-40 my-10"/>
-											<p className="text-lg md:mx-32 mx-5 text-center">You have no beneficiaries. Add a Beneficiary to begin</p>
+											<p className="text-lg md:mx-32 mx-5 text-center">You have no beneficiaries. Add a Beneficiary to
+												begin</p>
 										</div>
 									</td>
 								</tr>
@@ -166,7 +170,8 @@ const BeneficiaryTable = () => {
 							{mobileTableData?.length
 								?
 								mobileTableData.map((beneficiary, index) => (
-									<tr className="py-4 whitespace-no-wrap border-b even:bg-gray-100" key={index} onClick={() => navigate(`/beneficiaries/viewbeneficiary/${beneficiary?.id}`)}>
+									<tr className="py-4 whitespace-no-wrap border-b even:bg-gray-100" key={index}
+											onClick={() => navigate(`/beneficiaries/viewbeneficiary/${beneficiary?.id}`)}>
 										<td className="p-4 ">
 											<div className="flex justify-between items-center text-md text-gray-800">
 												<span>{beneficiary?.firstName}&nbsp;{beneficiary?.lastName}</span>

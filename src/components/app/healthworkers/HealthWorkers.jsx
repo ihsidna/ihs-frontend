@@ -1,4 +1,4 @@
-import React, {useCallback, useState, useEffect} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {Route, Routes} from "react-router-dom";
 import ViewHealthWorker from "./ViewHealthWorker";
 import AddHealthWorker from "./AddHealthWorker";
@@ -20,10 +20,10 @@ TopBarProgress.config({
 const HealthWorkers = () => {
 	return (
 		<Routes>
-			<Route index element={<ParentContent />} />
-			<Route path="/viewhealthworker/:healthWorkerId" element={<ViewHealthWorker />} />
-			<Route path="/addhealthworker" element={<AddHealthWorker />} />
-			<Route path="/updatehealthworker/:healthWorkerId" element={<UpdateHealthWorker />} />
+			<Route index element={<ParentContent/>}/>
+			<Route path="/viewhealthworker/:healthWorkerId" element={<ViewHealthWorker/>}/>
+			<Route path="/addhealthworker" element={<AddHealthWorker/>}/>
+			<Route path="/updatehealthworker/:healthWorkerId" element={<UpdateHealthWorker/>}/>
 		</Routes>
 	);
 };
@@ -57,7 +57,7 @@ const ParentContent = () => {
 
 	return (
 		<HelmetProvider>
-			{loading && <TopBarProgress />}
+			{loading && <TopBarProgress/>}
 
 			{/*	show modal if modal is toggled*/}
 			{showAddHealthWorkerModal && <AddHealthWorkerModal
@@ -69,21 +69,21 @@ const ParentContent = () => {
 			<>
 				<Helmet>
 					<title>View Health Workers | IHS Dashboard</title>
-					<link rel="canonical" href="https://www.ihsmdinc.com/" />
+					<link rel="canonical" href="https://www.ihsmdinc.com/"/>
 				</Helmet>
-				<div className="lg:p-20 md:p-10 p-3">
-			{/*Users Section*/}
-			<div className="flex justify-between items-center md:mt-16 mt-20">
-				<h2 className="md:text-2xl text-xl">All Health Workers</h2>
-				<button className="py-3 md:px-4 px-2" onClick={handleShowAddHealthWorkerModal}>Add Health Worker</button>
-			</div>
+				<div className="lg:px-20 lg:py-4 md:px-10 p-3">
+					{/*Users Section*/}
+					<div className="flex justify-between items-center my-5 lg:mt-10">
+						<h2 className="md:text-2xl text-xl">All Health Workers</h2>
+						<button className="py-3 md:px-4 px-2" onClick={handleShowAddHealthWorkerModal}>Add Health Worker</button>
+					</div>
 
-			<hr className="my-10"/>
+					<hr className="my-10"/>
 
-			{/*Health Workers Table*/}
-			<HealthWorkerTable healthWorkers={healthWorkers}/>
-		</div>
-				</>
+					{/*Health Workers Table*/}
+					<HealthWorkerTable healthWorkers={healthWorkers}/>
+				</div>
+			</>
 		</HelmetProvider>
 	);
 }

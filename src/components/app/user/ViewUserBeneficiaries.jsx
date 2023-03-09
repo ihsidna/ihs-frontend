@@ -1,4 +1,4 @@
-import React,{useEffect, useState, useMemo} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import Avatar from "react-avatar";
@@ -45,7 +45,7 @@ const ViewUserBeneficiaries = () => {
 
 				isMounted && setBeneficiaries(response.data.data);
 				setLoading(false)
-			} catch (err){
+			} catch (err) {
 				console.error(err)
 			}
 		}
@@ -74,7 +74,7 @@ const ViewUserBeneficiaries = () => {
 	return (
 		<>
 			<div className="hidden sm:block flex flex-col mt-8">
-				{loading && <TopBarProgress />}
+				{loading && <TopBarProgress/>}
 				<div className="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
 					<div
 						className="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 rounded-md">
@@ -111,7 +111,9 @@ const ViewUserBeneficiaries = () => {
 										<td className=" py-4 whitespace-no-wrap border-b border-gray-200">
 											<div className="flex items-center">
 												<div className="mx-4">
-													<Avatar  name={`${beneficiary?.firstName} ${beneficiary?.lastName}`} color={avatar.BackgroundColor} fgColor={avatar.ForegroundColor}  size={avatar.width} round={true}/>
+													<Avatar name={`${beneficiary?.firstName} ${beneficiary?.lastName}`}
+																	color={avatar.BackgroundColor} fgColor={avatar.ForegroundColor} size={avatar.width}
+																	round={true}/>
 												</div>
 											</div>
 										</td>
@@ -126,7 +128,8 @@ const ViewUserBeneficiaries = () => {
 										</td>
 
 										<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-											<div className="md:text-lg text-base leading-5 text-gray-500">{beneficiary?.city}, {beneficiary?.state}</div>
+											<div
+												className="md:text-lg text-base leading-5 text-gray-500">{beneficiary?.city}, {beneficiary?.state}</div>
 										</td>
 
 										<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -147,7 +150,8 @@ const ViewUserBeneficiaries = () => {
 									<td colSpan="5" className="px-6 py-4 text-center">
 										<div className="flex flex-col justify-center items-center py-20">
 											<img src={Nodata} alt="No Data" className="w-40 my-10"/>
-											<p className="text-lg md:mx-32 mx-5 text-center">You have no beneficiaries. Add a Beneficiary to begin</p>
+											<p className="text-lg md:mx-32 mx-5 text-center">You have no beneficiaries. Add a Beneficiary to
+												begin</p>
 										</div>
 									</td>
 								</tr>
@@ -183,7 +187,8 @@ const ViewUserBeneficiaries = () => {
 							{mobileTableData?.length
 								?
 								mobileTableData.map((beneficiary, index) => (
-									<tr className="py-4 whitespace-no-wrap border-b even:bg-gray-100" key={index} onClick={() => navigate(`/beneficiaries/viewbeneficiary/${beneficiary?.id}`)}>
+									<tr className="py-4 whitespace-no-wrap border-b even:bg-gray-100" key={index}
+											onClick={() => navigate(`/beneficiaries/viewbeneficiary/${beneficiary?.id}`)}>
 										<td className="p-4 ">
 											<div className="flex justify-between items-center text-md text-gray-800">
 												<span>{beneficiary?.firstName}&nbsp;{beneficiary?.lastName}</span>

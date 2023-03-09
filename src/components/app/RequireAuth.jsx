@@ -1,11 +1,11 @@
-import {useLocation, Navigate, Outlet} from "react-router-dom";
+import {Navigate, Outlet, useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {getKey} from "../../utils/mobilePreferences";
 import {useEffect, useState} from "react";
 
 const RequireAuth = ({allowedUserTypes}) => {
 	const [mobileAuth, setMobileAuth] = useState('');
-	const { accessToken, userType } = useSelector((state) => state.auth.userAccess)
+	const {accessToken, userType} = useSelector((state) => state.auth.userAccess)
 	const location = useLocation();
 
 	// get auth mobile preferences
@@ -21,10 +21,10 @@ const RequireAuth = ({allowedUserTypes}) => {
 
 	return (
 		(mobileAuth?.userType || userType) && allowedUserTypes.includes(userType)
-			? <Outlet />
+			? <Outlet/>
 			: (mobileAuth?.accessToken || accessToken)
-				? <Navigate to="/unauthorized" state={{from: location}} replace />
-				: <Navigate to="/" state={{from: location}} replace />
+				? <Navigate to="/unauthorized" state={{from: location}} replace/>
+				: <Navigate to="/" state={{from: location}} replace/>
 	);
 };
 

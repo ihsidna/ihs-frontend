@@ -13,12 +13,12 @@ import AllAppointmentsTable from "./AllAppointmentsTable";
 const Appointment = () => {
 	return (
 		<Routes>
-			<Route index element={<ParentContent />} />
-			<Route path="/viewappointment/:appointmentId" element={<ViewAppointment />} />
-			<Route path="/allappointments" element={<AllAppointmentsTable />}/>
-			<Route path="/updateappointment/:appointmentId" element={<UpdateAppointment />}/>
-			<Route path="/assignworker/:appointmentId" element={<AssignHealthWorker />}/>
-			<Route path="/updateappointment/:appointmentId/uploadreport" element={<UploadReport />}/>
+			<Route index element={<ParentContent/>}/>
+			<Route path="/viewappointment/:appointmentId" element={<ViewAppointment/>}/>
+			<Route path="/allappointments" element={<AllAppointmentsTable/>}/>
+			<Route path="/updateappointment/:appointmentId" element={<UpdateAppointment/>}/>
+			<Route path="/assignworker/:appointmentId" element={<AssignHealthWorker/>}/>
+			<Route path="/updateappointment/:appointmentId/uploadreport" element={<UploadReport/>}/>
 		</Routes>
 	);
 }
@@ -46,18 +46,18 @@ const ParentContent = () => {
 			<>
 				<Helmet>
 					<title>View All Appointments | IHS Dashboard</title>
-					<link rel="canonical" href="https://www.ihsmdinc.com/" />
+					<link rel="canonical" href="https://www.ihsmdinc.com/"/>
 				</Helmet>
-				<div className="lg:p-20 md:p-10 p-3">
+				<div className="lg:px-20 lg:py-4 md:px-10 p-3">
 					{loading && <TopBarProgress/>}
-					<div className="flex justify-between items-center mt-10">
+					<div className="flex justify-between items-center my-5 lg:mt-10">
 						<h2 className="md:text-2xl text-xl">All Appointments</h2>
 					</div>
 
 					<hr className="my-10"/>
 
 					{/*	Mobile Appointment Table*/}
-					<AllAppointmentsTable />
+					<AllAppointmentsTable/>
 
 				</div>
 			</>

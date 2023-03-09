@@ -43,10 +43,11 @@ const BookAppointment = () => {
 			// verify beneficiary coverage subscription
 			const exactBeneficiary = beneficiaries.filter((ben) => ben.id === beneficiary);
 
-			if(exactBeneficiary[0]?.subscription?.status === 'active'){
+			if (exactBeneficiary[0]?.subscription?.status === 'active') {
 				await axiosPrivate.post(BOOK_APPOINTMENT,
 					JSON.stringify({
-						beneficiaryId: beneficiary, serviceId: service, date, time, status: appointmentStatus.Booked}),
+						beneficiaryId: beneficiary, serviceId: service, date, time, status: appointmentStatus.Booked
+					}),
 					{
 						headers: {
 							'Content-Type': 'application/json',
@@ -63,7 +64,7 @@ const BookAppointment = () => {
 				setLoading(false);
 
 				navigate('/appointments')
-			}else {
+			} else {
 				clicked();
 			}
 
@@ -98,7 +99,7 @@ const BookAppointment = () => {
 				isMounted && setServices(response.data.data);
 				localStorage.setItem("services", JSON.stringify(response.data.data))
 				setLoading(false)
-			} catch (err){
+			} catch (err) {
 				console.error(err)
 			}
 		}
@@ -117,17 +118,20 @@ const BookAppointment = () => {
 			<>
 				<Helmet>
 					<title>Book Appointment | IHS Dashboard</title>
-					<link rel="canonical" href="https://www.ihsmdinc.com/" />
+					<link rel="canonical" href="https://www.ihsmdinc.com/"/>
 				</Helmet>
-				<div className="lg:p-20 md:p-10 p-3">
-					{loading && <TopBarProgress />}
-					<button className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 md:mt-14 md:mb-4 mt-20 mb-4" onClick={() => navigate("/appointments")}>
-						<ChevronLeftIcon className="w-6" /> <p className="text-lg px-5">Back to Appointments</p>
+				<div className="lg:px-20 lg:py-4 md:px-10 p-3">
+					{loading && <TopBarProgress/>}
+					<button
+						className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 my-5 lg:mt-10"
+						onClick={() => navigate("/appointments")}>
+						<ChevronLeftIcon className="w-6"/> <p className="text-lg px-5">Back to Appointments</p>
 					</button>
 
-					<div className="flex justify-between items-center h-24 bg-ihs-green-shade-50 rounded-md shadow-sm text-gray-600">
+					<div
+						className="flex justify-between items-center h-24 bg-ihs-green-shade-50 rounded-md shadow-sm text-gray-600">
 						<div className="flex">
-							<ClipboardCopyIcon className="md:w-14 w-8 md:ml-10 ml-3" />
+							<ClipboardCopyIcon className="md:w-14 w-8 md:ml-10 ml-3"/>
 							<h3 className="md:text-3xl text-2xl py-8 md:px-8 px-2">Book Appointment</h3>
 						</div>
 					</div>
@@ -262,13 +266,16 @@ const BookAppointment = () => {
 						</div>
 
 						<div className="flex justify-start">
-							<button type="submit" className="px-4 py-3 my-20 bg-ihs-green hover:font-bold focus:outline-none focus:ring-2 focus:ring-ihs-green-shade-500 w-96 text-lg">
+							<button type="submit"
+											className="px-4 py-3 my-20 bg-ihs-green hover:font-bold focus:outline-none focus:ring-2 focus:ring-ihs-green-shade-500 w-96 text-lg">
 								Submit
 							</button>
 						</div>
 					</form>
 				</div>
-				{toggleModal && <Modal setToggleModal={setToggleModal} executeFunction={redirectToPricingPage} message="Add a health Coverage to beneficiary?" header={"Beneficiary has no health coverage"} /> }
+				{toggleModal && <Modal setToggleModal={setToggleModal} executeFunction={redirectToPricingPage}
+															 message="Add a health Coverage to beneficiary?"
+															 header={"Beneficiary has no health coverage"}/>}
 			</>
 		</HelmetProvider>
 	);

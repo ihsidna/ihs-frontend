@@ -1,6 +1,6 @@
 import {Outlet} from 'react-router-dom';
-import {useState, useEffect} from 'react';
-import useRefreshToken	 from "../../hooks/useRefreshToken";
+import {useEffect, useState} from 'react';
+import useRefreshToken from "../../hooks/useRefreshToken";
 import TopBarProgress from "react-topbar-progress-indicator";
 import {useSelector} from "react-redux";
 import {getKey} from "../../utils/mobilePreferences";
@@ -26,7 +26,7 @@ const PersistLogin = () => {
 		const verifyRefreshToken = async () => {
 			try {
 				await refresh();
-			} catch (err){
+			} catch (err) {
 				console.error(err);
 			} finally {
 				setLoading(false);
@@ -58,10 +58,10 @@ const PersistLogin = () => {
 	return (
 		<>
 			{!persist
-				? <Outlet />
+				? <Outlet/>
 				: loading
-					? <TopBarProgress />
-					: <Outlet />
+					? <TopBarProgress/>
+					: <Outlet/>
 			}
 
 		</>

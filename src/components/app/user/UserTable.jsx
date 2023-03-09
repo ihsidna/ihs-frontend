@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState, useMemo} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import Nodata from "../../../assets/images/noData.svg";
 import Avatar from "react-avatar"
@@ -22,20 +22,20 @@ const UserTable = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 
 	const getUsers = useCallback(async () => {
-				const response = await axiosPrivate.get("/users/all");
+		const response = await axiosPrivate.get("/users/all");
 
-				const userList = response.data.data.filter(user => loggedInUser.id !== user.id);
-				setUsers(userList.sort((a, b) =>
-						a.firstName.localeCompare(b.firstName))
-				);
-		}, [axiosPrivate, setUsers, loggedInUser.id]);
+		const userList = response.data.data.filter(user => loggedInUser.id !== user.id);
+		setUsers(userList.sort((a, b) =>
+			a.firstName.localeCompare(b.firstName))
+		);
+	}, [axiosPrivate, setUsers, loggedInUser.id]);
 
-		useEffect(() => {
-				setLoading(true);
-				getUsers().then(() => {
-						setLoading(false);
-				});
-		}, [getUsers]);
+	useEffect(() => {
+		setLoading(true);
+		getUsers().then(() => {
+			setLoading(false);
+		});
+	}, [getUsers]);
 
 	const laptopTableData = useMemo(() => {
 		const firstPageIndex = (currentPage - 1) * laptopPageSize;
@@ -52,7 +52,7 @@ const UserTable = () => {
 	return (
 		<>
 			<div className="hidden sm:block flex flex-col mt-8">
-				{loading && <TopBarProgress />}
+				{loading && <TopBarProgress/>}
 				<div className="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
 					<div
 						className="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 rounded-md">
@@ -92,14 +92,16 @@ const UserTable = () => {
 									<tr key={index}>
 										<td className="pl-6 py-4 whitespace-no-wrap border-b border-gray-200">
 											<div className="mr-4">
-												<Avatar name={`${user?.firstName} ${user?.lastName}`} color={avatar.BackgroundColor} fgColor={avatar.ForegroundColor}  size={avatar.width} round={true}/>
+												<Avatar name={`${user?.firstName} ${user?.lastName}`} color={avatar.BackgroundColor}
+																fgColor={avatar.ForegroundColor} size={avatar.width} round={true}/>
 											</div>
 										</td>
 										<td className="py-4 whitespace-no-wrap border-b border-gray-200">
 											<div className="flex items-center">
 												<div>
 													<div className="md:text-lg text-base font-medium leading-5 text-gray-500">
-														<span className="capitalize">{user?.firstName.toLowerCase()}&nbsp;{user?.lastName.toLowerCase()} </span>
+														<span
+															className="capitalize">{user?.firstName.toLowerCase()}&nbsp;{user?.lastName.toLowerCase()} </span>
 													</div>
 												</div>
 											</div>
@@ -172,16 +174,18 @@ const UserTable = () => {
 							{mobileTableData?.length
 								?
 								mobileTableData.map(el => (
-									<tr className="py-4 whitespace-no-wrap border-b even:bg-gray-100" key={el.id} onClick={() => navigate(`viewuser/${el?.id}`)}>
+									<tr className="py-4 whitespace-no-wrap border-b even:bg-gray-100" key={el.id}
+											onClick={() => navigate(`viewuser/${el?.id}`)}>
 										<td className="p-4 ">
 											<div className="flex justify-between items-center text-md text-gray-800">
-												<span className="capitalize">{el?.firstName.toLowerCase()}&nbsp;{el?.lastName.toLowerCase()} </span>
+												<span
+													className="capitalize">{el?.firstName.toLowerCase()}&nbsp;{el?.lastName.toLowerCase()} </span>
 												<span
 													className={el?.userType === userRoles.Admin
 														? "inline-flex px-2 py-1 text-xs font-normal text-green-900 bg-green-100 rounded-lg capitalize"
 														: el?.userType === userRoles.Employee
-														? "inline-flex px-2 py-1 text-xs font-normal text-blue-900 bg-blue-100 rounded-lg capitalize"
-														: "inline-flex px-2 py-1 text-xs font-normal text-amber-900 bg-amber-100 rounded-lg capitalize"}>
+															? "inline-flex px-2 py-1 text-xs font-normal text-blue-900 bg-blue-100 rounded-lg capitalize"
+															: "inline-flex px-2 py-1 text-xs font-normal text-amber-900 bg-amber-100 rounded-lg capitalize"}>
 													{el?.userType}
 												</span>
 											</div>

@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import {useEffect, useState} from "react";
 
 const calculateRange = (data, rowsPerPage) => {
 	const range = [];
 	const num = Math.ceil(data.length / rowsPerPage);
 	// eslint-disable-next-line no-unused-vars
-	let i = 1;
+
 	for (let i = 1; i <= num; i++) {
 		range.push(i);
 	}
@@ -28,7 +28,7 @@ const useTable = (data, page, rowsPerPage) => {
 		// eslint-disable-next-line
 	}, [data, setTableRange, page, setSlice]);
 
-	return { slice, range: tableRange };
+	return {slice, range: tableRange};
 };
 
 export default useTable;

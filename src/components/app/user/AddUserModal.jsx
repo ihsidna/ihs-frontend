@@ -24,11 +24,11 @@ const AddUserModal = ({setAddUserModalSuccess, setShowAddUserModal, addUserModal
 		const dob = values.dob;
 
 		try {
-			if (role === userRoles.Employee){
+			if (role === userRoles.Employee) {
 				await axiosPrivate.post(ADD_EMPLOYEE,
-					JSON.stringify({ firstName, lastName, phone, email, password, role, dob }),
+					JSON.stringify({firstName, lastName, phone, email, password, role, dob}),
 					{
-						headers: { 'Content-Type': 'application/json' },
+						headers: {'Content-Type': 'application/json'},
 						withCredentials: true
 					}
 				).then(() => {
@@ -36,9 +36,9 @@ const AddUserModal = ({setAddUserModalSuccess, setShowAddUserModal, addUserModal
 				});
 			} else {
 				await axiosPrivate.post(ADD_ADMIN,
-					JSON.stringify({ firstName, lastName, phone, email, password, role, dob }),
+					JSON.stringify({firstName, lastName, phone, email, password, role, dob}),
 					{
-						headers: { 'Content-Type': 'application/json' },
+						headers: {'Content-Type': 'application/json'},
 						withCredentials: true
 					}
 				).then(() => {
@@ -218,15 +218,16 @@ const AddUserModal = ({setAddUserModalSuccess, setShowAddUserModal, addUserModal
 										value={values.password}
 										onChange={handleChange}
 										onBlur={handleBlur}
-										type= {revealPwd ? "text" : "password"}
+										type={revealPwd ? "text" : "password"}
 										id="password"
 										placeholder='Password'
-										className={` ${errors.password && touched.password? 'focus:ring-red-600' : 'focus:ring-ihs-green-shade-600'} w-full border border-gray-300 px-3 py-3 text-gray-500 rounded-md focus:outline-none focus:ring-1`} />
+										className={` ${errors.password && touched.password ? 'focus:ring-red-600' : 'focus:ring-ihs-green-shade-600'} w-full border border-gray-300 px-3 py-3 text-gray-500 rounded-md focus:outline-none focus:ring-1`}/>
 
 									{revealPwd ?
-										<EyeOffIcon className="w-4 -ml-6 text-gray-500" onClick={() => setRevealPwd(prevState => !prevState) }/>
+										<EyeOffIcon className="w-4 -ml-6 text-gray-500"
+																onClick={() => setRevealPwd(prevState => !prevState)}/>
 										:
-										<EyeIcon className="w-4 -ml-6 text-gray-500" onClick={() => setRevealPwd(prevState => !prevState) } />
+										<EyeIcon className="w-4 -ml-6 text-gray-500" onClick={() => setRevealPwd(prevState => !prevState)}/>
 									}
 								</span>
 								{errors.password && touched.password &&

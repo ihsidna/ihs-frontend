@@ -1,4 +1,4 @@
-import {useRef, useState, useEffect} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {LogoutIcon, ViewListIcon, XIcon} from "@heroicons/react/outline";
 import Logo from "../../assets/images/logo.svg";
 import {userRoles} from "../../data/enums";
@@ -44,7 +44,7 @@ const Sidebar = ({platform}) => {
 
 	const logoutApiCall = async () => {
 		try {
-			await axios("/logout", { withCredentials: true });
+			await axios("/logout", {withCredentials: true});
 		} catch (error) {
 			console.error(error);
 		}
@@ -68,13 +68,14 @@ const Sidebar = ({platform}) => {
 	const displayLinks = (links) => {
 		return (
 			links.map((item) => {
-				return(
-					<NavLink to={`/${item.path}`} key={item.path} className={({isActive}) => isActive ? activeLink : normalLink} onClick={openBar}>
+				return (
+					<NavLink to={`/${item.path}`} key={item.path} className={({isActive}) => isActive ? activeLink : normalLink}
+									 onClick={openBar}>
 						{item.icon}
 						<span className="capitalize">{item.title}</span>
 					</NavLink>
 				)
-			} )
+			})
 		)
 
 	}
@@ -87,42 +88,46 @@ const Sidebar = ({platform}) => {
 		<>
 			<div ref={sidebarRef}>
 				<span className='text-white text-4xl cursor-pointer' onClick={openBar}>
-					<ViewListIcon className={` ${platform === 'ios' ? iosStyles.navigationIcon : 'ml-3 w-10 h-10 px-2 bg-ihs-green text-white rounded-md shadow-xl'} `}/>
+					<ViewListIcon
+						className={` ${platform === 'ios' ? iosStyles.navigationIcon : 'ml-3 w-10 h-10 px-2 bg-ihs-green text-white rounded-md shadow-xl'} `}/>
 				</span>
 				<div className={`sidebar fixed top-0 bottom-0 3xl:left-0 left-[-300px] duration-500
 				 w-[300px] overflow-y-auto text-center bg-cyan-50 shadow h-full z-10 ${outsideSidebarClick ? 'left-[-300px]' : ''}`}>
-						<div>
-							<div className={`p-2.5 mt-1 flex items-center rounded-md ${platform === 'ios' ? iosStyles.safeAreaTopPadding : ''}`}>
-								<img src={Logo} alt="logo" className="w-40" />
-								<XIcon className="ml-20 text-slate-500 w-10 h-10 bg-transparent border" onClick={openBar}/>
-							</div>
-							<hr className="my-2 text-gray-600" />
+					<div>
+						<div
+							className={`p-2.5 mt-1 flex items-center rounded-md ${platform === 'ios' ? iosStyles.safeAreaTopPadding : ''}`}>
+							<img src={Logo} alt="logo" className="w-40"/>
+							<XIcon className="ml-20 text-slate-500 w-10 h-10 bg-transparent border" onClick={openBar}/>
+						</div>
+						<hr className="my-2 text-gray-600"/>
 
-							<div className="relative lg:h-[calc(100vh_-_110px)] h-[calc(100vh_-_100px)]">
+						<div className="relative lg:h-[calc(100vh_-_110px)] h-[calc(100vh_-_100px)]">
 
-								{ (mobileAuth?.userType || userType) === userRoles.User
-										? displayLinks(userLinks)
-										: (mobileAuth?.userType || userType) === userRoles.Employee
-											? displayLinks(employeeLinks)
-											: displayLinks(adminLinks)
-									}
+							{(mobileAuth?.userType || userType) === userRoles.User
+								? displayLinks(userLinks)
+								: (mobileAuth?.userType || userType) === userRoles.Employee
+									? displayLinks(employeeLinks)
+									: displayLinks(adminLinks)
+							}
 
-								<div className="absolute py-4 bottom-0 w-full">
+							<div className="absolute py-4 bottom-0 w-full">
 
-									{displayLinks(footerLinks)}
+								{displayLinks(footerLinks)}
 
-									<div className={`cursor-pointer ${normalLink}`}  onClick={showModal}>
-										<LogoutIcon  className="w-6" />
-										<span className="capitalize">Logout</span>
-									</div>
-
-									<p className="flex justify-start pl-5 py-2 text-sm">© 2023 Copyright. v1.1.0</p>
+								<div className={`cursor-pointer mb-10 ${normalLink}`} onClick={showModal}>
+									<LogoutIcon className="w-6"/>
+									<span className="capitalize">Logout</span>
 								</div>
 
+								<p className="flex justify-start pl-5 py-2 text-sm">© 2023 Copyright. v1.1.0</p>
 							</div>
+
 						</div>
 					</div>
-				{toggleModal && <Modal setToggleModal={setToggleModal} executeFunction={logout} message="Are you sure you want to logout?" header='Are You Sure?' /> }
+				</div>
+				{toggleModal &&
+					<Modal setToggleModal={setToggleModal} executeFunction={logout} message="Are you sure you want to logout?"
+								 header='Are You Sure?'/>}
 			</div>
 		</>
 	);

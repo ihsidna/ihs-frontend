@@ -5,7 +5,12 @@ import {axiosPrivate} from "../../../api/axios";
 
 const UPDATE_USER = '/user/update';
 
-const ChangePhoneNumberModal = ({existingPhoneNumber, setShowUpdatePhoneModal, setUpdatePhoneModalSuccess, updatePhoneModalSuccess}) => {
+const ChangePhoneNumberModal = ({
+																	existingPhoneNumber,
+																	setShowUpdatePhoneModal,
+																	setUpdatePhoneModalSuccess,
+																	updatePhoneModalSuccess
+																}) => {
 
 	const onSubmit = async (values, actions) => {
 		const phone = values.phone

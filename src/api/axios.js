@@ -6,6 +6,6 @@ export default axios.create({
 
 export const axiosPrivate = axios.create({
 	baseURL: process.env.REACT_APP_URL,
-	headers: { ContentType: 'application/json' },
+	headers: {ContentType: 'application/json'},
 	withCredentials: true
 });

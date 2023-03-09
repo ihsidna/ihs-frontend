@@ -14,9 +14,9 @@ const UpcomingAppointmentsTable = ({appointmentList, urlPath}) => {
 
 	let appointmentsProp;
 
-	if (appointmentList === "Appointment not found"){
+	if (appointmentList === "Appointment not found") {
 		appointmentsProp = [];
-	} else{
+	} else {
 		appointmentsProp = appointmentList;
 	}
 
@@ -79,7 +79,8 @@ const UpcomingAppointmentsTable = ({appointmentList, urlPath}) => {
 									<tr className="py-4 whitespace-no-wrap border-b border-gray-200" key={el.id}>
 										<td>
 											<div className="mx-4">
-												<Avatar name={`${el?.beneficiaryName}`} color={avatar.BackgroundColor} fgColor={avatar.ForegroundColor}  size={avatar.width} round={true}/>
+												<Avatar name={`${el?.beneficiaryName}`} color={avatar.BackgroundColor}
+																fgColor={avatar.ForegroundColor} size={avatar.width} round={true}/>
 											</div>
 										</td>
 										<td className="px-6 py-4 ">
@@ -107,7 +108,7 @@ const UpcomingAppointmentsTable = ({appointmentList, urlPath}) => {
 												? "inline-flex p-2 py-2 text-xs font-semibold leading-5 text-green-900 bg-green-100 rounded-md capitalize"
 												: el?.status === appointmentStatus.Confirmed
 													? "inline-flex p-2 py-2 text-xs font-semibold leading-5 text-blue-900 bg-blue-100 rounded-md capitalize"
-													:"inline-flex p-2 text-xs font-semibold leading-5 text-red-900 bg-red-100 rounded-md capitalize"}>
+													: "inline-flex p-2 text-xs font-semibold leading-5 text-red-900 bg-red-100 rounded-md capitalize"}>
 											{el?.completed.toString() === booleanString.True ? appointmentStatus.Completed : el?.status}
 											</span>
 										</td>
@@ -165,7 +166,8 @@ const UpcomingAppointmentsTable = ({appointmentList, urlPath}) => {
 							{mobileTableData?.length
 								?
 								mobileTableData.map(el => (
-									<tr className="py-4 whitespace-no-wrap border-b even:bg-gray-100" key={el.id} onClick={() => navigate(`/${urlPath}/viewappointment/${el?.id}`)}>
+									<tr className="py-4 whitespace-no-wrap border-b even:bg-gray-100" key={el.id}
+											onClick={() => navigate(`/${urlPath}/viewappointment/${el?.id}`)}>
 										<td className="p-4 ">
 											<div className="flex justify-between items-center text-md text-gray-800">
 												<span>{el?.beneficiaryName}</span>
@@ -174,7 +176,7 @@ const UpcomingAppointmentsTable = ({appointmentList, urlPath}) => {
 														? "inline-flex px-2 py-1 text-xs font-normal text-green-900 bg-green-100 rounded-lg capitalize"
 														: el?.status === appointmentStatus.Confirmed
 															? "inline-flex px-2 py-1 text-xs font-normal text-blue-900 bg-blue-100 rounded-lg capitalize"
-															:"inline-flex px-2 py-1 text-xs font-normal text-red-900 bg-red-100 rounded-lg capitalize"}>
+															: "inline-flex px-2 py-1 text-xs font-normal text-red-900 bg-red-100 rounded-lg capitalize"}>
 													{el?.completed.toString() === booleanString.True ? appointmentStatus.Completed : el?.status}
 												</span>
 											</div>

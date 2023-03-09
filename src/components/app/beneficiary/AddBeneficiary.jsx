@@ -37,7 +37,8 @@ const AddBeneficiary = () => {
 		try {
 			await axiosPrivate.post(ADD_BENEFICIARY,
 				JSON.stringify({
-					firstName, lastName, dob, relationship, email, phone, address, city, state}),
+					firstName, lastName, dob, relationship, email, phone, address, city, state
+				}),
 				{
 					headers: {
 						'Content-Type': 'application/json',
@@ -76,23 +77,28 @@ const AddBeneficiary = () => {
 			<>
 				<Helmet>
 					<title>Add Beneficiary | IHS Dashboard</title>
-					<link rel="canonical" href="https://www.ihsmdinc.com/" />
+					<link rel="canonical" href="https://www.ihsmdinc.com/"/>
 				</Helmet>
-				<div className="md:py-10 md:px-10 p-4">
+				<div className="lg:px-20 lg:py-4 md:px-10 p-3">
 
-					{loading && <TopBarProgress />}
-					<button className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 md:mt-14 md:mb-4 mt-20 mb-4" onClick={() => navigate("/beneficiaries")}>
-						<ChevronLeftIcon className="w-6" /> <p className="text-lg px-5">Back to Beneficiaries</p>
+					{loading && <TopBarProgress/>}
+					<button
+						className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 lg:mt-10 my-5"
+						onClick={() => navigate("/beneficiaries")}>
+						<ChevronLeftIcon className="w-6"/> <p className="text-lg px-5">Back to Beneficiaries</p>
 					</button>
 
-					<div className="flex justify-between items-center h-24 bg-ihs-green-shade-50 rounded-md shadow-sm text-gray-600">
+					<div
+						className="flex justify-between items-center h-24 bg-ihs-green-shade-50 rounded-md shadow-sm text-gray-600">
 						<div className="flex">
-							<UserAddIcon className="md:w-12 w-8 md:ml-10 ml-3" />
+							<UserAddIcon className="md:w-12 w-8 md:ml-10 ml-3"/>
 							<h3 className="md:text-2xl text-lg py-8 md:px-8 px-2">Add Beneficiary</h3>
 						</div>
 					</div>
 
-					<p className={errMsg ? "rounded-md p-4 mb-4 bg-ihs-green-shade-200 text-red-500 font-normal text-lg" : "absolute -left-[99999px]"} aria-live="assertive">{errMsg}</p>
+					<p
+						className={errMsg ? "rounded-md p-4 mb-4 bg-ihs-green-shade-200 text-red-500 font-normal text-lg" : "absolute -left-[99999px]"}
+						aria-live="assertive">{errMsg}</p>
 
 					<form className="my-16 space-y-0" onSubmit={handleSubmit}>
 
@@ -113,7 +119,7 @@ const AddBeneficiary = () => {
 										autoComplete="current-firstName"
 										value={firstName}
 										onChange={(e) => setFirstName(e.target.value)}
-										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 md:w-72"
+										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 lg:w-96 md:w-72"
 									/>
 								</div>
 							</div>
@@ -132,7 +138,7 @@ const AddBeneficiary = () => {
 										autoComplete="current-lastName"
 										value={lastName}
 										onChange={(e) => setLastName(e.target.value)}
-										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 md:w-72"/>
+										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 lg:w-96 md:w-72"/>
 								</div>
 							</div>
 						</div>
@@ -152,7 +158,7 @@ const AddBeneficiary = () => {
 										autoComplete="current-dob"
 										value={dob}
 										onChange={(e) => setDob(e.target.value)}
-										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 md:w-72"/>
+										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 lg:w-96 md:w-72"/>
 								</div>
 							</div>
 
@@ -166,7 +172,7 @@ const AddBeneficiary = () => {
 										aria-required="true"
 										value={relationship}
 										onChange={(e) => setRelationship(e.target.value)}
-										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 md:w-72">
+										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 lg:w-96 md:w-72">
 										<option value="">Select Relationship</option>
 										<option value="Brother">Brother</option>
 										<option value="Sister">Sister</option>
@@ -211,7 +217,7 @@ const AddBeneficiary = () => {
 										autoComplete="current-phone"
 										value={phone}
 										onChange={(e) => setPhone(e.target.value)}
-										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 md:w-72"/>
+										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 lg:w-96 md:w-72"/>
 								</div>
 							</div>
 
@@ -229,7 +235,7 @@ const AddBeneficiary = () => {
 										autoComplete="current-address"
 										value={address}
 										onChange={(e) => setAddress(e.target.value)}
-										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 md:w-72"/>
+										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 lg:w-96 md:w-72"/>
 								</div>
 							</div>
 
@@ -253,7 +259,7 @@ const AddBeneficiary = () => {
 										autoComplete="current-city"
 										value={city}
 										onChange={(e) => setCity(e.target.value)}
-										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 md:w-72"/>
+										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 lg:w-96 md:w-72"/>
 								</div>
 							</div>
 
@@ -271,7 +277,7 @@ const AddBeneficiary = () => {
 										autoComplete="current-state"
 										value={state}
 										onChange={(e) => setState(e.target.value)}
-										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 md:w-72"/>
+										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 lg:w-96 md:w-72"/>
 								</div>
 							</div>
 						</div>

@@ -5,7 +5,11 @@ import {addHealthWorkerSchema} from "../../../utils/formSchema";
 
 const ADD_HEALTH_WORKER = "/worker/create";
 
-const AddHealthWorkerModal = ({setAddHealthWorkerModalSuccess, setShowAddHealthWorkerModal, addHealthWorkerModalSuccess}) => {
+const AddHealthWorkerModal = ({
+																setAddHealthWorkerModalSuccess,
+																setShowAddHealthWorkerModal,
+																addHealthWorkerModalSuccess
+															}) => {
 
 	const onSubmit = async (values, actions) => {
 		const firstName = values.firstName;
@@ -16,7 +20,8 @@ const AddHealthWorkerModal = ({setAddHealthWorkerModalSuccess, setShowAddHealthW
 
 		await axiosPrivate.post(ADD_HEALTH_WORKER,
 			JSON.stringify({
-				firstName, lastName, email, phone, qualification}),
+				firstName, lastName, email, phone, qualification
+			}),
 			{
 				headers: {
 					'Content-Type': 'application/json',

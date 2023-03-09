@@ -33,23 +33,27 @@ const Layout = () => {
 		<div className="flex-1">
 			<div>
 				<nav className={`flex justify-between border border-0 border-b border-slate-200 bg-white sticky top-0 w-full pb-2 
-				 ${platform === 'ios' ? iosStyles.safeAreaTopPadding : platform === 'android' ? iosStyles.androidNavbar :'py-4'}`}>
+				 ${platform === 'ios' ? iosStyles.safeAreaTopPadding : platform === 'android' ? iosStyles.androidNavbar : 'py-4'}`}>
 					<div className='flex'>
 						<Sidebar platform={platform}/>
-						<img src={Logo} alt="logo" className="w-28 ml-10" />
+						<img src={Logo} alt="logo" className="w-28 ml-10"/>
 					</div>
 
 					<div className="flex flex-row items-center">
-						<p className="text-xl text-gray-700 hidden md:block"><Link to="/profile">{loggedInUser?.firstName || mobileLoggedInUser?.firstName} {loggedInUser?.lastName || mobileLoggedInUser?.lastName}</Link></p>
+						<p className="text-xl text-gray-700 hidden md:block"><Link
+							to="/profile">{loggedInUser?.firstName || mobileLoggedInUser?.firstName} {loggedInUser?.lastName || mobileLoggedInUser?.lastName}</Link>
+						</p>
 						<div className="px-5">
 							<Link to="/profile">
-								<Avatar name={`${loggedInUser?.firstName || mobileLoggedInUser?.firstName} ${loggedInUser?.lastName || mobileLoggedInUser?.lastName}`} color={avatar.BackgroundColor} fgColor={avatar.ForegroundColor}  size={avatar.width} round={true}/>
+								<Avatar
+									name={`${loggedInUser?.firstName || mobileLoggedInUser?.firstName} ${loggedInUser?.lastName || mobileLoggedInUser?.lastName}`}
+									color={avatar.BackgroundColor} fgColor={avatar.ForegroundColor} size={avatar.width} round={true}/>
 							</Link>
 						</div>
 					</div>
 				</nav>
 				<Fragment>
-					<Outlet />
+					<Outlet/>
 				</Fragment>
 			</div>
 		</div>

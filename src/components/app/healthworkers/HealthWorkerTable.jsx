@@ -62,8 +62,9 @@ const HealthWorkerTable = ({healthWorkers}) => {
 								laptopTableData.map((worker, index) => (
 									<tr key={index}>
 										<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-											<div >
-												<Avatar name={`${worker?.firstName} ${worker?.lastName}`} color={avatar.BackgroundColor} fgColor={avatar.ForegroundColor}  size={avatar.width} round={true}/>
+											<div>
+												<Avatar name={`${worker?.firstName} ${worker?.lastName}`} color={avatar.BackgroundColor}
+																fgColor={avatar.ForegroundColor} size={avatar.width} round={true}/>
 											</div>
 										</td>
 										<td className=" py-4 whitespace-no-wrap border-b border-gray-200">
@@ -135,7 +136,8 @@ const HealthWorkerTable = ({healthWorkers}) => {
 							{mobileTableData?.length
 								?
 								mobileTableData.map((healthWorker, index) => (
-									<tr className="py-4 whitespace-no-wrap border-b even:bg-gray-100" key={index} onClick={() => navigate(`/healthworkers/viewhealthworker/${healthWorker?.id}`)}>
+									<tr className="py-4 whitespace-no-wrap border-b even:bg-gray-100" key={index}
+											onClick={() => navigate(`/healthworkers/viewhealthworker/${healthWorker?.id}`)}>
 										<td className="p-4 ">
 											<div className="flex justify-between items-center text-md text-gray-800">
 												<span>{healthWorker?.firstName}&nbsp;{healthWorker?.lastName}</span>

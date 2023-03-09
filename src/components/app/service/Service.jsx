@@ -19,9 +19,9 @@ TopBarProgress.config({
 const Service = () => {
 	return (
 		<Routes>
-			<Route index element={<ParentContent />} />
-			<Route path="/addservice" element={<AddService />} />
-			<Route path="/viewservice/:serviceId" element={<ViewService />} />
+			<Route index element={<ParentContent/>}/>
+			<Route path="/addservice" element={<AddService/>}/>
+			<Route path="/viewservice/:serviceId" element={<ViewService/>}/>
 		</Routes>
 	);
 }
@@ -34,7 +34,7 @@ const ParentContent = () => {
 	const [showAddServiceModal, setShowAddServiceModal] = useState(false);
 	const [addServiceModalSuccess, setAddServiceModalSuccess] = useState(false);
 
-	const getServices = useCallback( async () => {
+	const getServices = useCallback(async () => {
 		const response = await axiosPrivate.get(
 			"/admin/service/all");
 		setServices(response.data.data);
@@ -42,10 +42,10 @@ const ParentContent = () => {
 	}, []);
 
 	useEffect(() => {
-			setLoading(true)
-			getServices().then(() => {
-				setLoading(false)
-			});
+		setLoading(true)
+		getServices().then(() => {
+			setLoading(false)
+		});
 	}, [getServices, addServiceModalSuccess]);
 
 	const handleShowAddServiceModal = () => {
@@ -54,7 +54,7 @@ const ParentContent = () => {
 
 	return (
 		<HelmetProvider>
-			{loading && <TopBarProgress />}
+			{loading && <TopBarProgress/>}
 
 			{/*	show modal if modal is toggled*/}
 			{showAddServiceModal && <AddServiceModal
@@ -66,19 +66,19 @@ const ParentContent = () => {
 			<>
 				<Helmet>
 					<title>Services | IHS Dashboard</title>
-					<link rel="canonical" href="https://www.ihsmdinc.com/" />
+					<link rel="canonical" href="https://www.ihsmdinc.com/"/>
 				</Helmet>
-				<div className="lg:p-20 md:p-10 p-3">
-				<div className="flex justify-between items-center md:mt-16 mt-20">
-					<h2 className="md:text-2xl text-xl">All Services</h2>
-					<button className="py-3 md:px-4 px-2" onClick={handleShowAddServiceModal}>Add Service</button>
+				<div className="lg:px-20 lg:py-4 md:px-10 p-3">
+					<div className="flex justify-between items-center my-5 lg:mt-10">
+						<h2 className="md:text-2xl text-xl">All Services</h2>
+						<button className="py-3 md:px-4 px-2" onClick={handleShowAddServiceModal}>Add Service</button>
+					</div>
+
+					<hr className="my-10"/>
+
+					{/*Services Table*/}
+					<ServiceTable services={services}/>
 				</div>
-
-				<hr className="my-10"/>
-
-				{/*Services Table*/}
-				<ServiceTable services={services}/>
-			</div>
 			</>
 		</HelmetProvider>
 

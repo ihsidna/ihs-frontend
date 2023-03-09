@@ -54,7 +54,7 @@ const UpdateBeneficiary = () => {
 				setCity(response.data.data.city);
 				setState(response.data.data.state);
 				setLoading(false);
-			} catch (err){
+			} catch (err) {
 				console.error(err)
 			}
 		}
@@ -69,7 +69,6 @@ const UpdateBeneficiary = () => {
 	}, []);
 
 
-
 	const handleUpdate = async (e) => {
 		e.preventDefault();
 		setLoading(true);
@@ -77,7 +76,8 @@ const UpdateBeneficiary = () => {
 		try {
 			await axiosPrivate.patch(`/user/beneficiary/${beneficiaryId}`,
 				JSON.stringify({
-					firstName, lastName, dob, relationship, email, phone, address, city, state}),
+					firstName, lastName, dob, relationship, email, phone, address, city, state
+				}),
 				{
 					headers: {
 						'Content-Type': 'application/json',
@@ -118,26 +118,31 @@ const UpdateBeneficiary = () => {
 			<>
 				<Helmet>
 					<title>Update Beneficiary | IHS Dashboard</title>
-					<link rel="canonical" href="https://www.ihsmdinc.com/" />
+					<link rel="canonical" href="https://www.ihsmdinc.com/"/>
 				</Helmet>
-				<div className="lg:p-20 md:p-10 p-3">
-					{loading && <TopBarProgress />}
-					<button className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 md:mt-14 md:mb-4 mt-20 mb-4" onClick={() => navigate("/beneficiaries")}>
-						<ChevronLeftIcon className="w-6" /> <p className="text-lg px-5">Back to Beneficiaries</p>
+				<div className="lg:px-20 lg:py-4 md:px-10 p-3">
+					{loading && <TopBarProgress/>}
+					<button
+						className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 lg:mt-10 my-5"
+						onClick={() => navigate("/beneficiaries")}>
+						<ChevronLeftIcon className="w-6"/> <p className="text-lg px-5">Back to Beneficiaries</p>
 					</button>
 					<div className="flex md:justify-start justify-center md:items-start items-center">
 						<div className="md:flex-1">
 
-							<div className="flex justify-between items-center h-24 bg-ihs-green-shade-50 rounded-md shadow-sm text-gray-600">
+							<div
+								className="flex justify-between items-center h-24 bg-ihs-green-shade-50 rounded-md shadow-sm text-gray-600">
 								<div className="flex">
-									<UserAddIcon className="md:w-14 w-8 md:ml-10 ml-3" />
+									<UserAddIcon className="md:w-14 w-8 md:ml-10 ml-3"/>
 									<h3 className="md:text-3xl text-2xl py-8 md:px-8 px-2">Update Beneficiary</h3>
 								</div>
 							</div>
 
 							<form className="my-16 space-y-0" onSubmit={handleUpdate}>
 
-								<p className={errMsg ? "rounded-md p-4 mb-4 bg-ihs-green-shade-200 text-red-500 font-normal text-lg" : "absolute -left-[99999px]"} aria-live="assertive">{errMsg}</p>
+								<p
+									className={errMsg ? "rounded-md p-4 mb-4 bg-ihs-green-shade-200 text-red-500 font-normal text-lg" : "absolute -left-[99999px]"}
+									aria-live="assertive">{errMsg}</p>
 
 								{/*First Name and last Name*/}
 								<div className="flex md:flex-row flex-col">
@@ -333,7 +338,8 @@ const UpdateBeneficiary = () => {
 								</div>
 
 								<div className="flex justify-start">
-									<button type="submit" className="px-4 py-3 my-20 bg-ihs-green hover:font-bold focus: outline-none focus:ring-2 focus:ring-ihs-green-shade-500 w-96 text-lg">
+									<button type="submit"
+													className="px-4 py-3 my-20 bg-ihs-green hover:font-bold focus: outline-none focus:ring-2 focus:ring-ihs-green-shade-500 w-96 text-lg">
 										Update
 									</button>
 								</div>

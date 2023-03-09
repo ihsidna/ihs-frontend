@@ -36,7 +36,7 @@ const useRefreshToken = () => {
 	};
 
 	return async () => {
-		try{
+		try {
 			const response = await axios.get("/refresh",
 				{withCredentials: true}
 			);
@@ -60,11 +60,11 @@ const useRefreshToken = () => {
 			return response.data.data;
 		} catch (e) {
 			console.error('refresh error', e)
-				navigate('/')
-				await dispatch(revertAll())
-				await localStorage.clear();
-				await removeKey('auth');
-				await removeKey('loggedInUser')
+			navigate('/')
+			await dispatch(revertAll())
+			await localStorage.clear();
+			await removeKey('auth');
+			await removeKey('loggedInUser')
 		}
 
 	};

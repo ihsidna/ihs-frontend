@@ -39,7 +39,7 @@ const ViewBeneficiaryAppointments = () => {
 
 				isMounted && setAppointments(response.data.data);
 				setLoading(false)
-			} catch (err){
+			} catch (err) {
 				console.error(err)
 			}
 		}
@@ -56,7 +56,7 @@ const ViewBeneficiaryAppointments = () => {
 	return (
 
 		<div className="w-full px-2 pb-16 sm:px-0">
-			{loading && <TopBarProgress />}
+			{loading && <TopBarProgress/>}
 			<Tab.Group>
 				<Tab.List className="flex space-x-1 rounded-md bg-gray-200 p-2 md:w-1/2">
 
@@ -80,11 +80,11 @@ const ViewBeneficiaryAppointments = () => {
 				<Tab.Panels>
 
 					<Tab.Panel>
-						<UpcomingAppointmentsTable appointmentList={appointments} urlPath='appointments' />
+						<UpcomingAppointmentsTable appointmentList={appointments} urlPath='appointments'/>
 					</Tab.Panel>
 
 					<Tab.Panel>
-						<CompletedAppointmentsTable appointmentList={appointments} urlPath='appointments' />
+						<CompletedAppointmentsTable appointmentList={appointments} urlPath='appointments'/>
 					</Tab.Panel>
 
 				</Tab.Panels>

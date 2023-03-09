@@ -36,7 +36,7 @@ const EmailConfirmed = () => {
 		})
 	}
 
-	useEffect(  () => {
+	useEffect(() => {
 		async function confirmEmail() {
 			setLoading(true);
 
@@ -54,22 +54,24 @@ const EmailConfirmed = () => {
 		}
 
 		confirmEmail();
-	}, []);
+	}, [confirmationCode]);
 
 	return (
 		<>
-			{loading && <TopBarProgress />}
+			{loading && <TopBarProgress/>}
 
 			<div className="flex flex-col justify-center items-center py-4 pt-20 pb-20 relative">
 				<a href="https://ihsmdinc.com"><img src={Logo} className="w-44 lg:w-56" alt="ihs-logo"/></a>
-				<section className="rounded-md py-8 my-8 w-3/4 flex flex-col justify-center items-center shadow-md border-0 border-l-4 border-ihs-green-shade-500 text-slate-500 font-thin md:text-lg text-sm">
+				<section
+					className="rounded-md py-8 my-8 w-3/4 flex flex-col justify-center items-center shadow-md border-0 border-l-4 border-ihs-green-shade-500 text-slate-500 font-thin md:text-lg text-sm">
 					{message && <h1 className="md:text-lg text-ihs-green">{message}</h1>}
 
 					{message === emailVerification.Expired &&
 						<>
 							<p>Please click on the button to request a new verification link</p>
 							<form onSubmit={resendVerificationLink} className="w-full flex justify-center">
-								<button type="submit" disabled={resend || loading} className="px-4 py-2 w-1/2 mt-8 disabled:bg-ihs-green-shade-200 disabled:text-slate-600 disabled:border-slate-200 bg-ihs-green focus:outline-none focus:ring-2 focus:ring-ihs-green-shade-500">
+								<button type="submit" disabled={resend || loading}
+												className="px-4 py-2 w-1/2 mt-8 disabled:bg-ihs-green-shade-200 disabled:text-slate-600 disabled:border-slate-200 bg-ihs-green focus:outline-none focus:ring-2 focus:ring-ihs-green-shade-500">
 									Resend Link
 								</button>
 							</form>
@@ -77,20 +79,23 @@ const EmailConfirmed = () => {
 					}
 
 					{message === emailVerification.Resent &&
-						<p className=" px-10 py-4 text-slate-500 font-thin md:text-lg text-xs">Please check your email inbox (including junk/spam folder) for new verification link.</p>
+						<p className=" px-10 py-4 text-slate-500 font-thin md:text-lg text-xs">Please check your email inbox
+							(including junk/spam folder) for new verification link.</p>
 					}
 
 					{message === emailVerification.Invalid &&
 						<>
 							<p>Verification link is invalid. Please click the button to sign up</p>
-							<button disabled={loading} className="px-4 py-2 w-1/2 mt-8 disabled:bg-ihs-green-shade-200 disabled:text-slate-600 disabled:border-slate-200 bg-ihs-green focus:outline-none focus:ring-2 focus:ring-ihs-green-shade-500">
+							<button disabled={loading}
+											className="px-4 py-2 w-1/2 mt-8 disabled:bg-ihs-green-shade-200 disabled:text-slate-600 disabled:border-slate-200 bg-ihs-green focus:outline-none focus:ring-2 focus:ring-ihs-green-shade-500">
 								<Link to="/signup">Sign Up</Link>
 							</button>
 						</>
 					}
 
 					{message === emailVerification.Confirmed &&
-						<p className="text-lg py-2">Proceed to <span className="text-ihs-green hover:underline"><Link to="/">Sign In</Link></span></p>
+						<p className="text-lg py-2">Proceed to <span className="text-ihs-green hover:underline"><Link
+							to="/">Sign In</Link></span></p>
 					}
 				</section>
 			</div>

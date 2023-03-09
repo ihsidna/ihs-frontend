@@ -9,10 +9,10 @@ function classNames(...classes) {
 }
 
 TopBarProgress.config({
-		barColors: {
-				"0": "#05afb0"
-		},
-		shadowBlur: 5
+	barColors: {
+		"0": "#05afb0"
+	},
+	shadowBlur: 5
 });
 
 const AppointmentTable = () => {
@@ -44,11 +44,11 @@ const AppointmentTable = () => {
 				<Tab.Panels>
 
 					<Tab.Panel>
-						<UpcomingAppointmentsTable appointmentList={appointments} urlPath='appointments' />
+						<UpcomingAppointmentsTable appointmentList={appointments} urlPath='appointments'/>
 					</Tab.Panel>
 
 					<Tab.Panel>
-						<CompletedAppointmentsTable appointmentList={appointments} urlPath='appointments' />
+						<CompletedAppointmentsTable appointmentList={appointments} urlPath='appointments'/>
 					</Tab.Panel>
 
 				</Tab.Panels>

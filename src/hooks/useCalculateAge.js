@@ -1,4 +1,4 @@
-export const calculateAge = (dateString) =>{
+export const calculateAge = (dateString) => {
 	const today = new Date();
 	const birthDate = new Date(dateString);
 	let age = today.getFullYear() - birthDate.getFullYear();

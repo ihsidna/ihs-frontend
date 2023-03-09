@@ -1,6 +1,5 @@
 import {createAction, createAsyncThunk, createSlice} from "@reduxjs/toolkit"
-import {axiosPrivate} from "../../api/axios"
-import axios from "../../api/axios";
+import axios, {axiosPrivate} from "../../api/axios"
 
 const initialState = {
 	userAccess: {
@@ -22,7 +21,8 @@ export const signInUser = createAsyncThunk('user/login', async (loginCredentials
 	try {
 		const response = await axios.post("/user/login",
 			JSON.stringify(loginCredentials),
-			{ headers: { 'Content-Type': 'application/json' },
+			{
+				headers: {'Content-Type': 'application/json'},
 				withCredentials: true
 			}
 		);
@@ -53,7 +53,7 @@ export const fetchUserProfile = createAsyncThunk('user/profile', async () => {
 			customerId: response.data.data.stripeCustomerId
 		}
 
-	} catch (err){
+	} catch (err) {
 		console.error(err)
 	}
 
@@ -65,13 +65,17 @@ const authSlice = createSlice({
 	initialState,
 	extraReducers: (builder) => builder.addCase(revertAll, () => initialState),
 	reducers: {
-		togglePersist(state){
+		togglePersist(state) {
 			state.userAccess = {...state.userAccess, persist: !state.userAccess.persist};
 		},
 		storeAuthInfo(state, action) {
-			state.userAccess = { ...state.userAccess, accessToken: action.payload.accessToken, userType: action.payload.userType}
+			state.userAccess = {
+				...state.userAccess,
+				accessToken: action.payload.accessToken,
+				userType: action.payload.userType
+			}
 		},
-		storeLoggedInUser(state, { payload }) {
+		storeLoggedInUser(state, {payload}) {
 			state.loggedInUser = {
 				...state.loggedInUser,
 				id: payload.id,
@@ -85,6 +89,6 @@ const authSlice = createSlice({
 	},
 })
 
-export const { storeAuthInfo, togglePersist, storeLoggedInUser } = authSlice.actions
+export const {storeAuthInfo, togglePersist, storeLoggedInUser} = authSlice.actions
 
 export default authSlice.reducer
