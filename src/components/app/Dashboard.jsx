@@ -1,18 +1,19 @@
-import React, {useEffect, useState} from 'react';
-import {useLocation, useNavigate} from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from "react-router-dom";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import useAuth from "../../hooks/useAuth";
 import BeneficiaryTable from "./beneficiary/BeneficiaryTable";
 import AppointmentTable from "./appointment/AppointmentTable";
-import {userRoles} from "../../data/enums";
-import {Helmet, HelmetProvider} from 'react-helmet-async';
+import { userRoles } from "../../data/enums";
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import TopBarProgress from "react-topbar-progress-indicator";
 import AllAppointmentsTable from "./appointment/AllAppointmentsTable";
-import {useDispatch, useSelector} from "react-redux";
-import {fetchUserProfile, storeLoggedInUser} from "../../redux/features/authSlice";
-import {getKey, setKey} from "../../utils/mobilePreferences";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUserProfile, storeLoggedInUser } from "../../redux/features/authSlice";
+import { getKey, setKey } from "../../utils/mobilePreferences";
 // import {OneSignalInit} from "../../oneSignal";
-import ReactOnesignal from "react-onesignal";
+import OneSignal from 'onesignal-cordova-plugin';
+
 
 TopBarProgress.config({
 	barColors: {
@@ -49,30 +50,32 @@ const Dashboard = () => {
 
 		async function initializeOnesignal() {
 			try {
-				await ReactOnesignal.init({
-					appId: "0056d358-938a-42ca-bad9-2aae6d5f2bfa",
-					autoRegister: true,
-					autoResubscribe: true,
-					allowLocalhostAsSecureOrigin: true,
-					notifyButton: {
-						enable: true,
-					},
-				});
+				// Uncomment to set OneSignal device logging to VERBOSE  
+				// OneSignal.setLogLevel(6, 0);
 
-				console.log("AFTER INITIALIZATION");
+				// NOTE: Update the setAppId value below with your OneSignal AppId.
+				OneSignal.setAppId("0056d358-938a-42ca-bad9-2aae6d5f2bfa");
 
 				const externalUserId = loggedInUser?.id;
 				if (externalUserId) {
-					await ReactOnesignal.setExternalUserId(externalUserId);
+					OneSignal.setExternalUserId(externalUserId)
 				}
 
-				ReactOnesignal.addListenerForNotificationOpened((jsonData) => {
-					console.log("notificationOpenedCallback: " + JSON.stringify(jsonData));
+				OneSignal.setNotificationOpenedHandler(function (jsonData) {
+					const data  = jsonData?.notification?.additionalData;
+
+					console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+					console.log('additionalData: ' + JSON.stringify(data));
+					///using this additional data here -- you can navigate to whatever pages are needed example {path: "/login"}
+					//then push this path 
 				});
 
-				ReactOnesignal.getNotificationPermission((accepted) => {
-					console.log("User accepted notifications?: " + accepted);
+				// Prompts the user for notification permissions.
+				//    * Since this shows a generic native prompt, we recommend instead using an In-App Message to prompt for notification permission (See step 7) to better communicate to your users what notifications they will get.
+				OneSignal.promptForPushNotificationsWithUserResponse(function (accepted) {
+					console.log("User accepted notifications: " + accepted);
 				});
+
 			} catch (error) {
 				console.log("ONESIGNAL INITIALIZATION ERROR", error);
 			}
@@ -90,38 +93,38 @@ const Dashboard = () => {
 	// get auth mobile preferences
 	useEffect(() => {
 		getKey('auth')
-		.then((result) => {
-			setMobileAuth(result);
-		})
-		.catch((err) => {
-			console.error(err);
-		});
+			.then((result) => {
+				setMobileAuth(result);
+			})
+			.catch((err) => {
+				console.error(err);
+			});
 	}, [])
 
 	useEffect(() => {
 		getKey('loggedInUser')
-		.then((result) => {
-			setMobileLoggedInUser(result);
-		})
-		.catch((err) => {
-			console.error(err);
-		})
+			.then((result) => {
+				setMobileLoggedInUser(result);
+			})
+			.catch((err) => {
+				console.error(err);
+			})
 	}, [])
 
 	// get logged in user
 	useEffect(() => {
 		dispatch(fetchUserProfile()).unwrap()
-		.then(async (result) => {
-			dispatch(storeLoggedInUser(result));
+			.then(async (result) => {
+				dispatch(storeLoggedInUser(result));
 
-			// mobile storage
-			await setKey('loggedInUser', result)
+				// mobile storage
+				await setKey('loggedInUser', result)
 
-		}).catch((err) => {
-			if (err?.response?.status === 401) {
-				navigate('/', {state: {from: location}, replace: true});
-			}
-		})
+			}).catch((err) => {
+				if (err?.response?.status === 401) {
+					navigate('/', { state: { from: location }, replace: true });
+				}
+			})
 	}, [dispatch, location, navigate])
 
 	// get user beneficiaries
@@ -250,17 +253,17 @@ const Dashboard = () => {
 			<>
 				<Helmet>
 					<title>Dashboard | IHS Dashboard</title>
-					<link rel="canonical" href="https://www.ihsmdinc.com/"/>
+					<link rel="canonical" href="https://www.ihsmdinc.com/" />
 				</Helmet>
 				<div className="lg:px-20 lg:py-4 md:px-10 p-3">
-					{loading && <TopBarProgress/>}
+					{loading && <TopBarProgress />}
 					<div className="my-5 lg:mt-10">
 						<h2
 							className="md:text-4xl text-3xl mb-3">Hello {loggedInUser?.firstName || mobileLoggedInUser?.firstName}</h2>
 						<p className="text-slate-500 text-xl">Welcome to your dashboard</p>
 					</div>
 
-					<hr className="my-10"/>
+					<hr className="my-10" />
 
 					{/*User Cards*/}
 					<div className="grid md:grid-cols- grid-cols-2 md:gap-7 gap-3 my-10">
@@ -319,10 +322,10 @@ const Dashboard = () => {
 								</button>
 							</div>
 
-							<hr className="my-10"/>
+							<hr className="my-10" />
 
 							{/*Beneficiaries Table*/}
-							<BeneficiaryTable/>
+							<BeneficiaryTable />
 
 							{/*Appointments Section*/}
 							<div className="flex justify-between items-center mt-20">
@@ -332,10 +335,10 @@ const Dashboard = () => {
 								</button>
 							</div>
 
-							<hr className="my-10"/>
+							<hr className="my-10" />
 
 							{/*Appointments Table*/}
-							<AppointmentTable/>
+							<AppointmentTable />
 						</>
 					}
 
@@ -346,11 +349,11 @@ const Dashboard = () => {
 								<h2 className="md:text-2xl text-xl">All Appointments</h2>
 							</div>
 
-							<hr className="my-10"/>
+							<hr className="my-10" />
 
 							{/*Appointments Table*/}
 
-							{hasLoaded && <AllAppointmentsTable/>}
+							{hasLoaded && <AllAppointmentsTable />}
 							{/*<AppointmentTable />*/}
 						</>
 					}
