@@ -11,6 +11,8 @@ import AllAppointmentsTable from "./appointment/AllAppointmentsTable";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchUserProfile, storeLoggedInUser} from "../../redux/features/authSlice";
 import {getKey, setKey} from "../../utils/mobilePreferences";
+// import {OneSignalInit} from "../../oneSignal";
+import ReactOnesignal from "react-onesignal";
 
 TopBarProgress.config({
 	barColors: {
@@ -41,6 +43,49 @@ const Dashboard = () => {
 		metrics,
 		setMetrics
 	} = useAuth();
+
+	useEffect(() => {
+		console.log("BEFORE INITIALIZATION");
+
+		async function initializeOnesignal() {
+			try {
+				await ReactOnesignal.init({
+					appId: "0056d358-938a-42ca-bad9-2aae6d5f2bfa",
+					autoRegister: true,
+					autoResubscribe: true,
+					allowLocalhostAsSecureOrigin: true,
+					notifyButton: {
+						enable: true,
+					},
+				});
+
+				console.log("AFTER INITIALIZATION");
+
+				const externalUserId = loggedInUser?.id;
+				if (externalUserId) {
+					await ReactOnesignal.setExternalUserId(externalUserId);
+				}
+
+				ReactOnesignal.addListenerForNotificationOpened((jsonData) => {
+					console.log("notificationOpenedCallback: " + JSON.stringify(jsonData));
+				});
+
+				ReactOnesignal.getNotificationPermission((accepted) => {
+					console.log("User accepted notifications?: " + accepted);
+				});
+			} catch (error) {
+				console.log("ONESIGNAL INITIALIZATION ERROR", error);
+			}
+		}
+
+		initializeOnesignal();
+	}, [loggedInUser?.id]);
+
+
+	// Initialize One Signal
+	// useEffect(() => {
+	// 	OneSignalInit(loggedInUser.id)
+	// }, [loggedInUser.id])
 
 	// get auth mobile preferences
 	useEffect(() => {
