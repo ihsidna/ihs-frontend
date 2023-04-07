@@ -11,7 +11,6 @@ import AllAppointmentsTable from "./appointment/AllAppointmentsTable";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserProfile, storeLoggedInUser } from "../../redux/features/authSlice";
 import { getKey, setKey } from "../../utils/mobilePreferences";
-// import {OneSignalInit} from "../../oneSignal";
 import OneSignal from 'onesignal-cordova-plugin';
 
 
@@ -46,14 +45,10 @@ const Dashboard = () => {
 	} = useAuth();
 
 	useEffect(() => {
-		console.log("BEFORE INITIALIZATION");
-
 		async function initializeOnesignal() {
 			try {
-				// Uncomment to set OneSignal device logging to VERBOSE  
-				// OneSignal.setLogLevel(6, 0);
+				OneSignal.setLogLevel(6, 0);
 
-				// NOTE: Update the setAppId value below with your OneSignal AppId.
 				OneSignal.setAppId("0056d358-938a-42ca-bad9-2aae6d5f2bfa");
 
 				const externalUserId = loggedInUser?.id;
@@ -66,8 +61,11 @@ const Dashboard = () => {
 
 					console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
 					console.log('additionalData: ' + JSON.stringify(data));
-					///using this additional data here -- you can navigate to whatever pages are needed example {path: "/login"}
-					//then push this path 
+
+					if (data.url) {
+						navigate(data.url);
+					}
+
 				});
 
 				// Prompts the user for notification permissions.
@@ -82,13 +80,7 @@ const Dashboard = () => {
 		}
 
 		initializeOnesignal();
-	}, [loggedInUser?.id]);
-
-
-	// Initialize One Signal
-	// useEffect(() => {
-	// 	OneSignalInit(loggedInUser.id)
-	// }, [loggedInUser.id])
+	}, [navigate, loggedInUser?.id]);
 
 	// get auth mobile preferences
 	useEffect(() => {

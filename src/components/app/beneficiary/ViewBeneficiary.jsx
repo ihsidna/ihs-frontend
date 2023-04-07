@@ -32,6 +32,10 @@ const ViewBeneficiary = () => {
 	}, [beneficiaryId, axiosPrivate])
 
 	useEffect(() => {
+		window.scrollTo(0,0)
+	}, [])
+
+	useEffect(() => {
 		setLoading(true);
 		getBeneficiary().then(() => {
 			setLoading(false);
