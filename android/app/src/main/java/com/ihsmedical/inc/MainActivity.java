@@ -1,4 +1,4 @@
-package com.ihsmedical;
+package com.ihsmedical.inc;
 
 import com.getcapacitor.BridgeActivity;
 

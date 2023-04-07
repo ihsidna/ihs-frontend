@@ -18,8 +18,20 @@ import PersistLogin from "./components/app/PersistLogin";
 import Service from "./components/app/service/Service";
 import AllAppointment from "./components/app/appointment/AllAppointment";
 import ResetPassword from "./pages/ResetPassword";
+import { StatusBar, Style } from '@capacitor/status-bar';
 
 function App() {
+
+	
+	React.useEffect(()=>{
+		const setStatusBarStyleDark = async () => {
+			await StatusBar.setStyle({ style: Style.Light });
+		  };
+	
+		setStatusBarStyleDark()
+	},[])
+
+
 	return (
 		<Router>
 			<Routes>
