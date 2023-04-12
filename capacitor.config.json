@@ -1,14 +1,14 @@
 {
-  "appId": "com.ihsmedical",
+  "appId": "com.ihsmedical.inc",
   "appName": "IHS Medical",
   "webDir": "build",
   "bundledWebRuntime": false,
   "backgroundColor": "#fff",
   "plugins": {
     "SplashScreen": {
-      "launchShowDuration": 3000,
-      "launchAutoHide": true,
-      "backgroundColor": "#ffffffff",
+      "launchShowDuration": 5000,
+      "launchAutoHide": false,
+      "backgroundColor": "#fff",
       "androidSplashResourceName": "splash",
       "androidScaleType": "CENTER_CROP",
       "showSpinner": false,

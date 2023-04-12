@@ -48,6 +48,7 @@
     "build:prod": "env-cmd -f .env.prod react-scripts build",
     "build:staging": "env-cmd -f .env.staging react-scripts build",
     "build-mobile:staging": "env-cmd -f .env.staging react-scripts build npx cap sync",
+    "build-mobile:prod": "env-cmd -f .env.prod react-scripts build npx cap sync",
     "build-prod:staging": "env-cmd -f .env.prod react-scripts build npx cap sync",
     "resources": "capacitor-resources -p android,ios",
     "test": "react-scripts test",
@@ -72,6 +73,7 @@
     ]
   },
   "devDependencies": {
+    "@capacitor/assets": "^2.0.4",
     "@capacitor/cli": "^4.6.3",
     "autoprefixer": "^10.4.7",
     "postcss": "^8.4.14",
