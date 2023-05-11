@@ -7,6 +7,7 @@ import {appointmentStatus} from "../../../data/enums";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import TopBarProgress from "react-topbar-progress-indicator";
 import Modal from "../Modal";
+import {WATDateString} from "../../../hooks/useFormatDate";
 
 TopBarProgress.config({
 	barColors: {
@@ -38,15 +39,16 @@ const BookAppointment = () => {
 		e.preventDefault();
 		setLoading(true);
 
+		const appointmentDate = WATDateString(date);
+		
 		try {
-
 			// verify beneficiary coverage subscription
 			const exactBeneficiary = beneficiaries.filter((ben) => ben.id === beneficiary);
 
 			if (exactBeneficiary[0]?.subscription?.status === 'active') {
 				await axiosPrivate.post(BOOK_APPOINTMENT,
 					JSON.stringify({
-						beneficiaryId: beneficiary, serviceId: service, date, time, status: appointmentStatus.Booked
+						beneficiaryId: beneficiary, serviceId: service, date: appointmentDate, time, status: appointmentStatus.Booked
 					}),
 					{
 						headers: {
