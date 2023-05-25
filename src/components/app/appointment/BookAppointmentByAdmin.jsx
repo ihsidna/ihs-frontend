@@ -33,47 +33,77 @@ const BookFollowUpAppointment = () => {
 
 	const [toggleModal, setToggleModal] = useState(false)
 
-	const clicked = () => {
-		setToggleModal(true)
-	}
+	// const clicked = () => {
+	// 	setToggleModal(true)
+	// }
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setLoading(true);
 
 		try {
+			// normal workflow for booking appointments
 
 			// verify beneficiary coverage subscription
-			if (beneficiaryDetails?.subscription?.status === 'active') {
-				await axiosPrivate.post(BOOK_APPOINTMENT,
-					JSON.stringify({
-						beneficiaryId: beneficiaryDetails.id,
-						serviceId: service,
-						date,
-						time,
-						status: appointmentStatus.Booked,
-						userId: beneficiaryDetails.userId,
-						userName: userName
-					}),
-					{
-						headers: {
-							'Content-Type': 'application/json',
-						},
-						withCredentials: true
-					}
-				);
-
-				setBeneficiaryDetails('');
-				setService('');
-				setDate('');
-				setTime('');
-
-				setLoading(false);
-
-				navigate('/allappointments')
-			} else {
-				clicked();
-			}
+			// if (beneficiaryDetails?.subscription?.status === 'active') {
+			// 	await axiosPrivate.post(BOOK_APPOINTMENT,
+			// 		JSON.stringify({
+			// 			beneficiaryId: beneficiaryDetails.id,
+			// 			serviceId: service,
+			// 			date,
+			// 			time,
+			// 			status: appointmentStatus.Booked,
+			// 			userId: beneficiaryDetails.userId,
+			// 			userName: userName
+			// 		}),
+			// 		{
+			// 			headers: {
+			// 				'Content-Type': 'application/json',
+			// 			},
+			// 			withCredentials: true
+			// 		}
+			// 	);
+			//
+			// 	setBeneficiaryDetails('');
+			// 	setService('');
+			// 	setDate('');
+			// 	setTime('');
+			//
+			// 	setLoading(false);
+			//
+			// 	navigate('/allappointments')
+			// } else {
+			// 	clicked();
+			// }
+			
+			// July workflow for booking appointments (promotional)
+			
+			await axiosPrivate.post(BOOK_APPOINTMENT,
+				JSON.stringify({
+					beneficiaryId: beneficiaryDetails.id,
+					serviceId: service,
+					date,
+					time,
+					status: appointmentStatus.Booked,
+					userId: beneficiaryDetails.userId,
+					userName: userName
+				}),
+				{
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					withCredentials: true
+				}
+			);
+			
+			setBeneficiaryDetails('');
+			setService('');
+			setDate('');
+			setTime('');
+			
+			setLoading(false);
+			
+			navigate('/allappointments')
 
 		} catch (err) {
 			if (!err.response) {
