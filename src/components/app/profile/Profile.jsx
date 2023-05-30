@@ -10,6 +10,7 @@ import ChangePhoneNumberModal from "./ChangePhoneNumberModal";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchUserProfile, revertAll, storeLoggedInUser} from "../../../redux/features/authSlice";
 import {setKey} from "../../../utils/mobilePreferences";
+import {capitalizeString} from "../../../utils/capitalizeString";
 
 TopBarProgress.config({
 	barColors: {
@@ -157,11 +158,11 @@ const Profile = () => {
 							<div className="my-10 md:ml-5 text-gray-600 md:text-xl text-md">
 								<div className="grid grid-cols-5">
 									<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">First Name: </p>
-									<p className="py-5 md:ml-5 md:col-start-2">{loggedInUser ? loggedInUser?.firstName : ""} </p>
+									<p className="py-5 md:ml-5 md:col-start-2">{loggedInUser ? capitalizeString(loggedInUser?.firstName) : ""} </p>
 								</div>
 								<div className="grid grid-cols-5">
 									<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Last Name: </p>
-									<p className="py-5 md:ml-5 md:col-start-2">{loggedInUser ? loggedInUser?.lastName : ""} </p>
+									<p className="py-5 md:ml-5 md:col-start-2">{loggedInUser ? capitalizeString(loggedInUser?.lastName) : ""} </p>
 								</div>
 								<div className="grid grid-cols-5">
 									<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-1">Email: </p>

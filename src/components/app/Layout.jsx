@@ -8,6 +8,7 @@ import {useSelector} from "react-redux";
 import {Capacitor} from "@capacitor/core";
 import {iosStyles} from "../../mobileStyles";
 import {getKey} from "../../utils/mobilePreferences";
+import {capitalizeString} from "../../utils/capitalizeString";
 
 const Layout = () => {
 	const loggedInUser = useSelector((state) => state.auth.loggedInUser);
@@ -41,12 +42,12 @@ const Layout = () => {
 
 					<div className="flex flex-row items-center">
 						<p className="text-xl text-gray-700 hidden md:block"><Link
-							to="/profile">{loggedInUser?.firstName || mobileLoggedInUser?.firstName} {loggedInUser?.lastName || mobileLoggedInUser?.lastName}</Link>
+							to="/profile">{capitalizeString(loggedInUser?.firstName) || capitalizeString(mobileLoggedInUser?.firstName)} {capitalizeString(loggedInUser?.lastName) || capitalizeString(mobileLoggedInUser?.lastName)}</Link>
 						</p>
 						<div className="px-5">
 							<Link to="/profile">
 								<Avatar
-									name={`${loggedInUser?.firstName || mobileLoggedInUser?.firstName} ${loggedInUser?.lastName || mobileLoggedInUser?.lastName}`}
+									name={`${capitalizeString(loggedInUser?.firstName) || capitalizeString(mobileLoggedInUser?.firstName)} ${capitalizeString(loggedInUser?.lastName) || capitalizeString(mobileLoggedInUser?.lastName)}`}
 									color={avatar.BackgroundColor} fgColor={avatar.ForegroundColor} size={avatar.width} round={true}/>
 							</Link>
 						</div>

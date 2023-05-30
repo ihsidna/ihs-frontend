@@ -7,6 +7,7 @@ import Nodata from "../../../assets/images/noData.svg";
 import TopBarProgress from "react-topbar-progress-indicator";
 import {calculateAge} from "../../../hooks/useCalculateAge";
 import Pagination from "../Pagination";
+import {capitalizeString} from "../../../utils/capitalizeString";
 
 TopBarProgress.config({
 	barColors: {
@@ -111,7 +112,7 @@ const ViewUserBeneficiaries = () => {
 										<td className=" py-4 whitespace-no-wrap border-b border-gray-200">
 											<div className="flex items-center">
 												<div className="mx-4">
-													<Avatar name={`${beneficiary?.firstName} ${beneficiary?.lastName}`}
+													<Avatar name={`${capitalizeString(beneficiary?.firstName)} ${capitalizeString(beneficiary?.lastName)}`}
 																	color={avatar.BackgroundColor} fgColor={avatar.ForegroundColor} size={avatar.width}
 																	round={true}/>
 												</div>
@@ -121,7 +122,7 @@ const ViewUserBeneficiaries = () => {
 											<div className="flex items-center">
 												<div>
 													<div className="md:text-lg text-base font-medium leading-5 text-gray-500">
-														{beneficiary?.firstName}&nbsp;{beneficiary?.lastName}
+														{capitalizeString(beneficiary?.firstName)}&nbsp;{capitalizeString(beneficiary?.lastName)}
 													</div>
 												</div>
 											</div>
@@ -191,7 +192,7 @@ const ViewUserBeneficiaries = () => {
 											onClick={() => navigate(`/beneficiaries/viewbeneficiary/${beneficiary?.id}`)}>
 										<td className="p-4 ">
 											<div className="flex justify-between items-center text-md text-gray-800">
-												<span>{beneficiary?.firstName}&nbsp;{beneficiary?.lastName}</span>
+												<span>{capitalizeString(beneficiary?.firstName)}&nbsp;{(beneficiary?.lastName)}</span>
 											</div>
 											<div className="text-sm text-gray-500">
 												<p className="flex justify-between mt-1">

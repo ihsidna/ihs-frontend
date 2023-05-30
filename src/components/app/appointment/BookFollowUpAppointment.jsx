@@ -7,6 +7,7 @@ import {appointmentStatus} from "../../../data/enums";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import TopBarProgress from "react-topbar-progress-indicator";
 import Modal from "../Modal";
+import {capitalizeString} from "../../../utils/capitalizeString";
 
 TopBarProgress.config({
 	barColors: {
@@ -104,7 +105,7 @@ const BookFollowUpAppointment = () => {
 
 	const getUserName = useCallback(async () => {
 		const response = await axiosPrivate.get(`/user/${beneficiaryDetails.userId}`);
-		setUserName(`${response.data.data.firstName} ${response.data.data.lastName}`)
+		setUserName(`${capitalizeString(response.data.data.firstName)} ${capitalizeString(response.data.data.lastName)}`)
 	}, [beneficiaryDetails.userId, axiosPrivate])
 
 	useEffect(() => {
@@ -189,7 +190,7 @@ const BookFollowUpAppointment = () => {
 										value={beneficiaryId}
 										disabled
 										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 lg:w-96 md:w-72">
-										<option value={beneficiaryId}>{beneficiaryDetails.firstName} {beneficiaryDetails.lastName}</option>
+										<option value={beneficiaryId}>{capitalizeString(beneficiaryDetails.firstName)} {capitalizeString(beneficiaryDetails.lastName)}</option>
 									</select>
 								</div>
 							</div>

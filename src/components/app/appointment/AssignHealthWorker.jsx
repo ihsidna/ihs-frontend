@@ -6,6 +6,7 @@ import useAuth from "../../../hooks/useAuth";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import {appointmentStatus} from "../../../data/enums";
 import TopBarProgress from "react-topbar-progress-indicator";
+import {capitalizeString} from "../../../utils/capitalizeString";
 
 TopBarProgress.config({
 	barColors: {
@@ -72,7 +73,7 @@ const AssignHealthWorker = () => {
 	// healthWorkers is an array and healthWorkerId is a singular health worker id to check against
 	const getHealthWorkerName = () => {
 		const filteredHealthWorker = healthWorkers.filter(healthWorker => healthWorker.id === healthWorkerId);
-		return filteredHealthWorker[0].firstName + " " + filteredHealthWorker[0].lastName;
+		return capitalizeString(filteredHealthWorker[0].firstName) + " " + capitalizeString(filteredHealthWorker[0].lastName);
 	}
 	const handleUpdate = async (e) => {
 		e.preventDefault();
@@ -228,7 +229,7 @@ const AssignHealthWorker = () => {
 													key={index}
 													value={healthWorker?.id}
 												>
-													{healthWorker?.firstName} {healthWorker?.lastName}
+													{capitalizeString(healthWorker?.firstName)} {capitalizeString(healthWorker?.lastName)}
 												</option>
 											))
 											:

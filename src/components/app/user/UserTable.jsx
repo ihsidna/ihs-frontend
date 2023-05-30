@@ -92,7 +92,7 @@ const UserTable = () => {
 									<tr key={index}>
 										<td className="pl-6 py-4 whitespace-no-wrap border-b border-gray-200">
 											<div className="mr-4">
-												<Avatar name={`${user?.firstName} ${user?.lastName}`} color={avatar.BackgroundColor}
+												<Avatar name={`${capitalizeString(user?.firstName)} ${capitalizeString(user?.lastName)}`} color={avatar.BackgroundColor}
 																fgColor={avatar.ForegroundColor} size={avatar.width} round={true}/>
 											</div>
 										</td>
@@ -100,8 +100,7 @@ const UserTable = () => {
 											<div className="flex items-center">
 												<div>
 													<div className="md:text-lg text-base font-medium leading-5 text-gray-500">
-														<span
-															className="capitalize">{user?.firstName.toLowerCase()}&nbsp;{user?.lastName.toLowerCase()} </span>
+														<span>{capitalizeString(user?.firstName)}&nbsp;{capitalizeString(user?.lastName)} </span>
 													</div>
 												</div>
 											</div>
@@ -178,8 +177,7 @@ const UserTable = () => {
 											onClick={() => navigate(`viewuser/${el?.id}`)}>
 										<td className="p-4 ">
 											<div className="flex justify-between items-center text-md text-gray-800">
-												<span
-													className="capitalize">{el?.firstName.toLowerCase()}&nbsp;{el?.lastName.toLowerCase()} </span>
+												<span>{capitalizeString(el?.firstName)}&nbsp;{capitalizeString(el?.lastName)} </span>
 												<span
 													className={el?.userType === userRoles.Admin
 														? "inline-flex px-2 py-1 text-xs font-normal text-green-900 bg-green-100 rounded-lg capitalize"

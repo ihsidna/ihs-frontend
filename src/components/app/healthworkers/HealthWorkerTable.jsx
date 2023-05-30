@@ -4,6 +4,7 @@ import Nodata from "../../../assets/images/noData.svg";
 import Avatar from "react-avatar";
 import {avatar, pageSize} from "../../../data/enums";
 import Pagination from "../Pagination";
+import {capitalizeString} from "../../../utils/capitalizeString";
 
 const mobilePageSize = pageSize.Mobile;
 const laptopPageSize = pageSize.Laptop;
@@ -63,7 +64,7 @@ const HealthWorkerTable = ({healthWorkers}) => {
 									<tr key={index}>
 										<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
 											<div>
-												<Avatar name={`${worker?.firstName} ${worker?.lastName}`} color={avatar.BackgroundColor}
+												<Avatar name={`${capitalizeString(worker?.firstName)} ${capitalizeString(worker?.lastName)}`} color={avatar.BackgroundColor}
 																fgColor={avatar.ForegroundColor} size={avatar.width} round={true}/>
 											</div>
 										</td>
@@ -71,7 +72,7 @@ const HealthWorkerTable = ({healthWorkers}) => {
 											<div className="flex items-center">
 												<div>
 													<div className="md:text-lg text-base font-medium leading-5 text-gray-500">
-														{worker?.firstName}&nbsp;{worker?.lastName}
+														{capitalizeString(worker?.firstName)}&nbsp;{capitalizeString(worker?.lastName)}
 													</div>
 												</div>
 											</div>
@@ -140,7 +141,7 @@ const HealthWorkerTable = ({healthWorkers}) => {
 											onClick={() => navigate(`/healthworkers/viewhealthworker/${healthWorker?.id}`)}>
 										<td className="p-4 ">
 											<div className="flex justify-between items-center text-md text-gray-800">
-												<span>{healthWorker?.firstName}&nbsp;{healthWorker?.lastName}</span>
+												<span>{capitalizeString(healthWorker?.firstName)}&nbsp;{capitalizeString(healthWorker?.lastName)}</span>
 											</div>
 											<div className="text-sm text-gray-500">
 												<p className="flex justify-between mt-1">

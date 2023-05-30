@@ -8,6 +8,7 @@ import {Helmet, HelmetProvider} from "react-helmet-async";
 import TopBarProgress from "react-topbar-progress-indicator";
 import Modal from "../Modal";
 import {WATDateString} from "../../../hooks/useFormatDate";
+import {capitalizeString} from "../../../utils/capitalizeString";
 
 TopBarProgress.config ({
 	barColors: {
@@ -201,7 +202,7 @@ const BookAppointment = () => {
 													key={index}
 													value={beneficiary?.id}
 												>
-													{beneficiary?.firstName} {beneficiary?.lastName}
+													{capitalizeString(beneficiary?.firstName)} {capitalizeString(beneficiary?.lastName)}
 												</option>
 											))
 											:

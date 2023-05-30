@@ -6,6 +6,7 @@ import ViewUserBeneficiaries from "./ViewUserBeneficiaries";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import UserDropdown from "./UserDropdown";
 import Shimmer from "../Shimmer";
+import {capitalizeString} from "../../../utils/capitalizeString";
 
 const ViewUser = () => {
 	const user = useParams();
@@ -51,7 +52,7 @@ const ViewUser = () => {
 								<div className="grid grid-cols-5">
 									<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Full Name: </p>
 									<p className="py-5 md:ml-5 md:col-start-2 col-span-2">{loading ?
-										<Shimmer/> : `${userDetails?.firstName} ${userDetails?.lastName}`} </p>
+										<Shimmer/> : `${capitalizeString(userDetails?.firstName)} ${capitalizeString(userDetails?.lastName)}`} </p>
 								</div>
 								<div className="grid grid-cols-5">
 									<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Email: </p>

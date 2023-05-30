@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUserProfile, storeLoggedInUser } from "../../redux/features/authSlice";
 import { getKey, setKey } from "../../utils/mobilePreferences";
 import OneSignal from 'onesignal-cordova-plugin';
+import {capitalizeString} from "../../utils/capitalizeString";
 
 
 TopBarProgress.config({
@@ -251,7 +252,7 @@ const Dashboard = () => {
 					{loading && <TopBarProgress />}
 					<div className="my-5 lg:mt-10">
 						<h2
-							className="md:text-4xl text-3xl mb-3">Hello {loggedInUser?.firstName || mobileLoggedInUser?.firstName}</h2>
+							className="md:text-4xl text-3xl mb-3">Hello {capitalizeString(loggedInUser?.firstName) || capitalizeString(mobileLoggedInUser?.firstName)}</h2>
 						<p className="text-slate-500 text-xl">Welcome to your dashboard</p>
 					</div>
 

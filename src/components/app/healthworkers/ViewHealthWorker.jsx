@@ -4,6 +4,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import HealthWorkerDropdown from "./HealthWorkerDropdown";
+import {capitalizeString} from "../../../utils/capitalizeString";
 
 const ViewHealthWorker = () => {
 	const [healthWorkerDetails, setHealthWorkerDetails] = useState({});
@@ -48,7 +49,7 @@ const ViewHealthWorker = () => {
 								<div className="grid grid-cols-4">
 									<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Full Name: </p>
 									<p
-										className="py-5 md:ml-5 md:col-start-2 col-span-2">{healthWorkerDetails?.firstName} {healthWorkerDetails?.lastName} </p>
+										className="py-5 md:ml-5 md:col-start-2 col-span-2">{capitalizeString(healthWorkerDetails?.firstName)} {capitalizeString(healthWorkerDetails?.lastName)} </p>
 								</div>
 								<div className="grid grid-cols-4">
 									<p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">Email: </p>
