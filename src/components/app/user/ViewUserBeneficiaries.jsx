@@ -189,7 +189,7 @@ const ViewUserBeneficiaries = () => {
 								?
 								mobileTableData.map((beneficiary, index) => (
 									<tr className="py-4 whitespace-no-wrap border-b even:bg-gray-100" key={index}
-											onClick={() => navigate(`/beneficiaries/viewbeneficiary/${beneficiary?.id}`)}>
+											onClick={() => navigate(`/users/viewuser/${userId}/beneficiary/${beneficiary?.id}`)}>
 										<td className="p-4 ">
 											<div className="flex justify-between items-center text-md text-gray-800">
 												<span>{capitalizeString(beneficiary?.firstName)}&nbsp;{(beneficiary?.lastName)}</span>

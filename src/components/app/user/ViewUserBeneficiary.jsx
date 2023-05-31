@@ -78,7 +78,7 @@ const ViewUserBeneficiary = () => {
 		let isMounted = true;
 		const controller = new AbortController();
 
-		const getBeneficiaries = async () => {
+		const getBeneficiary = async () => {
 			try {
 				const response = await axiosPrivate.get(
 					`/admin/user/${userId}/beneficiary/${beneficiaryId}`,
@@ -93,7 +93,7 @@ const ViewUserBeneficiary = () => {
 			}
 		}
 
-		getBeneficiaries();
+		getBeneficiary();
 
 		return () => {
 			isMounted = false;
