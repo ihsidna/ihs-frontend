@@ -8,6 +8,7 @@ import useAuth from "../../../hooks/useAuth";
 import TopBarProgress from "react-topbar-progress-indicator";
 import Pagination from "../Pagination";
 import {useSelector} from "react-redux";
+import {capitalizeString} from "../../../utils/capitalizeString";
 
 const mobilePageSize = pageSize.Mobile;
 const laptopPageSize = pageSize.Laptop;

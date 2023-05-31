@@ -10,6 +10,8 @@ import AddUserModal from "./AddUserModal";
 import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {getKey} from "../../../utils/mobilePreferences";
+import SearchInput from "../../reusable/search/searchInput";
+import {axiosPrivate} from "../../../api/axios";
 
 TopBarProgress.config({
 	barColors: {
@@ -50,7 +52,17 @@ const ParentContent = () => {
 	const handleShowAddUserModal = () => {
 		setShowAddUserModal(true);
 	}
-
+	
+	const handleSearch = async (searchTerm) => {
+		try {
+			const response = await axiosPrivate.get (`/users/search?search=${searchTerm}`);
+			return response.data.data;
+		} catch (error) {
+			console.error ('No results found', error);
+			return [];
+		}
+	}
+	
 	return (
 		<HelmetProvider>
 
@@ -69,6 +81,12 @@ const ParentContent = () => {
 				<div className="lg:px-20 lg:py-4 md:px-10 p-3">
 
 					{/*Users Section*/}
+					
+					{/*Search Bar*/}
+					<div className="grid lg:grid-cols-3 md:grid-cols-2">
+						<SearchInput onSearch={handleSearch} placeholder="Search users"/>
+					</div>
+					
 					<div className="flex justify-between items-center my-5 lg:mt-10">
 						<h2 className="md:text-2xl text-xl">All Users</h2>
 						{(mobileAuth?.userType || userType) === userRoles.Admin &&
