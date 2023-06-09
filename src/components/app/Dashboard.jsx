@@ -44,42 +44,45 @@ const Dashboard = () => {
 		metrics,
 		setMetrics
 	} = useAuth();
-
+	
 	useEffect(() => {
 		async function initializeOnesignal() {
 			try {
-				OneSignal.setLogLevel(6, 0);
-
-				OneSignal.setAppId("0056d358-938a-42ca-bad9-2aae6d5f2bfa");
-
-				const externalUserId = loggedInUser?.id;
-				if (externalUserId) {
-					OneSignal.setExternalUserId(externalUserId)
-				}
-
-				OneSignal.setNotificationOpenedHandler(function (jsonData) {
-					const data  = jsonData?.notification?.additionalData;
-
-					console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-					console.log('additionalData: ' + JSON.stringify(data));
-
-					if (data.url) {
-						navigate(data.url);
+				if (window.cordova) {
+					OneSignal.setLogLevel(6, 0);
+					OneSignal.setAppId("0056d358-938a-42ca-bad9-2aae6d5f2bfa");
+					
+					const externalUserId = loggedInUser?.id;
+					if (externalUserId) {
+						OneSignal.setExternalUserId(externalUserId);
 					}
-
-				});
-
-				// Prompts the user for notification permissions.
-				//    * Since this shows a generic native prompt, we recommend instead using an In-App Message to prompt for notification permission (See step 7) to better communicate to your users what notifications they will get.
-				OneSignal.promptForPushNotificationsWithUserResponse(function (accepted) {
-					console.log("User accepted notifications: " + accepted);
-				});
-
+					
+					OneSignal.setNotificationOpenedHandler(function (jsonData) {
+						const data = jsonData?.notification?.additionalData;
+						
+						console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+						console.log('additionalData: ' + JSON.stringify(data));
+						
+						if (data.url) {
+							navigate(data.url);
+						}
+					});
+					// Prompts the user for notification permissions.
+					//    * Since this shows a generic native prompt, we recommend
+					//    instead using an In-App Message to prompt for notification
+					//    permission (See step 7) to better communicate to your users
+					//    what notifications they will get.
+					OneSignal.promptForPushNotificationsWithUserResponse(function (accepted) {
+						console.log("User accepted notifications: " + accepted);
+					});
+				} else {
+					console.log("Cordova is not available. Skipping OneSignal initialization.");
+				}
 			} catch (error) {
 				console.log("ONESIGNAL INITIALIZATION ERROR", error);
 			}
 		}
-
+		
 		initializeOnesignal();
 	}, [navigate, loggedInUser?.id]);
 

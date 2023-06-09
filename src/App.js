@@ -19,17 +19,23 @@ import Service from "./components/app/service/Service";
 import AllAppointment from "./components/app/appointment/AllAppointment";
 import ResetPassword from "./pages/ResetPassword";
 import { StatusBar, Style } from '@capacitor/status-bar';
+import {Capacitor} from "@capacitor/core";
 
 function App() {
-
 	
-	React.useEffect(()=>{
+	
+	React.useEffect(() => {
 		const setStatusBarStyleDark = async () => {
-			await StatusBar.setStyle({ style: Style.Light });
-		  };
-	
-		setStatusBarStyleDark()
-	},[])
+			if (Capacitor.isPluginAvailable('StatusBar')) {
+				await StatusBar.setStyle({ style: Style.Light });
+			} else {
+				console.log('StatusBar plugin is not available on the web platform.');
+			}
+		};
+		
+		setStatusBarStyleDark();
+	}, []);
+
 
 
 	return (
