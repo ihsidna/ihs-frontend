@@ -101,7 +101,7 @@ const UpdateAppointment = () => {
 			//select service name
 			await axiosPrivate.patch(`/admin/appointment/${appointmentId}`,
 				JSON.stringify({
-					serviceName: getServiceName(), serviceId, date, time, status: appointmentStatus.Confirmed, notes
+					serviceName: getServiceName(), serviceId, date, time, notes
 				}),
 				{
 					headers: {
