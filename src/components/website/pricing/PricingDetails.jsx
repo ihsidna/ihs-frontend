@@ -4,6 +4,7 @@ import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import {useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
 import useAuth from "../../../hooks/useAuth";
+import {Capacitor} from "@capacitor/core";
 
 TopBarProgress.config({
 	barColors: {
@@ -24,15 +25,30 @@ const PricingDetails = () => {
 	const {beneficiaries} = useAuth();
 	const [loading, setLoading] = useState(false);
 	const [beneficiarySubscriptionStatus, setBeneficiarySubscriptionStatus] = useState(false);
+	const [platform, setPlatform] = useState('');
 	const beneficiary = useParams();
 	const beneficiaryId = beneficiary.beneficiaryId;
-
+	
+	useEffect(() => {
+		setPlatform(Capacitor.getPlatform());
+	}, [])
+	
+	const redirectToWebApp = () => {
+		window.alert('Visit the web app to add a health Coverage to beneficiary?');
+	};
+	
 	const handleCheckout = async (e) => {
 		e.preventDefault();
 
 		setLoading(true);
 
 		try	{
+			if (platform !== 'web') {
+				redirectToWebApp();
+				setLoading(false);
+				return;
+			}
+			
 			const res = await axiosPrivate.post("/checkout",
 
 				JSON.stringify( {

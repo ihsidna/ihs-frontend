@@ -1,12 +1,7 @@
-import {useNavigate} from "react-router-dom";
-
 const Modal = ({setToggleModal, executeFunction, message, header}) => {
-	const navigate = useNavigate();
 
 	const handleYesClick = () => {
-		executeFunction().then(
-			navigate(-1)
-		);
+		executeFunction()
 	}
 	const handleCancelClick = () => {
 		setToggleModal(false)

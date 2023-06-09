@@ -8,6 +8,7 @@ import {Helmet, HelmetProvider} from "react-helmet-async";
 import TopBarProgress from "react-topbar-progress-indicator";
 import Modal from "../Modal";
 import {capitalizeString} from "../../../utils/capitalizeString";
+import {Capacitor} from "@capacitor/core";
 
 TopBarProgress.config({
 	barColors: {
@@ -25,19 +26,27 @@ const BookFollowUpAppointment = () => {
 	const beneficiaryId = beneficiary.beneficiaryId;
 	const {services, setServices} = useAuth();
 
-	const [beneficiaryDetails, setBeneficiaryDetails] = useState({});
+	const [beneficiaryDetails, setBeneficiaryDetails] = useState(null);
 	const [userName, setUserName] = useState('');
 	const [service, setService] = useState('');
 	const [date, setDate] = useState('');
 	const [time, setTime] = useState('');
 	const [loading, setLoading] = useState(false);
-
 	const [toggleModal, setToggleModal] = useState(false)
-
+	const [platform, setPlatform] = useState('');
+	
 	// const clicked = () => {
 	// 	setToggleModal(true)
 	// }
-
+	
+	useEffect(() => {
+		setPlatform(Capacitor.getPlatform());
+	}, [])
+	
+	const redirectToWebApp = () => {
+		window.alert('Beneficiary has no health coverage');
+	};
+	
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setLoading(true);
@@ -134,9 +143,11 @@ const BookFollowUpAppointment = () => {
 	}, [getBeneficiary]);
 
 	const getUserName = useCallback(async () => {
-		const response = await axiosPrivate.get(`/user/${beneficiaryDetails.userId}`);
-		setUserName(`${capitalizeString(response.data.data.firstName)} ${capitalizeString(response.data.data.lastName)}`)
-	}, [beneficiaryDetails.userId, axiosPrivate])
+		if (beneficiaryDetails?.userId) {
+			const response = await axiosPrivate.get(`/user/${beneficiaryDetails?.userId}`);
+			setUserName(`${capitalizeString(response.data.data.firstName)} ${capitalizeString(response.data.data.lastName)}`)
+		}
+	}, [beneficiaryDetails?.userId, axiosPrivate])
 
 	useEffect(() => {
 		setLoading(true);
@@ -222,8 +233,12 @@ const BookFollowUpAppointment = () => {
 												value={beneficiaryId}
 												disabled
 												className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 w-96">
-												<option
-													value={beneficiaryId}>{capitalizeString(beneficiaryDetails.firstName)} {capitalizeString(beneficiaryDetails.lastName)}</option>
+												{beneficiaryDetails && (
+													<option value={beneficiaryId}>
+														{capitalizeString(beneficiaryDetails.firstName)} {capitalizeString(beneficiaryDetails.lastName)}
+													</option>
+													)
+												}
 											</select>
 										</div>
 									</div>
@@ -328,9 +343,14 @@ const BookFollowUpAppointment = () => {
 						</div>
 					</div>
 				</div>
-				{toggleModal &&
-					<Modal setToggleModal={setToggleModal} executeFunction={redirectToPricingPage} message="Go Back?"
-								 header={"Beneficiary has no health coverage"}/>}
+				{toggleModal && (platform === 'web' ?
+					<Modal setToggleModal={setToggleModal}
+						 executeFunction={redirectToPricingPage}
+						 message="Go Back?"
+						 header={"Beneficiary has no health coverage"}
+					/>
+						: redirectToWebApp()
+				)}
 			</>
 		</HelmetProvider>
 	);

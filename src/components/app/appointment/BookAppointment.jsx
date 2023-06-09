@@ -9,6 +9,7 @@ import TopBarProgress from "react-topbar-progress-indicator";
 import Modal from "../Modal";
 import {WATDateString} from "../../../hooks/useFormatDate";
 import {capitalizeString} from "../../../utils/capitalizeString";
+import {Capacitor} from "@capacitor/core";
 
 TopBarProgress.config ({
 	barColors: {
@@ -29,12 +30,20 @@ const BookAppointment = () => {
 	const [date, setDate] = useState ('');
 	const [time, setTime] = useState ('');
 	const [loading, setLoading] = useState (false);
-	
+	const [platform, setPlatform] = useState('');
 	const [toggleModal, setToggleModal] = useState (false)
+	
+	useEffect(() => {
+		setPlatform(Capacitor.getPlatform());
+	}, [])
 	
 	// const clicked = () => {
 	// 	setToggleModal (true)
 	// }
+	
+	const redirectToWebApp = () => {
+		window.alert('Visit the web app to add a health Coverage to beneficiary?');
+	};
 	
 	const handleSubmit = async (e) => {
 		e.preventDefault ();
@@ -310,10 +319,14 @@ const BookAppointment = () => {
 						</div>
 					</form>
 				</div>
-				{toggleModal && <Modal setToggleModal={setToggleModal}
-															 executeFunction={redirectToPricingPage}
-															 message="Add a health Coverage to beneficiary?"
-															 header={"Beneficiary has no health coverage"}/>}
+				{toggleModal && (platform === 'web' ?
+					<Modal setToggleModal={setToggleModal}
+						 executeFunction={redirectToPricingPage}
+						 message="Add a health Coverage to beneficiary?"
+						 header={"Beneficiary has no health coverage"}
+					/>
+					: redirectToWebApp()
+				)}
 			</>
 		</HelmetProvider>
 	);

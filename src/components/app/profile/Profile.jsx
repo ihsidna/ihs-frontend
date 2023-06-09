@@ -11,6 +11,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchUserProfile, revertAll, storeLoggedInUser} from "../../../redux/features/authSlice";
 import {setKey} from "../../../utils/mobilePreferences";
 import {capitalizeString} from "../../../utils/capitalizeString";
+import {Capacitor} from "@capacitor/core";
 
 TopBarProgress.config({
 	barColors: {
@@ -34,7 +35,8 @@ const Profile = () => {
 	const [revealConfirmPwd, setRevealConfirmPwd] = useState(false);
 	const [showUpdatePhoneModal, setShowUpdatePhoneModal] = useState(false);
 	const [updatePhoneModalSuccess, setUpdatePhoneModalSuccess] = useState(false);
-
+	const [platform, setPlatform] = useState('');
+	
 	const fetchUserData = useCallback(async () => {
 		try {
 			const result = await dispatch(fetchUserProfile()).unwrap();
@@ -58,13 +60,27 @@ const Profile = () => {
 			fetchUserData();
 		}
 	}, [fetchUserData, updatePhoneModalSuccess]);
-
+	
+	useEffect(() => {
+		setPlatform(Capacitor.getPlatform());
+	}, [])
+	
+	const redirectToWebApp = () => {
+		window.alert('Visit the web app to view your customer portal');
+	};
+	
 	const handlePortal = async (e) => {
 		e.preventDefault();
 
 		setLoading(true);
 
 		try {
+			if (platform !== 'web') {
+				redirectToWebApp();
+				setLoading(false);
+				return;
+			}
+			
 			const res = await axiosPrivate.post("/portal",
 
 				JSON.stringify({
