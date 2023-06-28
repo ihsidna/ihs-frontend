@@ -34,7 +34,8 @@ const PricingDetails = () => {
 	}, [])
 	
 	const redirectToWebApp = () => {
-		window.alert('Visit the web app to add a health Coverage to beneficiary?');
+		window.alert('Visit the web app at https://app.ihsmdinc.com to add a health Coverage to' +
+			' beneficiary?');
 	};
 	
 	const handleCheckout = async (e) => {
