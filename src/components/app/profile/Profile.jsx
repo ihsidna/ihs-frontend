@@ -66,7 +66,7 @@ const Profile = () => {
 	}, [])
 	
 	const redirectToWebApp = () => {
-		window.alert('Visit the web app at https://app.ihsmdinc.com to view your customer portal');
+		window.alert('Visit the web app at https://app.ihsmdinc.com');
 	};
 	
 	const handlePortal = async (e) => {

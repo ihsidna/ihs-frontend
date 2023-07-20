@@ -42,8 +42,7 @@ const BookAppointment = () => {
 	// }
 	
 	const redirectToWebApp = () => {
-		window.alert('Visit the web app at https://app.ihsmdinc.com to add a health Coverage to' +
-			' beneficiary?');
+		window.alert('Visit the web app at https://app.ihsmdinc.com');
 	};
 	
 	const handleSubmit = async (e) => {
