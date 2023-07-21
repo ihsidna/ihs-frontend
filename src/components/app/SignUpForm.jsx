@@ -27,13 +27,12 @@ const SignUpForm = () => {
 
 	const handleCaptchaSuccess = async () => {
 		const token = captchaRef.current.getValue();
-		await axios.post('/verifyCaptchaToken', {token})
-		.then(
-			() => setCaptcha(true)
-		)
-		.catch((error) => {
-			console.error(error);
-		})
+		try{
+			await axios.post('/verifyCaptchaToken', {token});
+			setCaptcha(true);
+		} catch (e) {
+			console.error(e)
+		}
 	}
 
 	const handleCaptchaError = () => {
