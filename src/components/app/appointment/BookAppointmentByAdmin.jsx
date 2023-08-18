@@ -35,9 +35,9 @@ const BookFollowUpAppointment = () => {
 	const [toggleModal, setToggleModal] = useState(false)
 	const [platform, setPlatform] = useState('');
 	
-	// const clicked = () => {
-	// 	setToggleModal(true)
-	// }
+	const clicked = () => {
+		setToggleModal(true)
+	}
 	
 	useEffect(() => {
 		setPlatform(Capacitor.getPlatform());
@@ -52,68 +52,66 @@ const BookFollowUpAppointment = () => {
 		setLoading(true);
 
 		try {
-			// normal workflow for booking appointments
-
 			// verify beneficiary coverage subscription
-			// if (beneficiaryDetails?.subscription?.status === 'active') {
-			// 	await axiosPrivate.post(BOOK_APPOINTMENT,
-			// 		JSON.stringify({
-			// 			beneficiaryId: beneficiaryDetails.id,
-			// 			serviceId: service,
-			// 			date,
-			// 			time,
-			// 			status: appointmentStatus.Booked,
-			// 			userId: beneficiaryDetails.userId,
-			// 			userName: userName
-			// 		}),
-			// 		{
-			// 			headers: {
-			// 				'Content-Type': 'application/json',
-			// 			},
-			// 			withCredentials: true
-			// 		}
-			// 	);
-			//
-			// 	setBeneficiaryDetails('');
-			// 	setService('');
-			// 	setDate('');
-			// 	setTime('');
-			//
-			// 	setLoading(false);
-			//
-			// 	navigate('/allappointments')
-			// } else {
-			// 	clicked();
-			// }
+			if (beneficiaryDetails?.subscription?.status === 'active') {
+				await axiosPrivate.post(BOOK_APPOINTMENT,
+					JSON.stringify({
+						beneficiaryId: beneficiaryDetails.id,
+						serviceId: service,
+						date,
+						time,
+						status: appointmentStatus.Booked,
+						userId: beneficiaryDetails.userId,
+						userName: userName
+					}),
+					{
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						withCredentials: true
+					}
+				);
+			
+				setBeneficiaryDetails('');
+				setService('');
+				setDate('');
+				setTime('');
+			
+				setLoading(false);
+			
+				navigate('/allappointments')
+			} else {
+				clicked();
+			}
 			
 			// July workflow for booking appointments (promotional)
 			
-			await axiosPrivate.post(BOOK_APPOINTMENT,
-				JSON.stringify({
-					beneficiaryId: beneficiaryDetails.id,
-					serviceId: service,
-					date,
-					time,
-					status: appointmentStatus.Booked,
-					userId: beneficiaryDetails.userId,
-					userName: userName
-				}),
-				{
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					withCredentials: true
-				}
-			);
+			// await axiosPrivate.post(BOOK_APPOINTMENT,
+			// 	JSON.stringify({
+			// 		beneficiaryId: beneficiaryDetails.id,
+			// 		serviceId: service,
+			// 		date,
+			// 		time,
+			// 		status: appointmentStatus.Booked,
+			// 		userId: beneficiaryDetails.userId,
+			// 		userName: userName
+			// 	}),
+			// 	{
+			// 		headers: {
+			// 			'Content-Type': 'application/json',
+			// 		},
+			// 		withCredentials: true
+			// 	}
+			// );
 			
-			setBeneficiaryDetails('');
-			setService('');
-			setDate('');
-			setTime('');
+			// setBeneficiaryDetails('');
+			// setService('');
+			// setDate('');
+			// setTime('');
 			
-			setLoading(false);
+			// setLoading(false);
 			
-			navigate('/allappointments')
+			// navigate('/allappointments')
 
 		} catch (err) {
 			if (!err.response) {

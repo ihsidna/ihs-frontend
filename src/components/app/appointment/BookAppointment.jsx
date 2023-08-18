@@ -31,15 +31,15 @@ const BookAppointment = () => {
 	const [time, setTime] = useState ('');
 	const [loading, setLoading] = useState (false);
 	const [platform, setPlatform] = useState('');
-	const [toggleModal, setToggleModal] = useState (false)
+	const [toggleModal, setToggleModal] = useState(false);
 	
 	useEffect(() => {
 		setPlatform(Capacitor.getPlatform());
 	}, [])
 	
-	// const clicked = () => {
-	// 	setToggleModal (true)
-	// }
+	const clicked = () => {
+		setToggleModal (true)
+	}
 	
 	const redirectToWebApp = () => {
 		window.alert('Visit the web app at https://app.ihsmdinc.com');
@@ -51,66 +51,64 @@ const BookAppointment = () => {
 		
 		const appointmentDate = WATDateString (date);
 		
-		try {
-			// // normal workflow for booking appointments
-			
+		try {			
 			// verify beneficiary coverage subscription
-			// const exactBeneficiary = beneficiaries.filter ((ben) => ben.id === beneficiary);
+			const exactBeneficiary = beneficiaries.filter ((ben) => ben.id === beneficiary);
+						
+			if (exactBeneficiary[0]?.subscription?.status === 'active') {
+				await axiosPrivate.post (BOOK_APPOINTMENT,
+					JSON.stringify ({
+						beneficiaryId: beneficiary,
+						serviceId: service,
+						date: appointmentDate,
+						time,
+						status: appointmentStatus.Booked
+					}),
+					{
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						withCredentials: true
+					}
+				);
 			
-			// if (exactBeneficiary[0]?.subscription?.status === 'active') {
-			// 	await axiosPrivate.post (BOOK_APPOINTMENT,
-			// 		JSON.stringify ({
-			// 			beneficiaryId: beneficiary,
-			// 			serviceId: service,
-			// 			date: appointmentDate,
-			// 			time,
-			// 			status: appointmentStatus.Booked
-			// 		}),
-			// 		{
-			// 			headers: {
-			// 				'Content-Type': 'application/json'
-			// 			},
-			// 			withCredentials: true
-			// 		}
-			// 	);
-			//
-			// 	setBeneficiary ('');
-			// 	setService ('');
-			// 	setDate ('');
-			// 	setTime ('');
-			//
-			// 	setLoading (false);
-			//
-			// 	navigate ('/appointments')
-			// } else {
-			// 	clicked ();
-			// }
+				setBeneficiary ('');
+				setService ('');
+				setDate ('');
+				setTime ('');
+			
+				setLoading (false);
+			
+				navigate ('/appointments')
+			} else {
+				clicked ();
+			}
 			
 			// July workflow for booking appointments
-			await axiosPrivate.post (BOOK_APPOINTMENT,
-				JSON.stringify ({
-					beneficiaryId: beneficiary,
-					serviceId: service,
-					date: appointmentDate,
-					time,
-					status: appointmentStatus.Booked
-				}),
-				{
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					withCredentials: true
-				}
-			);
+			// await axiosPrivate.post (BOOK_APPOINTMENT,
+			// 	JSON.stringify ({
+			// 		beneficiaryId: beneficiary,
+			// 		serviceId: service,
+			// 		date: appointmentDate,
+			// 		time,
+			// 		status: appointmentStatus.Booked
+			// 	}),
+			// 	{
+			// 		headers: {
+			// 			'Content-Type': 'application/json'
+			// 		},
+			// 		withCredentials: true
+			// 	}
+			// );
 			
-			setBeneficiary ('');
-			setService ('');
-			setDate ('');
-			setTime ('');
+			// setBeneficiary ('');
+			// setService ('');
+			// setDate ('');
+			// setTime ('');
 
-			setLoading (false);
+			// setLoading (false);
 
-			navigate ('/appointments')
+			// navigate ('/appointments')
 			
 		} catch (err) {
 			if (!err.response) {
