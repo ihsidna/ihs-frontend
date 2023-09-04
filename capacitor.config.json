@@ -25,7 +25,7 @@
       "resizeOnFullScreen": true
     }
   },
-  "ios":{
+  "ios": {
     "backgroundColor": "#fff",
     "preferredContentMode": "mobile",
     "contentInset": "never"

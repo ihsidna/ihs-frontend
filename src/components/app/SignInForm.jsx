@@ -7,7 +7,10 @@ import {signinSchema} from "../../utils/formSchema";
 import {ExclamationCircleIcon} from "@heroicons/react/solid";
 import {useDispatch, useSelector} from "react-redux";
 import {signInUser, storeAuthInfo, togglePersist} from "../../redux/features/authSlice";
-import {getKey, setKey} from "../../utils/mobilePreferences";
+import { getKey, setKey } from "../../utils/mobilePreferences";
+import { Capacitor } from "@capacitor/core";
+import { Preferences } from "@capacitor/preferences";
+import { NativeBiometric, BiometryType } from "capacitor-native-biometric";
 
 TopBarProgress.config({
 	barColors: {
@@ -28,7 +31,107 @@ const SignInForm = () => {
 	const [revealPwd, setRevealPwd] = useState(false);
 	const [mobileAuth, setMobileAuth] = useState('');
 
-	const onSubmit = async (values) => {
+	const platform = Capacitor.getPlatform()
+
+	const getPreferencesCredentials = async () => {
+		const preferencesEmail = await Preferences.get({ key: "email" });
+		const preferencesPassword = await Preferences.get({ key: "password" });
+
+		return {preferencesEmail, preferencesPassword}
+	}
+
+	const signinWithBiometric = async (email, password) => {
+
+		const result = await NativeBiometric.isAvailable();
+
+		if (platform === "ios") {
+			const isFaceId = result.biometryType == BiometryType.FACE_ID;
+		} else if (platform === "android") {
+			const isFingerprint = result.biometryType == BiometryType.FINGERPRINT;
+		}
+
+		await NativeBiometric.verifyIdentity({
+			maxAttempts: 3,
+			reason: "For easy log in",
+			title: "Log in with ease",
+		})
+		.then(async () => {
+			
+			await dispatch(signInUser({ email, password })).unwrap()
+			.then(
+				async (result) => {
+					if (typeof result === "string"){
+						setErrMsg('Biometric sign-in failed. Please try again or use email/password.');
+					} else {
+						localStorage.setItem('userType', result.data.userType)
+						localStorage.setItem('loggedInFlag', JSON.stringify(true))
+
+						dispatch(storeAuthInfo(result.data))
+
+						await setKey('auth', result.data)
+
+						await Preferences.set({
+						key: "email",
+						value: email,
+					});
+					await Preferences.set({
+						key: "password",
+						value: password,
+					});
+
+						if (from === "/") {
+							navigate('/dashboard');
+						} else {
+							navigate(from, {replace: true});
+						}
+					}
+				}
+			);
+		})
+	}
+
+	const onSubmitMobile = async (values) => {
+		const email = values.email;
+		const password = values.password;
+
+		await dispatch(signInUser({ email, password })).unwrap()
+		.then(
+			async (result) => {
+				if (typeof result === "string"){
+					setErrMsg(await result)
+				} else {
+					localStorage.setItem('userType', result.data.userType)
+					localStorage.setItem('loggedInFlag', JSON.stringify(true))
+
+					dispatch(storeAuthInfo(result.data))
+
+					await setKey('auth', result.data)
+
+					await Preferences.set({
+						key: "hasLoggedInBefore",
+						value: true,
+					});
+
+					await Preferences.set({
+						key: "email",
+						value: email,
+					});
+					await Preferences.set({
+						key: "password",
+						value: password,
+					});
+
+					if (from === "/") {
+						navigate('/dashboard');
+					} else {
+						navigate(from, {replace: true});
+					}
+				}
+			}
+		);
+	} 
+
+	const onSubmitWeb = async (values) => {
 		const email = values.email;
 		const password = values.password;
 
@@ -54,6 +157,8 @@ const SignInForm = () => {
 			});
 	}
 
+	const onSubmit = platform === 'web' ? onSubmitWeb : onSubmitMobile;
+
 	const {values, errors, touched, isSubmitting, handleChange, handleBlur, handleSubmit} = useFormik({
 		initialValues: {
 			email: '',
@@ -66,6 +171,20 @@ const SignInForm = () => {
 	const togglePersistCheckbox = () => {
 		dispatch(togglePersist)
 	}
+
+	useEffect(() => {
+		const biometricSignin = async () => {
+			const { preferencesEmail, preferencesPassword } = await getPreferencesCredentials();
+			
+			if (!preferencesEmail?.value || !preferencesPassword?.value) {
+        setErrMsg("Please use the sign-in form");
+      } else {
+        await signinWithBiometric(preferencesEmail.value, preferencesPassword.value);
+      }
+		}
+
+		biometricSignin();
+	}, []);
 
 	useEffect(() => {
 		getKey('auth')
