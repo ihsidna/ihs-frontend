@@ -45,6 +45,8 @@ const Dashboard = () => {
 		setMetrics
 	} = useAuth();
 	
+	const isAdminOrEmployee = mobileAuth?.userType === userRoles.Admin || userType === userRoles.Admin || mobileAuth?.userType === userRoles.Employee || userType === userRoles.Employee;
+
 	useEffect(() => {
 		async function initializeOnesignal() {
 			try {
@@ -174,8 +176,8 @@ const Dashboard = () => {
 			}
 		}
 
-		if ((mobileAuth?.userType || userType) === userRoles.Admin) {
-			getAllAppointments();
+		if (isAdminOrEmployee) {
+				getAllAppointments();
 		}
 
 		return () => {
@@ -234,7 +236,7 @@ const Dashboard = () => {
 			}
 		}
 
-		if ((mobileAuth?.userType || userType) === userRoles.Admin) {
+		if (isAdminOrEmployee) {
 			getMetrics();
 		}
 
