@@ -33,7 +33,7 @@ const Layout = () => {
 	return (
 		<div className="flex-1">
 			<div>
-				<nav className={`flex justify-between border border-0 border-b border-slate-200 bg-white sticky top-0 w-full pb-2 
+				<nav className={`flex justify-between border-0 border-b border-slate-200 bg-white sticky top-0 w-full pb-2 
 				 ${platform === 'ios' ? iosStyles.safeAreaTopPadding : platform === 'android' ? iosStyles.androidNavbar : 'py-4'}`}>
 					<div className='flex'>
 						<Sidebar platform={platform}/>
