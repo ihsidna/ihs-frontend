@@ -29,6 +29,7 @@ const BookFollowUpAppointment = () => {
 	const [userName, setUserName] = useState('');
 	const [service, setService] = useState('');
 	const [date, setDate] = useState('');
+	const [notes, setNotes] = useState ('');
 	const [time, setTime] = useState('');
 	const [loading, setLoading] = useState(false);
 
@@ -54,7 +55,8 @@ const BookFollowUpAppointment = () => {
 						time,
 						status: appointmentStatus.Booked,
 						userId: beneficiaryDetails.userId,
-						userName: userName
+						userName: userName,
+						notes
 					}),
 					{
 						headers: {
@@ -68,6 +70,7 @@ const BookFollowUpAppointment = () => {
 				setService('');
 				setDate('');
 				setTime('');
+				setNotes ('');
 
 				setLoading(false);
 
@@ -287,6 +290,28 @@ const BookFollowUpAppointment = () => {
 								</div>
 							</div>
 
+						</div>
+
+						<div className="flex md:pt-10 pt-5 md:flex-row flex-col">
+							
+							<div className="">
+								<label
+									htmlFor="notes"
+									className="block text-md font-medium text-gray-500"
+								>
+									Notes
+								</label>
+								<div className="mt-1">
+									<textarea
+										type="notes"
+										id="notes"
+										rows={5}
+										value={notes}
+										onChange={(e) => setNotes (e.target.value)}
+										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 md:w-96"/>
+								</div>
+							</div>
+						
 						</div>
 
 						<div className="flex justify-start">

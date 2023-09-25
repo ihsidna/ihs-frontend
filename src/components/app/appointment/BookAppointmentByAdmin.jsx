@@ -230,7 +230,7 @@ const BookFollowUpAppointment = () => {
 												aria-required="true"
 												value={beneficiaryId}
 												disabled
-												className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 w-96">
+												className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 md:w-96">
 												{beneficiaryDetails && (
 													<option value={beneficiaryId}>
 														{capitalizeString(beneficiaryDetails.firstName)} {capitalizeString(beneficiaryDetails.lastName)}
@@ -260,7 +260,7 @@ const BookFollowUpAppointment = () => {
 												aria-required="true"
 												value={service}
 												onChange={(e) => setService(e.target.value)}
-												className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 text-gray-500 w-96">
+												className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 text-gray-500 md:w-96">
 												<option value="">Select a service</option>
 												{services?.length
 													?

@@ -101,7 +101,7 @@ const AddService = () => {
 												aria-required="true"
 												value={name}
 												onChange={(e) => setName(e.target.value)}
-												className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 w-96"
+												className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 md:w-96"
 											/>
 										</div>
 									</div>
@@ -125,7 +125,7 @@ const AddService = () => {
 												aria-required="true"
 												value={category}
 												onChange={(e) => setCategory(e.target.value)}
-												className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 text-gray-500 w-96">
+												className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 text-gray-500 md:w-96">
 												<option value="">Select a service</option>
 												<option value="primary">Primary</option>
 												<option value="secondary">Secondary</option>

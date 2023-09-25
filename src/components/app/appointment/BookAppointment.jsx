@@ -29,6 +29,7 @@ const BookAppointment = () => {
 	const [service, setService] = useState ('');
 	const [date, setDate] = useState ('');
 	const [time, setTime] = useState ('');
+	const [notes, setNotes] = useState ('');
 	const [loading, setLoading] = useState (false);
 	const [platform, setPlatform] = useState('');
 	const [toggleModal, setToggleModal] = useState(false);
@@ -62,7 +63,8 @@ const BookAppointment = () => {
 						serviceId: service,
 						date: appointmentDate,
 						time,
-						status: appointmentStatus.Booked
+						status: appointmentStatus.Booked,
+						notes
 					}),
 					{
 						headers: {
@@ -76,6 +78,7 @@ const BookAppointment = () => {
 				setService ('');
 				setDate ('');
 				setTime ('');
+				setNotes ('');
 			
 				setLoading (false);
 			
@@ -200,7 +203,7 @@ const BookAppointment = () => {
 										aria-required="true"
 										value={beneficiary}
 										onChange={(e) => setBeneficiary (e.target.value)}
-										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 md:w-72">
+										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 md:w-96">
 										<option value="">Select Beneficiary</option>
 										{beneficiaries?.length
 											?
@@ -238,7 +241,7 @@ const BookAppointment = () => {
 										aria-required="true"
 										value={service}
 										onChange={(e) => setService (e.target.value)}
-										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 text-gray-500 md:w-72">
+										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 text-gray-500 md:w-96">
 										<option value="">Select a service</option>
 										{services?.length
 											?
@@ -278,7 +281,7 @@ const BookAppointment = () => {
 										aria-required="true"
 										value={date}
 										onChange={(e) => setDate (e.target.value)}
-										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 md:w-72"/>
+										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 md:w-96"/>
 								</div>
 							</div>
 						
@@ -303,7 +306,29 @@ const BookAppointment = () => {
 										aria-required="true"
 										value={time}
 										onChange={(e) => setTime (e.target.value)}
-										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 md:w-72"/>
+										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 md:w-96"/>
+								</div>
+							</div>
+						
+						</div>
+
+						<div className="flex md:pt-10 pt-5 md:flex-row flex-col">
+							
+							<div className="">
+								<label
+									htmlFor="notes"
+									className="block text-md font-medium text-gray-500"
+								>
+									Notes
+								</label>
+								<div className="mt-1">
+									<textarea
+										type="notes"
+										id="notes"
+										rows={5}
+										value={notes}
+										onChange={(e) => setNotes (e.target.value)}
+										className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 md:w-96"/>
 								</div>
 							</div>
 						
