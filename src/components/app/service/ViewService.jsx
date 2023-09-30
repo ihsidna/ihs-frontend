@@ -37,7 +37,7 @@ const ViewService = () => {
         // refetch all services
         await queryClient.refetchQueries({ queryKey: ["allServices"] });
         queryClient.removeQueries({ queryKey: ["service", serviceId] });
-        navigate("/services");
+        navigate("/servicess");
       },
     });
   };

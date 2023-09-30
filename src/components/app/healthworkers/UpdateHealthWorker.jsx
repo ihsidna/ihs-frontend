@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { ChevronLeftIcon, IdentificationIcon } from "@heroicons/react/outline";
 import { useNavigate, useParams } from "react-router-dom";
-import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import TopBarProgress from "react-topbar-progress-indicator";
 import useFetch from "../../../hooks/useFetch";
+import { usePatch } from "../../../hooks/useMutate";
+import { useQueryClient } from "@tanstack/react-query";
 
 TopBarProgress.config({
   barColors: {
@@ -15,56 +16,43 @@ TopBarProgress.config({
 
 const UpdateHealthWorker = () => {
   const navigate = useNavigate();
-  const axiosPrivate = useAxiosPrivate();
   const params = useParams();
   const healthWorkerId = params.healthWorkerId;
-  const [loading, setLoading] = useState(false);
 
 	const staleTime = 1000 * 60 * 5
-  const { isSuccess, data, isError, error } = useFetch(
+  const { isSuccess, data, isError, error, isLoading, refetch } = useFetch(
     `/worker/${healthWorkerId}`,
 		`healthWorker, ${healthWorkerId}`,
 		staleTime
   );
 
+  const updateHealthWorkerMutation = usePatch();
+  const queryClient = useQueryClient();
+
   const handleUpdate = async (e) => {
     e.preventDefault();
-    setLoading(true);
 
     // Extract form input into formdata object
     const formData = new FormData(e.target);
 
-    // Object for collecting json formatted form inputs
     let healthWorkerData = {};
-
     for (const [key, value] of formData.entries()) {
       healthWorkerData[key] = value;
     }
-    try {
-      await axiosPrivate.patch(
-        `/worker/${healthWorkerId}`,
-        JSON.stringify(healthWorkerData),
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
-      );
 
-      setLoading(false);
-      // setSuccess(true);
-
-      navigate(`/healthworkers`);
-    } catch (err) {
-      console.log(err);
-      if (!err.response) {
-        setLoading(false);
-      } else {
-        setLoading(false);
-        console.error(err);
+    updateHealthWorkerMutation.mutate(
+      {
+        url: `/worker/${healthWorkerId}`,
+        body: healthWorkerData,
+      },
+      {
+        onSuccess: async () => {
+          navigate(`/healthworkers`);
+          refetch(); // fetch updated health worker data
+          await queryClient.refetchQueries({ queryKey: ["healthWorkers"] });
+        },
       }
-    }
+    );
   };
 
   return (
@@ -75,7 +63,7 @@ const UpdateHealthWorker = () => {
           <link rel="canonical" href="https://www.ihsmdinc.com/" />
         </Helmet>
         <div className="lg:px-20 lg:py-4 md:px-10 p-3">
-          {loading && <TopBarProgress />}
+          {isLoading && <TopBarProgress />}
           <button
             className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 lg:mt-10 my-5"
             onClick={() =>
@@ -85,6 +73,8 @@ const UpdateHealthWorker = () => {
             <ChevronLeftIcon className="w-6" />{" "}
             <p className="text-lg px-5">Back to HealthWorkers</p>
           </button>
+          {/*<div className="flex md:justify-start justify-center md:items-start items-center">*/}
+          {/*	<div className="md:flex-1">*/}
 
           <div className="flex justify-between items-center h-24 bg-ihs-green-shade-50 rounded-md shadow-sm text-gray-600">
             <div className="flex">
@@ -126,7 +116,7 @@ const UpdateHealthWorker = () => {
                         required
                         placeholder="John"
                         autoComplete="current-firstName"
-                        defaultValue={data.data.data.firstName}
+                        defaultValue={data.firstName}
                         className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 lg:w-80 md:w-72"
                       />
                     </div>
@@ -147,7 +137,7 @@ const UpdateHealthWorker = () => {
                         required
                         placeholder="Doe"
                         autoComplete="current-lastName"
-                        defaultValue={data.data.data.lastName}
+                        defaultValue={data.lastName}
                         className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 lg:w-80 md:w-72"
                       />
                     </div>
@@ -171,7 +161,7 @@ const UpdateHealthWorker = () => {
                         required
                         placeholder="johndoe@email.com"
                         autoComplete="current-email"
-                        defaultValue={data.data.data.email}
+                        defaultValue={data.email}
                         className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 lg:w-80 md:w-72"
                       />
                     </div>
@@ -192,7 +182,7 @@ const UpdateHealthWorker = () => {
                         required
                         placeholder="Phone Number"
                         autoComplete="current-phone"
-                        defaultValue={data.data.data.phone}
+                        defaultValue={data.phone}
                         className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 lg:w-80 md:w-72"
                       />
                     </div>
@@ -215,7 +205,7 @@ const UpdateHealthWorker = () => {
                         name="qualification"
                         required
                         autoComplete="current-qualification"
-                        defaultValue={data.data.data.qualification}
+                        defaultValue={data.qualification}
                         className="w-full border border-gray-300 px-3 py-3 rounded-lg shadow-sm focus:outline-none focus:border:bg-ihs-green-shade-500 focus:ring-1 focus:ring-ihs-green-shade-600 lg:w-80 md:w-72"
                       />
                     </div>
