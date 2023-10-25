@@ -43,5 +43,5 @@ export const emailVerification = {
 };
 
 export const emailAuthorization = {
-  PASSCODE: "support@ihsmdinc.com",
+  PASSCODE: "support@ihsmia.com",
 };

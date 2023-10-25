@@ -19,11 +19,11 @@ const UpdateHealthWorker = () => {
   const params = useParams();
   const healthWorkerId = params.healthWorkerId;
 
-	const staleTime = 1000 * 60 * 5
+  const staleTime = 1000 * 60 * 5;
   const { isSuccess, data, isError, error, isLoading, refetch } = useFetch(
     `/worker/${healthWorkerId}`,
-		`healthWorker, ${healthWorkerId}`,
-		staleTime
+    `healthWorker, ${healthWorkerId}`,
+    staleTime
   );
 
   const updateHealthWorkerMutation = usePatch();
@@ -60,7 +60,7 @@ const UpdateHealthWorker = () => {
       <>
         <Helmet>
           <title>Update Health Worker | IHS Dashboard</title>
-          <link rel="canonical" href="https://www.ihsmdinc.com/" />
+          <link rel="canonical" href="https://www.ihsmia.com/" />
         </Helmet>
         <div className="lg:px-20 lg:py-4 md:px-10 p-3">
           {isLoading && <TopBarProgress />}

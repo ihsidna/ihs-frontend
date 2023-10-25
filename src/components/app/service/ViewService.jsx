@@ -22,12 +22,12 @@ const ViewService = () => {
   const queryClient = useQueryClient();
   let serviceId = params.serviceId;
 
-	const staleTime = 1000 * 60 * 5
+  const staleTime = 1000 * 60 * 5;
   const { isLoading, data } = useFetch(
     `/service/${serviceId}`,
-		`service, ${serviceId}`,
-		staleTime
-	);
+    `service, ${serviceId}`,
+    staleTime
+  );
 
   const deleteServiceMutation = useDelete();
 
@@ -47,7 +47,7 @@ const ViewService = () => {
       <>
         <Helmet>
           <title>View Service | IHS Dashboard</title>
-          <link rel="canonical" href="https://www.ihsmdinc.com/" />
+          <link rel="canonical" href="https://www.ihsmia.com/" />
         </Helmet>
         <div className="lg:px-20 lg:py-4 md:px-10 p-3">
           {isLoading && <TopBarProgress />}
