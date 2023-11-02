@@ -253,13 +253,7 @@ const Dashboard = () => {
       isMounted = false;
       controller.abort();
     };
-  }, [
-    axiosPrivate,
-    setMetrics,
-    userType,
-    mobileAuth?.userType,
-    isAdminOrEmployee,
-  ]);
+  }, [axiosPrivate, setMetrics, userType, mobileAuth?.userType]);
 
   return (
     <HelmetProvider>
