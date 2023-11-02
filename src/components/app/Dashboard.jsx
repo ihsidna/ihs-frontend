@@ -16,7 +16,6 @@ import {
 import { getKey, setKey } from "../../utils/mobilePreferences";
 import OneSignal from "onesignal-cordova-plugin";
 import { capitalizeString } from "../../utils/capitalizeString";
-import useFetch from "../../hooks/useFetch";
 
 TopBarProgress.config({
   barColors: {
@@ -38,6 +37,7 @@ const Dashboard = () => {
   const location = useLocation();
   const [loading, setLoading] = useState(false);
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [metrics, setMetrics] = useState({});
   const {
     beneficiaries,
     setBeneficiaries,
@@ -226,10 +226,41 @@ const Dashboard = () => {
     };
   }, [axiosPrivate, setAppointments]);
 
-  const staleTime = 1000 * 60 * 5;
-  const metrics = useFetch("/metrics", "metrics", staleTime);
+  // get metrics
+  useEffect(() => {
+    let isMounted = true;
+    const controller = new AbortController();
 
-  // const trips = useFetchTrips("/metrics", "trips", staleTime)
+    const getMetrics = async () => {
+      setLoading(true);
+      try {
+        const response = await axiosPrivate.get("/metrics", {
+          signal: controller?.signal,
+        });
+
+        isMounted && setMetrics(response.data.data);
+        setLoading(false);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    if (isAdminOrEmployee) {
+      getMetrics();
+    }
+
+    return () => {
+      isMounted = false;
+      controller.abort();
+    };
+  }, [
+    axiosPrivate,
+    setMetrics,
+    userType,
+    mobileAuth?.userType,
+    isAdminOrEmployee,
+  ]);
+
   return (
     <HelmetProvider>
       <>
