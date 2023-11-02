@@ -38,6 +38,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(false);
   const [hasLoaded, setHasLoaded] = useState(false);
   const [metrics, setMetrics] = useState({});
+
   const {
     beneficiaries,
     setBeneficiaries,
@@ -302,7 +303,7 @@ const Dashboard = () => {
             </NavLink>
           </div>
 
-          {(mobileAuth?.userType || userType) !== userRoles.User && (
+          {isAdminOrEmployee && (
             <>
               {/*Admin Cards*/}
               <div className="grid md:grid-cols-3 grid-cols-2 md:gap-7 gap-3 my-10">
@@ -311,7 +312,8 @@ const Dashboard = () => {
                     <p>Total Users</p>
                     <p className="mb-4">
                       <span className="font-semibold md:text-3xl text-xl pr-0.5 md:pr-2">
-                        {metrics.isSuccess ? metrics.data.totalUsers : 0}
+                        {/* {metrics.isSuccess ? metrics.data.totalUsers : 0} */}
+                        {metrics?.totalUsers || 0}
                       </span>
                       Users
                     </p>
@@ -322,7 +324,8 @@ const Dashboard = () => {
                     <p>Total Appointments</p>
                     <p className="mb-4">
                       <span className="font-semibold md:text-3xl text-xl pr-0.5 md:pr-2">
-                        {metrics.isSuccess ? metrics.data.totalAppointments : 0}
+                        {/* {metrics.isSuccess ? metrics.data.totalAppointments : 0} */}
+                        {metrics?.totalAppointments || 0}
                       </span>
                       Appointments
                     </p>
@@ -333,9 +336,10 @@ const Dashboard = () => {
                     <p>Total Health Workers</p>
                     <p className="mb-4">
                       <span className="font-semibold md:text-3xl text-xl pr-0.5 md:pr-2">
-                        {metrics.isSuccess
+                        {/* {metrics.isSuccess
                           ? metrics.data.totalHealthWorkers
-                          : 0}
+                          : 0} */}
+                        {metrics?.totalHealthWorkers || 0}
                       </span>
                       Health Workers
                     </p>
