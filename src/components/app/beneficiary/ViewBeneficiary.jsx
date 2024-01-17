@@ -5,7 +5,6 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import BeneficiaryDropdown from "./BeneficiaryDropdown";
 import TopBarProgress from "react-topbar-progress-indicator";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
-import { timePeriod } from "../../../data/enums";
 import { getDate } from "../../../hooks/useFormatDate";
 import Shimmer from "../Shimmer";
 import { capitalizeString } from "../../../utils/capitalizeString";
@@ -200,7 +199,11 @@ const ViewBeneficiary = () => {
                     {loading ? (
                       <Shimmer />
                     ) : beneficiaryDetails?.subscription ? (
-                      beneficiaryDetails.subscription.status
+                      beneficiaryDetails.subscription.status !== "canceled" ? (
+                        beneficiaryDetails.subscription.status
+                      ) : (
+                        "No Health Coverage"
+                      )
                     ) : (
                       "No Health Coverage"
                     )}{" "}
@@ -209,7 +212,8 @@ const ViewBeneficiary = () => {
                 {loading ? (
                   <Shimmer />
                 ) : (
-                  beneficiaryDetails?.subscription && (
+                  beneficiaryDetails?.subscription &&
+                  beneficiaryDetails.subscription.status !== "canceled" && (
                     <>
                       <div className="grid grid-cols-4">
                         <p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">
@@ -225,30 +229,31 @@ const ViewBeneficiary = () => {
                         <p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">
                           Coverage End Date:{" "}
                         </p>
-                        {/*31536000 is 1 */}
                         <p className="py-5 md:ml-5 md:col-start-2 col-span-2 capitalize">
                           {beneficiaryDetails?.subscription
                             ? coverageEndDate(
-                                beneficiaryDetails.subscription.startDate +
-                                  timePeriod.year
+                                beneficiaryDetails.subscription.planEndDate
                               )
                             : ""}{" "}
                         </p>
                       </div>
-                      {beneficiaryDetails?.subscription?.cancelAt !== null && (
-                        <div className="grid grid-cols-4">
-                          <p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">
-                            Cancel Coverage On:{" "}
-                          </p>
-                          <p className="py-5 md:ml-5 md:col-start-2 col-span-2 capitalize">
-                            {beneficiaryDetails?.subscription?.cancelAt
-                              ? coverageEndDate(
-                                  beneficiaryDetails.subscription.cancelAt
-                                )
-                              : ""}{" "}
-                          </p>
-                        </div>
-                      )}
+                      {beneficiaryDetails?.subscription?.cancelAt !== null &&
+                        beneficiaryDetails?.subscription?.cancelAt !== "" &&
+                        beneficiaryDetails?.subscription?.status !==
+                          "canceled" && (
+                          <div className="grid grid-cols-4">
+                            <p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">
+                              Cancel Coverage On:{" "}
+                            </p>
+                            <p className="py-5 md:ml-5 md:col-start-2 col-span-2 capitalize">
+                              {beneficiaryDetails?.subscription?.cancelAt
+                                ? coverageEndDate(
+                                    beneficiaryDetails.subscription.cancelAt
+                                  )
+                                : ""}{" "}
+                            </p>
+                          </div>
+                        )}
                     </>
                   )
                 )}

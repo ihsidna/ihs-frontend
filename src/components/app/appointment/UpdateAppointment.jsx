@@ -196,7 +196,7 @@ const UpdateAppointment = () => {
 
             {!completed && (
               <div className="flex md:flex-row flex-col items-center md:gap-x-2 pr-2">
-                {(mobileAuth?.userType || userType) === userRoles.Admin && (
+                {(mobileAuth?.userType || userType) !== userRoles.User && (
                   <>
                     <button
                       className="sm:text-xl text-sm px-3 my-2"
