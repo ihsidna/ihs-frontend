@@ -17,10 +17,6 @@ const biweeklyPricing = process.env.REACT_APP_BIWEEKLY_PRICING;
 const monthlyPricing = process.env.REACT_APP_MONTHLY_PRICING;
 const yearlyPricing = process.env.REACT_APP_YEARLY_PRICING;
 
-const dailyPricing = process.env.REACT_APP_DAILY_PRICING;
-const bidailyPricing = process.env.REACT_APP_BIDAILY_PRICING;
-const tridailyPricing = process.env.REACT_APP_TRIDAILY_PRICING;
-
 const PricingDetails = () => {
   const loggedInUser = useSelector((state) => state.auth.loggedInUser);
 
@@ -94,7 +90,6 @@ const PricingDetails = () => {
     }
   }, [beneficiaries, beneficiaryId, loggedInUser]);
 
-  console.log(beneficiarySubscriptionStatus);
   return (
     <section className="bg-white mb-20">
       {loading && <TopBarProgress />}
@@ -132,8 +127,7 @@ const PricingDetails = () => {
 											disabled:hover:text-white bg-ihs-green w-full px-4 py-2 mt-10
 											font-medium tracking-wide text-white capitalize transition-colors
 											duration-200 transform rounded-md focus:outline-none"
-                // onClick={() => setPriceId(biweeklyPricing)}
-                onClick={() => setPriceId(dailyPricing)}
+                onClick={() => setPriceId(biweeklyPricing)}
               >
                 Subscribe
               </button>
@@ -155,8 +149,7 @@ const PricingDetails = () => {
                 className="disabled:bg-slate-400 disabled:border-slate-200 disabled:hover:text-white
 											bg-ihs-green w-full px-4 py-2 mt-10 font-medium tracking-wide text-white capitalize
 											transition-colors duration-200 transform rounded-md focus:outline-none "
-                // onClick={() => setPriceId(monthlyPricing)}
-                onClick={() => setPriceId(bidailyPricing)}
+                onClick={() => setPriceId(monthlyPricing)}
               >
                 Subscribe
               </button>
@@ -178,8 +171,7 @@ const PricingDetails = () => {
                 className="disabled:bg-slate-400 disabled:border-slate-200 disabled:hover:text-white
 											bg-ihs-green w-full px-4 py-2 mt-10 font-medium tracking-wide text-white capitalize
 											transition-colors duration-200 transform rounded-md focus:outline-none "
-                // onClick={() => setPriceId(yearlyPricing)}
-                onClick={() => setPriceId(tridailyPricing)}
+                onClick={() => setPriceId(yearlyPricing)}
               >
                 Subscribe
               </button>
