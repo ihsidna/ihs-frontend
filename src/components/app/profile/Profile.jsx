@@ -149,7 +149,7 @@ const Profile = () => {
             <FormModal
               showModal={showUpdatePhoneNumForm}
               setShowModal={setShowUpdatePhoneNumForm}
-              successMessage={"Phone number update successfully!"}
+              successMessage={"Phone number updated successfully!"}
               targetForm={UpdatePhoneNumberForm}
               formProps={{ phone: fetchUserProfile.data?.phone }}
             />
