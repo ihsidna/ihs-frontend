@@ -28,7 +28,7 @@ const MobileTable = ({
           <Link
             key={row.id}
             to={`${actionBaseUrl}${row.original.id}`} // extract the value of the id property
-            className="odd:bg-gray-100 p-4 relative"
+            className="odd:bg-gray-100 p-4"
             aria-label="table-row"
           >
             {row.getVisibleCells().map((cell, index) => {
