@@ -1,28 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import useAxiosPrivate from "../../hooks/useAxiosPrivate";
-import useAuth from "../../hooks/useAuth";
-import BeneficiaryTable from "./beneficiary/BeneficiaryTable";
-import AppointmentTable from "./appointment/AppointmentTable";
+import { useNavigate } from "react-router-dom";
+import BeneficiariesTable from "./beneficiary/table/BeneficiariesTable";
+import AppointmentTable from "./appointment/tables/AppointmentTable";
 import { userRoles } from "../../data/enums";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import TopBarProgress from "react-topbar-progress-indicator";
-import AllAppointmentsTable from "./appointment/AllAppointmentsTable";
+import AllAppointmentsTable from "./appointment/tables/AllAppointmentsTable";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchUserProfile,
-  storeLoggedInUser,
-} from "../../redux/features/authSlice";
+import { storeLoggedInUser } from "../../redux/features/authSlice";
 import { getKey, setKey } from "../../utils/mobilePreferences";
 import OneSignal from "onesignal-cordova-plugin";
 import { capitalizeString } from "../../utils/capitalizeString";
-
-TopBarProgress.config({
-  barColors: {
-    0: "#05afb0",
-  },
-  shadowBlur: 5,
-});
+import useFetch from "../../hooks/useFetch";
+import Spinner from "../shared/Spinner";
 
 const Dashboard = () => {
   const [mobileAuth, setMobileAuth] = useState("");
@@ -33,19 +22,6 @@ const Dashboard = () => {
   const loggedInUser = useSelector((state) => state.auth.loggedInUser);
 
   const navigate = useNavigate();
-  const axiosPrivate = useAxiosPrivate();
-  const location = useLocation();
-  const [loading, setLoading] = useState(false);
-  const [hasLoaded, setHasLoaded] = useState(false);
-  const [metrics, setMetrics] = useState({});
-
-  const {
-    beneficiaries,
-    setBeneficiaries,
-    appointments,
-    setAllAppointments,
-    setAppointments,
-  } = useAuth();
 
   const isAdminOrEmployee =
     mobileAuth?.userType === userRoles.Admin ||
@@ -121,140 +97,54 @@ const Dashboard = () => {
       });
   }, []);
 
-  // get logged in user
-  useEffect(() => {
-    dispatch(fetchUserProfile())
-      .unwrap()
-      .then(async (result) => {
-        dispatch(storeLoggedInUser(result));
+  // // get logged in user
+  const fetchUserProfile = useFetch("/user/profile", "userProfile");
 
-        // mobile storage
-        await setKey("loggedInUser", result);
-      })
-      .catch((err) => {
-        if (err?.response?.status === 401) {
-          navigate("/", { state: { from: location }, replace: true });
-        }
-      });
-  }, [dispatch, location, navigate]);
+  const fetchUserData = async () => {
+    const info = fetchUserProfile.data;
+    if (!info) {
+      return;
+    }
+    const profileInfo = {
+      id: info.id,
+      firstName: info.firstName,
+      lastName: info.lastName,
+      phone: info.phone,
+      email: info.email,
+      customerId: info.stripeCustomerId,
+    };
+    dispatch(storeLoggedInUser(profileInfo));
+    // mobile storage
+    await setKey("loggedInUser", profileInfo);
+  };
+
+  useEffect(() => {
+    if (fetchUserProfile.isSuccess) {
+      fetchUserData();
+    }
+  }, [fetchUserProfile.isSuccess]);
 
   // get user beneficiaries
-  useEffect(() => {
-    setLoading(true);
-    let isMounted = true;
-    const controller = new AbortController();
-
-    const getBeneficiaries = async () => {
-      try {
-        const response = await axiosPrivate.get("/user/beneficiaries", {
-          signal: controller?.signal,
-        });
-
-        isMounted && setBeneficiaries(response.data.data);
-        setLoading(false);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    getBeneficiaries();
-
-    return () => {
-      isMounted = false;
-      controller.abort();
-    };
-  }, [axiosPrivate, setBeneficiaries]);
+  const fetchBeneficiaries = useFetch("/user/beneficiaries", "beneficiaries");
 
   // get all appointments
-  useEffect(() => {
-    let isMounted = true;
-    const controller = new AbortController();
-
-    const getAllAppointments = async () => {
-      try {
-        const response = await axiosPrivate.get("/admin/appointments", {
-          signal: controller?.signal,
-        });
-
-        isMounted && setAllAppointments(response.data.data);
-        setHasLoaded(true);
-        setLoading(false);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    if (isAdminOrEmployee) {
-      getAllAppointments();
-    }
-
-    return () => {
-      isMounted = false;
-      controller.abort();
-    };
-  }, [
-    axiosPrivate,
-    setAllAppointments,
-    userType,
-    mobileAuth?.userType,
-    isAdminOrEmployee,
-  ]);
+  const fetchAllAppointments = useFetch(
+    "/admin/appointments",
+    "allAppointments",
+    1000 * 60 * 5,
+    isAdminOrEmployee
+  );
 
   // get appointments
-  useEffect(() => {
-    setLoading(true);
-    let isMounted = true;
-    const controller = new AbortController();
-
-    const getAppointments = async () => {
-      try {
-        const response = await axiosPrivate.get("/user/appointments", {
-          signal: controller?.signal,
-        });
-
-        isMounted && setAppointments(response.data.data);
-        setLoading(false);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    getAppointments();
-
-    return () => {
-      isMounted = false;
-      controller.abort();
-    };
-  }, [axiosPrivate, setAppointments]);
+  const fetchAppointments = useFetch("/user/appointments", "appointments");
 
   // get metrics
-  useEffect(() => {
-    let isMounted = true;
-    const controller = new AbortController();
-
-    const getMetrics = async () => {
-      setLoading(true);
-      try {
-        const response = await axiosPrivate.get("/metrics", {
-          signal: controller?.signal,
-        });
-
-        isMounted && setMetrics(response.data.data);
-        setLoading(false);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    if (isAdminOrEmployee) {
-      getMetrics();
-    }
-
-    return () => {
-      isMounted = false;
-      controller.abort();
-    };
-  }, [axiosPrivate, setMetrics, userType, mobileAuth?.userType]);
+  const fetchMetrics = useFetch(
+    "/metrics",
+    "metrics",
+    1000 * 60 * 5,
+    isAdminOrEmployee
+  );
 
   return (
     <HelmetProvider>
@@ -264,9 +154,8 @@ const Dashboard = () => {
           <link rel="canonical" href="https://www.ihsmia.com/" />
         </Helmet>
         <div className="lg:px-20 lg:py-4 md:px-10 p-3">
-          {loading && <TopBarProgress />}
-          <div className="my-5 lg:mt-10">
-            <h2 className="md:text-4xl text-3xl mb-3">
+          <div className="my-6">
+            <h2 className="md:text-4xl text-3xl mb-2">
               Hello{" "}
               {capitalizeString(loggedInUser?.firstName) ||
                 capitalizeString(mobileLoggedInUser?.firstName)}
@@ -274,101 +163,115 @@ const Dashboard = () => {
             <p className="text-slate-500 text-xl">Welcome to your dashboard</p>
           </div>
 
-          <hr className="my-10" />
+          <hr className="my-8" />
 
           {/*User Cards*/}
-          <div className="grid md:grid-cols- grid-cols-2 md:gap-7 gap-3 my-10">
-            <NavLink to="/beneficiaries">
-              <div className="h-40 md:p-5 p-3 rounded-md bg-ihs-blue-shade-50 md:text-lg shadow-md flex flex-col justify-between">
-                <p>Your Beneficiaries</p>
-                <p className="mb-4">
-                  <span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">
-                    {beneficiaries ? beneficiaries?.length : 0}
-                  </span>
-                  Beneficiaries
-                </p>
-              </div>
-            </NavLink>
+          <div className="grid grid-cols-2 md:gap-6 gap-4 my-8 lg:grid-cols-5">
+            <div
+              onClick={() => navigate("/beneficiaries")}
+              className="md:p-4 p-2 rounded bg-ihs-blue-shade-50 md:text-lg shadow-md flex flex-col space-y-8 justify-between cursor-pointer"
+            >
+              <p>Your Beneficiaries</p>
 
-            <NavLink to="/appointments">
-              <div className="h-40 md:p-5 p-3 rounded-md bg-ihs-green-shade-50 md:text-lg shadow-md flex flex-col justify-between">
-                <p>Your Appointments</p>
-                <p className="mb-4">
-                  <span className="font-semibold md:text-3xl text-xl pr-0.5 md:pr-2">
-                    {appointments ? appointments?.length : 0}
-                  </span>
-                  Appointments
-                </p>
-              </div>
-            </NavLink>
+              {fetchBeneficiaries.isSuccess ? (
+                <span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">
+                  {fetchBeneficiaries.data
+                    ? fetchBeneficiaries.data?.length
+                    : 0}
+                </span>
+              ) : (
+                <Spinner style={{ width: "2rem" }} />
+              )}
+            </div>
+
+            <div
+              onClick={() => navigate("/appointments")}
+              className="md:p-4 p-2 rounded bg-ihs-green-shade-50 md:text-lg shadow-md flex flex-col space-y-8 justify-between cursor-pointer"
+            >
+              <p>Your Appointments</p>
+              {fetchAppointments.isSuccess ? (
+                <span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">
+                  {fetchAppointments.data ? fetchAppointments.data?.length : 0}
+                </span>
+              ) : (
+                <Spinner style={{ width: "2rem" }} />
+              )}
+            </div>
+
+            {(mobileAuth?.userType || userType) !== userRoles.User && (
+              <>
+                <div
+                  onClick={() => navigate("/users")}
+                  className="md:p-4 p-2 rounded bg-ihs-green-shade-50 md:text-lg shadow-md flex flex-col space-y-8 justify-between cursor-pointer"
+                >
+                  <p>Total Users</p>
+                  {fetchMetrics.isSuccess ? (
+                    <span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">
+                      {fetchMetrics.data ? fetchMetrics.data.totalUsers : 0}
+                    </span>
+                  ) : (
+                    <Spinner style={{ width: "2rem" }} />
+                  )}
+                </div>
+                <div
+                  onClick={() => navigate("/users")}
+                  className="md:p-4 p-2 rounded bg-ihs-blue-shade-50 md:text-lg shadow-md flex flex-col space-y-8 justify-between cursor-pointer"
+                >
+                  <p>Total Appointments</p>
+                  {fetchMetrics.isSuccess ? (
+                    <span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">
+                      {fetchMetrics.data
+                        ? fetchMetrics.data.totalAppointments
+                        : 0}
+                    </span>
+                  ) : (
+                    <Spinner style={{ width: "2rem" }} />
+                  )}
+                </div>
+                <div
+                  onClick={() => navigate("/healthworkers")}
+                  className="md:p-4 p-2 rounded bg-ihs-green-shade-50 md:text-lg shadow-md flex flex-col space-y-8 justify-between cursor-pointer"
+                >
+                  <p>Total Health Workers</p>
+                  {fetchMetrics.isSuccess ? (
+                    <span className="font-semibold md:text-3xl text-2xl pr-0.5 md:pr-2">
+                      {fetchMetrics.data
+                        ? fetchMetrics.data.totalHealthWorkers
+                        : 0}
+                    </span>
+                  ) : (
+                    <Spinner style={{ width: "2rem" }} />
+                  )}
+                </div>
+              </>
+            )}
           </div>
-
-          {isAdminOrEmployee && (
-            <>
-              {/*Admin Cards*/}
-              <div className="grid md:grid-cols-3 grid-cols-2 md:gap-7 gap-3 my-10">
-                <NavLink to="/users">
-                  <div className="h-40 md:p-5 p-3 rounded-md bg-ihs-green-shade-50 md:text-lg shadow-md flex flex-col justify-between">
-                    <p>Total Users</p>
-                    <p className="mb-4">
-                      <span className="font-semibold md:text-3xl text-xl pr-0.5 md:pr-2">
-                        {/* {metrics.isSuccess ? metrics.data.totalUsers : 0} */}
-                        {metrics?.totalUsers || 0}
-                      </span>
-                      Users
-                    </p>
-                  </div>
-                </NavLink>
-                <NavLink to="/allappointments">
-                  <div className="h-40 md:p-5 p-3 rounded-md bg-ihs-blue-shade-50 md:text-lg shadow-md flex flex-col justify-between">
-                    <p>Total Appointments</p>
-                    <p className="mb-4">
-                      <span className="font-semibold md:text-3xl text-xl pr-0.5 md:pr-2">
-                        {/* {metrics.isSuccess ? metrics.data.totalAppointments : 0} */}
-                        {metrics?.totalAppointments || 0}
-                      </span>
-                      Appointments
-                    </p>
-                  </div>
-                </NavLink>
-                <NavLink to="/healthworkers">
-                  <div className="h-40 md:p-5 p-3 rounded-md bg-ihs-green-shade-50 md:text-lg shadow-md flex flex-col justify-between">
-                    <p>Total Health Workers</p>
-                    <p className="mb-4">
-                      <span className="font-semibold md:text-3xl text-xl pr-0.5 md:pr-2">
-                        {/* {metrics.isSuccess
-                          ? metrics.data.totalHealthWorkers
-                          : 0} */}
-                        {metrics?.totalHealthWorkers || 0}
-                      </span>
-                      Health Workers
-                    </p>
-                  </div>
-                </NavLink>
-              </div>
-            </>
-          )}
+          <hr className="my-10" />
 
           {(mobileAuth?.userType || userType) === userRoles.User && (
             <>
               {/*Beneficiaries Section*/}
-              <div className="flex justify-between items-center mt-20">
+              <div className="flex justify-between items-center mt-16">
                 <h2 className="md:text-2xl text-xl">Your Beneficiaries</h2>
                 <button
-                  className="py-3 md:px-4 px-2"
+                  className="py-2 md:px-4 px-2"
                   onClick={() => navigate("/beneficiaries/addbeneficiary")}
                 >
                   Add Beneficiary
                 </button>
               </div>
 
-              <hr className="my-10" />
-
               {/*Beneficiaries Table*/}
-              <BeneficiaryTable />
+              {fetchBeneficiaries.isSuccess ? (
+                <BeneficiariesTable beneficiaries={fetchBeneficiaries.data} />
+              ) : (
+                <div className="w-full min-h-40 p-6 grid items-center">
+                  <Spinner style={{ width: "10%", margin: "0 auto" }} />
+                </div>
+              )}
 
               {/*Appointments Section*/}
-              <div className="flex justify-between items-center mt-20">
+              <div className="flex justify-between items-center mt-16">
                 <h2 className="md:text-2xl text-xl">Your Appointments</h2>
                 <button
                   className="py-3 md:px-4 px-2"
@@ -378,26 +281,32 @@ const Dashboard = () => {
                 </button>
               </div>
 
-              <hr className="my-10" />
-
               {/*Appointments Table*/}
-              <AppointmentTable />
+              {fetchAppointments.isSuccess ? (
+                <AppointmentTable appointments={fetchAppointments.data} />
+              ) : (
+                <div className="w-full min-h-40 p-6 grid items-center">
+                  <Spinner style={{ width: "10%", margin: "0 auto" }} />
+                </div>
+              )}
             </>
           )}
 
           {(mobileAuth?.userType || userType) !== userRoles.User && (
             <>
-              {/*Appointments Section*/}
-              <div className="flex justify-between items-center mt-20">
+              <div className="flex justify-between items-center mt-12 mb-8">
                 <h2 className="md:text-2xl text-xl">All Appointments</h2>
               </div>
 
-              <hr className="my-10" />
-
-              {/*Appointments Table*/}
-
-              {hasLoaded && <AllAppointmentsTable />}
-              {/*<AppointmentTable />*/}
+              {fetchAllAppointments.isSuccess ? (
+                <AllAppointmentsTable
+                  appointments={fetchAllAppointments.data}
+                />
+              ) : (
+                <div className="w-full min-h-40 p-6 grid items-center">
+                  <Spinner style={{ width: "10%", margin: "0 auto" }} />
+                </div>
+              )}
             </>
           )}
         </div>
