@@ -1,50 +1,36 @@
-import React, { lazy, Suspense, useCallback, useEffect, useState } from "react";
-import { ChevronLeftIcon, UserCircleIcon } from "@heroicons/react/outline";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import BeneficiaryDropdown from "./BeneficiaryDropdown";
-import TopBarProgress from "react-topbar-progress-indicator";
-import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import { timePeriod } from "../../../data/enums";
 import { getDate } from "../../../hooks/useFormatDate";
-import Shimmer from "../Shimmer";
 import { capitalizeString } from "../../../utils/capitalizeString";
-
-TopBarProgress.config({
-  barColors: {
-    0: "#05afb0",
-  },
-  shadowBlur: 5,
-});
+import useFetch from "../../../hooks/useFetch";
+import { ExclamationCircleIcon } from "@heroicons/react/solid";
+import FormModal from "../../shared/FormModal";
+import UpdateBeneficiaryForm from "./form/UpdateBeneficiaryForm";
+import PageHeading from "../../shared/PageHeading";
+import Spinner from "../../shared/Spinner";
 
 const ViewBeneficiaryAppointments = lazy(() =>
   import("./ViewBeneficiaryAppointments")
 );
 
 const ViewBeneficiary = () => {
-  const axiosPrivate = useAxiosPrivate();
-  const [beneficiaryDetails, setBeneficiaryDetails] = useState({});
-  const beneficiary = useParams();
-  const beneficiaryId = beneficiary.beneficiaryId;
+  const params = useParams();
+  const beneficiaryId = params.beneficiaryId;
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);
 
-  const getBeneficiary = useCallback(async () => {
-    const response = await axiosPrivate.get(
-      `/user/beneficiary/${beneficiaryId}`
-    );
-    setBeneficiaryDetails(response.data.data);
-  }, [beneficiaryId, axiosPrivate]);
+  const [errMsg, setErrMsg] = useState("");
+  const [showUpdateBeneficiary, setShowUpdateBeneficiary] = useState(false);
+  const { isSuccess, isLoading, data, isError } = useFetch(
+    `/user/beneficiary/${beneficiaryId}`,
+    `beneficiary, ${beneficiaryId}`
+  );
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  useEffect(() => {
-    setLoading(true);
-    getBeneficiary().then(() => {
-      setLoading(false);
-    });
-  }, [getBeneficiary]);
 
   const coverageEndDate = (timestamp) => {
     let date;
@@ -68,215 +54,193 @@ const ViewBeneficiary = () => {
   };
 
   return (
-    <HelmetProvider>
-      <>
+    <>
+      {showUpdateBeneficiary && (
+        <FormModal
+          showModal={showUpdateBeneficiary}
+          setShowModal={setShowUpdateBeneficiary}
+          targetForm={UpdateBeneficiaryForm}
+          successMessage={"Beneficiary updated Successfully"}
+        />
+      )}
+      <HelmetProvider>
         <Helmet>
           <title>View Beneficiary | IHS Dashboard</title>
           <link rel="canonical" href="https://www.ihsmia.com/" />
         </Helmet>
+
         <div className="lg:px-20 lg:py-4 md:px-10 p-3">
-          {loading && <TopBarProgress />}
-          <button
-            className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 lg:mt-10 my-5"
-            onClick={() => navigate("/beneficiaries")}
+          {isError && setErrMsg("Failed to get beneficiary")}
+          {/* Error Handling */}
+          <p
+            className={
+              errMsg
+                ? "rounded-md p-4 my-4 shadow-md border-0 border-l-4 border-ihs-green-shade-500 text-slate-500 font-thin md:text-lg text-sm"
+                : "absolute -left-[99999px]"
+            }
+            aria-live="assertive"
           >
-            <ChevronLeftIcon className="w-6" />{" "}
-            <p className="text-lg px-5">Back to Beneficiaries</p>
-          </button>
-          <div className="flex">
-            <div className="flex-1">
-              <div className="flex justify-between items-center h-24 bg-ihs-green-shade-50 rounded-md shadow-sm text-gray-600">
-                <div className="flex">
-                  <UserCircleIcon className="md:w-14 w-8 md:ml-10 ml-3" />
-                  <h3 className="md:text-3xl sm:text-2xl text-xl py-8 md:px-8 px-2">
-                    Beneficiary Details
-                  </h3>
-                </div>
+            <span className="flex items-center">
+              <ExclamationCircleIcon className="text-ihs-green w-6 mr-2 inline" />
+              {errMsg}
+            </span>
+          </p>
 
-                <BeneficiaryDropdown beneficiaryDetails={beneficiaryDetails} />
-              </div>
-
-              <div className="my-10 ml-5 text-gray-600 md:text-xl text-md">
-                <div className="grid grid-cols-4">
-                  <p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">
-                    Full Name:{" "}
-                  </p>
-                  <p className="py-5 md:ml-5 md:col-start-2 col-span-2">
-                    {loading ? (
-                      <Shimmer />
-                    ) : (
-                      `${capitalizeString(
-                        beneficiaryDetails?.firstName
-                      )} ${capitalizeString(beneficiaryDetails?.lastName)}`
-                    )}{" "}
-                  </p>
-                </div>
-                <div className="grid grid-cols-4">
-                  <p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">
-                    Date of Birth:{" "}
-                  </p>
-                  <p className="py-5 md:ml-5 md:col-start-2 col-span-2">
-                    {loading ? (
-                      <Shimmer />
-                    ) : (
-                      `${
-                        beneficiaryDetails?.dob
-                          ? getDate(beneficiaryDetails?.dob)
-                          : ""
-                      }`
-                    )}{" "}
-                  </p>
-                </div>
-                <div className="grid grid-cols-4">
-                  <p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">
-                    Relationship:{" "}
-                  </p>
-                  <p className="py-5 md:ml-5 md:col-start-2 col-span-2">
-                    {loading ? (
-                      <Shimmer />
-                    ) : (
-                      `${
-                        beneficiaryDetails
-                          ? beneficiaryDetails?.relationship
-                          : ""
-                      }`
-                    )}{" "}
-                  </p>
-                </div>
-                <div className="grid grid-cols-4">
-                  <p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">
-                    Phone Number:{" "}
-                  </p>
-                  <p className="py-5 md:ml-5 md:col-start-2 col-span-2">
-                    {loading ? (
-                      <Shimmer />
-                    ) : (
-                      `${beneficiaryDetails ? beneficiaryDetails?.phone : ""}`
-                    )}{" "}
-                  </p>
-                </div>
-                <div className="grid grid-cols-4">
-                  <p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">
-                    Address:{" "}
-                  </p>
-                  <p className="py-5 md:ml-5 md:col-start-2 col-span-2">
-                    {loading ? (
-                      <Shimmer />
-                    ) : (
-                      `${beneficiaryDetails ? beneficiaryDetails?.address : ""}`
-                    )}{" "}
-                  </p>
-                </div>
-                <div className="grid grid-cols-4">
-                  <p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">
-                    City:{" "}
-                  </p>
-                  <p className="py-5 md:ml-5 md:col-start-2 col-span-2">
-                    {loading ? (
-                      <Shimmer />
-                    ) : (
-                      `${beneficiaryDetails ? beneficiaryDetails?.city : ""}`
-                    )}{" "}
-                  </p>
-                </div>
-                <div className="grid grid-cols-4">
-                  <p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">
-                    State:{" "}
-                  </p>
-                  <p className="py-5 md:ml-5 md:col-start-2 col-span-2">
-                    {loading ? (
-                      <Shimmer />
-                    ) : (
-                      `${beneficiaryDetails ? beneficiaryDetails?.state : ""}`
-                    )}{" "}
-                  </p>
-                </div>
-                <div className="grid grid-cols-4">
-                  <p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">
-                    Coverage Status:{" "}
-                  </p>
-                  <p className="py-5 md:ml-5 md:col-start-2 col-span-2 capitalize">
-                    {loading ? (
-                      <Shimmer />
-                    ) : beneficiaryDetails?.subscription ? (
-                      beneficiaryDetails.subscription.status !== "canceled" ? (
-                        beneficiaryDetails.subscription.status
-                      ) : (
-                        "No Health Coverage"
-                      )
-                    ) : (
-                      "No Health Coverage"
-                    )}{" "}
-                  </p>
-                </div>
-                {loading ? (
-                  <Shimmer />
-                ) : (
-                  beneficiaryDetails?.subscription &&
-                  beneficiaryDetails.subscription.status !== "canceled" && (
-                    <>
-                      <div className="grid grid-cols-4">
-                        <p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">
-                          Payment Frequency:{" "}
-                        </p>
-                        <p className="py-5 md:ml-5 md:col-start-2 col-span-2 capitalize">
-                          {beneficiaryDetails?.subscription
-                            ? duration(beneficiaryDetails.subscription.amount)
-                            : ""}{" "}
-                        </p>
-                      </div>
-                      <div className="grid grid-cols-4">
-                        <p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">
-                          Coverage End Date:{" "}
-                        </p>
-                        <p className="py-5 md:ml-5 md:col-start-2 col-span-2 capitalize">
-                          {beneficiaryDetails?.subscription
-                            ? coverageEndDate(
-                                beneficiaryDetails.subscription.planEndDate
-                              )
-                            : ""}{" "}
-                        </p>
-                      </div>
-                      {beneficiaryDetails?.subscription?.cancelAt !== null &&
-                        beneficiaryDetails?.subscription?.cancelAt !== "" &&
-                        beneficiaryDetails?.subscription?.status !==
-                          "canceled" && (
-                          <div className="grid grid-cols-4">
-                            <p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">
-                              Cancel Coverage On:{" "}
-                            </p>
-                            <p className="py-5 md:ml-5 md:col-start-2 col-span-2 capitalize">
-                              {beneficiaryDetails?.subscription?.cancelAt
-                                ? coverageEndDate(
-                                    beneficiaryDetails.subscription.cancelAt
-                                  )
-                                : ""}{" "}
-                            </p>
-                          </div>
-                        )}
-                    </>
-                  )
-                )}
-              </div>
+          <PageHeading
+            pageName={"Beneficiary Details"}
+            previousPageName={"Beneficiaries"}
+            previousUrl={"/beneficiaries"}
+          >
+            {isSuccess ? (
+              <BeneficiaryDropdown
+                beneficiary={data}
+                setShowUpdateBeneficiary={setShowUpdateBeneficiary}
+              />
+            ) : (
+              <Spinner className="mr-8" style={{ width: "2rem" }} />
+            )}
+          </PageHeading>
+          {isLoading ? (
+            <div className="w-full min-h-40 p-6 grid items-center">
+              <Spinner
+                className=""
+                style={{ width: "10%", margin: "2rem auto 0" }}
+              />
             </div>
-          </div>
-          <div className="flex justify-between items-center mt-10">
-            <h2 className="md:text-2xl text-xl">Appointments</h2>
+          ) : (
+            <div className="my-10 text-gray-600 grid md:grid-cols-2 gap-y-4 ">
+              <div className="flex space-x-4">
+                <p className="col-span-2 lg:col-span-1 font-semibold text-black">
+                  Full Name:{" "}
+                </p>
+                <p className="lg:col-start-2">
+                  {capitalizeString(data?.firstName)}{" "}
+                  {capitalizeString(data?.lastName)}
+                </p>
+              </div>
+              <div className="flex space-x-4">
+                <p className="col-span-2 lg:col-span-1 font-semibold text-black">
+                  Date of Birth:{" "}
+                </p>
+                <p className="lg:col-start-2">
+                  {data?.dob ? getDate(data?.dob) : ""}
+                </p>
+              </div>
+              <div className="flex space-x-4">
+                <p className="col-span-2 lg:col-span-1 font-semibold text-black">
+                  Relationship:{" "}
+                </p>
+                <p className="lg:col-start-2">
+                  {data ? data?.relationship : ""}
+                </p>
+              </div>
+              <div className="flex space-x-4">
+                <p className="col-span-2 lg:col-span-1 font-semibold text-black">
+                  Phone Number:{" "}
+                </p>
+                <p className="lg:col-start-2">{data ? data?.phone : ""}</p>
+              </div>
+              <div className="flex space-x-4">
+                <p className="col-span-2 lg:col-span-1 font-semibold text-black">
+                  Address:{" "}
+                </p>
+                <p className="lg:col-start-2">{data ? data?.address : ""}</p>
+              </div>
+              <div className="flex space-x-4">
+                <p className="col-span-2 lg:col-span-1 font-semibold text-black">
+                  City:{" "}
+                </p>
+                <p className="lg:col-start-2">{data ? data?.city : ""}</p>
+              </div>
+              <div className="flex space-x-4">
+                <p className="col-span-2 lg:col-span-1 font-semibold text-black">
+                  State:{" "}
+                </p>
+                <p className="lg:col-start-2">{data ? data?.state : ""}</p>
+              </div>
+              <div className="flex space-x-4">
+                <p className="col-span-2 lg:col-span-1 font-semibold text-black">
+                  Coverage Status:{" "}
+                </p>
+                <p className="lg:col-start-2 capitalize">
+                  {data?.subscription
+                    ? data.subscription.status !== "canceled"
+                      ? data.subscription.status
+                      : "No Health Coverage"
+                    : "No Health Coverage"}
+                </p>
+              </div>
+              {data?.subscription &&
+                data.subscription.status !== "canceled" && (
+                  <div className="flex space-x-4">
+                    <p className="col-span-2 lg:col-span-1 font-semibold text-black">
+                      Payment Frequency:{" "}
+                    </p>
+                    <p className="lg:col-start-2">
+                      {data?.subscription
+                        ? duration(data.subscription.amount)
+                        : ""}{" "}
+                    </p>
+                  </div>
+                )}
+              {data?.subscription &&
+                data.subscription.status !== "canceled" && (
+                  <div className="flex space-x-4">
+                    <p className="col-span-2 lg:col-span-1 font-semibold text-black">
+                      Coverage End Date:{" "}
+                    </p>
+                    {/*31536000 is 1 */}
+                    <p className="lg:col-start-2">
+                      {data?.subscription
+                        ? coverageEndDate(
+                            data.subscription.startDate + timePeriod.year
+                          )
+                        : ""}{" "}
+                    </p>
+                  </div>
+                )}
+              {data?.subscription?.cancelAt !== null &&
+                data?.subscription?.cancelAt !== "" &&
+                data?.subscription?.status !== "canceled" && (
+                  <div className="flex space-x-4">
+                    <p className="col-span-2 lg:col-span-1 font-semibold text-black">
+                      Cancel Coverage On:{" "}
+                    </p>
+                    <p className="lg:col-start-2">
+                      {data?.subscription?.cancelAt
+                        ? coverageEndDate(data.subscription.cancelAt)
+                        : ""}{" "}
+                    </p>
+                  </div>
+                )}
+            </div>
+          )}
+          <hr className="my-10" />
+          {/* </div> */}
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="md:text-2xl text-lg">Appointments</h2>
             <button
-              className="py-3 md:px-4 px-2"
+              className="py-2 md:px-4 px-4"
               onClick={() => navigate("/appointments/bookappointment")}
             >
               Book Appointment
             </button>
           </div>
-
-          <hr className="my-10" />
-          <Suspense fallback={<TopBarProgress />}>
+          <Suspense
+            fallback={
+              <div className="w-full min-h-40 p-6 grid items-center">
+                <Spinner
+                  className=""
+                  style={{ width: "10%", margin: "0 auto" }}
+                />
+              </div>
+            }
+          >
             <ViewBeneficiaryAppointments />
           </Suspense>
         </div>
-      </>
-    </HelmetProvider>
+      </HelmetProvider>
+    </>
   );
 };
 

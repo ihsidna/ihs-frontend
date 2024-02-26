@@ -49,7 +49,7 @@ const MobileTable = ({
                       // position item to the top right
                       options.positionedColumn &&
                       options.positionedColumn === cell.column.id
-                        ? `text-xs font-normal rounded-md absolute right-4 top-8`
+                        ? `text-sm font-normal rounded-md flex`
                         : ""
                     } ${
                       cell.column.id.toLowerCase() !== "email"
