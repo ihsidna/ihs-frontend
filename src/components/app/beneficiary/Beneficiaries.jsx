@@ -9,7 +9,7 @@ import { useState } from "react";
 import { ExclamationCircleIcon } from "@heroicons/react/solid";
 import FormModal from "../../shared/FormModal";
 import BookAppointmentForm from "../appointment/forms/BookAppointmentForm";
-import AddBeneficiaryForm from "./form/AddBeneficiaryForm";
+import AddBeneficiaryForm from "./forms/AddBeneficiaryForm";
 import Spinner from "../../shared/Spinner";
 
 const Beneficiaries = () => {

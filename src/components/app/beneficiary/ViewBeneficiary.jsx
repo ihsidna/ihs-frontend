@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import BeneficiaryDropdown from "./BeneficiaryDropdown";
 import { timePeriod } from "../../../data/enums";
@@ -8,9 +8,10 @@ import { capitalizeString } from "../../../utils/capitalizeString";
 import useFetch from "../../../hooks/useFetch";
 import { ExclamationCircleIcon } from "@heroicons/react/solid";
 import FormModal from "../../shared/FormModal";
-import UpdateBeneficiaryForm from "./form/UpdateBeneficiaryForm";
+import UpdateBeneficiaryForm from "./forms/UpdateBeneficiaryForm";
 import PageHeading from "../../shared/PageHeading";
 import Spinner from "../../shared/Spinner";
+import BookAppointmentForm from "../appointment/forms/BookAppointmentForm";
 
 const ViewBeneficiaryAppointments = lazy(() =>
   import("./ViewBeneficiaryAppointments")
@@ -19,7 +20,8 @@ const ViewBeneficiaryAppointments = lazy(() =>
 const ViewBeneficiary = () => {
   const params = useParams();
   const beneficiaryId = params.beneficiaryId;
-  const navigate = useNavigate();
+  const [showBookAppointmentModal, setShowBookAppointmentModal] =
+    useState(false);
 
   const [errMsg, setErrMsg] = useState("");
   const [showUpdateBeneficiary, setShowUpdateBeneficiary] = useState(false);
@@ -221,7 +223,7 @@ const ViewBeneficiary = () => {
             <h2 className="md:text-2xl text-lg">Appointments</h2>
             <button
               className="py-2 md:px-4 px-4"
-              onClick={() => navigate("/appointments/bookappointment")}
+              onClick={() => setShowBookAppointmentModal(true)}
             >
               Book Appointment
             </button>
@@ -238,6 +240,15 @@ const ViewBeneficiary = () => {
           >
             <ViewBeneficiaryAppointments />
           </Suspense>
+
+          {showBookAppointmentModal && (
+            <FormModal
+              showModal={showBookAppointmentModal}
+              setShowModal={setShowBookAppointmentModal}
+              targetForm={BookAppointmentForm}
+              successMessage={"Appointment Booked Successfully!"}
+            />
+          )}
         </div>
       </HelmetProvider>
     </>

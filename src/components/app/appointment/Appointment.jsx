@@ -7,7 +7,7 @@ import useFetch from "../../../hooks/useFetch";
 import { ExclamationCircleIcon } from "@heroicons/react/solid";
 import FormModal from "../../shared/FormModal";
 import BookAppointmentForm from "./forms/BookAppointmentForm";
-import AddBeneficiaryForm from "../beneficiary/form/AddBeneficiaryForm";
+import AddBeneficiaryForm from "../beneficiary/forms/AddBeneficiaryForm";
 import Spinner from "../../shared/Spinner";
 
 const Appointment = () => {

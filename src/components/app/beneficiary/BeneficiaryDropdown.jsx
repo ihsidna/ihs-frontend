@@ -12,7 +12,7 @@ export default function BeneficiaryDropdown({
     <Menu as="div" className="relative inline-block text-left pr-4">
       <div>
         <Menu.Button className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-ihs-green focus:ring-offset-2 focus:ring-offset-gray-100">
-          <span className="hidden md:inline">Options</span>
+          <span className="hidden md:inline">Actions</span>
           <ChevronDownIcon className="w-5" aria-hidden="true" />
         </Menu.Button>
       </div>
