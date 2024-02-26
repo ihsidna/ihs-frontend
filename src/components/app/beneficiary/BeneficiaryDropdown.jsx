@@ -2,13 +2,16 @@ import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/outline";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function BeneficiaryDropdown({
   beneficiary,
   setShowUpdateBeneficiary,
 }) {
   const navigate = useNavigate();
-  return (
+  const loggedInUser = useSelector((state) => state.auth.loggedInUser);
+
+  return loggedInUser.id === beneficiary.userId ? (
     <Menu as="div" className="relative inline-block text-left pr-4">
       <div>
         <Menu.Button className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-ihs-green focus:ring-offset-2 focus:ring-offset-gray-100">
@@ -53,5 +56,7 @@ export default function BeneficiaryDropdown({
         </Menu.Items>
       </Transition>
     </Menu>
+  ) : (
+    ""
   );
 }

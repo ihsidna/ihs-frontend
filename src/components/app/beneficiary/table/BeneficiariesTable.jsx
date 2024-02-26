@@ -100,7 +100,7 @@ const BeneficiariesTable = ({ beneficiaries }) => {
         data={beneficiaries}
         columns={columns}
         rowsPerPage={rowsPerPage}
-        actionBaseUrl={"viewbeneficiary/"}
+        actionBaseUrl={"/beneficiaries/viewbeneficiary/"}
         options={{
           mobileScreenHeaders: mobileScreenHeaders,
         }}

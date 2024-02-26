@@ -34,7 +34,7 @@ const AllAppointmentsTable = ({ appointments }) => {
   );
   completedAppointments = sortInDescOrder(completedAppointments);
 
-  const mobileScreenHeaders = ["Beneficiaries", "Status"];
+  const mobileScreenHeaders = ["Beneficiaries"];
 
   const columns = [
     {
@@ -64,6 +64,10 @@ const AllAppointmentsTable = ({ appointments }) => {
       accessorFn: (row) => getDate(row.date),
     },
     {
+      header: "TIME",
+      accessorKey: "time",
+    },
+    {
       header: "STATUS",
       accessorKey: "status",
       cell: (cell) => (
@@ -81,10 +85,6 @@ const AllAppointmentsTable = ({ appointments }) => {
             : cell.getValue()}
         </span>
       ),
-    },
-    {
-      header: "TIME",
-      accessorKey: "time",
     },
     {
       header: "ACTIONS",
