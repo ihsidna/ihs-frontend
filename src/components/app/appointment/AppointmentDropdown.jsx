@@ -51,15 +51,19 @@ export default function AppointmentDropdown({
           <div>
             {(mobileAuth?.userType || userType) !== userRoles.User && (
               <>
-                <Menu.Item>
-                  <div
-                    className="text-ihs-green block px-4 py-3 text-sm hover:bg-ihs-green-shade-50 hover:text-ihs-green cursor-pointer"
-                    onClick={() => completeAppointment()}
-                  >
-                    Complete Appointment
-                  </div>
-                </Menu.Item>
-                <hr />
+                {!appointmentDetails.completed && (
+                  <>
+                    <Menu.Item>
+                      <div
+                        className="text-ihs-green block px-4 py-3 text-sm hover:bg-ihs-green-shade-50 hover:text-ihs-green cursor-pointer"
+                        onClick={() => completeAppointment()}
+                      >
+                        Complete Appointment
+                      </div>
+                    </Menu.Item>
+                    <hr />
+                  </>
+                )}
 
                 <Menu.Item>
                   <div

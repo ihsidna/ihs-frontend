@@ -137,7 +137,7 @@ const UpdateBeneficiaryForm = ({ handleCancelClick, setFormSuccess }) => {
                     name="dob"
                     id="dob"
                     autoComplete="true"
-                    className="transition border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-1"
+                    className="appearance-none h-10 bg-transparent w-full transition border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-1"
                   />
                   <ErrorMessage
                     name="dob"
@@ -161,7 +161,7 @@ const UpdateBeneficiaryForm = ({ handleCancelClick, setFormSuccess }) => {
                     as="select"
                     name="relationship"
                     id="relationship"
-                    className="transition border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-1 appearance-none"
+                    className="h-10 bg-transparent w-full transition border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-1 appearance-none"
                   >
                     <option disabled={true} value="">
                       Select Relationship

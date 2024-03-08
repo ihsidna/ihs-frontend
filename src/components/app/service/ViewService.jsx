@@ -74,9 +74,11 @@ const ViewService = () => {
               />
             </div>
           ) : (
-            <div className="my-10 text-gray-600 grid md:grid-cols-2 gap-y-4 lg:max-w-[70%]">
+            <div className="my-10 text-gray-600 grid md:grid-cols-2 gap-y-4">
               <div className="flex space-x-4">
-                <p className="col-span-2 lg:col-span-1 font-semibold">Name: </p>
+                <p className="col-span-2 lg:col-span-1 font-semibold text-black">
+                  Name:{" "}
+                </p>
                 {
                   <p className="lg:col-start-2">
                     {data && capitalizeString(data.name)}
@@ -84,7 +86,7 @@ const ViewService = () => {
                 }
               </div>
               <div className="flex space-x-4">
-                <p className="col-span-2 lg:col-span-1 font-semibold">
+                <p className="col-span-2 lg:col-span-1 font-semibold text-black">
                   Category:
                 </p>
                 {

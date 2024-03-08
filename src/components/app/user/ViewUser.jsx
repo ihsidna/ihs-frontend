@@ -66,7 +66,7 @@ const ViewUser = () => {
           ) : (
             <div className="my-10 text-gray-600 grid md:grid-cols-2 gap-y-4">
               <div className="flex space-x-4">
-                <p className="pcol-span-2 lg:col-span-1 font-semibold">
+                <p className="pcol-span-2 lg:col-span-1 font-semibold text-black">
                   Full Name:{" "}
                 </p>
                 <p className="lg:col-start-2">
@@ -75,19 +75,19 @@ const ViewUser = () => {
                 </p>
               </div>
               <div className="flex space-x-4">
-                <p className="col-span-2 lg:col-span-1 font-semibold">
+                <p className="col-span-2 lg:col-span-1 font-semibold text-black">
                   Email:{" "}
                 </p>
                 <p className="lg:col-start-2">{data?.email}</p>
               </div>
               <div className="flex space-x-4">
-                <p className="col-span-2 lg:col-span-1 font-semibold">
+                <p className="col-span-2 lg:col-span-1 font-semibold text-black">
                   Phone:{" "}
                 </p>
                 <p className="lg:col-start-2">{data?.phone}</p>
               </div>
               <div className="flex space-x-4">
-                <p className="col-span-2 lg:col-span-1 font-semibold ">
+                <p className="col-span-2 lg:col-span-1 font-semibold  text-black">
                   Role:{" "}
                 </p>
                 <p className="lg:col-start-2 capitalize">{data?.userType}</p>

@@ -173,7 +173,7 @@ const AddHealthWorkerForm = ({ handleCancelClick, setFormSuccess }) => {
                   id="qualification"
                   autoComplete="true"
                   placeholder="Doctor"
-                  className="lg:min-w-[300px] transition border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-1"
+                  className="appearance-none h-10 bg-transparent w-full lg:min-w-[300px] transition border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-1"
                 />
                 <ErrorMessage
                   name="qualification"

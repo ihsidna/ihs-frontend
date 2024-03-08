@@ -63,7 +63,7 @@ const ViewHealthWorker = () => {
           ) : (
             <div className="my-10 text-gray-600 grid md:grid-cols-2 gap-y-4 lg:max-w-[70%]">
               <div className="flex space-x-4">
-                <p className="col-span-2 lg:col-span-1 font-semibold">
+                <p className="col-span-2 lg:col-span-1 font-semibold text-black">
                   Full Name:
                 </p>
 
@@ -73,19 +73,21 @@ const ViewHealthWorker = () => {
                 </p>
               </div>
               <div className="flex space-x-4">
-                <p className="col-span-2 lg:col-span-1 font-semibold">Email:</p>
+                <p className="col-span-2 lg:col-span-1 font-semibold text-black">
+                  Email:
+                </p>
 
                 <p className="lg:col-start-2">{data.email}</p>
               </div>
               <div className="flex space-x-4">
-                <p className="col-span-2 lg:col-span-1 font-semibold">
+                <p className="col-span-2 lg:col-span-1 font-semibold text-black">
                   Phone Number:{" "}
                 </p>
 
                 <p className="lg:col-start-2">{data.phone} </p>
               </div>
               <div className="flex space-x-4">
-                <p className="col-span-2 lg:col-span-1 font-semibold">
+                <p className="col-span-2 lg:col-span-1 font-semibold text-black">
                   Qualification:{" "}
                 </p>
                 <p className="lg:col-start-2">{data.qualification} </p>

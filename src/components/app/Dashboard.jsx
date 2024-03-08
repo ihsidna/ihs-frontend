@@ -186,7 +186,7 @@ const Dashboard = () => {
 
             <div
               onClick={() => navigate("/appointments")}
-              className="md:p-4 p-2 rounded bg-ihs-green-shade-50 md:text-lg shadow-md flex flex-col space-y-8 justify-between cursor-pointer"
+              className="md:p-4 p-2 rounded bg-ihs-blue-shade-50 md:text-lg shadow-md flex flex-col space-y-8 justify-between cursor-pointer"
             >
               <p>Your Appointments</p>
               {fetchAppointments.isSuccess ? (
@@ -215,7 +215,7 @@ const Dashboard = () => {
                 </div>
                 <div
                   onClick={() => navigate("/users")}
-                  className="md:p-4 p-2 rounded bg-ihs-blue-shade-50 md:text-lg shadow-md flex flex-col space-y-8 justify-between cursor-pointer"
+                  className="md:p-4 p-2 rounded bg-ihs-green-shade-50 md:text-lg shadow-md flex flex-col space-y-8 justify-between cursor-pointer"
                 >
                   <p>Total Appointments</p>
                   {fetchMetrics.isSuccess ? (

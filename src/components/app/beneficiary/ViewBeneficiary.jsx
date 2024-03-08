@@ -201,7 +201,8 @@ const ViewBeneficiary = () => {
                     </p>
                   </div>
                 )}
-              {data?.subscription?.cancelAt !== null &&
+              {data?.subscription &&
+                data?.subscription?.cancelAt !== null &&
                 data?.subscription?.cancelAt !== "" &&
                 data?.subscription?.status !== "canceled" && (
                   <div className="flex space-x-4">
