@@ -53,7 +53,6 @@ const BookAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
     const beneficiaryData = fetchBeneficiaries?.data?.filter(
       (ben) => ben.id === appointmentData.beneficiaryId
     );
-    console.log(beneficiaryData);
 
     setBeneficiary(beneficiaryData[0]);
 
@@ -77,7 +76,7 @@ const BookAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
         {
           // onError: (error) => setErrMsg(error),
           onSuccess: () => {
-            queryClient.invalidateQueries(["appointments"]);
+            queryClient.invalidateQueries([`appointments, ${values.beneficiaryId}`]);
             queryClient.invalidateQueries(["allAppointments"]);
             setFormSuccess(true);
           },

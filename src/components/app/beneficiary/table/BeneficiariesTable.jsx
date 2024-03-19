@@ -61,7 +61,7 @@ const BeneficiariesTable = ({ beneficiaries }) => {
           <span className="md:hidden">Address:</span>
           <span className="font-semibold md:font-normal">
             {" "}
-            {`${cell.getValue()}`}
+            {`${cell.getValue().substring(0, 40)}`}
           </span>
         </p>
       ),
