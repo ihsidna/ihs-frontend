@@ -39,6 +39,7 @@ const AllAppointmentsTable = ({ appointments }) => {
   const columns = [
     {
       header: " ", // do not remove the space in between the string
+      accessorKey: "avatar",
       cell: (cell) => (
         <span className="hidden sm:block px-0">
           <Avatar

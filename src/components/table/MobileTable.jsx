@@ -28,40 +28,41 @@ const MobileTable = ({
           <Link
             key={row.id}
             to={`${actionBaseUrl}${row.original.id}`} // extract the value of the id property
-            className="odd:bg-gray-100 p-4"
+            className="odd:bg-gray-100 p-4 relative"
             aria-label="table-row"
           >
-            {row.getVisibleCells().map((cell, index) => {
+              {row.getVisibleCells().map((cell, index) => {
               // exclude the actions button from the displayed items
-              if (!(cell.column.id === "actions")) {
-                return (
-                  <div
-                    aria-label="table-row "
-                    role="cell"
-                    key={cell.id}
-                    className={`mb-1
-                    ${
-                      index === 1
-                        ? "text-md text-gray-800"
-                        : "text-sm text-gray-500"
-                    } 
-                    ${
-                      // position item to the top right
-                      options.positionedColumn &&
-                      options.positionedColumn === cell.column.id
-                        ? `text-sm font-normal rounded-md flex`
-                        : ""
-                    } ${
-                      cell.column.id.toLowerCase() !== "email"
-                        ? "capitalize"
-                        : ""
-                    }`}
-                  >
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}{" "}
-                  </div>
-                );
-              } else return null;
-            })}
+                if (!(cell.column.id === "actions" || cell.column.id === "avatar")) {
+                  return (
+                    <div
+                      aria-label="table-row"
+                      role="cell"
+                      key={cell.id}
+                      className={`mb-1
+                      ${
+                        index === 1
+                          ? "text-md text-gray-800"
+                          : "text-sm text-gray-500"
+                      } 
+                      ${
+                        // position item to the top right
+                        options.positionedColumn &&
+                        options.positionedColumn === cell.column.id
+                          ? `text-xs font-normal rounded-md absolute top-6 right-8 z-[10px]`
+                          : ""
+                      } ${
+                        cell.column.id.toLowerCase() !== "email"
+                          ? "capitalize"
+                          : ""
+                      }`}
+                    >
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}{" "}
+                    </div>
+                  );
+                } else return null;
+              })}
+            
           </Link>
         );
       })}

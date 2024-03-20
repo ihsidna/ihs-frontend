@@ -44,10 +44,9 @@ const BeneficiariesTable = ({ beneficiaries }) => {
       header: "RELATIONSHIP",
       accessorKey: "relationship",
       cell: (cell) => (
-        <p className="capitalize flex justify-between">
-          <span className="md:hidden">Relationship:</span>
-          <span className="font-semibold md:font-normal">
-            {" "}
+        <p className="flex justify-between">
+          <span className="font-medium md:hidden">Relationship:</span>
+          <span className="font-normal">
             {`${cell.getValue()}`}
           </span>
         </p>
@@ -57,9 +56,9 @@ const BeneficiariesTable = ({ beneficiaries }) => {
       header: "LOCATION",
       accessorKey: "address",
       cell: (cell) => (
-        <p className="capitalize flex justify-between">
-          <span className="md:hidden">Address:</span>
-          <span className="font-semibold md:font-normal">
+        <p className="flex justify-between">
+          <span className="font-medium md:hidden">Address:</span>
+          <span className="font-normal">
             {" "}
             {`${cell.getValue().substring(0, 40)}`}
           </span>
@@ -70,9 +69,9 @@ const BeneficiariesTable = ({ beneficiaries }) => {
       header: "AGE",
       accessorFn: (row) => calculateAge(row.dob),
       cell: (cell) => (
-        <p className="capitalize flex justify-between">
-          <span className="md:hidden">Age:</span>
-          <span className="lowercase font-semibold md:font-normal">
+        <p className="flex justify-between">
+          <span className="font-medium md:hidden">Age:</span>
+          <span className="font-normal">
             {" "}
             {`${cell.getValue()}`} years
           </span>

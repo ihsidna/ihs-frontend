@@ -35,7 +35,7 @@ const HealthWorkerTable = ({ healthWorkers }) => {
       accessorKey: "email",
       cell: (cell) => (
         <p className="flex justify-between">
-          <span className="font-semibold md:hidden">Email:</span>
+          <span className="font-medium md:hidden">Email:</span>
           <span className="font-normal"> {`${cell.getValue()}`}</span>
         </p>
       ),
@@ -45,7 +45,7 @@ const HealthWorkerTable = ({ healthWorkers }) => {
       accessorKey: "phone",
       cell: (cell) => (
         <p className="flex justify-between">
-          <span className="font-semibold md:hidden">Phone:</span>
+          <span className="font-medium md:hidden">Phone:</span>
           <span className="md:font-normal"> {`${cell.getValue()}`}</span>
         </p>
       ),

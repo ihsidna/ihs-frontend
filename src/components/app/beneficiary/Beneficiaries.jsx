@@ -67,15 +67,15 @@ const ParentContent = () => {
             <h2 className="md:text-2xl text-xl py-2 md:py-2">
               Your Beneficiaries
             </h2>
-            <div className="space-x-2">
+            <div className="grid grid-cols-2 gap-2">
               <button
-                className="text-sm"
+                className="text-xs sm:text-sm"
                 onClick={() => setShowBookAppointmentModal(true)}
               >
                 Book Appointment
               </button>
               <button
-                className="text-sm"
+                className="text-xs sm:text-sm"
                 onClick={() => setShowAddBeneficiaryModal(true)}
               >
                 Add Beneficiary

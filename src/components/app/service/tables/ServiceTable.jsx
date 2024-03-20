@@ -18,7 +18,7 @@ const ServiceTable = ({ services }) => {
       accessorKey: "category",
       cell: (cell) => (
         <p className="capitalize flex justify-between text-gray-500">
-          <span className="font-semibold md:hidden">Category:</span>
+          <span className="font-medium md:hidden">Category:</span>
           <span className="capitalize font-normal">{`${cell.getValue()}`}</span>
         </p>
       ),
