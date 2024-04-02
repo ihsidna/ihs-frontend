@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import TopBarProgress from "react-topbar-progress-indicator";
 import useFetch from "../../../hooks/useFetch";
-import { usePatch } from "../../../hooks/useMutate";
+import usePatch from "../../../hooks/usePatch";
 import { useQueryClient } from "@tanstack/react-query";
 
 TopBarProgress.config({

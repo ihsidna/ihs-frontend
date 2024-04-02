@@ -46,10 +46,10 @@ const ActionModal = ({
                       <path d="M12 5.99L19.53 19H4.47L12 5.99M12 2L1 21h22L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z" />
                     </svg>
                   </div>
-                  <h2 className="md:text-xl font-semibold text-gray-800 mt-[-.5rem]">
+                  <h2 className="text-lg font-semibold text-gray-800 mt-[-.5rem]">
                     {actionHeader}
                   </h2>
-                  <p className="mt-2 md:text-xl text-gray-600 leading-relaxed">
+                  <p className="mt-2 md:text-sm text-gray-500 leading-relaxed">
                     {actionMessage}
                   </p>
 

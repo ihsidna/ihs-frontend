@@ -64,8 +64,6 @@ const BookAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
         date: appointmentDate,
         status: appointmentStatus.Booked,
       };
-      console.log(body);
-      // return;
 
       // Mutate
       bookAppointmentMutation.mutate(
@@ -74,7 +72,6 @@ const BookAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
           body,
         },
         {
-          // onError: (error) => setErrMsg(error),
           onSuccess: () => {
             queryClient.invalidateQueries([`appointments, ${values.beneficiaryId}`]);
             queryClient.invalidateQueries(["allAppointments"]);

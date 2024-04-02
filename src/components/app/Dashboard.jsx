@@ -12,10 +12,16 @@ import OneSignal from "onesignal-cordova-plugin";
 import { capitalizeString } from "../../utils/capitalizeString";
 import useFetch from "../../hooks/useFetch";
 import Spinner from "../shared/Spinner";
+import FormModal from "../../components/shared/FormModal";
+import AddBeneficiaryForm from "./beneficiary/forms/AddBeneficiaryForm";
+import BookAppointmentForm from "./appointment/forms/BookAppointmentForm";
 
 const Dashboard = () => {
   const [mobileAuth, setMobileAuth] = useState("");
   const [mobileLoggedInUser, setMobileLoggedInUser] = useState("");
+  const [showAddBeneficiaryModal, setShowAddBeneficiaryModal] = useState(false);
+  const [showBookAppointmentModal, setShowBookAppointmentModal] = useState(false);
+
   const dispatch = useDispatch();
 
   const userType = useSelector((state) => state.auth.userAccess.userType);
@@ -254,11 +260,11 @@ const Dashboard = () => {
               <div className="flex justify-between items-center mt-16">
                 <h2 className="md:text-2xl text-xl">Your Beneficiaries</h2>
                 <button
-                  className="py-2 md:px-4 px-2"
-                  onClick={() => navigate("/beneficiaries/addbeneficiary")}
-                >
-                  Add Beneficiary
-                </button>
+                className="p-2 md:px-4"
+                onClick={() => setShowAddBeneficiaryModal(true)}
+              >
+                Add Beneficiary
+              </button>
               </div>
 
               {/*Beneficiaries Table*/}
@@ -271,14 +277,14 @@ const Dashboard = () => {
               )}
 
               {/*Appointments Section*/}
-              <div className="flex justify-between items-center mt-16">
+              <div className="flex justify-between items-center mt-16 mb-8">
                 <h2 className="md:text-2xl text-xl">Your Appointments</h2>
                 <button
-                  className="py-3 md:px-4 px-2"
-                  onClick={() => navigate("/appointments/bookappointment")}
-                >
-                  Book Appointments
-                </button>
+                className="p-2 md:px-4"
+                onClick={() => setShowBookAppointmentModal(true)}
+              >
+                Book Appointment
+              </button>
               </div>
 
               {/*Appointments Table*/}
@@ -310,6 +316,24 @@ const Dashboard = () => {
             </>
           )}
         </div>
+
+        {showAddBeneficiaryModal && (
+          <FormModal
+            showModal={showAddBeneficiaryModal}
+            setShowModal={setShowAddBeneficiaryModal}
+            targetForm={AddBeneficiaryForm}
+            successMessage={"Beneficiary Added Successfully!"}
+          />
+        )}
+        
+        {showBookAppointmentModal && (
+          <FormModal
+            showModal={showBookAppointmentModal}
+            setShowModal={setShowBookAppointmentModal}
+            targetForm={BookAppointmentForm}
+            successMessage={"Appointment Booked Successfully!"}
+          />
+          )}
       </>
     </HelmetProvider>
   );
