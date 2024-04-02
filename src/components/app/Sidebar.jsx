@@ -143,7 +143,7 @@ const Sidebar = ({ platform }) => {
                 </div>
 
                 <p className="flex justify-start pl-5 py-2 text-sm">
-                  © 2023 Copyright. v1.1.0
+                  © {new Date().getFullYear()} Copyright. v1.2.0
                 </p>
               </div>
             </div>

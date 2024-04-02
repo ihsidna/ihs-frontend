@@ -7,7 +7,7 @@ import {ArrowRightIcon} from "@heroicons/react/outline";
 const SearchResultsPopup = ({searchResults, closeResults}) => {
 	const navigate = useNavigate();
 	return (
-		<div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50" style={{marginLeft: "0px"}}>
+		<div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50" style={{marginLeft: "0px"}}>
 			<div className="bg-white p-4 rounded-lg lg:w-1/3 md:w-1/2 w-full mx-4">
 				<div className='flex justify-between items-center mb-4'>
 					<h2 className="text-base font-semibold">Search Results</h2>
