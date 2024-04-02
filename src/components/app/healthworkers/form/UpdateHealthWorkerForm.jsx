@@ -88,7 +88,7 @@ const UpdateHealthWorkerForm = ({ handleCancelClick, setFormSuccess }) => {
           <Form className="grid gap-y-6">
             <div className="grid lg:grid-cols-2 gap-x-6 gap-y-3 mt-8 items-start">
               <div className="grid transition">
-                <label htmlFor="firstName">
+                <label htmlFor="firstName" className="text-xs mb-1 font-light text-gray-600">
                   First Name
                   <span className=" transition text-red-600">*</span>
                 </label>
@@ -111,7 +111,7 @@ const UpdateHealthWorkerForm = ({ handleCancelClick, setFormSuccess }) => {
                 />
               </div>
               <div className="grid transition">
-                <label htmlFor="lastName">
+                <label htmlFor="lastName" className="text-xs mb-1 font-light text-gray-600">
                   Last Name
                   <span className=" transition text-red-600">*</span>
                 </label>
@@ -133,7 +133,7 @@ const UpdateHealthWorkerForm = ({ handleCancelClick, setFormSuccess }) => {
                 />
               </div>
               <div className="grid transition">
-                <label htmlFor="email">
+                <label htmlFor="email" className="text-xs mb-1 font-light text-gray-600">
                   Email
                   <span className=" transition text-red-600">*</span>
                 </label>
@@ -155,7 +155,7 @@ const UpdateHealthWorkerForm = ({ handleCancelClick, setFormSuccess }) => {
                 />
               </div>
               <div className="grid transition">
-                <label htmlFor="phone">
+                <label htmlFor="phone" className="text-xs mb-1 font-light text-gray-600">
                   Phone Number
                   <span className=" transition text-red-600">*</span>
                 </label>
@@ -176,7 +176,7 @@ const UpdateHealthWorkerForm = ({ handleCancelClick, setFormSuccess }) => {
                 />
               </div>
               <div className="grid transition">
-                <label htmlFor="qualification">
+                <label htmlFor="qualification" className="text-xs mb-1 font-light text-gray-600">
                   Qualification
                   <span className=" transition text-red-600">*</span>
                 </label>

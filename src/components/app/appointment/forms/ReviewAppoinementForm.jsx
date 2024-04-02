@@ -57,7 +57,7 @@ const ReviewAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
                     <Form className="grid gap-y-6">
                         <div className="grid gap-x-6 gap-y-3 mt-8 items-start">
                             <div className="grid transition">
-                                <label htmlFor="rating">
+                                <label htmlFor="rating"  className="text-xs mb-1 font-light text-gray-600">
                                     Rating
                                     <span className=" transition text-red-600">*</span>
                                 </label>
@@ -84,7 +84,7 @@ const ReviewAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
                                 />
                             </div>
                             <div className="grid transition">
-                                <label htmlFor="review">Review</label>
+                                <label htmlFor="review"  className="text-xs mb-1 font-light text-gray-600">Review</label>
 
                                 <Field
                                     as="textarea"

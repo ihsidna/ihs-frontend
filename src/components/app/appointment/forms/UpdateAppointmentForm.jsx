@@ -101,7 +101,7 @@ const UpdateAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
             <Form className="grid gap-y-6">
               <div className="grid lg:grid-cols-2 gap-x-6 gap-y-3 mt-8 items-start">
                 <div className="grid transition">
-                  <label htmlFor="beneficiary">
+                  <label htmlFor="beneficiary"  className="text-xs mb-1 font-light text-gray-600">
                     Beneficiary
                     <span className=" transition text-red-600">*</span>
                   </label>
@@ -122,7 +122,7 @@ const UpdateAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
                   />
                 </div>
                 <div className="grid transition">
-                  <label htmlFor="service">
+                  <label htmlFor="service"  className="text-xs mb-1 font-light text-gray-600">
                     Service
                     <span className=" transition text-red-600">*</span>
                   </label>
@@ -152,7 +152,7 @@ const UpdateAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
                   />
                 </div>
                 <div className="grid transition">
-                  <label htmlFor="date">
+                  <label htmlFor="date" className="text-xs mb-1 font-light text-gray-600">
                     Date
                     <span className=" transition text-red-600">*</span>
                   </label>
@@ -174,7 +174,7 @@ const UpdateAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
                 </div>
 
                 <div className="grid transition">
-                  <label htmlFor="time">
+                  <label htmlFor="time"  className="text-xs mb-1 font-light text-gray-600">
                     Time
                     <span className=" transition text-red-600">*</span>
                   </label>
@@ -195,7 +195,7 @@ const UpdateAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
                   />
                 </div>
                 <div className="grid lg:col-span-2 transition">
-                  <label htmlFor="notes">Notes</label>
+                  <label htmlFor="notes" className="text-xs mb-1 font-light text-gray-600">Notes</label>
 
                   <Field
                     as="textarea"

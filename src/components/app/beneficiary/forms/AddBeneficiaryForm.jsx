@@ -68,7 +68,7 @@ const AddBeneficiaryForm = ({ handleCancelClick, setFormSuccess }) => {
             <Form className="grid gap-y-6">
               <div className="grid lg:grid-cols-2 gap-x-6 gap-y-3 mt-8 items-center">
                 <div className="grid transition">
-                  <label htmlFor="firstName">
+                  <label htmlFor="firstName" className="text-xs mb-1 font-light text-gray-600">
                     First Name
                     <span className=" transition text-red-600">*</span>
                   </label>
@@ -93,7 +93,7 @@ const AddBeneficiaryForm = ({ handleCancelClick, setFormSuccess }) => {
                   />
                 </div>
                 <div className="grid transition">
-                  <label htmlFor="lastName">
+                  <label htmlFor="lastName" className="text-xs mb-1 font-light text-gray-600">
                     Last Name
                     <span className=" transition text-red-600">*</span>
                   </label>
@@ -115,7 +115,7 @@ const AddBeneficiaryForm = ({ handleCancelClick, setFormSuccess }) => {
                   />
                 </div>
                 <div className="grid transition">
-                  <label htmlFor="dob">
+                  <label htmlFor="dob" className="text-xs mb-1 font-light text-gray-600">
                     Date of Birth
                     <span className=" transition text-red-600">*</span>
                   </label>
@@ -138,7 +138,7 @@ const AddBeneficiaryForm = ({ handleCancelClick, setFormSuccess }) => {
                 </div>
 
                 <div className="grid">
-                  <label htmlFor="relationship">
+                  <label htmlFor="relationship" className="text-xs mb-1 font-light text-gray-600">
                     Relationship
                     <span className="text-red-600">*</span>
                   </label>
@@ -186,7 +186,7 @@ const AddBeneficiaryForm = ({ handleCancelClick, setFormSuccess }) => {
                   />
                 </div>
                 <div className="grid transition">
-                  <label htmlFor="phone">
+                  <label htmlFor="phone" className="text-xs mb-1 font-light text-gray-600">
                     Phone Number
                     <span className=" transition text-red-600">*</span>
                   </label>
@@ -208,7 +208,7 @@ const AddBeneficiaryForm = ({ handleCancelClick, setFormSuccess }) => {
                   />
                 </div>
                 <div className="grid transition">
-                  <label htmlFor="address">
+                  <label htmlFor="address" className="text-xs mb-1 font-light text-gray-600">
                     Address
                     <span className=" transition text-red-600">*</span>
                   </label>
@@ -230,7 +230,7 @@ const AddBeneficiaryForm = ({ handleCancelClick, setFormSuccess }) => {
                   />
                 </div>
                 <div className="grid transition">
-                  <label htmlFor="city">
+                  <label htmlFor="city" className="text-xs mb-1 font-light text-gray-600">
                     City
                     <span className=" transition text-red-600">*</span>
                   </label>
@@ -253,7 +253,7 @@ const AddBeneficiaryForm = ({ handleCancelClick, setFormSuccess }) => {
                 </div>
 
                 <div className="grid transition">
-                  <label htmlFor="state">
+                  <label htmlFor="state" className="text-xs mb-1 font-light text-gray-600">
                     State
                     <span className=" transition text-red-600">*</span>
                   </label>

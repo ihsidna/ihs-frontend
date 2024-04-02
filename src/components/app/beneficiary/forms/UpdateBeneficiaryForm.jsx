@@ -81,7 +81,7 @@ const UpdateBeneficiaryForm = ({ handleCancelClick, setFormSuccess }) => {
             <Form className="grid gap-y-6">
               <div className="grid lg:grid-cols-2 gap-x-6 gap-y-3 mt-8 items-center">
                 <div className="grid transition">
-                  <label className="text-sm text-gray-600" htmlFor="firstName">
+                  <label className="text-sm font-light mb-1 text-gray-600" htmlFor="firstName">
                     Firstname
                     <span className=" transition text-red-600">*</span>
                   </label>
@@ -105,7 +105,7 @@ const UpdateBeneficiaryForm = ({ handleCancelClick, setFormSuccess }) => {
                   />
                 </div>
                 <div className="grid transition">
-                  <label className="text-sm text-gray-600" htmlFor="lastName">
+                  <label className="text-sm font-light mb-1 text-gray-600" htmlFor="lastName">
                     Lastname
                     <span className=" transition text-red-600">*</span>
                   </label>
@@ -127,7 +127,7 @@ const UpdateBeneficiaryForm = ({ handleCancelClick, setFormSuccess }) => {
                   />
                 </div>
                 <div className="grid transition">
-                  <label className="text-sm text-gray-600" htmlFor="dob">
+                  <label className="text-sm font-light mb-1 text-gray-600" htmlFor="dob">
                     Date of Birth
                     <span className=" transition text-red-600">*</span>
                   </label>
@@ -150,7 +150,7 @@ const UpdateBeneficiaryForm = ({ handleCancelClick, setFormSuccess }) => {
 
                 <div className="grid">
                   <label
-                    className="text-sm text-gray-600"
+                   font-light mb-1  className="text-sm text-gray-600"
                     htmlFor="relationship"
                   >
                     Relationship
@@ -200,7 +200,7 @@ const UpdateBeneficiaryForm = ({ handleCancelClick, setFormSuccess }) => {
                   />
                 </div>
                 <div className="grid transition">
-                  <label className="text-sm text-gray-600" htmlFor="phone">
+                  <label className="text-sm font-light mb-1 text-gray-600" htmlFor="phone">
                     Phone Number
                     <span className=" transition text-red-600">*</span>
                   </label>
@@ -221,7 +221,7 @@ const UpdateBeneficiaryForm = ({ handleCancelClick, setFormSuccess }) => {
                   />
                 </div>
                 <div className="grid transition">
-                  <label className="text-sm text-gray-600" htmlFor="address">
+                  <label className="text-sm font-light mb-1 text-gray-600" htmlFor="address">
                     Address
                     <span className=" transition text-red-600">*</span>
                   </label>
@@ -243,7 +243,7 @@ const UpdateBeneficiaryForm = ({ handleCancelClick, setFormSuccess }) => {
                   />
                 </div>
                 <div className="grid transition">
-                  <label className="text-sm text-gray-600" htmlFor="city">
+                  <label className="text-sm font-light mb-1 text-gray-600" htmlFor="city">
                     City
                     <span className=" transition text-red-600">*</span>
                   </label>
@@ -266,7 +266,7 @@ const UpdateBeneficiaryForm = ({ handleCancelClick, setFormSuccess }) => {
                 </div>
 
                 <div className="grid transition">
-                  <label className="text-sm text-gray-600" htmlFor="state">
+                  <label className="text-sm font-light mb-1 text-gray-600" htmlFor="state">
                     State
                     <span className=" transition text-red-600">*</span>
                   </label>

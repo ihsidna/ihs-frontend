@@ -56,7 +56,7 @@ const UpdatePhoneNumberForm = ({
         {({ errors }) => (
           <Form className="grid gap-y-3 mt-8">
             <div className="grid">
-              <label htmlFor="phone" className="text-sm mb-1">
+              <label htmlFor="phone" className="text-xs mb-1 font-light text-gray-600">
                 Phone Number
                 <span className="text-red-600">*</span>
               </label>

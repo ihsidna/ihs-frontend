@@ -265,6 +265,7 @@ const Profile = () => {
                           ? "focus:ring-red-600"
                           : "focus:ring-ihs-green-shade-600"
                       } w-full border border-gray-300 px-3 py-3 text-gray-500 rounded-md focus:outline-none focus:ring-1`}
+                      autoComplete="password"
                     />
                     {revealPwd ? (
                       <EyeOffIcon
@@ -303,7 +304,8 @@ const Profile = () => {
                         errors.confirmPassword && touched.confirmPassword
                           ? "focus:ring-red-600"
                           : "focus:ring-ihs-green-shade-600"
-                      } w-full border border-gray-300 px-3 py-3 text-gray-500 rounded-md focus:outline-none focus:ring-1`}
+                        } w-full border border-gray-300 px-3 py-3 text-gray-500 rounded-md focus:outline-none focus:ring-1`}
+                        autoComplete="password"
                     />
                     {revealConfirmPwd ? (
                       <EyeOffIcon

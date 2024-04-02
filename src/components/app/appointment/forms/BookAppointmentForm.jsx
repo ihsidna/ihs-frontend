@@ -115,7 +115,7 @@ const BookAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
             <Form className="grid gap-y-6">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-3 mt-8 items-center">
                 <div className="grid transition w-full">
-                  <label htmlFor="beneficiaryId">
+                  <label htmlFor="beneficiaryId"  className="text-xs mb-1 font-light text-gray-600">
                     Beneficiary
                     <span className=" transition text-red-600">*</span>
                   </label>
@@ -151,7 +151,7 @@ const BookAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
                   />
                 </div>
                 <div className="grid transition">
-                  <label htmlFor="serviceId">
+                  <label htmlFor="serviceId"  className="text-xs mb-1 font-light text-gray-600">
                     Service
                     <span className=" transition text-red-600">*</span>
                   </label>
@@ -186,7 +186,7 @@ const BookAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
                   />
                 </div>
                 <div className="grid transition">
-                  <label htmlFor="date">
+                  <label htmlFor="date"  className="text-xs mb-1 font-light text-gray-600">
                     Date
                     <span className=" transition text-red-600">*</span>
                   </label>
@@ -197,6 +197,7 @@ const BookAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
                     id="date"
                     autoComplete="true"
                     className="appearance-none h-10 bg-transparent w-full lg:min-w-[300px] transition border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-1"
+                    required
                   />
                   <ErrorMessage
                     name="date"
@@ -208,7 +209,7 @@ const BookAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
                 </div>
 
                 <div className="grid transition">
-                  <label htmlFor="time">
+                  <label htmlFor="time"  className="text-xs mb-1 font-light text-gray-600">
                     Time
                     <span className=" transition text-red-600">*</span>
                   </label>
@@ -219,6 +220,7 @@ const BookAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
                     id="time"
                     autoComplete="true"
                     className="appearance-none h-10 bg-transparent w-full lg:min-w-[300px] transition border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-1"
+                    required
                   />
                   <ErrorMessage
                     name="time"
@@ -229,7 +231,9 @@ const BookAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
                   />
                 </div>
                 <div className="grid lg:col-span-2 transition">
-                  <label htmlFor="notes">Notes</label>
+                  <label htmlFor="notes"  className="text-xs mb-1 font-light text-gray-600">
+                    Notes
+                  </label>
 
                   <Field
                     as="textarea"

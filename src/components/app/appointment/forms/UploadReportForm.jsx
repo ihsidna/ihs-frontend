@@ -92,7 +92,7 @@ const UploadReportForm = ({ handleCancelClick, setFormSuccess }) => {
                     <Form className="grid gap-y-6">
                         <div className="grid gap-x-6 gap-y-3 mt-8 items-start">
                             <div className="grid transition">
-                                <label htmlFor="file">
+                                <label htmlFor="file"  className="text-xs mb-1 font-light text-gray-600">
                                     Upload Report<span className="text-red-600">*</span>
                                 </label>
 

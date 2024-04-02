@@ -55,7 +55,7 @@ const AddServiceForm = ({ handleCancelClick, setFormSuccess }) => {
                 {({ errors }) => (
                     <Form className="grid gap-y-3 mt-8">
                         <div className="grid">
-                            <label htmlFor="name">
+                            <label htmlFor="name" className="text-xs mb-1 font-light text-gray-600">
                                 Service Name
                                 <span className="text-red-600">*</span>
                             </label>
@@ -78,7 +78,7 @@ const AddServiceForm = ({ handleCancelClick, setFormSuccess }) => {
                         </div>
 
                         <div className="grid">
-                            <label htmlFor="category">
+                            <label htmlFor="category" className="text-xs mb-1 font-light text-gray-600">
                                 Category
                                 <span className="text-red-600">*</span>
                             </label>
