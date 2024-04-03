@@ -26,7 +26,8 @@ const UsersTable = ({ users }) => {
     {
       header: "NAME",
       accessorFn: (row) => `${row.firstName} ${row.lastName}`,
-      cell: (cell) => <p className="capitalize">{`${cell.getValue()}`}</p>,
+      cell: (cell) => <p className={`capitalize ${cell.row.original.accountActive === false ? "text-red-500" : ""}`}>{`${cell.getValue()}`}
+      </p>,
     },
     {
       header: "EMAIL",

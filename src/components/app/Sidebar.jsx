@@ -61,7 +61,7 @@ const Sidebar = ({ platform }) => {
     try {
       await logoutApiCall();
 
-      await dispatch(revertAll());
+      dispatch(revertAll());
       localStorage.clear();
       await removeKey("auth");
       await removeKey("loggedInUser");

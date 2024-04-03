@@ -24,11 +24,11 @@ const ResetPasswordPage = () => {
       </div>
       <div className="flex flex-col justify-center items-center py-4">
         <button
-          className="flex flex-row items-center justify-start h-4 border-0 bg-transparent text-slate-500 md:my-4 my-4"
+          className=" flex items-center bg-transparent text-gray-600 hover:bg-transparent"
           onClick={() => navigate(-1)}
         >
-          <ChevronLeftIcon className="md:w-6 w-4" />{" "}
-          <p className=" px-2">Back</p>
+          <ChevronLeftIcon className="w-4 mr-2 my-4" />{" "}
+          Back
         </button>
       </div>
     </div>

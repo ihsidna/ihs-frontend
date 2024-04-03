@@ -3,8 +3,12 @@ import usePost from "../../../../hooks/usePost";
 import { addUserSchema } from "../../../../utils/formSchema";
 import { useQueryClient } from "@tanstack/react-query";
 import { userRoles } from "../../../../data/enums";
+import { useState } from "react";
+import {ExclamationCircleIcon} from "@heroicons/react/solid";
 
 const AddUserForm = ({ handleCancelClick, setFormSuccess }) => {
+  const [errMsg, setErrMsg] = useState("")
+
   const initialValues = {
     firstName: "",
     lastName: "",
@@ -40,9 +44,9 @@ const AddUserForm = ({ handleCancelClick, setFormSuccess }) => {
       },
       {
         onError: (error) => {
-          // error.response?.data?.data === "Error: User already exists"
-          //     ? setErrMsg("User already exists")
-          //     : setErrMsg("Error adding user");
+          error.response?.data?.data === "Error: User already exists"
+              ? setErrMsg("User already exists")
+              : setErrMsg("Error adding user");
         },
         onSuccess: () => {
           queryClient.invalidateQueries(["users"]);
@@ -80,6 +84,14 @@ const AddUserForm = ({ handleCancelClick, setFormSuccess }) => {
           ⨉
         </span>
       </div>
+      <p
+				className={errMsg ? "rounded-md p-4 mt-4 shadow-md border-0 border-l-4 border-ihs-green-shade-500 text-slate-500 font-thin md:text-lg text-sm" : "absolute -left-[99999px]"}
+				aria-live="assertive">
+				<span className="flex items-center">
+					<ExclamationCircleIcon className="text-ihs-green w-6 mr-2 inline"/>
+					{errMsg}
+				</span>
+      </p>
       <Formik
         initialValues={initialValues}
         validationSchema={addUserSchema}

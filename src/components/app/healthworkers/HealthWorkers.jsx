@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import ViewHealthWorker from "./ViewHealthWorker";
-import UpdateHealthWorker from "./UpdateHealthWorker";
 import HealthWorkerTable from "./table/HealthWorkerTable";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import useFetch from "../../../hooks/useFetch";
@@ -16,10 +15,6 @@ const HealthWorkers = () => {
       <Route
         path="/viewhealthworker/:healthWorkerId"
         element={<ViewHealthWorker />}
-      />
-      <Route
-        path="/updatehealthworker/:healthWorkerId"
-        element={<UpdateHealthWorker />}
       />
     </Routes>
   );

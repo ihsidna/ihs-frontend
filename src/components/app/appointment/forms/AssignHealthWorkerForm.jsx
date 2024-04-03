@@ -16,7 +16,6 @@ const AssignHealthWorkerForm = ({ handleCancelClick, setFormSuccess }) => {
   const appointmentId = useParams().appointmentId;
 
   const [mobileAuth, setMobileAuth] = useState("");
-  const [errMsg, setErrMsg] = useState(false);
 
   const userType = useSelector((state) => state.auth.userAccess.userType);
 
@@ -31,7 +30,7 @@ const AssignHealthWorkerForm = ({ handleCancelClick, setFormSuccess }) => {
   );
   const assignHealthWorkerMutation = usePatch();
   const queryClient = useQueryClient();
-  console.log(fetchAppointment.data[0]);
+
   const initialValues = {
     beneficiary: fetchAppointment.data[0].beneficiaryName,
     service: fetchAppointment.data[0].serviceName,
@@ -55,26 +54,15 @@ const AssignHealthWorkerForm = ({ handleCancelClick, setFormSuccess }) => {
 
   const handleSubmit = (values) => {
     const healthWorkerId = values.healthWorker;
-
-    const filteredHealthWorker = fetchHealthWorkers.data.filter(
-      (healthWorker) => healthWorker.id === healthWorkerId
-    );
-    const healthWorkerName =
-      capitalizeString(filteredHealthWorker[0].firstName) +
-      " " +
-      capitalizeString(filteredHealthWorker[0].lastName);
-
     assignHealthWorkerMutation.mutate(
       {
-        url: `/admin/appointment/${appointmentId}`,
+        url: `/admin/appointment/${appointmentId}/assignWorker`,
         body: {
           healthWorkerId,
-          healthWorkerName,
           status: appointmentStatus.Confirmed,
         },
       },
       {
-        // onError: (error) => setErrMsg(error.message),
         onSuccess: () => {
           queryClient.invalidateQueries(["allAppointments"]);
           queryClient.invalidateQueries(["appointments"]);

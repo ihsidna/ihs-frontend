@@ -2,8 +2,12 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import usePost from "../../../../hooks/usePost";
 import { addHealthWorkerSchema } from "../../../../utils/formSchema";
 import { useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
+import {ExclamationCircleIcon} from "@heroicons/react/solid";
 
 const AddHealthWorkerForm = ({ handleCancelClick, setFormSuccess }) => {
+  const [errMsg, setErrMsg] = useState("")
+
   const initialValues = {
     firstName: "",
     lastName: "",
@@ -26,6 +30,11 @@ const AddHealthWorkerForm = ({ handleCancelClick, setFormSuccess }) => {
         body: healthWorkerData,
       },
       {
+        onError: (error) => {
+          error.response?.data?.data === "Error: Health worker already exists"
+              ? setErrMsg("Health worker already exists")
+              : setErrMsg("Error adding health worker");
+        },
         onSuccess: () => {
           queryClient.invalidateQueries(["healthWorkers"]);
           actions.resetForm();
@@ -64,6 +73,14 @@ const AddHealthWorkerForm = ({ handleCancelClick, setFormSuccess }) => {
           ⨉
         </span>
       </div>
+      <p
+				className={errMsg ? "rounded-md p-4 mt-4 shadow-md border-0 border-l-4 border-ihs-green-shade-500 text-slate-500 font-thin md:text-lg text-sm" : "absolute -left-[99999px]"}
+				aria-live="assertive">
+				<span className="flex items-center">
+					<ExclamationCircleIcon className="text-ihs-green w-6 mr-2 inline"/>
+					{errMsg}
+				</span>
+      </p>
       <Formik
         initialValues={initialValues}
         validationSchema={addHealthWorkerSchema}

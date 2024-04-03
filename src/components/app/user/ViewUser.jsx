@@ -91,7 +91,17 @@ const ViewUser = () => {
                   Role:{" "}
                 </p>
                 <p className="lg:col-start-2 capitalize">{data?.userType}</p>
-              </div>
+                </div>
+                {
+                  data?.accountActive === false &&
+                  <div className="flex space-x-4">
+                    <p className="col-span-2 lg:col-span-1 font-semibold  text-black">
+                      Account Status:{" "}
+                    </p>
+                    <p className="lg:col-start-2 px-2 py-1 break-normal capitalize rounded text-xs bg-gray-300">Deactivated
+                    </p>
+                  </div>
+                }
             </div>
           )}
           <hr className="my-10" />

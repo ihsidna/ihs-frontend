@@ -49,16 +49,17 @@ const UpdateAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
   };
   const initialValues = {
     beneficiary: fetchAppointment.data[0]?.beneficiaryName,
-    service: fetchAppointment.data[0]?.serviceName,
+    serviceId: fetchAppointment.data[0]?.serviceId,
     date: formatDate(fetchAppointment.data[0]?.date),
     time: fetchAppointment.data[0]?.time,
     notes: fetchAppointment.data[0]?.notes,
   };
 
   const handleSubmit = async (values) => {
+    
     let appointmentData = {
       beneficiary: values.beneficiary,
-      service: values.service,
+      serviceId: values.serviceId,
       date: WATDateString(values.date),
       time: values.time,
       notes: values.notes,
@@ -128,14 +129,14 @@ const UpdateAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
                   </label>
                   <Field
                     as="select"
-                    name="service"
-                    id="service"
+                    name="serviceId"
+                    id="serviceId"
                     required={true}
                     className="lg:min-w-[300px] max-w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-1"
                   >
                     {fetchServices?.data?.length ? (
                       fetchServices?.data?.map((service, index) => (
-                        <option key={index} value={service?.name}>
+                        <option key={index} value={service?.id}>
                           {service?.name}
                         </option>
                       ))

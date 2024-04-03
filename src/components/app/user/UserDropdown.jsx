@@ -6,8 +6,10 @@ import usePatch from "../../../hooks/usePatch";
 import { ExclamationCircleIcon } from "@heroicons/react/outline";
 import TopBarProgress from "react-topbar-progress-indicator";
 import ActionModal from "../../shared/ActionModal";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function UserDropdown({ userDetails }) {
+  const queryClient = useQueryClient();
   const [toggleModal, setToggleModal] = useState();
   const [errMsg, setErrMsg] = useState(false);
 
@@ -28,7 +30,10 @@ export default function UserDropdown({ userDetails }) {
           setErrMsg("Error deactivating user. Try again.");
         },
         onSuccess: () => {
+          queryClient.invalidateQueries(["users"]);
+          queryClient.invalidateQueries([`user, ${userDetails.id}`]);
           setToggleModal(false);
+          
         },
       }
     );
