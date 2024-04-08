@@ -50,6 +50,7 @@ const ViewUser = () => {
             icon={UserIcon}
           >
             {isSuccess ? (
+              data?.accountActive === true &&
               <UserDropdown userDetails={data} />
             ) : (
               <Spinner className="mr-8" style={{ width: "2rem" }} />
