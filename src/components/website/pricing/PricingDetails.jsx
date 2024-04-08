@@ -3,8 +3,8 @@ import TopBarProgress from "react-topbar-progress-indicator";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import useAuth from "../../../hooks/useAuth";
 import { Capacitor } from "@capacitor/core";
+import useFetch from "../../../hooks/useFetch";
 
 TopBarProgress.config({
   barColors: {
@@ -22,7 +22,6 @@ const PricingDetails = () => {
 
   const axiosPrivate = useAxiosPrivate();
   const [priceId, setPriceId] = useState("");
-  const { beneficiaries } = useAuth();
   const [loading, setLoading] = useState(false);
   const [beneficiarySubscriptionStatus, setBeneficiarySubscriptionStatus] =
     useState(false);
@@ -30,6 +29,11 @@ const PricingDetails = () => {
   const beneficiary = useParams();
   const beneficiaryId = beneficiary.beneficiaryId;
 
+  const { data } = useFetch(
+  `/user/beneficiary/${beneficiaryId}`,
+  `beneficiary, ${beneficiaryId}`
+  );
+  
   useEffect(() => {
     setPlatform(Capacitor.getPlatform());
   }, []);
@@ -76,19 +80,12 @@ const PricingDetails = () => {
   };
 
   useEffect(() => {
-    const beneficiary = beneficiaries.filter(
-      (beneficiary) => beneficiary.id === beneficiaryId
-    );
-
-    if (
-      !beneficiary[0]?.subscription?.status ||
-      beneficiary[0]?.subscription?.status !== "active"
-    ) {
-      setBeneficiarySubscriptionStatus(false);
+    if (data && data?.subscription.status === "active") {
+      setBeneficiarySubscriptionStatus(true)
     } else {
-      setBeneficiarySubscriptionStatus(true);
+      setBeneficiarySubscriptionStatus(false)
     }
-  }, [beneficiaries, beneficiaryId, loggedInUser]);
+  }, [data]);
 
   return (
     <section className="bg-white mb-20">
