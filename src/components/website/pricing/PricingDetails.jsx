@@ -80,7 +80,7 @@ const PricingDetails = () => {
   };
 
   useEffect(() => {
-    if (data && data?.subscription.status === "active") {
+    if (data && data?.subscription?.status === "active") {
       setBeneficiarySubscriptionStatus(true)
     } else {
       setBeneficiarySubscriptionStatus(false)
