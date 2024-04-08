@@ -16,6 +16,7 @@ import { revertAll } from "../../redux/features/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { iosStyles } from "../../mobileStyles";
 import { getKey, removeKey } from "../../utils/mobilePreferences";
+import { useQueryClient } from "@tanstack/react-query";
 
 const activeLink =
   "flex w-70 items-center gap-5 text-lg text-ihs-green bg-ihs-green-shade-200 border border-0 border-r-2 border-r-ihs-green pl-5 py-2";
@@ -25,6 +26,7 @@ const normalLink =
 const Sidebar = ({ platform }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const userType = useSelector((state) => state.auth.userAccess.userType);
 
@@ -63,8 +65,11 @@ const Sidebar = ({ platform }) => {
 
       dispatch(revertAll());
       localStorage.clear();
+      queryClient.removeQueries();
+      
       await removeKey("auth");
       await removeKey("loggedInUser");
+
 
       navigate("/");
     } catch (error) {
