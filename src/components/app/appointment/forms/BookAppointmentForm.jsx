@@ -73,8 +73,9 @@ const BookAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
         },
         {
           onSuccess: () => {
-            queryClient.invalidateQueries([`appointments, ${values.beneficiaryId}`]);
-            queryClient.invalidateQueries(["allAppointments"]);
+            queryClient.refetchQueries([`appointments, ${values.beneficiaryId}`]);
+            queryClient.refetchQueries(["allAppointments"]);
+            queryClient.refetchQueries(["appointments"]);
             setFormSuccess(true);
           },
         }
