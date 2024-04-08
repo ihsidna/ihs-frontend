@@ -48,8 +48,8 @@ const BookFollowupAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
         //     setErrMsg("Something went wrong. Try again");
         // },
         onSuccess: () => {
-          queryClient.invalidateQueries(["allAppointment"]);
-          queryClient.invalidateQueries(["appointments"]);
+          queryClient.refetchQueries(["allAppointments"]);
+          queryClient.refetchQueries(["appointments"]);
           setFormSuccess(true);
           navigate("/allappointments");
         },
