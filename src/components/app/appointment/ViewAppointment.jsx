@@ -154,7 +154,11 @@ const ViewAppointment = () => {
           <PageHeading
             pageName={"Appointment Details"}
             previousPageName={"Appointments"}
-            previousUrl={"/allappointments"}
+            previousUrl={
+              userType === userRoles.Admin 
+                ? "/allappointments"
+                : "/appointments"
+            }
           >
             {isSuccess ? (
               <AppointmentDropdown

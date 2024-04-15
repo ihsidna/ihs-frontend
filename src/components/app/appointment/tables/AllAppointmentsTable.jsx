@@ -34,7 +34,7 @@ const AllAppointmentsTable = ({ appointments }) => {
   );
   completedAppointments = sortInDescOrder(completedAppointments);
 
-  const mobileScreenHeaders = ["Beneficiaries"];
+  const mobileScreenHeaders = ["Appointments"];
 
   const columns = [
     {
