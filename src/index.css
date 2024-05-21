@@ -9,10 +9,9 @@
         @apply p-4
     }
 
-    button {
-        @apply text-white border bg-ihs-green border-ihs-green
-        hover:bg-transparent hover:text-ihs-green rounded-md
-    }
+        button {
+            @apply px-4 py-2 text-white bg-ihs-green hover:bg-ihs-green-shade-700 rounded disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed
+        }
 
     html {
         font-family: 'Be Vietnam Pro', sans-serif;
@@ -22,3 +21,51 @@
 body {
     padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
+
+/* Standard syntax */
+::placeholder {
+    color: red;
+    opacity: 1;
+}
+
+/* Webkit (Safari, Chrome) */
+::-webkit-input-placeholder {
+    color: red;
+    opacity: 1;
+}
+
+/* Edge */
+::-ms-input-placeholder {
+    color: red;
+    opacity: 1;
+}
+
+.error-message {
+    /* animation: flyIn .3s ease-in-out; */
+    transition: transform 2s ease-in-out;
+}
+
+.error-message.fade-in {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: transform 2s ease-in-out;
+}
+
+.error-message.fade-out {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+@keyframes flyIn-y {
+    0% {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@media screen and (max-width:32.5em) {}

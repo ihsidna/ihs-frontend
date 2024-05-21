@@ -1,91 +1,99 @@
-import { ChevronLeftIcon, IdentificationIcon } from "@heroicons/react/outline";
-import { useNavigate, useParams } from "react-router-dom";
+import { IdentificationIcon } from "@heroicons/react/outline";
+import { useParams } from "react-router-dom";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import HealthWorkerDropdown from "./HealthWorkerDropdown";
 import { capitalizeString } from "../../../utils/capitalizeString";
 import useFetch from "../../../hooks/useFetch";
+import { useState } from "react";
+import FormModal from "../../shared/FormModal";
+import UpdateHealthWorkerForm from "./form/UpdateHealthWorkerForm";
+import PageHeading from "../../shared/PageHeading";
+import Spinner from "../../shared/Spinner";
 
 const ViewHealthWorker = () => {
-  const navigate = useNavigate();
   const params = useParams();
   const healthWorkerId = params.healthWorkerId;
+  const [showUpdateHealthWorkerForm, setShowUpdateHealthWorkerForm] =
+    useState(false);
 
-  const staleTime = 1000 * 60 * 5;
-  const { isSuccess, data } = useFetch(
+  const { isLoading, isSuccess, data } = useFetch(
     `/worker/${healthWorkerId}`,
-    `healthWorker, ${healthWorkerId}`,
-    staleTime
+    `healthWorker, ${healthWorkerId}`
   );
 
   return (
     <HelmetProvider>
       <>
+        {showUpdateHealthWorkerForm && (
+          <FormModal
+            showModal={showUpdateHealthWorkerForm}
+            setShowModal={setShowUpdateHealthWorkerForm}
+            targetForm={UpdateHealthWorkerForm}
+            successMessage={"Health worker updated successfully!"}
+          />
+        )}
         <Helmet>
           <title>View Health Worker | IHS Dashboard</title>
           <link rel="canonical" href="https://www.ihsmia.com/" />
         </Helmet>
         <div className="lg:px-20 lg:py-4 md:px-10 p-3">
-          <button
-            className="flex flex-row items-center justify-start h-10 border-0 bg-transparent text-slate-500 lg:mt-10 my-5"
-            onClick={() => navigate("/healthworkers")}
+          <PageHeading
+            pageName={"Health Worker Details"}
+            previousPageName={"Health Workers"}
+            previousUrl={"/healthworkers"}
+            icon={IdentificationIcon}
           >
-            <ChevronLeftIcon className="w-6" />{" "}
-            <p className="text-lg px-5">Back to Health Workers</p>
-          </button>
-          <div className="flex">
-            <div className="flex-1">
-              <div className="flex justify-between items-center h-24 bg-ihs-green-shade-50 rounded-md shadow-sm text-gray-600">
-                <div className="flex">
-                  <IdentificationIcon className="md:w-14 w-8 md:ml-10 ml-3" />
-                  <h3 className="md:text-3xl text-lg py-8 md:px-8 px-2">
-                    Health Worker Details
-                  </h3>
-                </div>
+            {isSuccess ? (
+              <HealthWorkerDropdown
+                healthWorkerDetails={data}
+                setShowUpdateHealthWorkerForm={setShowUpdateHealthWorkerForm}
+              />
+            ) : (
+              <Spinner className="mr-8" style={{ width: "2rem" }} />
+            )}
+          </PageHeading>
 
-                {isSuccess && (
-                  <HealthWorkerDropdown healthWorkerDetails={data} />
-                )}
-              </div>
-
-              {isSuccess && (
-                <div className="my-10 ml-5 text-gray-600 md:text-xl text-md">
-                  <div className="grid grid-cols-4">
-                    <p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">
-                      Full Name:{" "}
-                    </p>
-                    <p className="py-5 md:ml-5 md:col-start-2 col-span-2">
-                      {capitalizeString(data.firstName)}{" "}
-                      {capitalizeString(data.lastName)}{" "}
-                    </p>
-                  </div>
-                  <div className="grid grid-cols-4">
-                    <p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">
-                      Email:{" "}
-                    </p>
-                    <p className="py-5 md:ml-5 md:col-start-2 col-span-2">
-                      {data.email}{" "}
-                    </p>
-                  </div>
-                  <div className="grid grid-cols-4">
-                    <p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">
-                      Phone Number:{" "}
-                    </p>
-                    <p className="py-5 md:ml-5 md:col-start-2 col-span-2">
-                      {data.phone}{" "}
-                    </p>
-                  </div>
-                  <div className="grid grid-cols-4">
-                    <p className="py-5 font-semibold col-start-1 md:col-span-1 col-span-2">
-                      Qualification:{" "}
-                    </p>
-                    <p className="py-5 md:ml-5 md:col-start-2 col-span-2">
-                      {data.qualification}{" "}
-                    </p>
-                  </div>
-                </div>
-              )}
+          {isLoading ? (
+            <div className="w-full min-h-40 p-12 grid items-center">
+              <Spinner
+                className=""
+                style={{ width: "10%", margin: "2rem auto 0" }}
+              />
             </div>
-          </div>
+          ) : (
+            <div className="my-10 text-gray-600 grid md:grid-cols-2 gap-y-4 lg:max-w-[70%]">
+              <div className="flex space-x-4">
+                <p className="col-span-2 lg:col-span-1 font-semibold text-black">
+                  Full Name:
+                </p>
+
+                <p className="lg:col-start-2">
+                  {capitalizeString(data.firstName)}{" "}
+                  {capitalizeString(data.lastName)}{" "}
+                </p>
+              </div>
+              <div className="flex space-x-4">
+                <p className="col-span-2 lg:col-span-1 font-semibold text-black">
+                  Email:
+                </p>
+
+                <p className="lg:col-start-2">{data.email}</p>
+              </div>
+              <div className="flex space-x-4">
+                <p className="col-span-2 lg:col-span-1 font-semibold text-black">
+                  Phone Number:{" "}
+                </p>
+
+                <p className="lg:col-start-2">{data.phone} </p>
+              </div>
+              <div className="flex space-x-4">
+                <p className="col-span-2 lg:col-span-1 font-semibold text-black">
+                  Qualification:{" "}
+                </p>
+                <p className="lg:col-start-2">{data.qualification} </p>
+              </div>
+            </div>
+          )}
         </div>
       </>
     </HelmetProvider>
