@@ -10,16 +10,20 @@ const ServiceTable = ({ services }) => {
       header: "NAME",
       accessorKey: "name",
       cell: (cell) => (
-        <p className="capitalize text-lg md:text-base font-semibold md:font-normal text-gray-700">{`${cell.getValue()}`}</p>
+        <div className="flex items-center justify-between">
+          <p className="text-lg font-semibold capitalize md:text-base md:font-normal">{`${cell.getValue()}`}</p>
+
+          <span className="block text-xs font-light md:hidden text-ihs-green">View</span>
+        </div>
       ),
     },
     {
       header: "CATEGORY",
       accessorKey: "category",
       cell: (cell) => (
-        <p className="capitalize flex justify-between text-gray-500">
+        <p className="flex justify-between text-gray-500 capitalize">
           <span className="font-medium md:hidden">Category:</span>
-          <span className="capitalize font-normal">{`${cell.getValue()}`}</span>
+          <span className="font-normal capitalize">{`${cell.getValue()}`}</span>
         </p>
       ),
     },

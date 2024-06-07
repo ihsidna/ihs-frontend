@@ -15,3 +15,10 @@ export const sortInDescOrder = (array) => {
     const sorted = newArray.sort((a, b) => new Date(b.date) - new Date(a.date));
     return sorted;
 };
+
+export const truncate = (str, maxLength) => {
+  if (str.length > maxLength) {
+    return str.substring(0, maxLength) + "...";
+  }
+  return str;
+};

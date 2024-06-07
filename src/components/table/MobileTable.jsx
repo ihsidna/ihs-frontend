@@ -11,10 +11,10 @@ const MobileTable = ({
 }) => {
   return (
     // small screen table
-    <div className="sm:hidden grid gap-y-2" aria-label="table" role="table">
+    <div className="grid sm:hidden gap-y-2" aria-label="table" role="table">
       <div
         aria-label="table-head"
-        className="flex justify-between text-lg font-semibold leading-4 tracking-wider text-left bg-ihs-green-shade-100 py-6 px-4"
+        className="flex justify-between px-4 py-6 text-lg font-semibold leading-4 tracking-wider text-left bg-ihs-green-shade-100"
       >
         {options.mobileScreenHeaders
           ? options.mobileScreenHeaders.map((header, index) => (
@@ -28,7 +28,7 @@ const MobileTable = ({
           <Link
             key={row.id}
             to={`${actionBaseUrl}${row.original.id}`} // extract the value of the id property
-            className="odd:bg-gray-100 p-4 relative"
+            className="relative p-4 odd:bg-gray-100"
             aria-label="table-row"
           >
               {row.getVisibleCells().map((cell, index) => {
@@ -49,7 +49,7 @@ const MobileTable = ({
                         // position item to the top right
                         options.positionedColumn &&
                         options.positionedColumn === cell.column.id
-                          ? `text-xs font-normal rounded-md absolute top-6 right-8 z-[10px]`
+                          ? `text-xs text-end font-normal rounded-md absolute top-6 right-8 z-[10px]`
                           : ""
                       } ${
                         cell.column.id.toLowerCase() !== "email"
@@ -67,9 +67,9 @@ const MobileTable = ({
         );
       })}
       {tableLength < 1 && (
-        <div className="flex flex-col justify-center items-center py-5">
+        <div className="flex flex-col items-center justify-center py-5">
           <img src={noData} alt="No Data" className="w-40 my-5" />
-          <p className="text-lg md:mx-32 mx-5 text-center">No {tableTitle}</p>
+          <p className="mx-5 text-lg text-center md:mx-32">No {tableTitle}</p>
         </div>
       )}
     </div>

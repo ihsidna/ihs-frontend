@@ -25,7 +25,7 @@ const ViewUser = () => {
       <>
         <Helmet>
           <title>View User | IHS Dashboard</title>
-          <link rel="canonical" href="https://www.ihsmdinc.com/" />
+          <link rel="canonical" href="https://www.ihsmia.com/" />
         </Helmet>
         {isError && setErrMsg("Failed to get user")}
         {/* Error Handling */}
@@ -38,11 +38,11 @@ const ViewUser = () => {
           aria-live="assertive"
         >
           <span className="flex items-center">
-            <ExclamationCircleIcon className="text-ihs-green w-6 mr-2 inline" />
+            <ExclamationCircleIcon className="inline w-6 mr-2 text-ihs-green" />
             {errMsg}
           </span>
         </p>
-        <div className="lg:px-20 lg:py-4 md:px-10 p-3">
+        <div className="p-3 lg:px-20 lg:py-4 md:px-10">
           <PageHeading
             pageName={"User Details"}
             previousPageName={"Users"}
@@ -58,62 +58,69 @@ const ViewUser = () => {
           </PageHeading>
 
           {isLoading ? (
-            <div className="w-full min-h-40 p-12 grid items-center">
+            <div className="grid items-center w-full p-12 min-h-40">
               <Spinner
                 className=""
                 style={{ width: "10%", margin: "2rem auto 0" }}
               />
             </div>
           ) : (
-            <div className="my-10 text-gray-600 grid md:grid-cols-2 gap-y-4">
-              <div className="flex space-x-4">
-                <p className="pcol-span-2 lg:col-span-1 font-semibold text-black">
+            <div className="grid my-10 text-gray-600 md:grid-cols-2 gap-y-4">
+                
+              <div className="grid items-center grid-cols-3 space-x-4 lg:grid-cols-5">
+                <p className="col-span-1 font-semibold text-black lg:col-span-1">
                   Full Name:{" "}
                 </p>
-                <p className="lg:col-start-2">
+                <p className="col-span-2 break-words lg:col-span-4">
                   {capitalizeString(data?.firstName)}{" "}
                   {capitalizeString(data?.lastName)}
                 </p>
               </div>
-              <div className="flex space-x-4">
-                <p className="col-span-2 lg:col-span-1 font-semibold text-black">
+                
+              <div className="grid items-center grid-cols-3 space-x-4 lg:grid-cols-5">
+                <p className="col-span-1 font-semibold text-black lg:col-span-1 ">
                   Email:{" "}
                 </p>
-                <p className="lg:col-start-2">{data?.email}</p>
+                <p className="col-span-2 break-words lg:col-span-4">{data?.email}</p>
               </div>
-              <div className="flex space-x-4">
-                <p className="col-span-2 lg:col-span-1 font-semibold text-black">
+                
+              <div className="grid items-center grid-cols-3 space-x-4 lg:grid-cols-5">
+                <p className="col-span-1 font-semibold text-black lg:col-span-1">
                   Phone:{" "}
                 </p>
-                <p className="lg:col-start-2">{data?.phone}</p>
+                <p className="col-span-2 break-words lg:col-span-4">{data?.phone}</p>
               </div>
-              <div className="flex space-x-4">
-                <p className="col-span-2 lg:col-span-1 font-semibold  text-black">
+                
+              <div className="grid items-center grid-cols-3 space-x-4 lg:grid-cols-5">
+                <p className="col-span-1 font-semibold text-black lg:col-span-1">
                   Role:{" "}
                 </p>
-                <p className="lg:col-start-2 capitalize">{data?.userType}</p>
+                <p className="col-span-2 capitalize break-words lg:col-span-4">
+                  {data?.userType}
+                </p>
+              </div>
+                
+              {
+                data?.accountActive === false &&
+                <div className="grid items-center grid-cols-3 space-x-4 lg:grid-cols-5">
+                  <p className="col-span-1 font-semibold text-black lg:col-span-1">
+                    Account Status:{" "}
+                  </p>
+                  <p className="col-span-2 px-2 py-1 text-xs capitalize break-normal bg-gray-300 rounded h-fit w-fit lg:col-span-4">Deactivated
+                  </p>
                 </div>
-                {
-                  data?.accountActive === false &&
-                  <div className="flex space-x-4">
-                    <p className="col-span-2 lg:col-span-1 font-semibold  text-black">
-                      Account Status:{" "}
-                    </p>
-                    <p className="lg:col-start-2 px-2 py-1 break-normal capitalize rounded text-xs bg-gray-300">Deactivated
-                    </p>
-                  </div>
-                }
+              }
             </div>
           )}
           <hr className="my-10" />
 
-          <div className="flex justify-between items-center mt-10">
-            <h2 className="md:text-2xl text-xl">Beneficiaries</h2>
+          <div className="flex items-center justify-between mt-10">
+            <h2 className="text-xl md:text-2xl">Beneficiaries</h2>
           </div>
 
           <Suspense
             fallback={
-              <div className="w-full min-h-40 p-6 grid items-center">
+              <div className="grid items-center w-full p-6 min-h-40">
                 <Spinner
                   className=""
                   style={{ width: "10%", margin: "0 auto" }}

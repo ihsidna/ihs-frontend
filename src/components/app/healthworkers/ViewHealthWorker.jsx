@@ -36,7 +36,7 @@ const ViewHealthWorker = () => {
           <title>View Health Worker | IHS Dashboard</title>
           <link rel="canonical" href="https://www.ihsmia.com/" />
         </Helmet>
-        <div className="lg:px-20 lg:py-4 md:px-10 p-3">
+        <div className="p-3 lg:px-20 lg:py-4 md:px-10">
           <PageHeading
             pageName={"Health Worker Details"}
             previousPageName={"Health Workers"}
@@ -54,7 +54,7 @@ const ViewHealthWorker = () => {
           </PageHeading>
 
           {isLoading ? (
-            <div className="w-full min-h-40 p-12 grid items-center">
+            <div className="grid items-center w-full p-12 min-h-40">
               <Spinner
                 className=""
                 style={{ width: "10%", margin: "2rem auto 0" }}
@@ -62,35 +62,35 @@ const ViewHealthWorker = () => {
             </div>
           ) : (
             <div className="my-10 text-gray-600 grid md:grid-cols-2 gap-y-4 lg:max-w-[70%]">
-              <div className="flex space-x-4">
-                <p className="col-span-2 lg:col-span-1 font-semibold text-black">
+              <div className="grid items-center grid-cols-3 space-x-4 lg:grid-cols-5">
+                <p className="col-span-1 font-semibold text-black lg:col-span-1">
                   Full Name:
                 </p>
 
-                <p className="lg:col-start-2">
+                <p className="col-span-2 break-words lg:col-span-4">
                   {capitalizeString(data.firstName)}{" "}
                   {capitalizeString(data.lastName)}{" "}
                 </p>
               </div>
-              <div className="flex space-x-4">
-                <p className="col-span-2 lg:col-span-1 font-semibold text-black">
+              <div className="grid items-center grid-cols-3 space-x-4 lg:grid-cols-5">
+                <p className="col-span-1 font-semibold text-black lg:col-span-1">
                   Email:
                 </p>
 
-                <p className="lg:col-start-2">{data.email}</p>
+                <p className="col-span-2 break-words lg:col-span-4">{data.email}</p>
               </div>
-              <div className="flex space-x-4">
-                <p className="col-span-2 lg:col-span-1 font-semibold text-black">
+              <div className="grid items-center grid-cols-3 space-x-4 lg:grid-cols-5">
+                <p className="col-span-1 font-semibold text-black lg:col-span-1">
                   Phone Number:{" "}
                 </p>
 
-                <p className="lg:col-start-2">{data.phone} </p>
+                <p className="col-span-2 break-words lg:col-span-4">{data.phone} </p>
               </div>
-              <div className="flex space-x-4">
-                <p className="col-span-2 lg:col-span-1 font-semibold text-black">
+              <div className="grid items-center grid-cols-3 space-x-4 lg:grid-cols-5">
+                <p className="col-span-1 font-semibold text-black lg:col-span-1">
                   Qualification:{" "}
                 </p>
-                <p className="lg:col-start-2">{data.qualification} </p>
+                <p className="col-span-2 break-words lg:col-span-4">{data.qualification} </p>
               </div>
             </div>
           )}

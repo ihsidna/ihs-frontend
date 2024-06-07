@@ -58,11 +58,11 @@ const BeneficiaryTable = () => {
 		<>
 			{loading && <TopBarProgress/>}
 
-			<div className="hidden sm:block flex flex-col mt-8">
+			<div className="flex flex-col hidden mt-8 sm:block">
 				<div className="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
 					<div
 						className="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 rounded-md">
-						<table className="table-auto min-w-full">
+						<table className="min-w-full table-auto">
 							<thead>
 							<tr>
 								<th
@@ -92,7 +92,7 @@ const BeneficiaryTable = () => {
 								?
 								laptopTableData.map((beneficiary, index) => (
 									<tr key={index}>
-										<td className=" py-4 whitespace-no-wrap border-b border-gray-200">
+										<td className="py-4 whitespace-no-wrap border-b border-gray-200 ">
 											<div className="flex items-center">
 												<div className="mx-4">
 													<Avatar name={`${capitalizeString(beneficiary?.firstName)} ${capitalizeString(beneficiary?.lastName)}`}
@@ -104,7 +104,7 @@ const BeneficiaryTable = () => {
 										<td className="py-4 whitespace-no-wrap border-b border-gray-200">
 											<div className="flex items-center">
 												<div>
-													<div className="md:text-lg text-base font-medium leading-5 text-gray-500">
+													<div className="text-base font-medium leading-5 text-gray-500 md:text-lg">
 														{capitalizeString(beneficiary?.firstName)}&nbsp;{capitalizeString(beneficiary?.lastName)}
 													</div>
 												</div>
@@ -113,15 +113,15 @@ const BeneficiaryTable = () => {
 
 										<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
 											<div
-												className="md:text-lg text-base leading-5 text-gray-500">{beneficiary?.city}, {beneficiary?.state}</div>
+												className="text-base leading-5 text-gray-500 md:text-lg">{beneficiary?.city}, {beneficiary?.state}</div>
 										</td>
 
 										<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-											<p className="md:text-lg text-base leading-5 text-gray-500">{calculateAge(beneficiary?.dob)}</p>
+											<p className="text-base leading-5 text-gray-500 md:text-lg">{calculateAge(beneficiary?.dob)}</p>
 										</td>
 
 										<td
-											className="px-6 py-4 md:text-lg text-base leading-5 text-ihs-green whitespace-no-wrap border-b border-gray-200">
+											className="px-6 py-4 text-base leading-5 whitespace-no-wrap border-b border-gray-200 md:text-lg text-ihs-green">
 											<Link to={`/beneficiaries/viewbeneficiary/${beneficiary?.id}`}>
 												View
 											</Link>
@@ -132,9 +132,9 @@ const BeneficiaryTable = () => {
 								:
 								<tr>
 									<td colSpan="5" className="px-6 py-4 text-center">
-										<div className="flex flex-col justify-center items-center py-20">
+										<div className="flex flex-col items-center justify-center py-20">
 											<img src={Nodata} alt="No Data" className="w-40 my-10"/>
-											<p className="text-lg md:mx-32 mx-5 text-center">You have no beneficiaries. Add a Beneficiary to
+											<p className="mx-5 text-lg text-center md:mx-32">You have no beneficiaries. Add a Beneficiary to
 												begin</p>
 										</div>
 									</td>
@@ -153,11 +153,11 @@ const BeneficiaryTable = () => {
 			</div>
 
 			{/*Mobile Table*/}
-			<div className="sm:hidden flex flex-col my-8">
+			<div className="flex flex-col my-8 sm:hidden">
 				<div className="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
 					<div
 						className="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 rounded-md">
-						<table className="table-auto min-w-full">
+						<table className="min-w-full table-auto">
 							<thead>
 							<tr>
 								<th
@@ -174,7 +174,7 @@ const BeneficiaryTable = () => {
 									<tr className="py-4 whitespace-no-wrap border-b even:bg-gray-100" key={index}
 											onClick={() => navigate(`/beneficiaries/viewbeneficiary/${beneficiary?.id}`)}>
 										<td className="p-4 ">
-											<div className="flex justify-between items-center text-md text-gray-800">
+											<div className="flex items-center justify-between text-gray-800 text-md">
 												<span>{capitalizeString(beneficiary?.firstName)}&nbsp;{capitalizeString(beneficiary?.lastName)}</span>
 											</div>
 											<div className="text-sm text-gray-500">
@@ -197,9 +197,9 @@ const BeneficiaryTable = () => {
 								:
 								<tr>
 									<td colSpan="5" className="px-6 py-4 text-center">
-										<div className="flex flex-col justify-center items-center py-20">
+										<div className="flex flex-col items-center justify-center py-20">
 											<img src={Nodata} alt="No Data" className="w-40 my-10"/>
-											<p className="text-lg md:mx-32 mx-5 text-center">You have no beneficiaries. Add a Beneficiary.</p>
+											<p className="mx-5 text-lg text-center md:mx-32">You have no beneficiaries. Add a Beneficiary.</p>
 										</div>
 									</td>
 								</tr>

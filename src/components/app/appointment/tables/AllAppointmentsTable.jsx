@@ -41,7 +41,7 @@ const AllAppointmentsTable = ({ appointments }) => {
       header: " ", // do not remove the space in between the string
       accessorKey: "avatar",
       cell: (cell) => (
-        <span className="hidden sm:block px-0">
+        <span className="hidden px-0 sm:block">
           <Avatar
             name={`${cell.row.original.beneficiaryName}`}
             color={avatar.BackgroundColor}
@@ -72,8 +72,11 @@ const AllAppointmentsTable = ({ appointments }) => {
       header: "STATUS",
       accessorKey: "status",
       cell: (cell) => (
+        <div className="flex flex-col space-y-12 md:space-y-0">
+          <span className="block text-xs font-light md:hidden text-ihs-green">View</span>
+
         <span
-          className={`px-2 py-1 break-normal rounded text-xs ${
+          className={`px-2 py-1 break-normal rounded text-xs w-fit ${
             cell.row.original.completed.toString() === booleanString.True
               ? "text-green-900 bg-green-100"
               : cell.getValue() === appointmentStatus.Confirmed
@@ -84,7 +87,8 @@ const AllAppointmentsTable = ({ appointments }) => {
           {cell.row.original.completed.toString() === booleanString.True
             ? appointmentStatus.Completed
             : cell.getValue()}
-        </span>
+          </span>
+        </div>
       ),
     },
     {

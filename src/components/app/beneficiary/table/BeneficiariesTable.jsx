@@ -4,6 +4,7 @@ import TopBarProgress from "react-topbar-progress-indicator";
 import { calculateAge } from "../../../../hooks/useCalculateAge";
 import BaseTable from "../../../table/BaseTable";
 import Avatar from "react-avatar";
+import { truncate } from "../../../../utils/utililtyFunctions";
 
 TopBarProgress.config({
   barColors: {
@@ -22,7 +23,7 @@ const BeneficiariesTable = ({ beneficiaries }) => {
     {
       header: " ", // do not remove the space in between the string
       cell: (cell) => (
-        <span className="hidden sm:block px-0">
+        <span className="hidden px-0 sm:block">
           <Avatar
             name={`${cell.row.original.firstName} ${cell.row.original.lastName}`}
             color={avatar.BackgroundColor}
@@ -37,7 +38,12 @@ const BeneficiariesTable = ({ beneficiaries }) => {
       header: "BENEFICIARY",
       accessorFn: (row) => `${row.firstName} ${row.lastName}`,
       cell: (cell) => (
-        <p className="capitalize text-lg md:text-base font-semibold md:font-normal">{`${cell.getValue()}`}</p>
+        <div className="flex items-center justify-between">
+          <p className="text-lg font-semibold capitalize md:text-base md:font-normal">{`${cell.getValue()}`}</p>
+
+          <span className="block text-xs font-light md:hidden text-ihs-green">View</span>
+        </div>
+        
       ),
     },
     {
@@ -58,9 +64,13 @@ const BeneficiariesTable = ({ beneficiaries }) => {
       cell: (cell) => (
         <p className="flex justify-between">
           <span className="font-medium md:hidden">Address:</span>
-          <span className="font-normal">
+          <span className="font-normal lg:hidden">
             {" "}
-            {`${cell.getValue().substring(0, 40)}`}
+            {`${truncate(cell.getValue(), 26)}`}
+          </span>
+          <span className="hidden font-normal lg:block">
+            {" "}
+            {`${truncate(cell.getValue(), 40)}`}
           </span>
         </p>
       ),

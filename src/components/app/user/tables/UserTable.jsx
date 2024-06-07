@@ -12,7 +12,7 @@ const UsersTable = ({ users }) => {
     {
       header: " ", // do not remove the space in between the string
       cell: (cell) => (
-        <span className="hidden sm:block px-0">
+        <span className="hidden px-0 sm:block">
           <Avatar
             name={`${cell.row.original.firstName} ${cell.row.original.lastName}`}
             color={avatar.BackgroundColor}
@@ -67,10 +67,12 @@ const UsersTable = ({ users }) => {
       ),
     },
   ];
+  
+  let sortedUsers = [...users].sort((a, b) => a.firstName.localeCompare(b.firstName));
 
   return (
     <BaseTable
-      data={users}
+      data={sortedUsers}
       columns={columns}
       rowsPerPage={rowsPerPage}
       actionBaseUrl={"viewuser/"}

@@ -12,7 +12,7 @@ const HealthWorkerTable = ({ healthWorkers }) => {
     {
       header: " ", // do not remove the space in between the string
       cell: (cell) => (
-        <span className="hidden sm:block px-0">
+        <span className="hidden px-0 sm:block">
           <Avatar
             name={`${cell.row.original?.firstName} ${cell.row.original?.lastName}`}
             color={avatar.BackgroundColor}
@@ -27,7 +27,11 @@ const HealthWorkerTable = ({ healthWorkers }) => {
       header: "NAME",
       accessorFn: (row) => `${row.firstName} ${row.lastName}`,
       cell: (cell) => (
-        <p className="capitalize text-base md:text-base font-semibold md:font-normal">{`${cell.getValue()}`}</p>
+        <div className="flex items-center justify-between">
+          <p className="text-lg font-semibold capitalize md:text-base md:font-normal">{`${cell.getValue()}`}</p>
+
+          <span className="block text-xs font-light md:hidden text-ihs-green">View</span>
+        </div>
       ),
     },
     {
