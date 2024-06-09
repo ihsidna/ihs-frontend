@@ -28,5 +28,8 @@
     "backgroundColor": "#fff",
     "preferredContentMode": "mobile",
     "contentInset": "never"
+  },
+  "server": {
+    "androidScheme": "http"
   }
 }

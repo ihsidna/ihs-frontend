@@ -11,7 +11,8 @@ import { WATDateString } from "../../../../hooks/useFormatDate";
 import { ClipboardCheckIcon } from "@heroicons/react/outline";
 import { capitalizeString } from "../../../../utils/capitalizeString";
 import ActionModal from "../../../shared/ActionModal";
-
+import { Clipboard } from '@capacitor/clipboard';
+    
 const BookAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
   const initialValues = {
     beneficiaryId: "",
@@ -37,7 +38,11 @@ const BookAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
   }, []);
 
   const redirectToWebApp = () => {
-    window.alert("Visit the web app at https://app.ihsmia.com");
+    Clipboard.write({
+      string: 'https://app.ihsmia.com'
+    });
+    
+    window.alert('Visit the web app at https://app.ihsmia.com.\n\nThe link has been copied to your clipboard!\n\nYou can now paste it into your browser to visit our web app.');
   };
 
   const handleSubmit = async (values) => {
@@ -94,10 +99,10 @@ const BookAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
   return (
     <>
       <div>
-        <div className="flex space-x-2 items-center justify-between">
+        <div className="flex items-center justify-between space-x-2">
           <div className="flex items-center space-x-2">
             <ClipboardCheckIcon className="w-8 text-ihs-green" />
-            <h2 className="md:text-xl font-semibold text-gray-800">
+            <h2 className="font-semibold text-gray-800 md:text-xl">
               Book Appointment
             </h2>
           </div>
@@ -111,11 +116,11 @@ const BookAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
         <Formik initialValues={initialValues} onSubmit={handleSubmit}>
           {({ errors }) => (
             <Form className="grid gap-y-6">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-3 mt-8 items-center">
-                <div className="grid transition w-full">
-                  <label htmlFor="beneficiaryId"  className="text-xs mb-1 font-light text-gray-600">
+              <div className="grid items-center grid-cols-1 mt-8 lg:grid-cols-2 gap-x-6 gap-y-3">
+                <div className="grid w-full transition">
+                  <label htmlFor="beneficiaryId"  className="mb-1 text-xs font-light text-gray-600">
                     Beneficiary
-                    <span className=" transition text-red-600">*</span>
+                    <span className="text-red-600 transition ">*</span>
                   </label>
                   <Field
                     as="select"
@@ -149,9 +154,9 @@ const BookAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
                   />
                 </div>
                 <div className="grid transition">
-                  <label htmlFor="serviceId"  className="text-xs mb-1 font-light text-gray-600">
+                  <label htmlFor="serviceId"  className="mb-1 text-xs font-light text-gray-600">
                     Service
-                    <span className=" transition text-red-600">*</span>
+                    <span className="text-red-600 transition ">*</span>
                   </label>
                   <Field
                     as="select"
@@ -184,9 +189,9 @@ const BookAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
                   />
                 </div>
                 <div className="grid transition">
-                  <label htmlFor="date"  className="text-xs mb-1 font-light text-gray-600">
+                  <label htmlFor="date"  className="mb-1 text-xs font-light text-gray-600">
                     Date
-                    <span className=" transition text-red-600">*</span>
+                    <span className="text-red-600 transition ">*</span>
                   </label>
 
                   <Field
@@ -207,9 +212,9 @@ const BookAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
                 </div>
 
                 <div className="grid transition">
-                  <label htmlFor="time"  className="text-xs mb-1 font-light text-gray-600">
+                  <label htmlFor="time"  className="mb-1 text-xs font-light text-gray-600">
                     Time
-                    <span className=" transition text-red-600">*</span>
+                    <span className="text-red-600 transition ">*</span>
                   </label>
 
                   <Field
@@ -228,8 +233,8 @@ const BookAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
                     } text-red-500 text-xs mt-1 transition-all duration-500`}
                   />
                 </div>
-                <div className="grid lg:col-span-2 transition">
-                  <label htmlFor="notes"  className="text-xs mb-1 font-light text-gray-600">
+                <div className="grid transition lg:col-span-2">
+                  <label htmlFor="notes"  className="mb-1 text-xs font-light text-gray-600">
                     Notes
                   </label>
 
@@ -238,7 +243,7 @@ const BookAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
                     name="notes"
                     id="notes"
                     autoComplete="true"
-                    className="transition border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-1"
+                    className="p-2 transition border border-gray-300 rounded-md focus:outline-none focus:ring-1"
                   />
                   <ErrorMessage
                     name="notes"
@@ -251,14 +256,14 @@ const BookAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
               </div>
               <div className="flex mt-2 gap-x-4">
                 <button
-                  className="transition flex-1 px-4 py-2 bg-gray-100 hover:bg-gray-200 text-ihs-green md:text-base text-sm font-medium rounded-md"
+                  className="flex-1 px-4 py-2 text-sm font-medium transition bg-gray-100 rounded-md hover:bg-gray-200 text-ihs-green md:text-base"
                   onClick={handleCancelClick}
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="transition disabled:bg-ihs-green-shade-200 disabled:text-slate-600 disabled:border-slate-200 disabled:shadow-none flex-1 px-4 py-2 ml-2 text-white md:text-base text-sm font-medium rounded-md bg-ihs-green"
+                  className="flex-1 px-4 py-2 ml-2 text-sm font-medium text-white transition rounded-md disabled:bg-ihs-green-shade-200 disabled:text-slate-600 disabled:border-slate-200 disabled:shadow-none md:text-base bg-ihs-green"
                   disabled={
                     bookAppointmentMutation.isLoading ||
                     Object.keys(errors).length > 0

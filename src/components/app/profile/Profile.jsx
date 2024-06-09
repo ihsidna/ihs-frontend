@@ -17,6 +17,7 @@ import PageHeading from "../../shared/PageHeading";
 import UpdatePhoneNumberForm from "./UpdatePhoneNumberForm.jsx";
 import FormModal from "../../shared/FormModal";
 import Spinner from "../../shared/Spinner";
+import { Clipboard } from '@capacitor/clipboard';
 
 const UPDATE_PASSWORD = "/user/updatePassword";
 
@@ -61,7 +62,11 @@ const Profile = () => {
   }, []);
 
   const redirectToWebApp = () => {
-    window.alert("Visit the web app at https://app.ihsmia.com");
+    Clipboard.write({
+      string: 'https://app.ihsmia.com'
+    });
+    
+    window.alert('Visit the web app at https://app.ihsmia.com.\n\nThe link has been copied to your clipboard!\n\nYou can now paste it into your browser to visit our web app.');
   };
 
   const handlePortal = async (e) => {
@@ -155,7 +160,7 @@ const Profile = () => {
             />
           )}
 
-          <div className="lg:px-20 lg:py-4 md:px-10 p-3">
+          <div className="p-3 lg:px-20 lg:py-4 md:px-10">
             <PageHeading
               pageName={"My Profile"}
               previousPageName={"Dashboard"}
@@ -163,32 +168,32 @@ const Profile = () => {
             />
 
             {fetchUserProfile.isLoading ? (
-              <div className="w-full p-6 grid items-center">
+              <div className="grid items-center w-full p-6">
                 <Spinner
                   className=""
                   style={{ width: "6%", margin: "0 auto" }}
                 />
               </div>
             ) : (
-              <div className="my-10 text-gray-600 grid md:grid-cols-2 gap-y-4 ">
+              <div className="grid my-10 text-gray-600 md:grid-cols-2 gap-y-4 ">
                 <div className="flex space-x-4">
-                  <p className="col-span-2 lg:col-span-1 font-semibold">
+                  <p className="col-span-2 font-semibold lg:col-span-1">
                     First Name:{" "}
                   </p>
-                  <p className="lg:col-start-2 capitalize">
+                  <p className="capitalize lg:col-start-2">
                     {fetchUserProfile.data?.firstName}
                   </p>
                 </div>
                 <div className="flex space-x-4 ">
-                  <p className="col-span-2 lg:col-span-1 font-semibold">
+                  <p className="col-span-2 font-semibold lg:col-span-1">
                     Last Name:{" "}
                   </p>
-                  <p className="lg:col-start-2 capitalize">
+                  <p className="capitalize lg:col-start-2">
                     {fetchUserProfile.data?.lastName}
                   </p>
                 </div>
                 <div className="flex space-x-4 md:order-3">
-                  <p className="col-span-2 lg:col-span-1 font-semibold">
+                  <p className="col-span-2 font-semibold lg:col-span-1">
                     Phone Number:{" "}
                   </p>
                   <p className="lg:col-start-2">
@@ -197,7 +202,7 @@ const Profile = () => {
                 </div>
 
                 <div className="flex space-x-4 md:order-4">
-                  <p className="col-span-2 lg:col-span-1 font-semibold">
+                  <p className="col-span-2 font-semibold lg:col-span-1">
                     Email:{" "}
                   </p>
                   <p className="lg:col-start-2">
@@ -226,7 +231,7 @@ const Profile = () => {
               />
               <button
                 type="submit"
-                className="w-64 py-2 bg-ihs-green focus: outline-none focus:ring-2 focus:ring-ihs-green-shade-500 text-base"
+                className="w-64 py-2 text-base outline-none bg-ihs-green focus: focus:ring-2 focus:ring-ihs-green-shade-500"
                 disabled={fetchUserProfile.isLoading}
               >
                 Visit Customer Portal
@@ -240,15 +245,15 @@ const Profile = () => {
             </p>
 
             {fetchUserProfile.isLoading ? (
-              <div className="w-full p-6 grid items-center">
+              <div className="grid items-center w-full p-6">
                 <Spinner className="" style={{ width: "6%" }} />
               </div>
             ) : (
-              <form className="my-5 grid w-64" onSubmit={handleSubmit}>
+              <form className="grid w-64 my-5" onSubmit={handleSubmit}>
                 <div>
                   <label
                     htmlFor="password"
-                    className="block text-sm font-medium text-gray-500 mb-2"
+                    className="block mb-2 text-sm font-medium text-gray-500"
                   >
                     New Password <span className="text-red-600">*</span>
                   </label>
@@ -280,7 +285,7 @@ const Profile = () => {
                     )}
                   </span>
                   {errors.password && touched.password && (
-                    <p className="animate-fly-in-y text-red-500 normal-case text-xs mt-2">
+                    <p className="mt-2 text-xs text-red-500 normal-case animate-fly-in-y">
                       {errors.password}
                     </p>
                   )}
@@ -288,7 +293,7 @@ const Profile = () => {
                 <div className="">
                   <label
                     htmlFor="confirmPassword"
-                    className="block text-sm font-medium text-gray-500 py-2"
+                    className="block py-2 text-sm font-medium text-gray-500"
                   >
                     Confirm Password <span className="text-red-600">*</span>
                   </label>
@@ -324,7 +329,7 @@ const Profile = () => {
                     )}
                   </span>
                   {errors.confirmPassword && touched.confirmPassword && (
-                    <p className="animate-fly-in-y text-red-500 normal-case text-xs mt-2">
+                    <p className="mt-2 text-xs text-red-500 normal-case animate-fly-in-y">
                       {errors.confirmPassword}
                     </p>
                   )}
@@ -334,7 +339,7 @@ const Profile = () => {
                   <button
                     type="submit"
                     disabled={Object.keys(errors).length > 0 || isSubmitting}
-                    className="mt-4 mb-10 bg-ihs-green w-64 py-2"
+                    className="w-64 py-2 mt-4 mb-10 bg-ihs-green"
                   >
                     {isSubmitting ? "Updating Password" : "Update Password"}
                   </button>

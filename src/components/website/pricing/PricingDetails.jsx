@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Capacitor } from "@capacitor/core";
 import useFetch from "../../../hooks/useFetch";
+import { Clipboard } from '@capacitor/clipboard';
 
 TopBarProgress.config({
   barColors: {
@@ -39,7 +40,11 @@ const PricingDetails = () => {
   }, []);
 
   const redirectToWebApp = () => {
-    window.alert("Visit the web app at https://app.ihsmia.com");
+    Clipboard.write({
+      string: 'https://app.ihsmia.com'
+    });
+    
+    window.alert('Visit the web app at https://app.ihsmia.com.\n\nThe link has been copied to your clipboard!\n\nYou can now paste it into your browser to visit our web app.');
   };
 
   const handleCheckout = async (e) => {
@@ -88,15 +93,15 @@ const PricingDetails = () => {
   }, [data]);
 
   return (
-    <section className="bg-white mb-20">
+    <section className="mb-20 bg-white">
       {loading && <TopBarProgress />}
       <div className="container px-6 py-8 mx-auto">
         <div className="sm:flex sm:items-center sm:justify-between">
           <div>
-            <h2 className="md:text-3xl text-xl font-bold text-gray-800">
+            <h2 className="text-xl font-bold text-gray-800 md:text-3xl">
               Transparent Pricing,
             </h2>
-            <p className="mt-1 text-gray-500 font-thin">
+            <p className="mt-1 font-thin text-gray-500">
               Our service fees are $1200/term and we provide the below payment
               options. Please contact us for multi-Beneficiary discounts,
               clarifications and/or any required accommodation.
@@ -105,13 +110,13 @@ const PricingDetails = () => {
         </div>
 
         <div className="grid gap-6 mt-16 sm:gap-8 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
-          <div className="px-6 py-4 transition-colors duration-200 transform rounded-lg hover:bg-ihs-green-shade-50 border shadow">
+          <div className="px-6 py-4 transition-colors duration-200 transform border rounded-lg shadow hover:bg-ihs-green-shade-50">
             <p className="text-lg font-medium text-gray-800">
               Bi-Weekly Payment
             </p>
-            <h4 className="mt-2 md:text-3xl text-lg font-semibold text-gray-800 ">
+            <h4 className="mt-2 text-lg font-semibold text-gray-800 md:text-3xl ">
               $50
-              <span className="font-light text-sm text-gray-600 capitalize">
+              <span className="text-sm font-light text-gray-600 capitalize">
                 / Beneficiary
               </span>
             </h4>
@@ -119,10 +124,7 @@ const PricingDetails = () => {
             <form onSubmit={handleCheckout}>
               <button
                 disabled={beneficiarySubscriptionStatus}
-                className="disabled:bg-slate-400 disabled:border-slate-200
-											disabled:hover:text-white bg-ihs-green w-full px-4 py-2 mt-10
-											font-medium tracking-wide text-white capitalize transition-colors
-											duration-200 transform rounded-md focus:outline-none"
+                className="w-full px-4 py-2 mt-10 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform rounded-md disabled:bg-slate-400 disabled:border-slate-200 disabled:hover:text-white bg-ihs-green focus:outline-none"
                 onClick={() => setPriceId(biweeklyPricing)}
               >
                 Subscribe
@@ -130,11 +132,11 @@ const PricingDetails = () => {
             </form>
           </div>
 
-          <div className="px-6 py-4 transition-colors duration-200 transform rounded-lg hover:bg-ihs-green-shade-50 border shadow">
+          <div className="px-6 py-4 transition-colors duration-200 transform border rounded-lg shadow hover:bg-ihs-green-shade-50">
             <p className="text-lg font-medium text-gray-800">Monthly Payment</p>
-            <h4 className="mt-2 md:text-3xl text-lg font-semibold text-gray-800 ">
+            <h4 className="mt-2 text-lg font-semibold text-gray-800 md:text-3xl ">
               $100{" "}
-              <span className="font-light text-sm text-gray-600 capitalize">
+              <span className="text-sm font-light text-gray-600 capitalize">
                 / Beneficiary
               </span>
             </h4>
@@ -142,9 +144,7 @@ const PricingDetails = () => {
             <form onSubmit={handleCheckout}>
               <button
                 disabled={beneficiarySubscriptionStatus}
-                className="disabled:bg-slate-400 disabled:border-slate-200 disabled:hover:text-white
-											bg-ihs-green w-full px-4 py-2 mt-10 font-medium tracking-wide text-white capitalize
-											transition-colors duration-200 transform rounded-md focus:outline-none "
+                className="w-full px-4 py-2 mt-10 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform rounded-md disabled:bg-slate-400 disabled:border-slate-200 disabled:hover:text-white bg-ihs-green focus:outline-none "
                 onClick={() => setPriceId(monthlyPricing)}
               >
                 Subscribe
@@ -152,11 +152,11 @@ const PricingDetails = () => {
             </form>
           </div>
 
-          <div className="px-6 py-4 transition-colors duration-200 transform rounded-lg hover:bg-ihs-green-shade-50 border shadow">
+          <div className="px-6 py-4 transition-colors duration-200 transform border rounded-lg shadow hover:bg-ihs-green-shade-50">
             <p className="text-lg font-medium text-gray-800">Yearly Payment</p>
-            <h4 className="mt-2 md:text-3xl text-lg font-semibold text-gray-800 ">
+            <h4 className="mt-2 text-lg font-semibold text-gray-800 md:text-3xl ">
               $1200{" "}
-              <span className="font-light text-sm text-gray-600 capitalize">
+              <span className="text-sm font-light text-gray-600 capitalize">
                 / Beneficiary
               </span>
             </h4>
@@ -164,9 +164,7 @@ const PricingDetails = () => {
             <form onSubmit={handleCheckout}>
               <button
                 disabled={beneficiarySubscriptionStatus}
-                className="disabled:bg-slate-400 disabled:border-slate-200 disabled:hover:text-white
-											bg-ihs-green w-full px-4 py-2 mt-10 font-medium tracking-wide text-white capitalize
-											transition-colors duration-200 transform rounded-md focus:outline-none "
+                className="w-full px-4 py-2 mt-10 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform rounded-md disabled:bg-slate-400 disabled:border-slate-200 disabled:hover:text-white bg-ihs-green focus:outline-none "
                 onClick={() => setPriceId(yearlyPricing)}
               >
                 Subscribe
