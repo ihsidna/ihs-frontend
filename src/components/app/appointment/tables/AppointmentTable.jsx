@@ -122,7 +122,7 @@ const AppointmentTable = ({ appointments }) => {
                 "w-full rounded-md py-2 text-sm leading-5 border-0 outline-none",
                 selected
                   ? "bg-ihs-green text-white hover:bg-ihs-green hover:text-white"
-                  : "text-gray-500 hover:text-gray-500 hover:bg-transparent"
+                  : "text-gray-500 bg-transparent hover:bg-transparent"
               )
             }
           >
@@ -135,7 +135,7 @@ const AppointmentTable = ({ appointments }) => {
                 "w-full rounded-md py-2 text-sm leading-5 border-0 outline-none",
                 selected
                   ? "bg-ihs-green text-white hover:bg-ihs-green hover:text-white"
-                  : "text-gray-500 hover:text-gray-500 hover:bg-transparent"
+                  : "text-gray-500 bg-transparent hover:bg-transparent"
               )
             }
           >
