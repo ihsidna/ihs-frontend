@@ -3,15 +3,12 @@ import usePost from "../../../../hooks/usePost";
 import { useQueryClient } from "@tanstack/react-query";
 import { appointmentStatus } from "../../../../data/enums";
 import { useState } from "react";
-import { useEffect } from "react";
-import { Capacitor } from "@capacitor/core";
 import useFetch from "../../../../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
 import { WATDateString } from "../../../../hooks/useFormatDate";
 import { ClipboardCheckIcon } from "@heroicons/react/outline";
 import { capitalizeString } from "../../../../utils/capitalizeString";
 import ActionModal from "../../../shared/ActionModal";
-import { Clipboard } from '@capacitor/clipboard';
     
 const BookAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
   const initialValues = {
@@ -23,8 +20,6 @@ const BookAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
   };
   const navigate = useNavigate();
 
-  // const [errMsg, setErrMsg] = useState(false);
-  const [platform, setPlatform] = useState("");
   const [displayRedirectModal, setDisplayRedirectModal] = useState(false);
   const [beneficiary, setBeneficiary] = useState({});
 
@@ -32,18 +27,6 @@ const BookAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
   const fetchServices = useFetch("/admin/service/all", "allServices");
   const bookAppointmentMutation = usePost();
   const queryClient = useQueryClient();
-
-  useEffect(() => {
-    setPlatform(Capacitor.getPlatform());
-  }, []);
-
-  const redirectToWebApp = () => {
-    Clipboard.write({
-      string: 'https://app.ihsmia.com'
-    });
-    
-    window.alert('Visit the web app at https://app.ihsmia.com.\n\nThe link has been copied to your clipboard!\n\nYou can now paste it into your browser to visit our web app.');
-  };
 
   const handleSubmit = async (values) => {
     const appointmentData = {
@@ -55,14 +38,14 @@ const BookAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
     };
 
     // Find beneficiary of appointment by id
-    const beneficiaryData = fetchBeneficiaries?.data?.filter(
+    const beneficiaryData = await fetchBeneficiaries?.data?.filter(
       (ben) => ben.id === appointmentData.beneficiaryId
     );
 
     setBeneficiary(beneficiaryData[0]);
-
+    
     // verify beneficiary coverage subscription
-    if (beneficiaryData[0]?.subscription?.status === "active") {
+    if (beneficiaryData[0] && beneficiaryData[0]?.subscription?.status === "active") {
       const appointmentDate = WATDateString(appointmentData.date);
       const body = {
         ...appointmentData,
@@ -86,7 +69,7 @@ const BookAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
         }
       );
     } else {
-      platform === "web" ? setDisplayRedirectModal(true) : redirectToWebApp();
+      setDisplayRedirectModal(true);
     }
   };
 
@@ -199,6 +182,7 @@ const BookAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
                     name="date"
                     id="date"
                     autoComplete="true"
+                    placeholder="Select Date"
                     className="appearance-none h-10 bg-transparent w-full lg:min-w-[300px] transition border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-1"
                     required
                   />
@@ -222,6 +206,7 @@ const BookAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
                     name="time"
                     id="time"
                     autoComplete="true"
+                    placeholder="Select Time"
                     className="appearance-none h-10 bg-transparent w-full lg:min-w-[300px] transition border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-1"
                     required
                   />
@@ -243,6 +228,7 @@ const BookAppointmentForm = ({ handleCancelClick, setFormSuccess }) => {
                     name="notes"
                     id="notes"
                     autoComplete="true"
+                    placeholder="Additional notes (optional)"
                     className="p-2 transition border border-gray-300 rounded-md focus:outline-none focus:ring-1"
                   />
                   <ErrorMessage
